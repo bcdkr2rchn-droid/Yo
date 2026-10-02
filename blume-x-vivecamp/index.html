@@ -1,0 +1,1379 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Blüme × Vive Camp</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap">
+<style>
+/* Layout: libro de producción. Fotos y bocetos con contorno grueso de sticker (del logo Vive Camp), etiquetas mono de rider técnico, la escena "Un día" como pieza central. */
+:root{
+  --bg:#FFFCF8;
+  --surface:#F5EDE3;
+  --raised:#FFFFFF;
+  --ink:#1A1310;
+  --muted:#685A50;
+  --hair:rgba(26,19,16,.14);
+  --line:#1A1310;
+  --magenta:#E00A6C;
+  --magenta-text:#B8075A;
+  --orange:#FC8E01;
+  --blume:#F97826;
+  --peach:#F6C3A0;
+  --ivy:#4E6B2B;
+  --beam:#1E93B1;
+  --sticker:#FFFFFF;
+  --tag-blume-bg:#FFE3CE; --tag-blume-fg:#7A3304;
+  --tag-vive-bg:#FFDAEA; --tag-vive-fg:#86063F;
+  --tag-renta-bg:#E6EDDA; --tag-renta-fg:#2F4417;
+  --tag-prod-bg:#ECE5DC; --tag-prod-fg:#46392F;
+  --plan-street:#FFFCF8;
+  --plan-tent:#F3E7D6;
+  --f-display:"Archivo","Arial Black","Helvetica Neue",Arial,sans-serif;
+  --f-body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --r:14px;
+  --sw:3px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#110E13; --surface:#1C1720; --raised:#241E29; --ink:#F7EFE6; --muted:#ADA197;
+    --hair:rgba(247,239,230,.16); --line:#F7EFE6;
+    --magenta:#FF3B93; --magenta-text:#FF7DB6; --orange:#FFA126; --blume:#FF8A3D; --peach:#F2B892; --ivy:#97B867; --beam:#52CBEA;
+    --tag-blume-bg:#3B2213; --tag-blume-fg:#FFB47E; --tag-vive-bg:#3D1129; --tag-vive-fg:#FF93C4;
+    --tag-renta-bg:#243019; --tag-renta-fg:#BFDB97; --tag-prod-bg:#2D2621; --tag-prod-fg:#DCCFC3;
+    --plan-street:#110E13; --plan-tent:#D9C7AE;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#110E13; --surface:#1C1720; --raised:#241E29; --ink:#F7EFE6; --muted:#ADA197;
+  --hair:rgba(247,239,230,.16); --line:#F7EFE6;
+  --magenta:#FF3B93; --magenta-text:#FF7DB6; --orange:#FFA126; --blume:#FF8A3D; --peach:#F2B892; --ivy:#97B867; --beam:#52CBEA;
+  --tag-blume-bg:#3B2213; --tag-blume-fg:#FFB47E; --tag-vive-bg:#3D1129; --tag-vive-fg:#FF93C4;
+  --tag-renta-bg:#243019; --tag-renta-fg:#BFDB97; --tag-prod-bg:#2D2621; --tag-prod-fg:#DCCFC3;
+  --plan-street:#110E13; --plan-tent:#D9C7AE;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 var(--f-body)}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--magenta);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1180px;margin-inline:auto;padding-inline:clamp(16px,4vw,40px)}
+section{padding-block:clamp(56px,8vw,104px);border-top:1px solid var(--hair)}
+h1,h2,h3,h4{margin:0;text-wrap:balance}
+p{margin:0;max-width:65ch}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.display{font-family:var(--f-display);font-stretch:125%;font-weight:900;text-transform:uppercase;letter-spacing:-.005em;line-height:.98}
+.eyebrow{font:500 12px/1.3 var(--f-mono);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.lede{font-size:clamp(18px,1.7vw,21px);line-height:1.5}
+.muted{color:var(--muted)}
+.sec-head{display:grid;gap:16px;margin-bottom:clamp(28px,4vw,48px)}
+.sec-head h2{font-size:clamp(32px,5vw,60px)}
+.sec-head .lede{max-width:62ch}
+
+/* Top bar */
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--bg);border-bottom:1px solid var(--hair)}
+.topbar-in{display:flex;align-items:center;gap:20px;min-height:52px}
+.brandmark{font:900 14px/1 var(--f-display);font-stretch:125%;text-transform:uppercase;white-space:nowrap}
+.brandmark span{color:var(--magenta-text)}
+.topnav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin-left:auto;min-width:0}
+.topnav::-webkit-scrollbar{display:none}
+.topnav a{font:500 12px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.07em;text-decoration:none;padding:8px 10px;border-radius:999px;white-space:nowrap;color:var(--muted)}
+.topnav a:hover{background:var(--surface);color:var(--ink)}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:center;padding-block:clamp(32px,6vw,72px) clamp(48px,7vw,88px)}
+.hero-copy{display:grid;gap:22px;min-width:0}
+.lockup{width:100%;height:auto;max-width:620px;display:block}
+.with{display:flex;align-items:center;flex-wrap:wrap;gap:12px;font:500 12px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.09em;color:var(--muted)}
+.vc-chip{background:var(--sticker);border:var(--sw) solid var(--line);border-radius:12px;padding:5px 10px;transform:rotate(-2deg)}
+.vc-chip img{height:30px;width:auto}
+.rule{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;align-items:start;border:var(--sw) solid var(--line);border-radius:var(--r);padding:14px 16px;max-width:560px;background:var(--raised)}
+.rule b{font:600 11px/1.5 var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--magenta-text);padding-top:2px}
+.rule p{font-size:15px}
+.collage{position:relative;aspect-ratio:1/1;width:100%;max-width:100%}
+.ph{position:absolute;margin:0;border:var(--sw) solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--surface)}
+.ph img{width:100%;height:100%;object-fit:cover}
+.ph figcaption,.chip-cap{position:absolute;left:8px;bottom:8px;font:500 10.5px/1 var(--f-mono);background:var(--raised);color:var(--ink);border:1.5px solid var(--line);border-radius:999px;padding:4px 8px;text-transform:uppercase;letter-spacing:.06em}
+.ph-a{left:3%;top:17%;width:78%;aspect-ratio:16/10.5;transform:rotate(-2.5deg);z-index:2}
+.ph-b{right:5%;top:2%;width:32%;aspect-ratio:2/3;transform:rotate(4deg);z-index:1}
+.ph-c{right:5%;bottom:3%;width:52%;aspect-ratio:3/2;transform:rotate(2.5deg);z-index:3}
+
+/* La idea */
+.big-say{font-size:clamp(30px,4.6vw,56px)}
+.big-say em{font-style:normal;background:linear-gradient(90deg,#EC0B73,#FF3A44 55%,#FC8E01);-webkit-background-clip:text;background-clip:text;color:transparent}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.4vw,28px);margin-top:clamp(32px,4vw,48px)}
+.col{display:grid;gap:14px;align-content:start;min-width:0}
+.col .frame{position:relative;margin:0;border:var(--sw) solid var(--line);border-radius:var(--r);overflow:hidden;aspect-ratio:4/3;background:var(--surface)}
+.col .frame img,.col .frame svg{width:100%;height:100%;object-fit:cover;display:block}
+.col h3{font:900 21px/1.05 var(--f-display);font-stretch:118%;text-transform:uppercase}
+.col ul{margin:0;padding:0;list-style:none;display:grid;gap:7px;font-size:15.5px}
+.col li{display:grid;grid-template-columns:14px 1fr;gap:8px;align-items:baseline}
+.col li::before{content:"";width:9px;height:9px;border-radius:50%;border:2px solid var(--line);transform:translateY(-1px)}
+.col.c-blume li::before{background:var(--blume)}
+.col.c-vive li::before{background:var(--magenta)}
+.col.c-both li::before{background:linear-gradient(135deg,var(--magenta),var(--orange))}
+
+.palette-head{display:grid;gap:10px;margin-top:clamp(48px,6vw,72px);margin-bottom:18px}
+.palette-head h3{font:900 clamp(22px,2.6vw,30px)/1.05 var(--f-display);font-stretch:118%;text-transform:uppercase}
+.palette{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));border:var(--sw) solid var(--line);border-radius:var(--r);overflow:hidden}
+.sw{min-height:190px;padding:12px 11px;display:flex;flex-direction:column;justify-content:flex-end;gap:3px;min-width:0}
+.sw b{font:600 14px/1.15 var(--f-body)}
+.sw span{font:400 11px/1.3 var(--f-mono)}
+.sw.dk{color:#FFF8F0}.sw.lt{color:#1A1310}
+
+/* Escena */
+.scene-card{border:var(--sw) solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--raised)}
+.scene{display:block;width:100%;height:auto;aspect-ratio:1200/560}
+.beam{transform-box:view-box;animation:sway 9s ease-in-out infinite alternate}
+@keyframes sway{from{transform:rotate(-7deg)}to{transform:rotate(7deg)}}
+.scene-ui{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);border-top:var(--sw) solid var(--line)}
+.scene-ctl{display:grid;gap:16px;padding:18px clamp(16px,2.2vw,24px);border-right:1px solid var(--hair);min-width:0}
+.clock-row{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap}
+.clock{font:900 clamp(40px,5vw,56px)/.9 var(--f-display);font-stretch:112%;font-variant-numeric:tabular-nums}
+.dayl{font:500 12px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding-bottom:4px}
+.btn{font:600 13px/1 var(--f-body);border:2px solid var(--line);background:var(--raised);color:var(--ink);border-radius:999px;padding:9px 14px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.btn:hover{background:var(--surface)}
+.btn[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.clock-row .btn{margin-left:auto}
+.range-wrap{display:grid;gap:6px}
+.range{-webkit-appearance:none;appearance:none;width:100%;height:30px;background:transparent;margin:0;cursor:pointer;--daygrad:linear-gradient(90deg,#A9D3EA,#EC7A8A 30%,#211E46 45%,#1B1C43 80%,#D9848E 88%,#A9D3EA)}
+.range::-webkit-slider-runnable-track{height:14px;border-radius:999px;background:var(--daygrad);border:2px solid var(--line)}
+.range::-moz-range-track{height:10px;border-radius:999px;background:var(--daygrad);border:2px solid var(--line)}
+.range::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:26px;height:26px;border-radius:50%;background:var(--sticker);border:3px solid #1A1310;margin-top:-8px}
+.range::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--sticker);border:3px solid #1A1310}
+.ticks{position:relative;height:14px;font:500 10.5px/1 var(--f-mono);color:var(--muted)}
+.ticks span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+.ticks span:first-child{transform:none}.ticks span:last-child{transform:translateX(-100%)}
+.moments{display:flex;flex-wrap:wrap;gap:6px}
+.moments button{font:500 12px/1 var(--f-mono);border:1.5px solid var(--hair);background:transparent;color:var(--ink);border-radius:999px;padding:7px 10px;cursor:pointer;font-variant-numeric:tabular-nums}
+.moments button:hover{border-color:var(--line)}
+.moments button[aria-current="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.ev{padding:18px clamp(16px,2.2vw,24px);display:grid;gap:10px;align-content:start;min-width:0}
+.ev h3{font:900 clamp(22px,2.4vw,28px)/1.02 var(--f-display);font-stretch:115%;text-transform:uppercase}
+.ev p{font-size:16px}
+.ev-links{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.ev-links a{font:500 11.5px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;text-decoration:none;border:1.5px solid var(--line);border-radius:999px;padding:6px 9px}
+.ev-links a:hover{background:var(--surface)}
+
+/* Piezas */
+.group{margin-top:clamp(36px,5vw,56px)}
+.group:first-of-type{margin-top:0}
+.group-h{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:18px;padding-bottom:12px;border-bottom:var(--sw) solid var(--line)}
+.group-h h3{font:900 clamp(24px,3vw,34px)/1 var(--f-display);font-stretch:125%;text-transform:uppercase}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,2.4vw,28px)}
+.pieza{display:grid;gap:14px;align-content:start;min-width:0;scroll-margin-top:80px}
+.vis{position:relative;margin:0;border:var(--sw) solid var(--line);border-radius:var(--r);overflow:hidden;aspect-ratio:4/3;background:var(--surface);max-width:100%}
+.vis>svg{display:block;width:100%;height:100%}
+.vis .chip-cap{top:9px;bottom:auto;left:9px}
+.inset{position:absolute;right:9px;bottom:9px;width:31%;aspect-ratio:4/3;margin:0;border:2.5px solid #1A1310;border-radius:10px;overflow:hidden;transform:rotate(3deg);background:#EDE4D8;box-shadow:0 6px 14px rgba(0,0,0,.18)}
+.inset img{width:100%;height:100%;object-fit:cover}
+.inset.tr{top:9px;bottom:auto;transform:rotate(-3deg)}
+.inset figcaption{position:absolute;left:5px;top:5px;font:600 9px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;background:#FFFFFF;color:#1A1310;border:1.5px solid #1A1310;border-radius:999px;padding:3px 6px}
+.pieza-body{display:grid;gap:10px;min-width:0}
+.pieza h4{font:900 22px/1.02 var(--f-display);font-stretch:115%;text-transform:uppercase}
+.pieza p{font-size:15.5px}
+.specs{display:grid;grid-template-columns:auto minmax(0,1fr);gap:5px 12px;font-size:14px;margin:0;padding-top:10px;border-top:1px solid var(--hair)}
+.specs dt{font:500 10.5px/1.75 var(--f-mono);text-transform:uppercase;letter-spacing:.07em;color:var(--muted);white-space:nowrap}
+.specs dd{margin:0;min-width:0}
+.tags{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:0;padding:0}
+.tag{font:500 10.5px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.07em;padding:5px 8px;border-radius:999px;white-space:nowrap}
+.t-blume{background:var(--tag-blume-bg);color:var(--tag-blume-fg)}
+.t-vive{background:var(--tag-vive-bg);color:var(--tag-vive-fg)}
+.t-renta{background:var(--tag-renta-bg);color:var(--tag-renta-fg)}
+.t-prod{background:var(--tag-prod-bg);color:var(--tag-prod-fg)}
+
+/* Plano */
+.plan-layout{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:clamp(18px,2.4vw,28px);align-items:start}
+.plan-card{border:var(--sw) solid var(--line);border-radius:var(--r);background:var(--raised);overflow-x:auto}
+.plan{display:block;width:100%;min-width:680px;height:auto}
+.plan text{font-family:var(--f-mono)}
+.p-bg{fill:var(--raised)}
+.p-grid{stroke:var(--hair);stroke-width:1}
+.p-fence{stroke:var(--muted);stroke-width:2;stroke-dasharray:6 5;fill:none}
+.p-street{stroke:var(--plan-street);fill:none}
+.p-tent{fill:var(--plan-tent);stroke:var(--ink);stroke-width:1}
+.p-ink{fill:var(--ink)}
+.p-inkline{stroke:var(--ink);fill:none}
+.p-lbl{fill:var(--muted);font-size:9.5px;letter-spacing:.06em}
+.p-lbl-b{fill:var(--ink);font-size:10.5px;font-weight:600;letter-spacing:.06em}
+.p-surface{fill:var(--surface)}
+.zone{cursor:pointer}
+.zone .hl{fill:transparent;stroke:transparent;stroke-width:3}
+.zone:hover .hl{stroke:var(--hair);fill:rgba(128,128,128,.06)}
+.zone.is-on .hl{stroke:var(--magenta);fill:rgba(236,11,115,.08)}
+.zone:focus{outline:none}
+.zone:focus-visible .hl{stroke:var(--magenta);stroke-dasharray:4 3}
+.p-badge circle{fill:var(--ink)}
+.p-badge text{fill:var(--bg);font-size:10.5px;font-weight:600;text-anchor:middle}
+.zone.is-on .p-badge circle{fill:var(--magenta)}
+.zone.is-on .p-badge text{fill:#FFFFFF}
+.plan-side{display:grid;gap:16px;min-width:0}
+.zone-info{border:var(--sw) solid var(--line);border-radius:var(--r);padding:16px 18px;background:var(--raised);display:grid;gap:8px}
+.zone-info .eyebrow{color:var(--magenta-text)}
+.zone-info h3{font:900 22px/1.05 var(--f-display);font-stretch:115%;text-transform:uppercase}
+.zone-info p{font-size:15.5px}
+.zone-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.zone-list button{width:100%;text-align:left;display:grid;grid-template-columns:22px 1fr;gap:8px;align-items:center;font:500 13.5px/1.2 var(--f-body);background:transparent;color:var(--ink);border:1.5px solid transparent;border-radius:10px;padding:6px 8px;cursor:pointer}
+.zone-list button:hover{border-color:var(--hair)}
+.zone-list button i{font:600 10.5px/22px var(--f-mono);font-style:normal;width:22px;height:22px;border-radius:50%;background:var(--ink);color:var(--bg);text-align:center}
+.zone-list button[aria-pressed="true"]{border-color:var(--line)}
+.zone-list button[aria-pressed="true"] i{background:var(--magenta);color:#FFFFFF}
+.plan-note{font:400 12px/1.5 var(--f-mono);color:var(--muted)}
+
+/* Identidad */
+.lockups{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.4vw,28px)}
+.lk{display:grid;gap:12px;align-content:start;min-width:0}
+.lk-vis{position:relative;border:var(--sw) solid var(--line);border-radius:var(--r);background:var(--surface);aspect-ratio:16/10;display:grid;place-items:center;padding:7%}
+.lk-vis svg{width:100%;height:auto;max-height:100%}
+.lk h3{font:900 18px/1.1 var(--f-display);font-stretch:115%;text-transform:uppercase;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.lk p{font-size:15px}
+.reco{font:600 10.5px/1 var(--f-mono);letter-spacing:.07em;text-transform:uppercase;background:var(--ink);color:var(--bg);border-radius:999px;padding:5px 8px}
+.id-rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.4vw,28px);margin-top:clamp(28px,4vw,40px);padding-top:20px;border-top:1px solid var(--hair)}
+.id-rules div{display:grid;gap:6px}
+.id-rules b{font:600 11px/1.4 var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.id-rules p{font-size:15px}
+
+/* Referencias */
+.refs{border:var(--sw) solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--raised)}
+.ref-row{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr) minmax(0,1fr) minmax(0,1.25fr);gap:16px;padding:14px 18px;border-top:1px solid var(--hair);align-items:baseline}
+.ref-row:first-child{border-top:0}
+.ref-row.head{background:var(--surface);font:500 11px/1.3 var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.ref-row .src{font:600 11.5px/1.3 var(--f-mono);text-transform:uppercase;letter-spacing:.06em}
+.ref-row .blu{font-weight:600}
+.ref-row .blu a{text-decoration-thickness:1.5px;text-underline-offset:3px}
+.no-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:clamp(28px,4vw,40px) 0 0;padding:0;list-style:none}
+.no-list li{border:2px dashed var(--muted);border-radius:var(--r);padding:12px 14px;display:grid;gap:4px}
+.no-list b{font-weight:600;text-decoration:line-through;text-decoration-thickness:2px;text-decoration-color:var(--magenta)}
+.no-list span{font-size:14px;color:var(--muted)}
+.subh{font:900 clamp(20px,2.4vw,26px)/1.05 var(--f-display);font-stretch:118%;text-transform:uppercase;margin-top:clamp(36px,5vw,56px)}
+
+/* Producción */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.filters .btn{font-size:13px}
+.prod{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;list-style:none;margin:0;padding:0}
+.prod li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;align-items:start;border:1.5px solid var(--hair);border-radius:12px;padding:11px 13px;background:var(--raised)}
+.prod li b{font-weight:600;font-size:15px}
+.prod li span.n{grid-column:1/-1;font-size:13px;color:var(--muted)}
+.sponsor{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:clamp(18px,3vw,36px);align-items:center;margin-top:clamp(40px,5vw,56px);border:var(--sw) solid var(--line);border-radius:var(--r);padding:clamp(14px,2vw,20px);background:var(--raised)}
+.sponsor figure{position:relative;margin:0;border:var(--sw) solid var(--line);border-radius:12px;overflow:hidden;aspect-ratio:4/3}
+.sponsor figure img{width:100%;height:100%;object-fit:cover}
+.sponsor h3{font:900 clamp(22px,2.6vw,28px)/1.05 var(--f-display);font-stretch:118%;text-transform:uppercase;margin-bottom:10px}
+.sponsor ul{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0;padding:0;list-style:none}
+.sponsor li{font:500 12px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.05em;border:1.5px solid var(--line);border-radius:999px;padding:7px 10px}
+
+/* Shot list + pasos */
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,56px)}
+.shots{list-style:none;margin:0;padding:0;display:grid}
+.shots li{display:grid;grid-template-columns:64px minmax(0,1fr);gap:14px;padding:12px 0;border-top:1px solid var(--hair);align-items:baseline}
+.shots li:first-child{border-top:0}
+.shots time{font:600 14px/1 var(--f-mono);font-variant-numeric:tabular-nums}
+.steps{margin:0;padding:0;list-style:none;counter-reset:s;display:grid}
+.steps li{counter-increment:s;display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;padding:12px 0;border-top:1px solid var(--hair);align-items:baseline}
+.steps li:first-child{border-top:0}
+.steps li::before{content:counter(s);font:900 22px/1 var(--f-display);font-stretch:125%;color:var(--magenta-text)}
+.two h3{font:900 clamp(22px,2.6vw,28px)/1.05 var(--f-display);font-stretch:118%;text-transform:uppercase;margin-bottom:10px}
+
+footer{border-top:1px solid var(--hair);padding-block:32px 48px}
+footer p{font:400 12.5px/1.6 var(--f-mono);color:var(--muted);max-width:90ch}
+
+@media (max-width:980px){
+  .palette{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .sw{min-height:130px}
+  .scene-ui{grid-template-columns:minmax(0,1fr)}
+  .scene-ctl{border-right:0;border-bottom:1px solid var(--hair)}
+  .plan-layout{grid-template-columns:minmax(0,1fr)}
+  .prod{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .no-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:900px){
+  .hero{grid-template-columns:minmax(0,1fr)}
+  .collage{max-width:560px}
+  .trio,.lockups,.id-rules{grid-template-columns:minmax(0,1fr)}
+  .grid3{grid-template-columns:minmax(0,1fr)}
+  .pieza{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:18px;align-items:start}
+  .trio .col{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);column-gap:18px}
+  .trio .col .frame{grid-row:span 2}
+  .lk{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);column-gap:18px}
+  .lk .lk-vis{grid-row:span 2}
+  .ref-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .ref-row.head{display:none}
+  .ref-row .src{grid-column:1/-1}
+  .two,.sponsor{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:620px){
+  .pieza,.trio .col,.lk{grid-template-columns:minmax(0,1fr)}
+  .trio .col .frame,.lk .lk-vis{grid-row:auto}
+  .scene{aspect-ratio:16/10}
+  .prod,.no-list,.zone-list{grid-template-columns:minmax(0,1fr)}
+  .ref-row{grid-template-columns:minmax(0,1fr);gap:6px}
+  .brandmark{font-size:12px}
+  .ticks .t6{display:none}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .beam{animation:none}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap topbar-in">
+    <div class="brandmark">Blüme <span>×</span> Vive Camp</div>
+    <nav class="topnav" aria-label="Secciones">
+      <a href="#idea">Idea</a><a href="#dia">Un día</a><a href="#piezas">Piezas</a><a href="#plano">Plano</a><a href="#identidad">Identidad</a><a href="#referencias">Referencias</a><a href="#produccion">Producción</a>
+    </nav>
+  </div>
+</div>
+
+<header class="wrap hero">
+  <div class="hero-copy">
+    <p class="eyebrow">Propuesta creativa · Borrador · Octubre 2026</p>
+    <h1 class="sr-only">Blüme Camp, con Vive Camp</h1>
+    <svg class="lockup" viewBox="0 0 1000 430" role="img" aria-label="BLÜME CAMP">
+      <defs><linearGradient id="lk-hero" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#EC0B73"/><stop offset=".5" stop-color="#FF3A44"/><stop offset="1" stop-color="#FC8E01"/></linearGradient></defs>
+      <g style="font-family:Archivo,'Arial Black',sans-serif;font-weight:900;font-stretch:125%" stroke="#141012" stroke-width="20" stroke-linejoin="round" paint-order="stroke">
+        <text x="24" y="206" font-size="196" textLength="930" lengthAdjust="spacingAndGlyphs" fill="#FAFAFA">BLÜME</text>
+        <text x="96" y="400" font-size="196" textLength="790" lengthAdjust="spacingAndGlyphs" fill="url(#lk-hero)">CAMP</text>
+      </g>
+    </svg>
+    <div class="with">con <span class="vc-chip"><img src="img/vive-camp-logo.webp" alt="Vive Camp" width="900" height="409"></span></div>
+    <p class="lede">La aldea de carpas de Vive Camp dentro de un Blüme. Se siente como Coachella o Burning Man, pero cada pieza es algo que Blüme ya produce, algo que Vive Camp ya tiene o algo que se renta.</p>
+    <div class="rule"><b>Regla</b><p>Si Blüme no lo ha hecho, Vive Camp no lo tiene y no se puede rentar, no entra. Nada de esculturas gigantes ni efectos de render.</p></div>
+  </div>
+  <div class="collage" aria-label="Fotos de referencia">
+    <figure class="ph ph-b"><img src="img/blume-dia.webp" alt="Blüme de día: escenario con arcos, hiedra y barra redonda naranja" width="800" height="1200"><figcaption>Blüme · día</figcaption></figure>
+    <figure class="ph ph-a"><img src="img/vive-camp-carpas.webp" alt="Carpas de lona de Vive Camp al atardecer con faroles" width="1600" height="900"><figcaption>Vive Camp</figcaption></figure>
+    <figure class="ph ph-c"><img src="img/blume-noche.webp" alt="Blüme de noche: escenario con beams y activaciones de neón" width="800" height="534"><figcaption>Blüme · noche</figcaption></figure>
+  </div>
+</header>
+
+<section id="idea">
+  <div class="wrap">
+    <p class="eyebrow">La idea</p>
+    <h2 class="display big-say" style="margin-top:14px">El festival ya existe. Las carpas ya existen. Lo nuevo es <em>quedarse a dormir.</em></h2>
+    <div class="trio">
+      <div class="col c-blume">
+        <figure class="frame"><img src="img/c-arcos-hiedra.webp" alt="Paneles de arco con hiedra colgante del escenario Blüme" loading="lazy"><figcaption class="chip-cap">Foto Blüme</figcaption></figure>
+        <h3>Lo que pone Blüme</h3>
+        <ul><li>Arcos con degradado y hiedra colgante</li><li>Jardineras de madera</li><li>Barras redondas naranjas</li><li>Truss, letras BLÜME, pantalla y beams</li><li>Mesas con servicio y general</li><li>Activaciones de marca con neón</li><li>Sesiones de entrenamiento de día</li></ul>
+      </div>
+      <div class="col c-vive">
+        <figure class="frame"><img src="img/c-convivencia.webp" alt="Campers sentados en el pasto junto a un farol de Vive Camp" loading="lazy"><figcaption class="chip-cap">Foto Vive Camp</figcaption></figure>
+        <h3>Lo que pone Vive Camp</h3>
+        <ul><li>Carpas de lona tipo campana</li><li>Dos colchonetas por carpa</li><li>Faroles al piso</li><li>El atardecer como escenario</li><li>Carpas armadas antes de que llegues</li></ul>
+      </div>
+      <div class="col c-both">
+        <figure class="frame" data-sketch="juntos" data-label="Boceto: carpa, arco y faroles juntos"><figcaption class="chip-cap">Boceto</figcaption></figure>
+        <h3>Lo que sale de juntarlos</h3>
+        <ul><li>Una aldea con calles en arco y direcciones</li><li>Faroles que te llevan del escenario a tu carpa</li><li>Beams que marcan el cierre de la noche</li><li>Un set al amanecer</li><li>Paquetes de carpa con mesa</li></ul>
+      </div>
+    </div>
+
+    <div class="palette-head">
+      <h3>Las dos marcas ya comparten el atardecer</h3>
+      <p class="muted">El degradado del logo de Vive Camp y los arcos de Blüme son la misma familia de color. Cada muestra está tomada de las fotos.</p>
+    </div>
+    <div class="palette" role="list">
+      <div class="sw dk" role="listitem" style="background:#EC0B73"><b>Magenta</b><span>la C de CAMP</span><span>#EC0B73</span></div>
+      <div class="sw lt" role="listitem" style="background:#FC8E01"><b>Naranja Vive</b><span>la P de CAMP</span><span>#FC8E01</span></div>
+      <div class="sw lt" role="listitem" style="background:#F97826"><b>Naranja Blüme</b><span>barra redonda</span><span>#F97826</span></div>
+      <div class="sw lt" role="listitem" style="background:#F6C3A0"><b>Durazno</b><span>arcos del escenario</span><span>#F6C3A0</span></div>
+      <div class="sw lt" role="listitem" style="background:#EFE3D2"><b>Lona</b><span>carpas Vive Camp</span><span>#EFE3D2</span></div>
+      <div class="sw dk" role="listitem" style="background:#4E6B2B"><b>Hiedra</b><span>jardineras y paneles</span><span>#4E6B2B</span></div>
+      <div class="sw lt" role="listitem" style="background:#41B3D5"><b>Beam</b><span>arcos de noche</span><span>#41B3D5</span></div>
+      <div class="sw dk" role="listitem" style="background:#17120F"><b>Noche</b><span>cielo a las 2:00</span><span>#17120F</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="dia">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Un día en Blüme Camp</p>
+      <h2 class="display">Mueve la hora</h2>
+      <p class="lede">De la llegada a la mañana siguiente. Cada momento usa piezas que ya existen; lo que cambia es dónde y cuándo se prenden.</p>
+    </div>
+    <div class="scene-card">
+      <svg class="scene" id="scene" viewBox="0 0 1200 560" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Escena ilustrada del campamento: escenario Blüme, portal de arcos, carpas, faroles y montaña. Cambia con la hora."></svg>
+      <div class="scene-ui">
+        <div class="scene-ctl">
+          <div class="clock-row">
+            <div class="clock" id="clock" aria-live="polite">20:00</div>
+            <div class="dayl" id="dayl">Día 1</div>
+            <button class="btn" id="play" type="button" aria-pressed="false">▶ Reproducir</button>
+          </div>
+          <div class="range-wrap">
+            <label class="sr-only" for="t">Hora del día</label>
+            <input class="range" id="t" type="range" min="13" max="33" step="0.25" value="20">
+            <div class="ticks" aria-hidden="true"><span style="left:0">13:00</span><span style="left:25%">18:00</span><span style="left:55%">00:00</span><span class="t6" style="left:85%">06:00</span><span style="left:100%">09:00</span></div>
+          </div>
+          <div class="moments" id="moments" aria-label="Momentos del día"></div>
+        </div>
+        <div class="ev" id="ev" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="piezas">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Las piezas</p>
+      <h2 class="display">Doce ideas visuales, todas producibles</h2>
+      <p class="lede">Ordenadas como las vive un camper. Cada una dice de dónde sale la referencia y con qué se arma. Donde la pieza ya existe en Blüme o Vive Camp, va la foto real en la esquina.</p>
+    </div>
+
+    <div class="group">
+      <div class="group-h"><h3>Llegar</h3><span class="muted">Del estacionamiento a tu carpa</span></div>
+      <div class="grid3">
+        <article class="pieza" id="p-portal">
+          <figure class="vis" data-sketch="portal" data-label="Boceto del Portal de Arcos"><figcaption class="chip-cap">Boceto</figcaption><figure class="inset tr"><img src="img/c-arcos-hiedra.webp" alt="Paneles de arco reales del escenario Blüme" loading="lazy"><figcaption>Real</figcaption></figure></figure>
+          <div class="pieza-body">
+            <h4>Portal de Arcos</h4>
+            <p>La entrada al camp es un arco del escenario Blüme en grande: tres módulos, el central más alto, con la misma hiedra colgante y letras BLÜME CAMP arriba. Es el único paso entre festival y camp, y desde la pista se ve como hito.</p>
+            <dl class="specs"><dt>Referencia</dt><dd>Coachella: instalaciones de color que se ven desde lejos</dd><dt>Se arma con</dt><dd>Paneles de arco y hiedra del escenario, truss, letras corpóreas</dd></dl>
+            <ul class="tags"><li class="tag t-blume">Blüme</li><li class="tag t-prod">Producción</li></ul>
+          </div>
+        </article>
+        <article class="pieza" id="p-calles">
+          <figure class="vis" data-sketch="calles" data-label="Boceto de letreros de calle y pulsera con dirección"><figcaption class="chip-cap">Boceto</figcaption></figure>
+          <div class="pieza-body">
+            <h4>Calles con dirección</h4>
+            <p>El camp es una ciudad en arcos: anillos Arco A a D y calles con hora, de 11:00 a 7:00. Tu pulsera dice tu dirección (Arco B y 2:00, carpa C‑14). Nadie se pierde a las 3 de la mañana.</p>
+            <dl class="specs"><dt>Referencia</dt><dd>Burning Man: las direcciones de reloj de Black Rock City</dd><dt>Se arma con</dt><dd>Postes de madera, letreros con la letra de Vive Camp, pulsera impresa</dd></dl>
+            <ul class="tags"><li class="tag t-prod">Producción</li></ul>
+          </div>
+        </article>
+        <article class="pieza" id="p-kit">
+          <figure class="vis" data-sketch="kit" data-label="Boceto del kit de bienvenida"><figcaption class="chip-cap">Boceto</figcaption></figure>
+          <div class="pieza-body">
+            <h4>Kit de bienvenida</h4>
+            <p>En el check-in: tote blanca, pulsera con tu dirección, bandana para el sol y el polvo, y un farol chico para la carpa. Es el regalo de Burning Man en versión simple.</p>
+            <dl class="specs"><dt>Referencia</dt><dd>Burning Man: la cultura de regalo</dd><dt>Se arma con</dt><dd>Tote serigrafiada, bandana, pulsera, farol mini</dd></dl>
+            <ul class="tags"><li class="tag t-prod">Producción</li></ul>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="group">
+      <div class="group-h"><h3>Dormir</h3><span class="muted">La carpa y su barrio</span></div>
+      <div class="grid3">
+        <article class="pieza" id="p-carpa">
+          <figure class="vis" data-sketch="carpa" data-label="Boceto de la Carpa Blüme vestida"><figcaption class="chip-cap">Boceto</figcaption><figure class="inset tr"><img src="img/c-carpa.webp" alt="Carpa real de Vive Camp con dos colchonetas" loading="lazy"><figcaption>Real</figcaption></figure></figure>
+          <div class="pieza-body">
+            <h4>Carpa Blüme</h4>
+            <p>La carpa de Vive Camp tal cual, vestida con piezas que se quitan: banderín naranja en la punta, número en vinil, cintas en las amarras, tapete y farol. Versión Mesa: se vende junto con una mesa del festival.</p>
+            <dl class="specs"><dt>Referencia</dt><dd>Coachella: carpas ya armadas al llegar</dd><dt>Se arma con</dt><dd>Carpa y colchonetas Vive Camp, banderín, vinil removible, tapete</dd></dl>
+            <ul class="tags"><li class="tag t-vive">Vive Camp</li><li class="tag t-prod">Producción</li></ul>
+          </div>
+        </article>
+        <article class="pieza" id="p-barrios">
+          <figure class="vis" data-sketch="barrios" data-label="Boceto de banderas de barrio sobre las carpas"><figcaption class="chip-cap">Boceto</figcaption></figure>
+          <div class="pieza-body">
+            <h4>Barrios de color</h4>
+            <p>Cuatro barrios con los colores que ya comparten las marcas: Magenta, Naranja, Durazno y Hiedra. Cada uno con bandera de 6 m que se ve desde todo el camp y su propia fogata. El color se repite en banderín y pulsera.</p>
+            <dl class="specs"><dt>Referencia</dt><dd>Coachella: banderas e hitos para ubicarte</dd><dt>Se arma con</dt><dd>Banderas tipo pluma de 5 a 6 m con lastre</dd></dl>
+            <ul class="tags"><li class="tag t-renta">Renta</li></ul>
+          </div>
+        </article>
+        <article class="pieza" id="p-avenida">
+          <figure class="vis" data-sketch="avenida" data-label="Boceto de la avenida de faroles de noche"><figcaption class="chip-cap">Boceto</figcaption><figure class="inset"><img src="img/c-farol.webp" alt="Farol real de Vive Camp encendido en el pasto" loading="lazy"><figcaption>Real</figcaption></figure></figure>
+          <div class="pieza-body">
+            <h4>Avenida de faroles</h4>
+            <p>Del Portal a la Plaza: faroles al piso a los dos lados y guirnaldas de foco arriba. A las 2 de la mañana es lo único prendido, y la luz te lleva a casa.</p>
+            <dl class="specs"><dt>Referencia</dt><dd>Burning Man: la ciudad se lee con luz</dd><dt>Se arma con</dt><dd>Faroles Vive Camp, postes y guirnaldas</dd></dl>
+            <ul class="tags"><li class="tag t-vive">Vive Camp</li><li class="tag t-renta">Renta</li></ul>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="group">
+      <div class="group-h"><h3>Convivir</h3><span class="muted">Donde pasa la tarde</span></div>
+      <div class="grid3">
+        <article class="pieza" id="p-fogata">
+          <figure class="vis" data-sketch="fogata" data-label="Boceto de la fogata lounge del barrio"><figcaption class="chip-cap">Boceto</figcaption><figure class="inset tr"><img src="img/c-jardineras.webp" alt="Jardineras de madera con hiedra reales de Blüme" loading="lazy"><figcaption>Real</figcaption></figure></figure>
+          <div class="pieza-body">
+            <h4>Fogata del barrio</h4>
+            <p>Un lounge por barrio: tapete grande, cojines y las jardineras de madera con hiedra de Blüme como respaldo. Al centro, fogatero de metal, o fogata LED si el venue no permite fuego.</p>
+            <dl class="specs"><dt>Referencia</dt><dd>Burning Man: campamentos temáticos con lounge</dd><dt>Se arma con</dt><dd>Jardineras y hiedra Blüme, tapetes, cojines, fogatero</dd></dl>
+            <ul class="tags"><li class="tag t-blume">Blüme</li><li class="tag t-renta">Renta</li></ul>
+          </div>
+        </article>
+        <article class="pieza" id="p-oasis">
+          <figure class="vis" data-sketch="oasis" data-label="Boceto de la Barra Oasis"><figcaption class="chip-cap">Boceto</figcaption><figure class="inset tr"><img src="img/c-barra-redonda.webp" alt="Barra redonda naranja real de Blüme" loading="lazy"><figcaption>Real</figcaption></figure></figure>
+          <div class="pieza-body">
+            <h4>Barra Oasis</h4>
+            <p>La barra redonda de Blüme al centro de la Plaza. De día café, agua y electrolitos; de noche la carta de siempre. Alrededor, jardineras con hiedra y estación de recarga.</p>
+            <dl class="specs"><dt>Referencia</dt><dd>Burning Man: Center Camp, el punto de encuentro</dd><dt>Se arma con</dt><dd>Barra redonda Blüme, jardineras, hielo y bebidas</dd></dl>
+            <ul class="tags"><li class="tag t-blume">Blüme</li></ul>
+          </div>
+        </article>
+        <article class="pieza" id="p-mirador">
+          <figure class="vis" data-sketch="mirador" data-label="Boceto del Mirador de andamio"><figcaption class="chip-cap">Boceto</figcaption></figure>
+          <div class="pieza-body">
+            <h4>Mirador</h4>
+            <p>En lugar de la rueda de la fortuna: una torre de andamio de 4 m con barandal y letras BLÜME. Desde arriba se ve todo el camp con el escenario y la montaña. Es la foto oficial de la hora dorada.</p>
+            <dl class="specs"><dt>Referencia</dt><dd>Coachella: la vista desde la rueda de la fortuna</dd><dt>Se arma con</dt><dd>Andamio certificado, barandal, letras, staff con cupo limitado</dd></dl>
+            <ul class="tags"><li class="tag t-renta">Renta</li><li class="tag t-blume">Blüme</li></ul>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="group">
+      <div class="group-h"><h3>Noche y amanecer</h3><span class="muted">Del cierre al desayuno</span></div>
+      <div class="grid3">
+        <article class="pieza" id="p-beams">
+          <figure class="vis" data-sketch="beams" data-label="Boceto de beams sobre las carpas"><figcaption class="chip-cap">Boceto</figcaption><figure class="inset"><img src="img/c-beams.webp" alt="Beams reales sobre el escenario Blüme" loading="lazy"><figcaption>Real</figcaption></figure></figure>
+          <div class="pieza-body">
+            <h4>Beams como reloj</h4>
+            <p>Los beams que Blüme ya usa sobre el escenario apuntan también al cielo del camp. A las 2:00 bajan y se apagan despacio: esa es la señal de silencio. No hace falta un letrero.</p>
+            <dl class="specs"><dt>Referencia</dt><dd>Coachella y Burning Man: la luz se ve desde el camping</dd><dt>Se arma con</dt><dd>Beams y programación de luces del escenario</dd></dl>
+            <ul class="tags"><li class="tag t-blume">Blüme</li></ul>
+          </div>
+        </article>
+        <article class="pieza" id="p-amanecer">
+          <figure class="vis" data-sketch="amanecer" data-label="Boceto de la Sesión Amanecer"><figcaption class="chip-cap">Boceto</figcaption></figure>
+          <div class="pieza-body">
+            <h4>Sesión Amanecer</h4>
+            <p>Un solo módulo de arco del escenario, cabina y cuatro bocinas en el borde del camp. De 6:30 a 8:30, set tranquilo y café. Es el momento que la gente cuenta después.</p>
+            <dl class="specs"><dt>Referencia</dt><dd>Burning Man: los sets al amanecer</dd><dt>Se arma con</dt><dd>1 módulo de arco Blüme, cabina, 4 bocinas, DJ</dd></dl>
+            <ul class="tags"><li class="tag t-blume">Blüme</li><li class="tag t-renta">Renta</li></ul>
+          </div>
+        </article>
+        <article class="pieza" id="p-bienestar">
+          <figure class="vis" data-sketch="bienestar" data-label="Boceto de yoga en el pasto entre carpas"><figcaption class="chip-cap">Boceto</figcaption><figure class="inset"><img src="img/c-fitness.webp" alt="Sesión real de entrenamiento de día en Blüme" loading="lazy"><figcaption>Real</figcaption></figure></figure>
+          <div class="pieza-body">
+            <h4>Bienestar en el pasto</h4>
+            <p>Blüme ya hace sesiones de entrenamiento de día. En el camp es igual pero de mañana: tapetes entre las carpas, instructor frente al arco del amanecer y desayuno después.</p>
+            <dl class="specs"><dt>Referencia</dt><dd>Coachella: actividades de mañana en el camping</dd><dt>Se arma con</dt><dd>Tapetes, instructor, el sonido de la Sesión Amanecer</dd></dl>
+            <ul class="tags"><li class="tag t-blume">Blüme</li><li class="tag t-renta">Renta</li></ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="plano">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Plano esquemático</p>
+      <h2 class="display">Una ciudad en arcos</h2>
+      <p class="lede">El escenario suena hacia el sur; el camp queda al lado, entrando por el Portal. Las carpas forman anillos alrededor de una plaza, como Black Rock City, pero cada anillo se llama Arco. Toca una zona para ver qué es.</p>
+    </div>
+    <div class="plan-layout">
+      <div class="plan-card"><svg class="plan" id="plan" viewBox="0 0 1040 640" role="img" aria-label="Plano esquemático del festival y el campamento"></svg></div>
+      <div class="plan-side">
+        <div class="zone-info" id="zone-info" aria-live="polite"></div>
+        <ul class="zone-list" id="zone-list"></ul>
+        <p class="plan-note">Medidas de referencia: 1 cuadro = 10 m, carpa de 4 m de diámetro, 6 m entre centros. Ajustar al venue real.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="identidad">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Identidad</p>
+      <h2 class="display">Tres nombres posibles</h2>
+      <p class="lede">Los tres usan el sistema del logo de Vive Camp, con letra extendida y contorno grueso, y el naranja y los arcos de Blüme. Así se ve la colaboración sin tener que explicarla.</p>
+    </div>
+    <div class="lockups">
+      <div class="lk"><div class="lk-vis" data-lockup="a"></div><h3>Blüme Camp <span class="reco">Recomendado</span></h3><p>Dice qué es: un Blüme con campamento. Corto, cabe en pulsera, banderín y letrero de calle.</p></div>
+      <div class="lk"><div class="lk-vis" data-lockup="b"></div><h3>Vive Blüme</h3><p>Juego con el nombre de Vive Camp. Funciona mejor como frase de campaña: «Vive Blüme toda la noche».</p></div>
+      <div class="lk"><div class="lk-vis" data-lockup="c"></div><h3>Blüme × Vive Camp</h3><p>La versión formal para boletos, prensa y marcas aliadas, cuando las dos marcas tienen que leerse completas.</p></div>
+    </div>
+    <div class="id-rules">
+      <div><b>Señalética</b><p>Letra de Vive Camp: mayúsculas extendidas, blanco con contorno negro. Se lee de lejos y de noche.</p></div>
+      <div><b>Marcos</b><p>Todo lo que enmarca (portal, mirador, letreros grandes) usa el arco de Blüme.</p></div>
+      <div><b>Color</b><p>Los cuatro colores de barrio, máximo dos por pieza. El degradado completo sólo en el logo.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="referencias">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Coachella y Burning Man, en versión Blüme</p>
+      <h2 class="display">Qué tomamos y qué no</h2>
+      <p class="lede">Lo que se copia es la sensación. La pieza física siempre es una que ya existe o se renta.</p>
+    </div>
+    <div class="refs">
+      <div class="ref-row head"><span>Referencia</span><span>Qué es</span><span>Lo que tomamos</span><span>Versión Blüme</span></div>
+      <div class="ref-row"><span class="src">Coachella</span><span>Instalaciones de color que se ven desde lejos</span><span>Un hito para ubicarte y para la foto</span><span class="blu"><a href="#p-portal">Portal de Arcos</a> con los paneles del escenario</span></div>
+      <div class="ref-row"><span class="src">Coachella</span><span>La rueda de la fortuna</span><span>La vista desde arriba al atardecer</span><span class="blu"><a href="#p-mirador">Mirador</a> de andamio de 4 m</span></div>
+      <div class="ref-row"><span class="src">Coachella</span><span>Camping con carpas ya armadas</span><span>Llegar y que tu carpa esté lista</span><span class="blu"><a href="#p-carpa">Carpa Blüme</a> armada y vestida</span></div>
+      <div class="ref-row"><span class="src">Burning Man</span><span>Ciudad en arcos con direcciones de reloj</span><span>Encontrar tu carpa sin GPS</span><span class="blu"><a href="#p-calles">Arco A–D y calles 11:00–7:00</a></span></div>
+      <div class="ref-row"><span class="src">Burning Man</span><span>Campamentos temáticos</span><span>Cada zona con identidad propia</span><span class="blu"><a href="#p-barrios">Barrios de color</a> con bandera y <a href="#p-fogata">fogata</a></span></div>
+      <div class="ref-row"><span class="src">Burning Man</span><span>Sets al amanecer</span><span>El momento que todos cuentan</span><span class="blu"><a href="#p-amanecer">Sesión Amanecer</a> en un arco</span></div>
+      <div class="ref-row"><span class="src">Burning Man</span><span>La ciudad se lee con luz</span><span>Volver a casa sin perderte</span><span class="blu"><a href="#p-avenida">Avenida de faroles</a> y guirnaldas</span></div>
+      <div class="ref-row"><span class="src">Burning Man</span><span>Cultura de regalo</span><span>Un detalle al llegar</span><span class="blu"><a href="#p-kit">Kit de bienvenida</a></span></div>
+    </div>
+    <h3 class="subh">Lo que no entra</h3>
+    <ul class="no-list">
+      <li><b>Esculturas nuevas de gran formato</b><span>Caras, lentas de producir y no son el lenguaje de Blüme.</span></li>
+      <li><b>Rueda de la fortuna</b><span>El Mirador da la misma foto con una fracción del costo.</span></li>
+      <li><b>Art cars y vehículos decorados</b><span>Permisos y riesgo sin aportar a la marca.</span></li>
+      <li><b>Quemar estructuras o pirotecnia</b><span>Aquí no se quema nada. La fogata es de fogatero o LED.</span></li>
+      <li><b>Domos, espejos, inflables gigantes</b><span>No pertenecen a ninguna de las dos marcas.</span></li>
+      <li><b>Glamping de hotel</b><span>La carpa se queda como la de Vive Camp hoy, sin baño privado.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="produccion">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Producción</p>
+      <h2 class="display">Quién pone qué</h2>
+      <p class="lede">Lo de Blüme y Vive Camp sale de sus propias fotos; hay que confirmar inventario y fechas. Lo demás es renta o producción nueva sencilla.</p>
+    </div>
+    <div class="filters" id="filters" role="group" aria-label="Filtrar por origen">
+      <button class="btn" type="button" data-f="all" aria-pressed="true">Todo</button>
+      <button class="btn" type="button" data-f="blume" aria-pressed="false">Blüme</button>
+      <button class="btn" type="button" data-f="vive" aria-pressed="false">Vive Camp</button>
+      <button class="btn" type="button" data-f="renta" aria-pressed="false">Renta</button>
+      <button class="btn" type="button" data-f="prod" aria-pressed="false">Producción nueva</button>
+    </div>
+    <ul class="prod" id="prod"></ul>
+
+    <div class="sponsor">
+      <figure><img src="img/c-neon.webp" alt="Activación de marca con neón en Blüme de noche" loading="lazy"><figcaption class="chip-cap">Así se ven hoy</figcaption></figure>
+      <div>
+        <h3>Espacios para marcas aliadas</h3>
+        <p>Las activaciones con neón que ya funcionan en el festival tienen versión camp, con momentos que el camper usa de verdad.</p>
+        <ul><li>Regaderas</li><li>Estación de recarga</li><li>Café del amanecer</li><li>Kit de bienvenida</li><li>Mirador, foto oficial</li><li>Fogatas de barrio</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="siguiente">
+  <div class="wrap two">
+    <div>
+      <p class="eyebrow">Contenido</p>
+      <h3 style="margin-top:10px">Shot list para redes</h3>
+      <ul class="shots">
+        <li><time>18:45</time><span>Aérea desde el Mirador: carpas, banderas y montaña, con el escenario al fondo.</span></li>
+        <li><time>19:30</time><span>Desde dentro de la carpa: la puerta enmarca los arcos encendidos.</span></li>
+        <li><time>23:00</time><span>Contrapicada: puntas de carpa con banderín y los beams arriba.</span></li>
+        <li><time>02:10</time><span>La avenida de faroles con gente regresando.</span></li>
+        <li><time>06:45</time><span>Sesión Amanecer a contraluz.</span></li>
+        <li><time>09:00</time><span>Cenital de los tapetes entre las carpas.</span></li>
+      </ul>
+    </div>
+    <div>
+      <p class="eyebrow">Siguientes pasos</p>
+      <h3 style="margin-top:10px">Para aterrizarlo</h3>
+      <ol class="steps">
+        <li><span>Definir sede y tamaño: zona camp junto al venue de siempre, o edición de fin de semana fuera de la ciudad con montaña. De ahí sale el número de carpas.</span></li>
+        <li><span>Inventario de Vive Camp para esas fechas: carpas, colchonetas y faroles.</span></li>
+        <li><span>Vestir una carpa de prueba (banderín, vinil, cintas, tapete) y tomarle foto real en hora dorada.</span></li>
+        <li><span>Medir los paneles de arco del escenario para dibujar el Portal con medidas reales.</span></li>
+        <li><span>Armar los paquetes: Carpa General y Carpa + Mesa.</span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap"><p>Propuesta conceptual de trabajo, no es un anuncio oficial. Fotos: material de Blüme y Vive Camp. Los bocetos son ilustrativos y las medidas son de referencia.</p></div>
+</footer>
+
+<script>
+var ZONES={
+  escenario:{n:1,t:'Escenario Blüme',d:'El escenario de siempre: truss, letras BLÜME, pantalla, arcos con hiedra y beams. El sonido apunta al sur, en sentido contrario al camp.'},
+  pista:{n:2,t:'Pista y mesas',d:'General y mesas con servicio, igual que en cualquier Blüme. Las mesas se pueden vender con carpa incluida (Carpa + Mesa).'},
+  barras:{n:3,t:'Barras y activaciones',d:'Barras redondas y activaciones de marcas aliadas con neón en el perímetro del festival.'},
+  portal:{n:4,t:'Portal de Arcos',d:'El único paso entre festival y camp, con control de pulsera de camper. Está sobre la calle de las 9:00, como la entrada de una ciudad.'},
+  avenida:{n:5,t:'Avenida de faroles',d:'Del Portal a la Plaza: faroles al piso a los dos lados y guirnaldas arriba. Mide unos {avenida} m.'},
+  plaza:{n:6,t:'Plaza: Mirador y Barra Oasis',d:'El centro de la aldea, donde Burning Man pone al Man. Aquí no se quema nada: hay un Mirador de 4 m y la barra redonda. Unos {plaza} m de diámetro.'},
+  barrios:{n:7,t:'Barrios y calles',d:'Cuatro barrios de color. Anillos Arco A (interior) a Arco D (exterior) y calles radiales de 11:00 a 7:00; una dirección se lee «Arco B y 2:00». En este esquema caben {tents} carpas, {campers} personas.'},
+  fogatas:{n:8,t:'Fogatas de barrio',d:'Una por barrio, en Arco B con la calle central del barrio. Bandera de 6 m, tapetes y jardineras-banca con hiedra.'},
+  servicios:{n:9,t:'Servicios',d:'Tres puntos de baños sobre el anillo exterior, a las 12:00, 3:00 y 6:00, con regaderas, lockers y recarga. La carpa más lejana queda a unos {serv} m de un baño.'},
+  amanecer:{n:10,t:'Sesión Amanecer',d:'Un módulo de arco, cabina y cuatro bocinas en el borde este del camp. Funciona de 6:30 a 8:30.'},
+  checkin:{n:11,t:'Check-in del camp',d:'Acceso desde el estacionamiento. Entrega de pulsera con dirección y kit de bienvenida, y de ahí a la calle de las 7:00.'}
+};
+</script>
+<script>
+(function(){
+'use strict';
+const n=v=>Math.round(v*10)/10;
+function rnd(seed){let s=(seed*9301+49297)%2147483647;if(s<=0)s+=2147483646;return()=>(s=s*16807%2147483647)/2147483647;}
+const K={ink:'#1A1310',canvas:'#F3E7D6',shade:'#DCC5A6',door:'#B88B62',mat:'#2E4A2B',orange:'#F97826',vOrange:'#FC8E01',magenta:'#EC0B73',peach:'#F6C3A0',panel:'#F2DFAE',archLine:'#E0542B',wood:'#7B5A34',woodD:'#5A4024',ivy:['#3E5A22','#557229','#6C8A38','#86A24A'],copper:'#B4632D',white:'#FBF8F3',teal:'#41B3D5'};
+const DISPLAY="font-family:Archivo,'Arial Black',sans-serif;font-weight:900;font-stretch:125%";
+const MONO="font-family:'IBM Plex Mono',monospace;font-weight:600";
+
+function defs(p){
+  return `<linearGradient id="${p}arch" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FCE7A2"/><stop offset=".55" stop-color="#F8BE88"/><stop offset="1" stop-color="#F2894F"/></linearGradient>
+  <radialGradient id="${p}glow"><stop offset="0" stop-color="#FFC46E" stop-opacity=".95"/><stop offset=".45" stop-color="#FFB050" stop-opacity=".35"/><stop offset="1" stop-color="#FFB050" stop-opacity="0"/></radialGradient>
+  <linearGradient id="${p}beam" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#F2FCFF" stop-opacity=".95"/><stop offset=".35" stop-color="#9FE3F5" stop-opacity=".5"/><stop offset="1" stop-color="#9FE3F5" stop-opacity="0"/></linearGradient>
+  <linearGradient id="${p}brand" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#EC0B73"/><stop offset=".5" stop-color="#FF3A44"/><stop offset="1" stop-color="#FC8E01"/></linearGradient>
+  <linearGradient id="${p}screen" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F7A35C"/><stop offset=".55" stop-color="#E2557A"/><stop offset="1" stop-color="#6A3FA0"/></linearGradient>
+  <filter id="${p}neon" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>`;
+}
+function sky(p,w,h,c){
+  return `<defs><linearGradient id="${p}sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:${c[0]}"/><stop offset=".62" style="stop-color:${c[1]}"/><stop offset="1" style="stop-color:${c[2]}"/></linearGradient></defs><rect width="${w}" height="${h}" fill="url(#${p}sky)"/>`;
+}
+function ridge({w,base,amp,seed,fill,step=12,peaks=3}){
+  const r=rnd(seed),a=r()*6,b=r()*6,c=r()*6;
+  let d=`M0,${base+300}`;
+  for(let x=0;x<=w+step;x+=step){
+    const u=x/w;
+    const y=base-amp*(0.5+0.28*Math.sin(u*peaks*Math.PI+a)+0.16*Math.sin(u*peaks*2.7*Math.PI+b)+0.08*Math.abs(Math.sin(u*peaks*8*Math.PI+c)));
+    d+=` L${n(x)},${n(y)}`;
+  }
+  return `<path d="${d} L${w+step},${base+300}Z" style="fill:${fill}"/>`;
+}
+function stars({w,h,count,seed,o}){
+  const r=rnd(seed);let s='';
+  for(let i=0;i<count;i++)s+=`<circle cx="${n(r()*w)}" cy="${n(r()*h)}" r="${n(0.5+r()*1.2)}"/>`;
+  return `<g style="fill:#FFF6E4;opacity:${o}">${s}</g>`;
+}
+function archD(cx,base,w,h){const r=w/2;return `M${n(cx-r)},${n(base)} L${n(cx-r)},${n(base-h+r)} A${n(r)},${n(r)} 0 0 1 ${n(cx+r)},${n(base-h+r)} L${n(cx+r)},${n(base)}Z`;}
+function ivy({x,y,len,s=6,seed=1}){
+  const r=rnd(seed+11);let out='';
+  const count=Math.max(3,Math.round(len/(s*0.62)));
+  for(let i=0;i<count;i++){
+    const t=i/count,yy=y+i*s*0.62,ss=s*(1-0.35*t);
+    const xx=x+Math.sin(i*0.9+seed)*s*0.45*(0.4+t)+(r()-0.5)*s*0.8;
+    const rot=Math.round((r()-0.5)*100);
+    out+=`<ellipse cx="${n(xx)}" cy="${n(yy)}" rx="${n(ss*0.55)}" ry="${n(ss*0.34)}" transform="rotate(${rot} ${n(xx)} ${n(yy)})" fill="${K.ivy[Math.floor(r()*4)]}"/>`;
+    if(r()>0.5){const x2=xx+(r()-0.5)*s*1.4;out+=`<ellipse cx="${n(x2)}" cy="${n(yy+s*0.25)}" rx="${n(ss*0.45)}" ry="${n(ss*0.3)}" transform="rotate(${-rot} ${n(x2)} ${n(yy)})" fill="${K.ivy[Math.floor(r()*4)]}"/>`;}
+  }
+  return `<g>${out}</g>`;
+}
+function tent(o){
+  const {x,y,w,h=w,canvas=K.canvas,shade=K.shade,door=K.door,glow=0,pennant=K.orange,num='',bows=false,mats=false,p}=o;
+  const sw=o.sw||Math.max(1,w*0.012);
+  const wall=h*0.17,eY=y-wall,ay=y-h,rh=h-wall,dTop=ay+rh*0.36;
+  const L=x-w*0.5,R=x+w*0.5,oL=x-w*0.545,oR=x+w*0.545;
+  const body=`M${n(x)},${n(ay)} Q${n(x-w*0.16)},${n(ay+rh*0.55)} ${n(oL)},${n(eY)} L${n(L)},${n(eY)} L${n(L-w*0.012)},${n(y)} L${n(R+w*0.012)},${n(y)} L${n(R)},${n(eY)} L${n(oR)},${n(eY)} Q${n(x+w*0.16)},${n(ay+rh*0.55)} ${n(x)},${n(ay)}Z`;
+  let s=`<ellipse cx="${n(x)}" cy="${n(y+1)}" rx="${n(w*0.64)}" ry="${n(Math.max(2,h*0.045))}" fill="#000" opacity=".16"/>`;
+  s+=`<path d="M${n(oL)},${n(eY)} L${n(x-w*0.76)},${n(y+h*0.02)} M${n(oR)},${n(eY)} L${n(x+w*0.76)},${n(y+h*0.02)}" stroke="${K.ink}" stroke-width="${n(sw*0.5)}" opacity=".4"/>`;
+  s+=`<path d="${body}" style="fill:${canvas}" stroke="${K.ink}" stroke-width="${n(sw)}" stroke-linejoin="round"/>`;
+  s+=`<path d="M${n(x)},${n(ay)} Q${n(x+w*0.16)},${n(ay+rh*0.55)} ${n(oR)},${n(eY)} L${n(x+w*0.22)},${n(eY)}Z" style="fill:${shade}" opacity=".75"/>`;
+  s+=`<path d="M${n(oL)},${n(eY)} L${n(oR)},${n(eY)}" stroke="${K.ink}" stroke-width="${n(sw*0.8)}"/>`;
+  s+=`<path d="M${n(x)},${n(dTop)} L${n(x-w*0.27)},${n(y)} L${n(x+w*0.27)},${n(y)}Z" fill="#FFF7EA" opacity=".35" stroke="${K.ink}" stroke-width="${n(sw*0.6)}"/>`;
+  s+=`<path d="M${n(x)},${n(dTop)} L${n(x-w*0.19)},${n(y)} L${n(x+w*0.19)},${n(y)}Z" style="fill:${door}" stroke="${K.ink}" stroke-width="${n(sw*0.8)}"/>`;
+  if(mats){
+    s+=`<path d="M${n(x-w*0.15)},${n(y)} L${n(x-w*0.025)},${n(y)} L${n(x-w*0.025)},${n(y-h*0.1)} L${n(x-w*0.11)},${n(y-h*0.1)}Z M${n(x+w*0.025)},${n(y)} L${n(x+w*0.15)},${n(y)} L${n(x+w*0.11)},${n(y-h*0.1)} L${n(x+w*0.025)},${n(y-h*0.1)}Z" fill="${K.mat}" stroke="${K.ink}" stroke-width="${n(sw*0.5)}"/>`;
+  }
+  if(glow!==0&&glow!=='0'&&p){s+=`<ellipse cx="${n(x)}" cy="${n(y-h*0.16)}" rx="${n(w*0.42)}" ry="${n(h*0.34)}" fill="url(#${p}glow)" style="opacity:${glow}"/>`;}
+  s+=`<path d="M${n(x)},${n(ay)} L${n(x)},${n(ay-h*0.09)}" stroke="${K.ink}" stroke-width="${n(sw)}" stroke-linecap="round"/>`;
+  if(pennant)s+=`<path d="M${n(x)},${n(ay-h*0.09)} L${n(x+w*0.15)},${n(ay-h*0.066)} L${n(x)},${n(ay-h*0.04)}Z" style="fill:${pennant}" stroke="${K.ink}" stroke-width="${n(sw*0.7)}" stroke-linejoin="round"/>`;
+  if(bows){const br=Math.max(1.6,w*0.022);s+=`<circle cx="${n(x-w*0.215)}" cy="${n(y-wall*0.62)}" r="${n(br)}" fill="${K.orange}" stroke="${K.ink}" stroke-width="${n(sw*0.6)}"/><circle cx="${n(x+w*0.215)}" cy="${n(y-wall*0.62)}" r="${n(br)}" fill="${K.orange}" stroke="${K.ink}" stroke-width="${n(sw*0.6)}"/>`;}
+  if(num)s+=`<text x="${n(x-w*0.37)}" y="${n(y-wall*0.32)}" style="${MONO}" font-size="${n(w*0.068)}" fill="${K.ink}">${num}</text>`;
+  return `<g>${s}</g>`;
+}
+function panel({cx,y,w,h,p,lit=0,litColor=K.teal}){
+  const iw=w*0.74,ih=h*0.84,ib=y-h*0.06;
+  let s=`<rect x="${n(cx-w/2)}" y="${n(y-h)}" width="${n(w)}" height="${n(h)}" fill="${K.panel}" stroke="${K.ink}" stroke-width="1.4"/>`;
+  s+=`<path d="${archD(cx,ib,iw,ih)}" fill="url(#${p}arch)"/>`;
+  if(lit!==0)s+=`<path d="${archD(cx,ib,iw,ih)}" style="fill:${litColor};opacity:${lit}"/>`;
+  s+=`<path d="${archD(cx,ib,w*0.34,h*0.36)}" fill="none" stroke="${K.archLine}" stroke-width="${n(Math.max(1,w*0.045))}"/>`;
+  return `<g>${s}</g>`;
+}
+function portal({cx,y,w,h,p,text='BLÜME CAMP',seed=4,lit=0}){
+  const cw=w*0.42,sw=w*0.29,sh=h*0.78;
+  const mods=[{x:cx-cw/2-sw/2,w:sw,h:sh},{x:cx+cw/2+sw/2,w:sw,h:sh},{x:cx,w:cw,h:h}];
+  let s='';
+  if(lit!==0)s+=`<ellipse cx="${n(cx)}" cy="${n(y-h*0.45)}" rx="${n(w*0.62)}" ry="${n(h*0.62)}" fill="url(#${p}glow)" style="opacity:${lit}"/>`;
+  mods.forEach((m,i)=>{
+    const L=m.x-m.w/2,R=m.x+m.w/2,T=y-m.h;
+    const band=archD(m.x,y,m.w*0.74,m.h*0.86),hole=archD(m.x,y,m.w*0.56,m.h*0.76);
+    s+=`<path d="M${n(L)},${n(y)} L${n(L)},${n(T)} L${n(R)},${n(T)} L${n(R)},${n(y)}Z ${band}" fill="${K.panel}" fill-rule="evenodd" stroke="${K.ink}" stroke-width="2"/>`;
+    s+=`<path d="${band} ${hole}" fill="url(#${p}arch)" fill-rule="evenodd" stroke="${K.ink}" stroke-width="1.5"/>`;
+    s+=`<path d="${archD(m.x,y,m.w*0.65,m.h*0.81)}" fill="none" stroke="${K.archLine}" stroke-width="${n(m.w*0.025)}"/>`;
+    const r=rnd(seed+i*7);
+    for(let k=0;k<4;k++){const xx=L+m.w*(0.08+k*0.28);s+=ivy({x:xx,y:T+2,len:m.h*(0.12+r()*0.22),s:Math.max(3,m.w*0.055),seed:seed+i*5+k});}
+  });
+  s+=ivy({x:cx-cw/2,y:y-sh,len:sh*0.75,s:Math.max(3,w*0.02),seed:seed+31});
+  s+=ivy({x:cx+cw/2,y:y-sh,len:sh*0.7,s:Math.max(3,w*0.02),seed:seed+37});
+  const tw=cw*1.25,th=h*0.13,ty=y-h-th-2;
+  s+=`<rect x="${n(cx-tw/2)}" y="${n(ty)}" width="${n(tw)}" height="${n(th)}" rx="2" fill="${K.ink}"/>`;
+  if(text)s+=`<text x="${n(cx)}" y="${n(ty+th*0.76)}" text-anchor="middle" style="${DISPLAY}" font-size="${n(th*0.72)}" textLength="${n(tw*0.86)}" lengthAdjust="spacingAndGlyphs" fill="#FFFFFF">${text}</text>`;
+  return `<g>${s}</g>`;
+}
+function lantern({x,y,s,glow=1,p}){
+  const sw=n(Math.max(0.6,s*0.05));
+  let g='';
+  if(p)g+=`<circle cx="${n(x)}" cy="${n(y-s*0.42)}" r="${n(s*1.8)}" fill="url(#${p}glow)" style="opacity:${glow}"/>`;
+  g+=`<ellipse cx="${n(x)}" cy="${n(y)}" rx="${n(s*0.42)}" ry="${n(s*0.1)}" fill="${K.copper}" stroke="${K.ink}" stroke-width="${sw}"/>`;
+  g+=`<rect x="${n(x-s*0.22)}" y="${n(y-s*0.74)}" width="${n(s*0.44)}" height="${n(s*0.68)}" rx="${n(s*0.15)}" fill="#EDE2CC" stroke="${K.ink}" stroke-width="${sw}"/>`;
+  g+=`<rect x="${n(x-s*0.22)}" y="${n(y-s*0.74)}" width="${n(s*0.44)}" height="${n(s*0.68)}" rx="${n(s*0.15)}" fill="#FFC861" style="opacity:${glow}"/>`;
+  g+=`<ellipse cx="${n(x)}" cy="${n(y-s*0.36)}" rx="${n(s*0.06)}" ry="${n(s*0.12)}" fill="#FF7F1A"/>`;
+  g+=`<path d="M${n(x-s*0.28)},${n(y-s*0.72)} Q${n(x)},${n(y-s*1.0)} ${n(x+s*0.28)},${n(y-s*0.72)}Z" fill="#3B2A1D" stroke="${K.ink}" stroke-width="${sw}"/>`;
+  g+=`<path d="M${n(x-s*0.1)},${n(y-s*0.9)} Q${n(x)},${n(y-s*1.14)} ${n(x+s*0.1)},${n(y-s*0.9)}" fill="none" stroke="${K.ink}" stroke-width="${sw}"/>`;
+  return `<g>${g}</g>`;
+}
+function flag({x,y,h,c}){
+  const top=y-h,fh=h*0.62,fw=h*0.2,sw=n(Math.max(1.2,h*0.016));
+  return `<g><line x1="${n(x)}" y1="${n(y)}" x2="${n(x)}" y2="${n(top-3)}" stroke="${K.ink}" stroke-width="${sw}"/><path d="M${n(x)},${n(top)} C${n(x+fw*1.15)},${n(top)} ${n(x+fw*1.05)},${n(top+fh*0.55)} ${n(x+fw*0.62)},${n(top+fh)} L${n(x)},${n(top+fh)}Z" style="fill:${c}" stroke="${K.ink}" stroke-width="${sw}" stroke-linejoin="round"/></g>`;
+}
+function person({x,y,s,c='#2A2026',pose='stand',o}){
+  const st=`fill:${c}`+(o!=null?`;opacity:${o}`:'');
+  if(pose==='sit'){
+    return `<g style="${st}"><circle cx="${n(x)}" cy="${n(y-s*0.57)}" r="${n(s*0.1)}"/><path d="M${n(x-s*0.12)},${n(y-s*0.44)} Q${n(x)},${n(y-s*0.5)} ${n(x+s*0.12)},${n(y-s*0.44)} L${n(x+s*0.15)},${n(y-s*0.1)} L${n(x-s*0.15)},${n(y-s*0.1)}Z"/><ellipse cx="${n(x)}" cy="${n(y-s*0.06)}" rx="${n(s*0.27)}" ry="${n(s*0.07)}"/></g>`;
+  }
+  let g=`<circle cx="${n(x)}" cy="${n(y-s*0.9)}" r="${n(s*0.095)}"/><path d="M${n(x-s*0.13)},${n(y-s*0.76)} Q${n(x)},${n(y-s*0.84)} ${n(x+s*0.13)},${n(y-s*0.76)} L${n(x+s*0.11)},${n(y-s*0.42)} L${n(x-s*0.11)},${n(y-s*0.42)}Z"/><rect x="${n(x-s*0.1)}" y="${n(y-s*0.44)}" width="${n(s*0.085)}" height="${n(s*0.44)}" rx="${n(s*0.03)}"/><rect x="${n(x+s*0.015)}" y="${n(y-s*0.44)}" width="${n(s*0.085)}" height="${n(s*0.44)}" rx="${n(s*0.03)}"/>`;
+  if(pose==='up')g+=`<path d="M${n(x-s*0.11)},${n(y-s*0.74)} L${n(x-s*0.2)},${n(y-s*1.1)} M${n(x+s*0.11)},${n(y-s*0.74)} L${n(x+s*0.2)},${n(y-s*1.1)}" style="fill:none;stroke:${c};stroke-width:${n(s*0.065)};stroke-linecap:round"/>`;
+  return `<g style="${st}">${g}</g>`;
+}
+function festoon({x1,y1,x2,y2,sag,nb,on,r=2.2}){
+  const mx=(x1+x2)/2,my=(y1+y2)/2+sag*2;
+  let pts=[];
+  for(let i=1;i<nb;i++){const t=i/nb;pts.push([(1-t)*(1-t)*x1+2*(1-t)*t*mx+t*t*x2,(1-t)*(1-t)*y1+2*(1-t)*t*my+t*t*y2+r*1.1]);}
+  const c=(rad)=>pts.map(q=>`<circle cx="${n(q[0])}" cy="${n(q[1])}" r="${n(rad)}"/>`).join('');
+  return `<path d="M${n(x1)},${n(y1)} Q${n(mx)},${n(my)} ${n(x2)},${n(y2)}" fill="none" stroke="${K.ink}" stroke-width="1" opacity=".75"/><g style="fill:#6B5A45">${c(r)}</g><g style="fill:#FFE6A8;opacity:${on}">${c(r)}</g><g style="fill:#FFC86E;opacity:calc(${on} * .3)">${c(r*2.8)}</g>`;
+}
+function trussV(x,yT,yB,w){
+  let z=`M${n(x)},${n(yB)}`;let left=true;for(let yy=yB;yy>yT;yy-=w){z+=` L${n(left?x+w:x)},${n(Math.max(yT,yy-w))}`;left=!left;}
+  return `<rect x="${n(x)}" y="${n(yT)}" width="${n(w)}" height="${n(yB-yT)}" fill="none" stroke="${K.ink}" stroke-width="1.3"/><path d="${z}" fill="none" stroke="${K.ink}" stroke-width=".8"/>`;
+}
+function trussH(x1,x2,y,h){
+  let z=`M${n(x1)},${n(y+h)}`;let up=true;for(let xx=x1;xx<x2;xx+=h){z+=` L${n(Math.min(x2,xx+h))},${n(up?y:y+h)}`;up=!up;}
+  return `<rect x="${n(x1)}" y="${n(y)}" width="${n(x2-x1)}" height="${n(h)}" fill="none" stroke="${K.ink}" stroke-width="1.3"/><path d="${z}" fill="none" stroke="${K.ink}" stroke-width=".8"/>`;
+}
+function stage({cx,y,w,h,p,on=1,seed=9}){
+  const L=cx-w/2,pw=w*0.105,ph=h*0.6;
+  let s='';
+  for(let i=0;i<3;i++){
+    s+=panel({cx:L+pw*(i+0.5),y,w:pw,h:ph*(1-i*0.04),p,lit:on===0?0:`calc(${on} * .55)`,litColor:i%2?K.orange:K.teal});
+    s+=panel({cx:L+w-pw*(i+0.5),y,w:pw,h:ph*(1-i*0.04),p,lit:on===0?0:`calc(${on} * .55)`,litColor:i%2?K.orange:K.teal});
+  }
+  for(let i=0;i<=3;i++){s+=ivy({x:L+pw*i,y:y-ph,len:ph*0.6,s:Math.max(3,pw*0.12),seed:seed+i});s+=ivy({x:L+w-pw*i,y:y-ph,len:ph*0.55,s:Math.max(3,pw*0.12),seed:seed+20+i});}
+  const tw=w*0.028,tx1=cx-w*0.19,tx2=cx+w*0.19-tw;
+  s+=`<rect x="${n(cx-w*0.2)}" y="${n(y-h*0.12)}" width="${n(w*0.4)}" height="${n(h*0.12)}" fill="${K.ink}"/>`;
+  const scw=w*0.27,sch=h*0.44,scy=y-h*0.82;
+  s+=`<rect x="${n(cx-scw/2)}" y="${n(scy)}" width="${n(scw)}" height="${n(sch)}" fill="#221E28" stroke="${K.ink}" stroke-width="1.5"/>`;
+  s+=`<rect x="${n(cx-scw/2)}" y="${n(scy)}" width="${n(scw)}" height="${n(sch)}" fill="url(#${p}screen)" style="opacity:${on}"/>`;
+  s+=trussV(tx1,y-h,y,tw)+trussV(tx2,y-h,y,tw)+trussH(tx1,tx2+tw,y-h,tw);
+  for(let i=0;i<6;i++){const lx=tx1+tw+(tx2-tx1-tw)*(i+0.5)/6;s+=`<circle cx="${n(lx)}" cy="${n(y-h+tw+3)}" r="${n(w*0.006+1)}" fill="#FFF3D0" style="opacity:${on}"/>`;}
+  s+=`<text x="${n(cx)}" y="${n(y-h-5)}" text-anchor="middle" style="${DISPLAY}" font-size="${n(h*0.12)}" textLength="${n(w*0.24)}" lengthAdjust="spacingAndGlyphs" fill="#F7F1E8" stroke="${K.ink}" stroke-width="${n(h*0.012)}" paint-order="stroke">BLÜME</text>`;
+  [-1,1].forEach(d=>{const sx=cx+d*w*0.235;s+=`<rect x="${n(sx-w*0.02)}" y="${n(y-h*0.3)}" width="${n(w*0.04)}" height="${n(h*0.3)}" fill="#141114" stroke="${K.ink}"/><circle cx="${n(sx)}" cy="${n(y-h*0.2)}" r="${n(w*0.011)}" fill="#3A3438"/><circle cx="${n(sx)}" cy="${n(y-h*0.08)}" r="${n(w*0.011)}" fill="#3A3438"/>`;});
+  return `<g>${s}</g>`;
+}
+function beams({srcs,len,p,o}){
+  let s='';
+  srcs.forEach((b,i)=>{
+    const a=b.a*Math.PI/180,d=b.d||0.03;
+    s+=`<g class="beam" style="transform-origin:${n(b.x)}px ${n(b.y)}px;animation-delay:${-i*2.3}s;animation-duration:${8+i%3*2}s"><polygon points="${n(b.x)},${n(b.y)} ${n(b.x+len*Math.sin(a-d))},${n(b.y-len*Math.cos(a-d))} ${n(b.x+len*Math.sin(a+d))},${n(b.y-len*Math.cos(a+d))}" fill="url(#${p}beam)"/></g>`;
+  });
+  return `<g style="opacity:${o}">${s}</g>`;
+}
+function scaffold({cx,y,w,h,crowd=1,text='BLÜME'}){
+  const L=cx-w/2,R=cx+w/2,T=y-h,rail=h*0.15;
+  let s=`<g stroke="${K.ink}" stroke-width="2.2" fill="none" stroke-linecap="round">`;
+  [L,cx,R].forEach(x=>{s+=`<line x1="${n(x)}" y1="${n(y)}" x2="${n(x)}" y2="${n(T-rail)}"/>`;});
+  for(let k=0;k<=3;k++){const yy=y-h*k/3;s+=`<line x1="${n(L)}" y1="${n(yy)}" x2="${n(R)}" y2="${n(yy)}"/>`;}
+  for(let k=0;k<3;k++){const y1=y-h*k/3,y2=y-h*(k+1)/3;s+=k%2?`<line x1="${n(L)}" y1="${n(y2)}" x2="${n(cx)}" y2="${n(y1)}"/><line x1="${n(cx)}" y1="${n(y2)}" x2="${n(R)}" y2="${n(y1)}"/>`:`<line x1="${n(L)}" y1="${n(y1)}" x2="${n(cx)}" y2="${n(y2)}"/><line x1="${n(cx)}" y1="${n(y1)}" x2="${n(R)}" y2="${n(y2)}"/>`;}
+  s+=`<line x1="${n(L-4)}" y1="${n(T-rail)}" x2="${n(R+4)}" y2="${n(T-rail)}"/><line x1="${n(L-4)}" y1="${n(T-rail*0.5)}" x2="${n(R+4)}" y2="${n(T-rail*0.5)}" stroke-width="1.4"/>`;
+  const sx=L-w*0.42;
+  for(let k=0;k<3;k++){const y1=y-h*k/3,y2=y-h*(k+1)/3;s+=`<line x1="${n(k%2?L:sx)}" y1="${n(y1)}" x2="${n(k%2?sx:L)}" y2="${n(y2)}" stroke-width="2.6"/>`;}
+  s+=`<line x1="${n(sx)}" y1="${n(y)}" x2="${n(sx)}" y2="${n(T)}" stroke-width="1.6"/></g>`;
+  s+=`<rect x="${n(L-5)}" y="${n(T-3)}" width="${n(w+10)}" height="5" fill="${K.ink}"/>`;
+  const bh=h*0.2,by=y-h*0.62;
+  s+=`<rect x="${n(L+3)}" y="${n(by)}" width="${n(w-6)}" height="${n(bh)}" rx="2" fill="#FFFFFF" stroke="${K.ink}" stroke-width="2"/>`;
+  s+=`<text x="${n(cx)}" y="${n(by+bh*0.77)}" text-anchor="middle" style="${DISPLAY}" font-size="${n(bh*0.72)}" textLength="${n(w-16)}" lengthAdjust="spacingAndGlyphs" fill="${K.orange}">${text}</text>`;
+  const ps=h*0.26;
+  s+=`<g style="opacity:${crowd}">`+person({x:cx-w*0.3,y:T-3,s:ps,c:'#2A2026'})+person({x:cx,y:T-3,s:ps*1.05,c:'#3B2A30',pose:'up'})+person({x:cx+w*0.3,y:T-3,s:ps,c:'#2A2026'})+`</g>`;
+  return `<g>${s}</g>`;
+}
+function roundBar({cx,y,rx,ry,h,bartender=true}){
+  let s=`<ellipse cx="${n(cx)}" cy="${n(y-h)}" rx="${n(rx)}" ry="${n(ry)}" fill="#1D1A1A" stroke="${K.ink}" stroke-width="2"/>`;
+  s+=`<ellipse cx="${n(cx)}" cy="${n(y-h+ry*0.05)}" rx="${n(rx*0.72)}" ry="${n(ry*0.62)}" fill="#3B3533"/>`;
+  if(bartender)s+=person({x:cx,y:y-h+ry*0.2,s:h*1.35,c:'#2B2A2A'});
+  s+=`<path d="M${n(cx-rx)},${n(y-h)} A${n(rx)},${n(ry)} 0 0 0 ${n(cx+rx)},${n(y-h)} L${n(cx+rx)},${n(y)} A${n(rx)},${n(ry)} 0 0 1 ${n(cx-rx)},${n(y)}Z" fill="${K.orange}" stroke="${K.ink}" stroke-width="2"/>`;
+  s+=`<path d="M${n(cx-rx)},${n(y-h*0.14)} A${n(rx)},${n(ry)} 0 0 0 ${n(cx+rx)},${n(y-h*0.14)} L${n(cx+rx)},${n(y)} A${n(rx)},${n(ry)} 0 0 1 ${n(cx-rx)},${n(y)}Z" fill="#1D1A1A"/>`;
+  s+=`<text x="${n(cx)}" y="${n(y-h*0.3+ry*0.85)}" text-anchor="middle" style="${DISPLAY}" font-size="${n(h*0.46)}" textLength="${n(rx*0.95)}" lengthAdjust="spacingAndGlyphs" fill="#FFFFFF">BLÜME</text>`;
+  return `<g>${s}</g>`;
+}
+function planter({x,y,w,h,seed=1,ivyLen=0.8}){
+  let s=`<rect x="${n(x)}" y="${n(y-h)}" width="${n(w)}" height="${n(h)}" fill="${K.wood}" stroke="${K.ink}" stroke-width="1.6"/>`;
+  for(let k=1;k<4;k++)s+=`<line x1="${n(x)}" y1="${n(y-h*k/4)}" x2="${n(x+w)}" y2="${n(y-h*k/4)}" stroke="${K.woodD}" stroke-width="1.2"/>`;
+  const r=rnd(seed);
+  for(let i=0;i<Math.round(w/9);i++){const xx=x+4+i*9+r()*3;s+=ivy({x:xx,y:y-h-2,len:h*(0.3+r()*ivyLen),s:5,seed:seed+i});}
+  for(let i=0;i<Math.round(w/7);i++){s+=`<ellipse cx="${n(x+3+i*7+r()*3)}" cy="${n(y-h-2-r()*5)}" rx="4.5" ry="3.2" fill="${K.ivy[Math.floor(r()*4)]}"/>`;}
+  return `<g>${s}</g>`;
+}
+function firepit({x,y,s,on=1,p}){
+  let g='';
+  if(p)g+=`<circle cx="${n(x)}" cy="${n(y-s*0.4)}" r="${n(s*2.6)}" fill="url(#${p}glow)" style="opacity:${on}"/>`;
+  g+=`<g style="opacity:${on}"><path d="M${n(x-s*0.35)},${n(y-s*0.2)} Q${n(x-s*0.4)},${n(y-s*0.8)} ${n(x-s*0.05)},${n(y-s*1.2)} Q${n(x+s*0.05)},${n(y-s*0.7)} ${n(x+s*0.3)},${n(y-s*0.95)} Q${n(x+s*0.45)},${n(y-s*0.5)} ${n(x+s*0.35)},${n(y-s*0.2)}Z" fill="#FF7A1A"/><path d="M${n(x-s*0.18)},${n(y-s*0.2)} Q${n(x-s*0.2)},${n(y-s*0.6)} ${n(x)},${n(y-s*0.85)} Q${n(x+s*0.22)},${n(y-s*0.55)} ${n(x+s*0.18)},${n(y-s*0.2)}Z" fill="#FFC23D"/></g>`;
+  g+=`<path d="M${n(x-s*0.6)},${n(y-s*0.25)} L${n(x+s*0.6)},${n(y-s*0.25)} Q${n(x+s*0.5)},${n(y+s*0.1)} ${n(x)},${n(y+s*0.12)} Q${n(x-s*0.5)},${n(y+s*0.1)} ${n(x-s*0.6)},${n(y-s*0.25)}Z" fill="#2F2A28" stroke="${K.ink}" stroke-width="1.5"/>`;
+  return `<g>${g}</g>`;
+}
+function callout({x,y,tx,ty,t,end=false}){
+  const w=t.length*6.3+14,h=20,rx=end?tx-w:tx;
+  return `<g><line x1="${n(x)}" y1="${n(y)}" x2="${n(end?tx:tx)}" y2="${n(ty)}" stroke="${K.ink}" stroke-width="1.3"/><circle cx="${n(x)}" cy="${n(y)}" r="2.8" fill="${K.ink}" stroke="#FFFFFF" stroke-width="1"/><rect x="${n(rx)}" y="${n(ty-h/2)}" width="${n(w)}" height="${h}" rx="10" fill="#FFFDF8" stroke="${K.ink}" stroke-width="1.5"/><text x="${n(rx+7)}" y="${n(ty+3.7)}" style="font-family:'IBM Plex Mono',monospace;font-weight:500" font-size="10.5" fill="${K.ink}">${t}</text></g>`;
+}
+function pill({x,y,t,bg='#FFFDF8',fg=K.ink}){
+  const w=t.length*6.3+14;
+  return `<g><rect x="${n(x)}" y="${n(y)}" width="${n(w)}" height="20" rx="10" fill="${bg}" stroke="${K.ink}" stroke-width="1.5"/><text x="${n(x+7)}" y="${n(y+13.7)}" style="font-family:'IBM Plex Mono',monospace;font-weight:600" font-size="10.5" fill="${fg}">${t}</text></g>`;
+}
+function ground(y,w,h,c){return `<rect x="0" y="${y}" width="${w}" height="${h-y}" style="fill:${c}"/>`;}
+function wrapSVG(p,inner,label){return `<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" role="img" aria-label="${label}"><defs>${defs(p)}</defs>${inner}</svg>`;}
+function rowTents({y,from,to,step,w,p,glow=0,canvas,door,pennant=K.orange,jitter=0,seed=3}){
+  const r=rnd(seed);let s='';for(let x=from;x<=to;x+=step){s+=tent({x:x+(r()-0.5)*jitter,y,w,h:w*0.95,p,glow,canvas,door,pennant});}return s;
+}
+
+const SK={
+  juntos(p){
+    let s=sky(p,400,300,['#3F3B78','#D96E80','#F9A866']);
+    s+=ridge({w:400,base:196,amp:70,seed:5,fill:'#6E4B6E'})+ridge({w:400,base:200,amp:34,seed:8,fill:'#3F3246'});
+    s+=ground(196,400,300,'#47552F');
+    s+=rowTents({y:212,from:230,to:400,step:40,w:30,p,glow:.8,canvas:'#E6B18C',door:'#FFB458',seed:2});
+    s+=panel({cx:80,y:250,w:96,h:150,p});
+    s+=ivy({x:32,y:100,len:90,s:6,seed:4})+ivy({x:128,y:100,len:70,s:6,seed:9});
+    s+=festoon({x1:0,y1:120,x2:400,y2:110,sag:22,nb:16,on:1,r:2.4});
+    s+=tent({x:250,y:282,w:170,h:160,p,glow:.85,canvas:'#E9B48F',shade:'#C08A6C',door:'#FFB458',bows:true,mats:true});
+    s+=lantern({x:150,y:284,s:24,glow:1,p})+lantern({x:360,y:290,s:22,glow:1,p})+lantern({x:120,y:236,s:14,glow:1,p});
+    return wrapSVG(p,s,'Carpa, arco y faroles');
+  },
+  portal(p){
+    let s=sky(p,400,300,['#F2A27E','#F8C79B','#FDE3B8']);
+    s+=ridge({w:400,base:192,amp:58,seed:3,fill:'#B98A86'})+ridge({w:400,base:196,amp:30,seed:7,fill:'#8E6C66'});
+    s+=ground(192,400,300,'#8DA25A');
+    s+=rowTents({y:212,from:20,to:390,step:42,w:30,p,canvas:'#F7D8BC',door:'#C08B5E',seed:5});
+    s+=`<path d="M186,262 L196,214 L204,214 L214,262Z" fill="#D9C29A"/><path d="M168,262 L232,262 L300,300 L100,300Z" fill="#D9C29A"/>`;
+    s+=portal({cx:200,y:262,w:330,h:170,p,seed:6});
+    s+=person({x:191,y:258,s:34,c:'#3B2B2A'})+person({x:211,y:256,s:31,c:'#5A3A2E'});
+    s+=lantern({x:150,y:282,s:14,glow:.5,p})+lantern({x:252,y:282,s:14,glow:.5,p})+lantern({x:112,y:300,s:20,glow:.5,p})+lantern({x:290,y:300,s:20,glow:.5,p});
+    return wrapSVG(p,s,'Portal de Arcos');
+  },
+  calles(p){
+    let s=sky(p,400,300,['#3D3A6E','#C76A7E','#F7A86B']);
+    s+=ridge({w:400,base:192,amp:62,seed:11,fill:'#5F4466'})+ridge({w:400,base:196,amp:30,seed:13,fill:'#3A2E44'});
+    s+=ground(192,400,300,'#4F5F35');
+    s+=rowTents({y:210,from:200,to:400,step:38,w:30,p,glow:.8,canvas:'#E7B48F',door:'#FFB458',seed:7});
+    s+=rowTents({y:240,from:250,to:400,step:60,w:46,p,glow:.8,canvas:'#E7B48F',door:'#FFB458',seed:8});
+    s+=`<rect x="140" y="88" width="12" height="200" fill="${K.wood}" stroke="${K.ink}" stroke-width="2"/>`;
+    s+=`<rect x="84" y="96" width="124" height="38" rx="3" fill="#FFFFFF" stroke="${K.ink}" stroke-width="3"/><text x="146" y="124" text-anchor="middle" style="${DISPLAY}" font-size="22" textLength="104" lengthAdjust="spacingAndGlyphs" fill="${K.ink}">ARCO B</text>`;
+    s+=`<path d="M146,144 L276,144 L292,161 L276,178 L146,178Z" fill="${K.vOrange}" stroke="${K.ink}" stroke-width="3" stroke-linejoin="round"/><text x="158" y="168" style="${DISPLAY}" font-size="17" textLength="112" lengthAdjust="spacingAndGlyphs" fill="${K.ink}">2:00 NARANJA</text>`;
+    s+=`<path d="M146,188 L52,188 L36,205 L52,222 L146,222Z" fill="#FFFFFF" stroke="${K.ink}" stroke-width="3" stroke-linejoin="round"/><text x="56" y="212" style="${DISPLAY}" font-size="17" textLength="80" lengthAdjust="spacingAndGlyphs" fill="${K.ink}">PLAZA</text>`;
+    s+=`<g transform="rotate(-8 300 252)"><rect x="200" y="236" width="196" height="32" rx="16" fill="url(#${p}brand)" stroke="${K.ink}" stroke-width="3"/><text x="300" y="257" text-anchor="middle" style="${MONO}" font-size="12" fill="#FFFFFF">ARCO B · 2:00 · C-14</text><circle cx="214" cy="252" r="6" fill="#FFFFFF" stroke="${K.ink}" stroke-width="2"/></g>`;
+    s+=pill({x:230,y:206,t:'tu dirección'});
+    return wrapSVG(p,s,'Letreros de calle y pulsera');
+  },
+  kit(p){
+    let s=`<rect width="400" height="300" fill="#EFE3D2"/>`;
+    for(let i=0;i<30;i++)s+=`<line x1="0" y1="${i*10+3}" x2="400" y2="${i*10+3}" stroke="#E2D2BC" stroke-width="1"/>`;
+    s+=`<g transform="rotate(-6 110 160)"><path d="M70,78 Q70,40 98,40 Q126,40 126,78" fill="none" stroke="${K.ink}" stroke-width="5"/><path d="M114,78 Q114,46 140,46 Q166,46 166,78" fill="none" stroke="#D8CDBD" stroke-width="5"/><rect x="40" y="76" width="160" height="170" rx="4" fill="#FFFFFF" stroke="${K.ink}" stroke-width="3"/>`;
+    s+=`<g style="${DISPLAY}" stroke="${K.ink}" stroke-width="5" stroke-linejoin="round" paint-order="stroke"><text x="120" y="152" text-anchor="middle" font-size="34" textLength="128" lengthAdjust="spacingAndGlyphs" fill="#FFFFFF">BLÜME</text><text x="120" y="188" text-anchor="middle" font-size="34" textLength="108" lengthAdjust="spacingAndGlyphs" fill="url(#${p}brand)">CAMP</text></g></g>`;
+    s+=`<g transform="rotate(10 300 90)"><path d="M232,52 L372,52 L302,138Z" fill="url(#${p}brand)" stroke="${K.ink}" stroke-width="3" stroke-linejoin="round"/>`;
+    const r=rnd(21);for(let i=0;i<16;i++){const u=r(),v=r()*(1-u*0.9);s+=`<circle cx="${n(244+u*116+(v-0.5)*0)}" cy="${n(58+v*70)}" r="2.2" fill="#FFFFFF" opacity=".8"/>`;}
+    s+=`</g>`;
+    s+=`<g transform="rotate(-12 300 220)"><rect x="214" y="204" width="176" height="30" rx="15" fill="url(#${p}brand)" stroke="${K.ink}" stroke-width="3"/><text x="304" y="224" text-anchor="middle" style="${MONO}" font-size="11" fill="#FFFFFF">ARCO B · 2:00 · C-14</text></g>`;
+    s+=lantern({x:250,y:182,s:44,glow:0});
+    s+=callout({x:62,y:236,tx:16,ty:270,t:'tote'})+callout({x:330,y:70,tx:384,ty:22,t:'bandana',end:true})+callout({x:330,y:236,tx:384,ty:276,t:'pulsera con dirección',end:true})+callout({x:268,y:160,tx:292,ty:172,t:'farol mini'});
+    return wrapSVG(p,s,'Kit de bienvenida');
+  },
+  carpa(p){
+    let s=sky(p,400,300,['#F39C7A','#F8C49A','#FCE0BC']);
+    s+=ridge({w:400,base:205,amp:60,seed:17,fill:'#B88378'})+ridge({w:400,base:208,amp:28,seed:19,fill:'#8F6A60'});
+    s+=ground(205,400,300,'#86A052');
+    s+=rowTents({y:214,from:10,to:400,step:44,w:28,p,canvas:'#F7D3B4',door:'#C08B5E',seed:9});
+    s+=tent({x:190,y:268,w:230,h:212,p,glow:.25,canvas:'#F9D9BE',shade:'#E0AE8E',door:'#C9895A',num:'C-14',bows:true,mats:true,sw:2.4});
+    s+=`<path d="M146,268 L234,268 L258,292 L122,292Z" fill="#E46A3A" stroke="${K.ink}" stroke-width="2"/><path d="M140,276 L240,276 M133,284 L247,284" stroke="#F6C3A0" stroke-width="2.4"/>`;
+    s+=lantern({x:336,y:276,s:28,glow:.6,p});
+    s+=callout({x:212,y:38,tx:176,ty:58,t:'banderín',end:true})+callout({x:104,y:254,tx:80,ty:206,t:'número',end:true})+callout({x:240,y:246,tx:262,ty:212,t:'cintas'})+callout({x:200,y:286,tx:110,ty:286,t:'tapete',end:true});
+    return wrapSVG(p,s,'Carpa Blüme');
+  },
+  barrios(p){
+    let s=sky(p,400,300,['#6FAEDC','#B9DCEE','#F2E6D2']);
+    s+=ridge({w:400,base:186,amp:66,seed:23,fill:'#97A3B6'})+ridge({w:400,base:190,amp:30,seed:29,fill:'#6D7E6C'});
+    s+=ground(186,400,300,'#80A04E');
+    s+=rowTents({y:204,from:8,to:400,step:30,w:22,p,seed:12,jitter:4});
+    const fl=[[60,'#EC0B73'],[160,'#FC8E01'],[255,'#F6C3A0'],[345,'#4E6B2B']];
+    fl.forEach(([x,c],i)=>{s+=flag({x,y:232+(i%2)*8,h:150,c});});
+    s+=rowTents({y:236,from:20,to:400,step:44,w:34,p,seed:13,jitter:6});
+    s+=rowTents({y:288,from:-10,to:420,step:84,w:62,p,seed:14,jitter:8});
+    ['MAGENTA','NARANJA','DURAZNO','HIEDRA'].forEach((t,i)=>{s+=pill({x:fl[i][0]-4,y:58+(i%2)*8,t});});
+    return wrapSVG(p,s,'Barrios de color');
+  },
+  avenida(p){
+    let s=sky(p,400,300,['#0D1030','#1E1C45','#3B2A55']);
+    s+=stars({w:400,h:150,count:60,seed:5,o:1});
+    s+=ridge({w:400,base:168,amp:48,seed:31,fill:'#1C1A33'});
+    s+=ground(165,400,300,'#1E2618');
+    s+=portal({cx:200,y:170,w:64,h:34,p,text:'',lit:.9});
+    s+=`<path d="M110,300 L290,300 L211,171 L189,171Z" fill="#3A3428"/>`;
+    s+=tent({x:70,y:196,w:52,p,glow:.9,canvas:'#6B5242',shade:'#4E3A30',door:'#FFB458'})+tent({x:335,y:198,w:56,p,glow:.9,canvas:'#6B5242',shade:'#4E3A30',door:'#FFB458'});
+    s+=tent({x:24,y:252,w:96,p,glow:.9,canvas:'#6B5242',shade:'#4E3A30',door:'#FFB458'})+tent({x:384,y:258,w:104,p,glow:.9,canvas:'#6B5242',shade:'#4E3A30',door:'#FFB458'});
+    const zs=[.14,.19,.26,.36,.5,.7,.98];
+    zs.forEach(z=>{const yy=171+129*z,hw=11+79*z;
+      s+=festoon({x1:200-hw-14*z,y1:yy-80*z,x2:200+hw+14*z,y2:yy-80*z,sag:9*z,nb:9,on:1,r:Math.max(0.8,2.6*z)});
+      s+=`<line x1="${n(200-hw-14*z)}" y1="${n(yy)}" x2="${n(200-hw-14*z)}" y2="${n(yy-80*z)}" stroke="#0A0809" stroke-width="${n(Math.max(0.8,3*z))}"/><line x1="${n(200+hw+14*z)}" y1="${n(yy)}" x2="${n(200+hw+14*z)}" y2="${n(yy-80*z)}" stroke="#0A0809" stroke-width="${n(Math.max(0.8,3*z))}"/>`;
+      s+=lantern({x:200-hw+2,y:yy,s:30*z,glow:1,p})+lantern({x:200+hw-2,y:yy,s:30*z,glow:1,p});
+    });
+    s+=person({x:190,y:250,s:46,c:'#120E14'})+person({x:212,y:252,s:43,c:'#1D1418'});
+    return wrapSVG(p,s,'Avenida de faroles');
+  },
+  fogata(p){
+    let s=sky(p,400,300,['#2A2A5C','#8A4D78','#F08A5A']);
+    s+=ridge({w:400,base:176,amp:58,seed:37,fill:'#4B3557'})+ridge({w:400,base:180,amp:26,seed:41,fill:'#2B2433'});
+    s+=ground(176,400,300,'#44522F');
+    s+=rowTents({y:190,from:10,to:400,step:40,w:30,p,glow:.8,canvas:'#D7A285',door:'#FFB458',seed:15});
+    s+=flag({x:30,y:206,h:132,c:K.vOrange});
+    s+=planter({x:40,y:226,w:96,h:28,seed:3})+planter({x:264,y:226,w:96,h:28,seed:8});
+    s+=`<ellipse cx="200" cy="250" rx="160" ry="42" fill="#C2542E" stroke="${K.ink}" stroke-width="2"/><ellipse cx="200" cy="250" rx="128" ry="31" fill="none" stroke="#F6C3A0" stroke-width="2.4" stroke-dasharray="7 6"/>`;
+    s+=`<rect x="70" y="236" width="34" height="16" rx="6" fill="${K.magenta}" stroke="${K.ink}" stroke-width="1.5"/><rect x="296" y="236" width="34" height="16" rx="6" fill="${K.peach}" stroke="${K.ink}" stroke-width="1.5"/><rect x="126" y="272" width="34" height="16" rx="6" fill="${K.vOrange}" stroke="${K.ink}" stroke-width="1.5"/><rect x="242" y="272" width="34" height="16" rx="6" fill="${K.ivy[2]}" stroke="${K.ink}" stroke-width="1.5"/>`;
+    s+=firepit({x:200,y:254,s:30,on:1,p});
+    s+=person({x:86,y:240,s:62,c:'#2B1E22',pose:'sit'})+person({x:140,y:232,s:56,c:'#3A2526',pose:'sit'})+person({x:262,y:232,s:56,c:'#2B1E22',pose:'sit'})+person({x:314,y:240,s:62,c:'#3A2526',pose:'sit'})+person({x:143,y:286,s:64,c:'#241A1E',pose:'sit'})+person({x:260,y:286,s:64,c:'#2B1E22',pose:'sit'});
+    return wrapSVG(p,s,'Fogata del barrio');
+  },
+  oasis(p){
+    let s=sky(p,400,300,['#8EC0E0','#F1D2B8','#FBE3C0']);
+    s+=ridge({w:400,base:178,amp:62,seed:43,fill:'#A49AAB'})+ridge({w:400,base:182,amp:28,seed:47,fill:'#7C8070'});
+    s+=ground(178,400,300,'#86A052');
+    s+=rowTents({y:192,from:10,to:400,step:38,w:28,p,seed:17,canvas:'#F5E2CC'});
+    s+=planter({x:30,y:222,w:80,h:30,seed:5})+planter({x:290,y:222,w:80,h:30,seed:9});
+    s+=`<rect x="68" y="132" width="4" height="62" fill="${K.ink}"/><rect x="40" y="104" width="62" height="40" rx="3" fill="#1D1A1A" stroke="${K.ink}" stroke-width="2"/><text x="71" y="119" text-anchor="middle" style="${MONO}" font-size="8.5" fill="#FFE3C8">CAFÉ · AGUA</text><text x="71" y="133" text-anchor="middle" style="${MONO}" font-size="8.5" fill="${K.vOrange}">RECARGA</text>`;
+    s+=roundBar({cx:200,y:252,rx:124,ry:26,h:46});
+    s+=person({x:96,y:298,s:76,c:'#3A2C30'})+person({x:310,y:300,s:80,c:'#5B3B2E'})+person({x:338,y:302,s:72,c:'#2F2426'});
+    return wrapSVG(p,s,'Barra Oasis');
+  },
+  mirador(p){
+    let s=sky(p,400,300,['#4E4A8C','#E9768A','#FDB25F']);
+    s+=`<circle cx="92" cy="186" r="34" fill="#FFD27A"/>`;
+    s+=ridge({w:400,base:190,amp:70,seed:53,fill:'#7A5375'})+ridge({w:400,base:194,amp:30,seed:59,fill:'#3E3446'});
+    s+=ground(192,400,300,'#5F6F38');
+    s+=rowTents({y:208,from:10,to:400,step:36,w:26,p,canvas:'#F9C9A5',door:'#C4804F',seed:19,glow:.3});
+    s+=scaffold({cx:250,y:262,w:92,h:150,crowd:1});
+    s+=rowTents({y:278,from:20,to:140,step:70,w:56,p,canvas:'#F9C9A5',door:'#C4804F',seed:21,glow:.3});
+    s+=rowTents({y:296,from:350,to:420,step:70,w:60,p,canvas:'#F9C9A5',door:'#C4804F',seed:22,glow:.3});
+    s+=`<g stroke="${K.ink}" stroke-width="1.5"><line x1="312" y1="262" x2="312" y2="112"/><line x1="306" y1="262" x2="318" y2="262"/><line x1="306" y1="112" x2="318" y2="112"/></g>`+pill({x:320,y:177,t:'4 m'});
+    return wrapSVG(p,s,'Mirador');
+  },
+  beams(p){
+    let s=sky(p,400,300,['#070818','#130F2C','#2A1C3E']);
+    s+=stars({w:400,h:160,count:50,seed:9,o:1});
+    s+=beams({srcs:[{x:255,y:112,a:-38},{x:280,y:112,a:-14},{x:310,y:112,a:12},{x:332,y:112,a:34}],len:260,p,o:1});
+    s+=ridge({w:400,base:196,amp:40,seed:61,fill:'#16142A'});
+    s+=ground(196,400,300,'#1C2418');
+    s+=stage({cx:292,y:200,w:190,h:86,p,on:1});
+    s+=tent({x:66,y:320,w:200,h:190,p,glow:.95,canvas:'#5E4A44',shade:'#3E302B',door:'#FFB458'})+tent({x:250,y:330,w:190,h:150,p,glow:.95,canvas:'#5E4A44',shade:'#3E302B',door:'#FFB458'})+tent({x:390,y:316,w:150,h:130,p,glow:.95,canvas:'#5E4A44',shade:'#3E302B',door:'#FFB458'});
+    s+=pill({x:12,y:44,t:'02:00 · beams abajo = silencio'});
+    return wrapSVG(p,s,'Beams sobre las carpas');
+  },
+  amanecer(p){
+    let s=sky(p,400,300,['#3B4A84','#E88A8E','#FFC27A']);
+    s+=`<circle cx="200" cy="176" r="48" fill="#FFD58A"/><circle cx="200" cy="176" r="80" fill="url(#${p}glow)"/>`;
+    s+=ridge({w:400,base:190,amp:40,seed:67,fill:'#5D4E73'});
+    s+=ground(186,400,300,'#4E5E34');
+    s+=tent({x:46,y:236,w:70,p,canvas:'#EFC3A6',door:'#D58F58'})+tent({x:356,y:240,w:76,p,canvas:'#EFC3A6',door:'#D58F58'});
+    s+=panel({cx:200,y:238,w:118,h:156,p});
+    s+=ivy({x:143,y:84,len:80,s:6,seed:3})+ivy({x:257,y:84,len:70,s:6,seed:5});
+    s+=`<rect x="105" y="196" width="26" height="42" fill="#141114" stroke="${K.ink}"/><rect x="269" y="196" width="26" height="42" fill="#141114" stroke="${K.ink}"/><rect x="108" y="170" width="20" height="26" fill="#141114" stroke="${K.ink}"/><rect x="272" y="170" width="20" height="26" fill="#141114" stroke="${K.ink}"/>`;
+    s+=person({x:200,y:226,s:56,c:'#2A2026',pose:'up'});
+    s+=`<rect x="160" y="206" width="80" height="32" fill="${K.ink}"/><rect x="160" y="212" width="80" height="4" fill="${K.vOrange}"/>`;
+    [[70,296,74],[118,288,66],[166,300,78],[226,292,70],[278,298,76],[330,290,68]].forEach(([x,y,sz],i)=>{s+=person({x,y,s:sz,c:i%2?'#2A2230':'#3A2A36',pose:i===2||i===4?'up':'stand'});});
+    return wrapSVG(p,s,'Sesión Amanecer');
+  },
+  bienestar(p){
+    let s=sky(p,400,300,['#8CC2E6','#DDEBEF','#FBEBD3']);
+    s+=ridge({w:400,base:170,amp:60,seed:71,fill:'#9AA5B5'})+ridge({w:400,base:174,amp:28,seed:73,fill:'#6F8070'});
+    s+=ground(172,400,300,'#86A452');
+    s+=rowTents({y:190,from:10,to:400,step:42,w:32,p,seed:23});
+    s+=panel({cx:200,y:200,w:44,h:60,p});
+    const cols=['#EC0B73','#FC8E01','#F6C3A0','#4E6B2B','#41B3D5'];
+    [[214,4,38,8],[244,5,46,10],[280,4,58,12]].forEach(([y,cnt,mw,mh],ri)=>{
+      for(let i=0;i<cnt;i++){const x=200+(i-(cnt-1)/2)*(400/(cnt+0.6));
+        s+=`<path d="M${n(x-mw/2)},${n(y)} L${n(x+mw/2)},${n(y)} L${n(x+mw/2-6)},${n(y-mh)} L${n(x-mw/2+6)},${n(y-mh)}Z" fill="${cols[(i+ri)%5]}" stroke="${K.ink}" stroke-width="1.4"/>`;
+        s+=person({x,y:y-mh*0.4,s:mh*6.2,c:['#2A2026','#3B2A30','#4A3328'][(i+ri)%3],pose:(i+ri)%2?'up':'stand'});}
+    });
+    return wrapSVG(p,s,'Bienestar en el pasto');
+  }
+};
+
+let uid=0;
+document.querySelectorAll('[data-sketch]').forEach(el=>{
+  const fn=SK[el.dataset.sketch];if(!fn)return;
+  const tmp=document.createElement('div');tmp.innerHTML=fn('s'+(uid++)+'-');
+  const svg=tmp.firstElementChild;if(el.dataset.label)svg.setAttribute('aria-label',el.dataset.label);
+  el.insertBefore(svg,el.firstChild);
+});
+
+/* Lockups */
+function lockupSVG(kind,p){
+  const g=`<defs><linearGradient id="${p}g" x1="0" x2="1"><stop offset="0" stop-color="#EC0B73"/><stop offset=".5" stop-color="#FF3A44"/><stop offset="1" stop-color="#FC8E01"/></linearGradient></defs>`;
+  const st=`style="${DISPLAY}" stroke="#141012" stroke-linejoin="round" paint-order="stroke"`;
+  if(kind==='a')return `<svg viewBox="0 0 1000 430" role="img" aria-label="BLÜME CAMP">${g}<g ${st} stroke-width="20"><text x="24" y="206" font-size="196" textLength="930" lengthAdjust="spacingAndGlyphs" fill="#FAFAFA">BLÜME</text><text x="96" y="400" font-size="196" textLength="790" lengthAdjust="spacingAndGlyphs" fill="url(#${p}g)">CAMP</text></g></svg>`;
+  if(kind==='b')return `<svg viewBox="0 0 1000 430" role="img" aria-label="VIVE BLÜME">${g}<g ${st} stroke-width="20"><text x="110" y="206" font-size="196" textLength="760" lengthAdjust="spacingAndGlyphs" fill="#FAFAFA">VIVE</text><text x="24" y="400" font-size="196" textLength="930" lengthAdjust="spacingAndGlyphs" fill="url(#${p}g)">BLÜME</text></g></svg>`;
+  return `<svg viewBox="0 0 1000 300" role="img" aria-label="BLÜME por VIVE CAMP">${g}<g ${st} stroke-width="14"><text x="20" y="140" font-size="132" textLength="600" lengthAdjust="spacingAndGlyphs" fill="#FAFAFA">BLÜME</text></g><circle cx="740" cy="96" r="58" fill="url(#${p}g)" stroke="#141012" stroke-width="10"/><path d="M712,68 L768,124 M768,68 L712,124" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round"/><g ${st} stroke-width="12"><text x="20" y="272" font-size="98" textLength="440" lengthAdjust="spacingAndGlyphs" fill="#FAFAFA">VIVE</text><text x="490" y="272" font-size="98" textLength="490" lengthAdjust="spacingAndGlyphs" fill="url(#${p}g)">CAMP</text></g></svg>`;
+}
+document.querySelectorAll('[data-lockup]').forEach(el=>{el.innerHTML=lockupSVG(el.dataset.lockup,'lk'+(uid++)+'-');});
+
+/* ---------- Escena: un día ---------- */
+const scene=document.getElementById('scene');
+(function buildScene(){
+  const p='sc-',W=1200,H=560;
+  let s=`<defs>${defs(p)}<linearGradient id="${p}sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--s0)"/><stop offset=".65" style="stop-color:var(--s1)"/><stop offset="1" style="stop-color:var(--s2)"/></linearGradient><linearGradient id="${p}fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".22"/></linearGradient></defs>`;
+  s+=`<rect width="${W}" height="${H}" fill="url(#${p}sky)"/>`;
+  s+=stars({w:W,h:330,count:90,seed:3,o:'var(--o-stars)'});
+  s+=`<circle cx="1040" cy="78" r="15" fill="#F6EEDD" style="opacity:var(--o-stars)"/>`;
+  s+=`<g id="sun"><circle r="90" fill="url(#${p}glow)"/><circle r="32" style="fill:var(--c-sun)"/></g>`;
+  s+=ridge({w:W,base:405,amp:200,seed:19,fill:'var(--c-mtn1)',step:10,peaks:4});
+  s+=ridge({w:W,base:410,amp:92,seed:23,fill:'var(--c-mtn2)',step:10,peaks:5});
+  s+=`<rect y="400" width="${W}" height="160" style="fill:var(--c-ground)"/><rect y="400" width="${W}" height="160" fill="url(#${p}fade)"/>`;
+  s+=beams({srcs:[{x:850,y:252,a:-48},{x:880,y:252,a:-22},{x:940,y:252,a:6},{x:975,y:252,a:30}],len:620,p,o:'var(--o-beams)'});
+  s+=stage({cx:910,y:415,w:300,h:163,p,on:'var(--o-stage)'});
+  s+=scaffold({cx:135,y:418,w:44,h:74,crowd:'var(--o-mirador)'});
+  s+=panel({cx:300,y:421,w:56,h:76,p,lit:'calc(var(--o-sunrise) * .5)',litColor:'#FFD08A'});
+  s+=`<g style="opacity:var(--o-sunrise)"><rect x="281" y="404" width="38" height="17" fill="${K.ink}"/>`+person({x:300,y:410,s:26,c:'#2A2026',pose:'up'})+`<rect x="262" y="398" width="12" height="23" fill="#141114"/><rect x="326" y="398" width="12" height="23" fill="#141114"/></g>`;
+  const T={canvas:'var(--c-canvas)',shade:'var(--c-shade)',door:'var(--c-door)',glow:'var(--o-tentglow)',p};
+  [70,128,186,244,360,418,476,534,1130].forEach((x,i)=>{s+=tent({x,y:428+(i%2)*3,w:44,h:42,...T});});
+  s+=flag({x:206,y:434,h:118,c:K.magenta})+flag({x:1112,y:446,h:112,c:K.peach});
+  s+=portal({cx:640,y:436,w:224,h:116,p,seed:12,lit:'calc(var(--o-lanterns) * .8)'});
+  s+=`<path d="M612,436 L668,436 L780,560 L500,560Z" style="fill:var(--c-path)"/>`;
+  [60,160,262,370,470,800,1060,1170].forEach((x,i)=>{s+=tent({x,y:474+(i%2)*4,w:74,h:70,...T});});
+  s+=flag({x:450,y:480,h:140,c:K.vOrange})+flag({x:20,y:488,h:130,c:K.ivy[1]});
+  const zs=[.12,.24,.42,.68,1.02];
+  zs.forEach(z=>{const yy=436+124*z,hw=28+112*z;
+    s+=lantern({x:640-hw+4,y:yy,s:6+24*z,glow:'var(--o-lanterns)',p})+lantern({x:640+hw-4,y:yy,s:6+24*z,glow:'var(--o-lanterns)',p});});
+  s+=`<g style="opacity:var(--o-checkin)">`+person({x:628,y:470,s:40,c:'#3A2C30'})+person({x:654,y:478,s:44,c:'#5B3B2E'})+person({x:600,y:520,s:56,c:'#2F2426'})+`<rect x="660" y="458" width="10" height="13" rx="2" fill="#E0542B"/></g>`;
+  s+=festoon({x1:560,y1:470,x2:720,y2:470,sag:10,nb:11,on:'var(--o-festoon)',r:2.2});
+  s+=`<line x1="560" y1="470" x2="560" y2="500" stroke="${K.ink}" stroke-width="2"/><line x1="720" y1="470" x2="720" y2="500" stroke="${K.ink}" stroke-width="2"/>`;
+  s+=festoon({x1:520,y1:470,x2:300,y2:452,sag:8,nb:14,on:'var(--o-festoon)',r:2})+festoon({x1:760,y1:470,x2:1010,y2:456,sag:8,nb:14,on:'var(--o-festoon)',r:2});
+  s+=`<ellipse cx="210" cy="520" rx="120" ry="24" fill="#C2542E" stroke="${K.ink}" stroke-width="2"/><ellipse cx="210" cy="520" rx="96" ry="17" fill="none" stroke="#F6C3A0" stroke-width="2" stroke-dasharray="6 5"/>`;
+  s+=firepit({x:210,y:522,s:20,on:'var(--o-fire)',p});
+  s+=`<g style="opacity:var(--o-fogata)">`+person({x:130,y:516,s:50,c:'#2B1E22',pose:'sit'})+person({x:170,y:506,s:44,c:'#3A2526',pose:'sit'})+person({x:254,y:506,s:44,c:'#2B1E22',pose:'sit'})+person({x:292,y:516,s:50,c:'#3A2526',pose:'sit'})+`</g>`;
+  s+=`<g style="opacity:var(--o-yoga)">`;
+  [[722,518],[790,512],[858,520],[748,548],[826,546]].forEach(([x,y],i)=>{s+=`<path d="M${x-26},${y} L${x+26},${y} L${x+21},${y-9} L${x-21},${y-9}Z" fill="${['#EC0B73','#FC8E01','#F6C3A0','#4E6B2B','#41B3D5'][i]}" stroke="${K.ink}" stroke-width="1.3"/>`+person({x,y:y-4,s:54,c:['#2A2026','#3B2A30','#4A3328'][i%3],pose:i%2?'up':'stand'});});
+  s+=`</g>`;
+  const F={canvas:'var(--c-canvas)',shade:'var(--c-shade)',door:'var(--c-door)',glow:'var(--o-tentglow)',p,mats:true,bows:true};
+  s+=tent({x:440,y:558,w:230,h:200,num:'A-07',...F});
+  s+=tent({x:990,y:560,w:240,h:206,num:'B-12',...F});
+  s+=tent({x:1188,y:556,w:150,h:140,...F});
+  s+=lantern({x:574,y:556,s:30,glow:'var(--o-lanterns)',p})+lantern({x:864,y:560,s:28,glow:'var(--o-lanterns)',p});
+  scene.innerHTML=s;
+})();
+
+const KEYS=[
+  {t:13,s0:'#5FA6D8',s1:'#A9D3EA',s2:'#F1E6D4',sun:'#FFF6DC',mtn1:'#93A0B4',mtn2:'#617465',ground:'#7C9B4B',path:'#B9A77E',canvas:'#F3E8D8',shade:'#D8C3A6',door:'#A47B57'},
+  {t:16,s0:'#66A8D6',s1:'#BFD6E2',s2:'#F5DFC2',sun:'#FFF0C8',mtn1:'#9AA0B2',mtn2:'#5F6E5C',ground:'#799649',path:'#B8A27A',canvas:'#F4E4CF',shade:'#D7BC9C',door:'#A27853'},
+  {t:18.75,s0:'#5A4E8E',s1:'#EC7A8A',s2:'#FDB462',sun:'#FFC86E',mtn1:'#80607E',mtn2:'#423A48',ground:'#5E6E37',path:'#B08A62',canvas:'#FAC8A4',shade:'#D89A78',door:'#C4804F'},
+  {t:19.75,s0:'#26285A',s1:'#7A4574',s2:'#EC8758',sun:'#FF9A4A',mtn1:'#4A3757',mtn2:'#262233',ground:'#3C4729',path:'#6B5A48',canvas:'#D19C80',shade:'#A06E58',door:'#EF9F55'},
+  {t:21,s0:'#0F1129',s1:'#211E46',s2:'#47305A',sun:'#FF9A4A',mtn1:'#29223F',mtn2:'#15131E',ground:'#20281C',path:'#3E3830',canvas:'#A7765C',shade:'#7A5040',door:'#FFAE4E'},
+  {t:29.6,s0:'#0B0E27',s1:'#1B1C43',s2:'#3A2D58',sun:'#FF9A4A',mtn1:'#29223F',mtn2:'#15131E',ground:'#20281C',path:'#3E3830',canvas:'#A7765C',shade:'#7A5040',door:'#FFAE4E'},
+  {t:30.6,s0:'#3A4A84',s1:'#D9848E',s2:'#FFBF78',sun:'#FFC271',mtn1:'#6E5D83',mtn2:'#393748',ground:'#4B5B33',path:'#8E7A5E',canvas:'#EFC3A6',shade:'#C69477',door:'#D58F58'},
+  {t:31.6,s0:'#6EA5D4',s1:'#EFC9B6',s2:'#FFE1B8',sun:'#FFF0C8',mtn1:'#8F98AF',mtn2:'#566656',ground:'#6D8B45',path:'#B09E78',canvas:'#F4E2CF',shade:'#D5BCA0',door:'#AC825D'},
+  {t:33,s0:'#5FA6D8',s1:'#A9D3EA',s2:'#F1E6D4',sun:'#FFF6DC',mtn1:'#93A0B4',mtn2:'#617465',ground:'#7C9B4B',path:'#B9A77E',canvas:'#F3E8D8',shade:'#D8C3A6',door:'#A47B57'}
+];
+const SCAL={
+  stars:[[13,0],[19.6,0],[20.6,1],[29.8,1],[30.6,0],[33,0]],
+  beams:[[13,0],[20.6,0],[21.1,1],[26,1],[26.5,0],[33,0]],
+  stage:[[13,0],[19.8,0],[20.1,1],[26.2,1],[26.6,0],[33,0]],
+  lanterns:[[13,0],[18.6,0],[19.6,1],[30.6,1],[31.2,0],[33,0]],
+  festoon:[[13,0],[18.8,0],[19.4,1],[30.4,1],[30.9,0],[33,0]],
+  tentglow:[[13,0],[19,0],[20,.55],[26,.6],[26.5,1],[28,.9],[30.5,.4],[31,0],[33,0]],
+  fire:[[13,0],[18.5,0],[19,1],[26.5,1],[27,.25],[30,.25],[30.5,0],[33,0]],
+  fogata:[[13,0],[15.5,0],[16,1],[19.8,1],[20.2,0],[26.4,0],[26.8,1],[28,1],[28.4,0],[33,0]],
+  sunrise:[[13,0],[30,0],[30.4,1],[32.2,1],[32.5,0],[33,0]],
+  mirador:[[13,0],[18.2,0],[18.5,1],[19.4,1],[19.8,0],[33,0]],
+  yoga:[[13,0],[32.3,0],[32.6,1],[33,1]],
+  checkin:[[13,1],[14.5,1],[15,0],[33,0]]
+};
+const hx=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
+const mix=(a,b,t)=>{const A=hx(a),B=hx(b);return '#'+A.map((v,i)=>Math.round(v+(B[i]-v)*t).toString(16).padStart(2,'0')).join('');};
+function keyAt(t,prop){for(let i=0;i<KEYS.length-1;i++){const a=KEYS[i],b=KEYS[i+1];if(t>=a.t&&t<=b.t){return mix(a[prop],b[prop],(t-a.t)/(b.t-a.t));}}return KEYS[0][prop];}
+function scal(t,arr){for(let i=0;i<arr.length-1;i++){const a=arr[i],b=arr[i+1];if(t>=a[0]&&t<=b[0])return a[1]+(b[1]-a[1])*((t-a[0])/(b[0]-a[0]||1));}return 0;}
+
+const PIECES={portal:'Portal de Arcos',calles:'Calles con dirección',kit:'Kit de bienvenida',carpa:'Carpa Blüme',barrios:'Barrios de color',avenida:'Avenida de faroles',fogata:'Fogata del barrio',oasis:'Barra Oasis',mirador:'Mirador',beams:'Beams como reloj',amanecer:'Sesión Amanecer',bienestar:'Bienestar en el pasto'};
+const EVENTS=[
+  {t:13,k:'Llegada',title:'Check-in',txt:'Llegas por el acceso del camp. Te dan la pulsera con tu dirección (Arco B y 2:00, carpa C-14) y el kit. Tu carpa ya está armada y vestida.',p:['kit','calles','carpa']},
+  {t:16,k:'Tarde',title:'Lounge y sombra',txt:'Tarde en la fogata del barrio y en la Barra Oasis: agua, café frío, música baja. El escenario se ve al fondo, todavía apagado.',p:['fogata','oasis']},
+  {t:18.75,k:'Hora dorada',title:'Todos al Mirador',txt:'La foto del camp con la montaña y el atardecer. Es la toma principal para redes y se repite cada día del evento.',p:['mirador','barrios']},
+  {t:20,k:'Abre Blüme',title:'Se prenden los arcos',txt:'Abre el escenario con su producción de siempre. Del camp a la pista son dos minutos caminando por el Portal de Arcos.',p:['portal','avenida']},
+  {t:23,k:'Pico',title:'Beams sobre las carpas',txt:'Los beams del escenario también barren el cielo del camp. Mesas, pista y activaciones funcionan como en cualquier Blüme.',p:['beams']},
+  {t:26,k:'Cierre',title:'Los beams bajan',txt:'A las 2:00 los beams bajan y se apagan despacio: es la señal de silencio. La avenida de faroles te lleva a tu carpa.',p:['beams','avenida']},
+  {t:30.5,k:'Amanecer',title:'Sesión Amanecer',txt:'Un arco, una cabina y cuatro bocinas. Set tranquilo y café para quien sigue despierto o se levanta temprano.',p:['amanecer']},
+  {t:32.75,k:'Mañana',title:'Bienestar en el pasto',txt:'Entrenamiento o yoga entre las carpas, como la sesión de día de Blüme. Después, desayuno en la Barra Oasis.',p:['bienestar','oasis']}
+];
+const range=document.getElementById('t'),clock=document.getElementById('clock'),dayl=document.getElementById('dayl'),evEl=document.getElementById('ev'),momEl=document.getElementById('moments'),sunG=document.getElementById('sun');
+const fmt=t=>{const h=Math.floor(t)%24,m=Math.round((t%1)*60);return String(h).padStart(2,'0')+':'+String(m===60?0:m).padStart(2,'0');};
+EVENTS.forEach((e,i)=>{const b=document.createElement('button');b.type='button';b.textContent=fmt(e.t)+' '+e.k;b.addEventListener('click',()=>{stop();range.value=e.t;render();});momEl.appendChild(b);});
+(function trackGrad(){const stops=[];for(let t=13;t<=33;t+=1){stops.push(keyAt(t,'s1')+' '+((t-13)/20*100).toFixed(1)+'%');}range.style.setProperty('--daygrad','linear-gradient(90deg,'+stops.join(',')+')');})();
+let lastEv=-1;
+function render(){
+  const t=parseFloat(range.value);
+  const st=scene.style;
+  ['s0','s1','s2','sun','path','canvas','shade','door'].forEach(k=>st.setProperty((k[0]==='s'&&k.length===2?'--':'--c-')+k,keyAt(t,k)));
+  st.setProperty('--c-mtn1',keyAt(t,'mtn1'));st.setProperty('--c-mtn2',keyAt(t,'mtn2'));st.setProperty('--c-ground',keyAt(t,'ground'));
+  Object.keys(SCAL).forEach(k=>st.setProperty('--o-'+k,scal(t,SCAL[k]).toFixed(3)));
+  let sx=-200,sy=-200;
+  const SUN=t<=19.8?[[13,470,80],[16,640,130],[18.75,760,262],[19.4,790,330],[19.8,800,470]]:t>=30.2?[[30.2,110,470],[30.75,170,288],[31.5,240,210],[33,330,110]]:null;
+  if(SUN){for(let i=0;i<SUN.length-1;i++){const a=SUN[i],b=SUN[i+1];if(t>=a[0]&&t<=b[0]){const f=(t-a[0])/(b[0]-a[0]);sx=a[1]+(b[1]-a[1])*f;sy=a[2]+(b[2]-a[2])*f;}}}
+  sunG.setAttribute('transform',`translate(${n(sx)},${n(sy)})`);
+  clock.textContent=fmt(t);
+  dayl.textContent=t<24?'Día 1':'Día 2';
+  range.setAttribute('aria-valuetext',fmt(t)+', '+(t<24?'día 1':'día 2'));
+  let idx=0;EVENTS.forEach((e,i)=>{if(t>=e.t)idx=i;});
+  if(idx!==lastEv){
+    lastEv=idx;const e=EVENTS[idx];
+    evEl.innerHTML=`<p class="eyebrow">${fmt(e.t)} · ${e.k}</p><h3>${e.title}</h3><p>${e.txt}</p><div class="ev-links">${e.p.map(k=>`<a href="#p-${k}">${PIECES[k]}</a>`).join('')}</div>`;
+    [...momEl.children].forEach((b,i)=>b.setAttribute('aria-current',i===idx?'true':'false'));
+  }
+}
+range.addEventListener('input',()=>{stop();render();});
+const play=document.getElementById('play');let raf=0,last=0;
+const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function stop(){if(raf){cancelAnimationFrame(raf);raf=0;}play.setAttribute('aria-pressed','false');play.textContent='▶ Reproducir';}
+function step(ts){if(!last)last=ts;const dt=(ts-last)/1000;last=ts;let v=parseFloat(range.value)+dt*1.1;if(v>=33){v=33;range.value=v;render();stop();return;}range.value=v;render();raf=requestAnimationFrame(step);}
+play.addEventListener('click',()=>{
+  if(raf){stop();return;}
+  if(reduce){const t=parseFloat(range.value);const nx=EVENTS.find(e=>e.t>t+0.01);range.value=nx?nx.t:13;render();return;}
+  if(parseFloat(range.value)>=33)range.value=13;
+  last=0;play.setAttribute('aria-pressed','true');play.textContent='❚❚ Pausa';raf=requestAnimationFrame(step);
+});
+render();
+
+/* ---------- Plano ---------- */
+(function buildPlan(){
+  const svg=document.getElementById('plan');
+  const cx=720,cy=320,S=0.3,PX10=10/S;
+  const ang=h=>((h%12)/12)*Math.PI*2;
+  const pt=(r,h)=>[cx+r*Math.sin(ang(h)),cy-r*Math.cos(ang(h))];
+  const arc=(r,h0,h1)=>{const a=pt(r,h0),b=pt(r,h1);return `M${n(a[0])},${n(a[1])} A${r},${r} 0 ${(h1-h0)>6?1:0} 1 ${n(b[0])},${n(b[1])}`;};
+  const wedge=(r1,r2,h0,h1)=>{const a=pt(r2,h0),b=pt(r2,h1),c=pt(r1,h1),d=pt(r1,h0),lg=(h1-h0)>6?1:0;return `M${n(a[0])},${n(a[1])} A${r2},${r2} 0 ${lg} 1 ${n(b[0])},${n(b[1])} L${n(c[0])},${n(c[1])} A${r1},${r1} 0 ${lg} 0 ${n(d[0])},${n(d[1])}Z`;};
+  const R={plaza:75,A:85,t1:105,B:127,t2:147,C:169,t3:189,D:211,edge:225};
+  const BAR=[{n:'Magenta',c:'#EC0B73',h0:11,h1:13,f:12},{n:'Naranja',c:'#FC8E01',h0:13,h1:15,f:14},{n:'Durazno',c:'#F6C3A0',h0:15,h1:17,f:16},{n:'Hiedra',c:'#4E6B2B',h0:17,h1:19,f:18}];
+  let s=`<rect class="p-bg" width="1040" height="640"/>`;
+  let g='';for(let x=0;x<=1040;x+=PX10)g+=`<line class="p-grid" x1="${n(x)}" y1="0" x2="${n(x)}" y2="640"/>`;for(let y=0;y<=640;y+=PX10)g+=`<line class="p-grid" x1="0" y1="${n(y)}" x2="1040" y2="${n(y)}"/>`;
+  s+=g;
+  const Z={};
+  const zone=(id,inner,outline,badge)=>{Z[id]=`<g class="zone" data-z="${id}" tabindex="0" role="button" aria-label="${ZONES[id].t}">${inner}${outline}<g class="p-badge"><circle cx="${n(badge[0])}" cy="${n(badge[1])}" r="10"/><text x="${n(badge[0])}" y="${n(badge[1]+3.8)}">${ZONES[id].n}</text></g></g>`;};
+  const hlRect=(x,y,w,h)=>`<rect class="hl" x="${x}" y="${y}" width="${w}" height="${h}" rx="8"/>`;
+  // Festival
+  s+=`<text class="p-lbl-b" x="24" y="22">ZONA FESTIVAL</text>`;
+  zone('escenario',`<rect class="p-ink" x="130" y="40" width="230" height="34" rx="3"/><text x="245" y="61" text-anchor="middle" style="fill:var(--bg);font-size:10.5px;font-weight:600;letter-spacing:.08em">ESCENARIO BLÜME</text><text class="p-lbl" x="245" y="90" text-anchor="middle">sonido ↓ sur</text>`,hlRect(120,30,250,66),[120,30]);
+  let mesas='';for(let y=104;y<=318;y+=22){[56,76,404,424].forEach(x=>{mesas+=`<rect x="${x}" y="${y}" width="13" height="13" rx="2" style="fill:var(--blume);opacity:.75" stroke="currentColor" stroke-width=".8"/>`;});}
+  zone('pista',`<rect x="104" y="100" width="282" height="232" rx="6" style="fill:var(--hair)"/><text class="p-lbl-b" x="245" y="220" text-anchor="middle">PISTA GENERAL</text>${mesas}<text class="p-lbl" x="70" y="346" text-anchor="middle">MESAS</text><text class="p-lbl" x="420" y="346" text-anchor="middle">MESAS</text>`,hlRect(44,94,402,262),[44,94]);
+  let booths='';for(let i=0;i<5;i++)booths+=`<rect x="${52+i*78}" y="470" width="62" height="32" rx="6" fill="none" style="stroke:var(--beam)" stroke-width="2.5"/>`;
+  zone('barras',`<circle cx="120" cy="412" r="24" fill="none" style="stroke:var(--blume)" stroke-width="7"/><circle cx="370" cy="412" r="24" fill="none" style="stroke:var(--blume)" stroke-width="7"/><text class="p-lbl" x="245" y="416" text-anchor="middle">BARRAS REDONDAS</text>${booths}<text class="p-lbl" x="245" y="522" text-anchor="middle">ACTIVACIONES DE MARCA</text>`,hlRect(40,378,412,156),[40,378]);
+  s+=`<text class="p-lbl" x="245" y="616" text-anchor="middle">↑ ACCESO FESTIVAL</text>`;
+  s+=`<path class="p-fence" d="M470,16 L470,296 M470,344 L470,624"/>`;
+  // Camp sectors
+  BAR.forEach(b=>{s+=`<path d="${wedge(R.plaza,R.edge,b.h0,b.h1)}" style="fill:${b.c};opacity:.2"/>`;});
+  // streets
+  [R.A,R.B,R.C,R.D].forEach((r,i)=>{s+=`<path class="p-street" d="${arc(r,11,19)}" stroke-width="${i===3?11:9}"/>`;});
+  for(let h=11;h<=19;h++){const a=pt(R.plaza,h),b=pt(R.edge,h);s+=`<line class="p-street" x1="${n(a[0])}" y1="${n(a[1])}" x2="${n(b[0])}" y2="${n(b[1])}" stroke-width="8"/>`;}
+  // tents
+  let tents='',count=0;const fogPts=BAR.map(b=>pt(R.B,b.f));const tentPts=[];
+  [R.t1,R.t2,R.t3].forEach(r=>{
+    const a0=ang(11),span=Math.PI*2*8/12,stepA=20.5/r;
+    for(let a=a0+stepA/2;a<a0+span;a+=stepA){
+      const hh=11+(a-a0)/(Math.PI*2)*12;
+      const nearSt=Math.abs(hh-Math.round(hh))*Math.PI*2/12*r<11.5;if(nearSt)continue;
+      const x=cx+r*Math.sin(a),y=cy-r*Math.cos(a);
+      if(fogPts.some(f=>Math.hypot(f[0]-x,f[1]-y)<26))continue;
+      const dx=(cx-x)/r,dy=(cy-y)/r;
+      tents+=`<circle class="p-tent" cx="${n(x)}" cy="${n(y)}" r="6.3"/><line x1="${n(x+dx*2)}" y1="${n(y+dy*2)}" x2="${n(x+dx*6.3)}" y2="${n(y+dy*6.3)}" class="p-inkline" stroke-width="1.2"/>`;
+      tentPts.push([x,y]);count++;
+    }
+  });
+  let rl='';[['A',R.A],['B',R.B],['C',R.C],['D',R.D]].forEach(([k,r])=>{const q=pt(r,10.82);rl+=`<text class="p-lbl" x="${n(q[0]+4)}" y="${n(q[1]+3)}">ARCO ${k}</text>`;});
+  for(let h=11;h<=19;h++){const q=pt(R.edge+19,h);const lab=((h-1)%12+1)+':00';rl+=`<text class="p-lbl" x="${n(q[0])}" y="${n(q[1]+3)}" text-anchor="middle">${lab}</text>`;}
+  zone('barrios',tents+rl,`<path class="hl" d="${wedge(R.plaza+3,R.edge+2,11,19)}"/>`,pt(R.edge+18,17.4));
+  // fogatas
+  let fog='';BAR.forEach((b,i)=>{const q=fogPts[i];fog+=`<circle cx="${n(q[0])}" cy="${n(q[1])}" r="14" class="p-bg" stroke="currentColor" stroke-width="1"/><circle cx="${n(q[0])}" cy="${n(q[1])}" r="5" fill="#FC8E01"/><path d="M${n(q[0]+6)},${n(q[1]-6)} l0,-16 l10,4 l-10,4" style="fill:${b.c}" class="p-inkline" stroke-width="1"/>`;});
+  zone('fogatas',fog,fogPts.map(q=>`<circle class="hl" cx="${n(q[0])}" cy="${n(q[1])}" r="19"/>`).join(''),[fogPts[0][0]-22,fogPts[0][1]-4]);
+  // plaza
+  zone('plaza',`<circle cx="${cx}" cy="${cy}" r="${R.plaza}" class="p-surface"/><rect x="${cx-9}" y="${cy-9}" width="18" height="18" class="p-ink"/><text class="p-lbl" x="${cx}" y="${cy-16}" text-anchor="middle">MIRADOR</text><circle cx="${cx+30}" cy="${cy+30}" r="13" fill="none" style="stroke:var(--blume)" stroke-width="5"/><text class="p-lbl" x="${cx+30}" y="${cy+56}" text-anchor="middle">BARRA OASIS</text><text class="p-lbl-b" x="${cx-30}" y="${cy+40}" text-anchor="middle">PLAZA</text>`,`<circle class="hl" cx="${cx}" cy="${cy}" r="${R.plaza+3}"/>`,[cx-56,cy-52]);
+  // avenida
+  let lav='';for(let x=496;x<cx-R.plaza;x+=12){lav+=`<circle cx="${x}" cy="${cy-10}" r="2.6" fill="#FC8E01"/><circle cx="${x}" cy="${cy+10}" r="2.6" fill="#FC8E01"/>`;}
+  zone('avenida',`<line class="p-street" x1="486" y1="${cy}" x2="${cx-R.plaza}" y2="${cy}" stroke-width="14"/>${lav}<text class="p-lbl" x="${(486+cx-R.plaza)/2}" y="${cy-18}" text-anchor="middle">AVENIDA DE FAROLES</text>`,hlRect(486,cy-26,cx-R.plaza-486,46),[(486+cx-R.plaza)/2,cy+28]);
+  // portal
+  zone('portal',`<rect x="462" y="${cy-24}" width="16" height="48" rx="2" fill="#F6C3A0" stroke="currentColor" stroke-width="1.5"/><path d="M466,${cy+24} L466,${cy-8} A4,4 0 0 1 474,${cy-8} L474,${cy+24}" fill="none" stroke="#E0542B" stroke-width="2"/><text class="p-lbl-b" x="456" y="${cy-32}" text-anchor="end">PORTAL</text><text class="p-lbl" x="456" y="${cy+40}" text-anchor="end">9:00</text>`,hlRect(452,cy-30,36,60),[470,cy-44]);
+  // servicios
+  const sv=[[12,'WC'],[15,'WC'],[18,'WC']];const SVR=R.edge+52;let svs='',svh='';const svPts=[];
+  sv.forEach(([h,t])=>{const q=pt(SVR,h);svPts.push(q);svs+=`<rect x="${n(q[0]-17)}" y="${n(q[1]-11)}" width="34" height="22" rx="4" class="p-ink"/><text x="${n(q[0])}" y="${n(q[1]+3.6)}" text-anchor="middle" style="fill:var(--bg);font-size:9.5px;font-weight:600">${t}</text>`;svh+=`<rect class="hl" x="${n(q[0]-22)}" y="${n(q[1]-16)}" width="44" height="32" rx="6"/>`;});
+  svs+=`<text class="p-lbl" x="${n(svPts[0][0]+24)}" y="${n(svPts[0][1]+3)}">baños · regaderas</text><text class="p-lbl" x="${n(svPts[1][0])}" y="${n(svPts[1][1]+24)}" text-anchor="middle">baños</text><text class="p-lbl" x="${n(svPts[2][0]+24)}" y="${n(svPts[2][1]+3)}">baños · lockers · recarga</text>`;
+  zone('servicios',svs,svh,[svPts[0][0]-30,svPts[0][1]-12]);
+  // amanecer
+  const sq=pt(R.edge+40,13.5);
+  zone('amanecer',`<path d="M${n(sq[0]-12)},${n(sq[1]+8)} L${n(sq[0]-12)},${n(sq[1]-2)} A12,12 0 0 1 ${n(sq[0]+12)},${n(sq[1]-2)} L${n(sq[0]+12)},${n(sq[1]+8)}" fill="none" stroke="#FC8E01" stroke-width="5"/><rect x="${n(sq[0]-8)}" y="${n(sq[1]+10)}" width="16" height="6" class="p-ink"/><text class="p-lbl" x="${n(sq[0])}" y="${n(sq[1]+30)}" text-anchor="middle">AMANECER</text>`,hlRect(n(sq[0]-26),n(sq[1]-22),52,58),[sq[0]+26,sq[1]-20]);
+  // check-in
+  zone('checkin',`<rect x="528" y="560" width="74" height="26" rx="5" fill="none" class="p-inkline" stroke-width="2"/><text class="p-lbl-b" x="565" y="577" text-anchor="middle">CHECK-IN</text><path d="M565,620 L565,592 M559,598 L565,590 L571,598" class="p-inkline" stroke-width="1.8"/><text class="p-lbl" x="575" y="616">desde estacionamiento</text><path d="M590,560 Q600,520 ${n(pt(R.edge,19)[0])},${n(pt(R.edge,19)[1])}" class="p-inkline" stroke-width="1.5" stroke-dasharray="4 4"/>`,hlRect(520,552,90,42),[520,552]);
+  s+=['pista','barras','escenario','barrios','fogatas','plaza','avenida','portal','servicios','amanecer','checkin'].map(k=>Z[k]).join('');
+  // scale + north
+  s+=`<g class="p-inkline" stroke-width="2"><line x1="780" y1="618" x2="${n(780+50/S)}" y2="618"/><line x1="780" y1="612" x2="780" y2="624"/><line x1="${n(780+50/S)}" y1="612" x2="${n(780+50/S)}" y2="624"/></g><text class="p-lbl" x="${n(780+25/S)}" y="608" text-anchor="middle">50 m</text>`;
+  s+=`<g><path d="M1010,46 L1002,64 L1010,59 L1018,64Z" class="p-ink"/><text class="p-lbl-b" x="1010" y="40" text-anchor="middle">N</text></g>`;
+  s+=`<text class="p-lbl-b" x="486" y="22">ZONA CAMP</text>`;
+  svg.innerHTML=s;svg.style.color='var(--ink)';
+  // medidas
+  let maxD=0;tentPts.forEach(q=>{const d=Math.min(...svPts.map(v=>Math.hypot(v[0]-q[0],v[1]-q[1]))) ;if(d>maxD)maxD=d;});
+  const M={avenida:Math.round((cx-R.plaza-486)*S),plaza:Math.round(R.plaza*2*S),tents:count,campers:count*2,serv:Math.round(maxD*S/5)*5};
+  Object.keys(ZONES).forEach(k=>{ZONES[k].d=ZONES[k].d.replace(/\{(\w+)\}/g,(_,v)=>M[v]);});
+  // interacción
+  const info=document.getElementById('zone-info'),list=document.getElementById('zone-list');
+  const order=Object.keys(ZONES).sort((a,b)=>ZONES[a].n-ZONES[b].n);
+  order.forEach(k=>{const li=document.createElement('li');li.innerHTML=`<button type="button" data-z="${k}" aria-pressed="false"><i>${ZONES[k].n}</i>${ZONES[k].t}</button>`;list.appendChild(li);});
+  function select(k){
+    svg.querySelectorAll('.zone').forEach(z=>z.classList.toggle('is-on',z.dataset.z===k));
+    list.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.z===k?'true':'false'));
+    const z=ZONES[k];info.innerHTML=`<p class="eyebrow">Zona ${z.n}</p><h3>${z.t}</h3><p>${z.d}</p>`;
+  }
+  svg.addEventListener('click',e=>{const z=e.target.closest('.zone');if(z)select(z.dataset.z);});
+  svg.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.classList.contains('zone')){e.preventDefault();select(e.target.dataset.z);}});
+  list.addEventListener('click',e=>{const b=e.target.closest('button');if(b)select(b.dataset.z);});
+  select('barrios');
+})();
+
+/* ---------- Producción ---------- */
+(function(){
+  const D=[
+    ['blume','Paneles de arco con degradado','Los del escenario; módulos para Portal, Sesión Amanecer y Mirador'],
+    ['blume','Hiedra colgante','Misma que en paneles y truss'],
+    ['blume','Jardineras de madera','Como respaldo de las fogatas y alrededor de la Barra Oasis'],
+    ['blume','Truss, letras BLÜME y pantalla','Escenario sin cambios'],
+    ['blume','Beams y programación de luces','Más una secuencia de apagado a las 2:00'],
+    ['blume','Barras redondas','Una se muda a la Plaza como Barra Oasis'],
+    ['blume','Activaciones con neón','Versión camp con marcas aliadas'],
+    ['blume','Mesas con servicio','Paquete Carpa + Mesa'],
+    ['blume','Sesión de entrenamiento','Pasa a la mañana, entre carpas'],
+    ['vive','Carpas de lona tipo campana','Confirmar cantidad para las fechas'],
+    ['vive','Colchonetas','Dos por carpa, como en su foto'],
+    ['vive','Faroles','Para la avenida y uno por carpa'],
+    ['vive','Armado y desarmado','Carpas listas antes del check-in'],
+    ['renta','Banderas tipo pluma de 5–6 m','Cuatro colores, con lastre'],
+    ['renta','Andamio certificado de 4 m','Para el Mirador, con barandal'],
+    ['renta','Fogateros o fogatas LED','Según permiso del venue'],
+    ['renta','Tapetes y cojines','Para las cuatro fogatas'],
+    ['renta','Guirnaldas y postes','Avenida de faroles'],
+    ['renta','Baños, regaderas y lockers','Tres puntos sobre el anillo exterior'],
+    ['renta','Bocinas y cabina','Sesión Amanecer'],
+    ['renta','Seguridad y staff de camp 24 h','Control en Portal y check-in'],
+    ['prod','Postes y letreros de calle','Letra de Vive Camp'],
+    ['prod','Pulseras con dirección','Arco, hora y número de carpa'],
+    ['prod','Vinil de número por carpa','Removible'],
+    ['prod','Banderines naranjas','Uno por carpa'],
+    ['prod','Tote, bandana y farol mini','Kit de bienvenida'],
+    ['prod','Letras BLÜME CAMP','Sobre el Portal de Arcos']
+  ];
+  const lbl={blume:['Blüme','t-blume'],vive:['Vive Camp','t-vive'],renta:['Renta','t-renta'],prod:['Producción','t-prod']};
+  const ul=document.getElementById('prod');
+  ul.innerHTML=D.map(([k,a,b])=>`<li data-k="${k}"><b>${a}</b><span class="tag ${lbl[k][1]}">${lbl[k][0]}</span><span class="n">${b}</span></li>`).join('');
+  const fb=document.getElementById('filters');
+  fb.querySelectorAll('button').forEach(b=>{const k=b.dataset.f;const c=k==='all'?D.length:D.filter(d=>d[0]===k).length;b.textContent+=` · ${c}`;});
+  fb.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const k=b.dataset.f;
+    fb.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));
+    ul.querySelectorAll('li').forEach(li=>{li.hidden=!(k==='all'||li.dataset.k===k);});});
+})();
+})();
+</script>
+</body>
+</html>
