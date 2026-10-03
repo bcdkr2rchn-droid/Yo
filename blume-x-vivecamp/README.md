@@ -11,8 +11,8 @@ La idea se plantea en dos modos, porque la pernocta depende del venue:
   faroles, fogata y un set al amanecer.
 
 Contenido: portada, los dos modos, la carpa VIP por dentro, una escena del día
-con control de hora, doce piezas producibles, un plano que cambia entre los dos
-modos, identidad y siguientes pasos.
+con control de hora, once piezas producibles, un plano que cambia entre los dos
+modos, por qué estas carpas (pruebas en foto) y el cierre: una carpa de prueba.
 
 `img/` tiene las fotos de Blüme y de Vive Camp y sus recortes. Los bocetos son
 SVG que se dibujan en la propia página (`SK` en el script del final).

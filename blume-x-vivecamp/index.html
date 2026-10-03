@@ -217,23 +217,33 @@ section+section{border-top:1px solid var(--hair)}
 .zone-list button[aria-pressed="true"]{border-color:var(--line)}
 .zone-list button[aria-pressed="true"] i{background:var(--magenta);color:#FFFFFF}
 
-/* Identidad */
-.lockups{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.2vw,26px)}
-.lk{display:grid;gap:10px;align-content:start;min-width:0}
-.lk-vis{position:relative;border:var(--sw) solid var(--line);border-radius:var(--r);background:var(--surface);aspect-ratio:16/10;display:grid;place-items:center;padding:7%}
-.lk-vis svg{width:100%;height:auto;max-height:100%}
-.lk h3{font:900 17px/1.1 var(--f-display);font-stretch:115%;text-transform:uppercase;display:flex;gap:9px;align-items:center;flex-wrap:wrap}
-.lk p{font-size:14.5px;color:var(--muted)}
-.reco{font:600 10px/1 var(--f-mono);letter-spacing:.07em;text-transform:uppercase;background:var(--ink);color:var(--bg);border-radius:999px;padding:5px 8px}
+/* Por qué estas carpas */
+.proofs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2.4vw,28px)}
+.proof{margin:0;display:grid;gap:12px;min-width:0}
+.proof img{width:100%;aspect-ratio:3/2;object-fit:cover;border:var(--sw) solid var(--line);border-radius:var(--r)}
+.proof figcaption{display:grid;gap:5px}
+.proof b{font:900 clamp(20px,2.4vw,26px)/1.03 var(--f-display);font-stretch:118%;text-transform:uppercase}
+.proof span{font-size:15.5px;color:var(--muted);max-width:46ch}
+.paleta{margin-top:clamp(28px,4vw,44px);display:grid;gap:14px}
+.pal-h{display:grid;gap:5px}
+.pal-h b{font:900 clamp(20px,2.4vw,26px)/1.03 var(--f-display);font-stretch:118%;text-transform:uppercase}
+.pal-h span{font-size:15.5px;color:var(--muted);max-width:62ch}
+.sw-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border:var(--sw) solid var(--line);border-radius:var(--r);overflow:hidden;list-style:none;margin:0;padding:0}
+.sw-row li{min-height:104px;display:flex;align-items:flex-end;padding:11px 12px;min-width:0}
+.sw-row span{font:500 11px/1.3 var(--f-mono);text-transform:uppercase;letter-spacing:.05em}
+.sw-row .dk span{color:#FFF8F0}
+.sw-row .lt span{color:#1A1310}
 
-/* Cierre */
-.cierre{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.4vw,30px)}
-.cierre div{display:grid;gap:7px;align-content:start;border-top:var(--sw) solid var(--line);padding-top:12px}
-.cierre b{font:900 18px/1.05 var(--f-display);font-stretch:115%;text-transform:uppercase}
-.cierre p{font-size:15px;color:var(--muted)}
-.flag-note{border:2px dashed var(--magenta);border-radius:var(--r);padding:14px 16px;display:grid;gap:5px;max-width:62ch;margin-top:clamp(20px,3vw,30px)}
-.flag-note b{font:600 11px/1.3 var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--magenta-text)}
-.flag-note p{font-size:15.5px}
+/* La prueba */
+.deal{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(18px,2.6vw,32px);align-items:center}
+.deal .vis{--ar:4/3}
+.deal-txt{display:grid;gap:12px;min-width:0}
+.deal .big{font:900 clamp(24px,3.2vw,38px)/1.04 var(--f-display);font-stretch:118%;text-transform:uppercase}
+.deal-txt p+p{font-size:16px;color:var(--muted);max-width:44ch}
+.split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2.4vw,28px);margin-top:clamp(26px,3.6vw,40px)}
+.split div{border-top:var(--sw) solid var(--line);padding-top:13px;display:grid;gap:5px}
+.split b{font:900 20px/1.04 var(--f-display);font-stretch:118%;text-transform:uppercase}
+.split p{font-size:15.5px;color:var(--muted)}
 
 footer{border-top:1px solid var(--hair);padding-block:28px 44px}
 footer p{font:400 12px/1.6 var(--f-mono);color:var(--muted);max-width:90ch}
@@ -245,13 +255,16 @@ footer p{font:400 12px/1.6 var(--f-mono);color:var(--muted);max-width:90ch}
 }
 @media (max-width:980px){
   .vipgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .gal,.lockups,.cierre{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .gal{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .deal{grid-template-columns:minmax(0,1fr)}
   .plan-layout{grid-template-columns:minmax(0,1fr)}
   .scene-ui{grid-template-columns:minmax(0,1fr)}
   .scene-ctl{border-right:0;border-bottom:1px solid var(--hair)}
 }
 @media (max-width:620px){
-  .vipgrid,.gal,.lockups,.cierre,.zone-list{grid-template-columns:minmax(0,1fr)}
+  .vipgrid,.gal,.zone-list,.proofs,.split{grid-template-columns:minmax(0,1fr)}
+  .sw-row{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sw-row li{min-height:76px}
   .scene{aspect-ratio:16/10}
   .hero-ph{min-height:min(84vh,560px)}
   .inset{width:34%}
@@ -270,7 +283,7 @@ footer p{font:400 12px/1.6 var(--f-mono);color:var(--muted);max-width:90ch}
   <div class="wrap topbar-in">
     <div class="brandmark">Blüme <span>×</span> Vive Camp</div>
     <nav class="topnav" aria-label="Secciones">
-      <a href="#modos">Dos modos</a><a href="#vip">Carpa VIP</a><a href="#dia">Un día</a><a href="#piezas">Piezas</a><a href="#plano">Plano</a><a href="#identidad">Identidad</a>
+      <a href="#modos">Dos modos</a><a href="#vip">Carpa VIP</a><a href="#dia">Un día</a><a href="#piezas">Piezas</a><a href="#plano">Plano</a><a href="#porque">Por qué</a><a href="#prueba">La prueba</a>
     </nav>
   </div>
 </div>
@@ -431,12 +444,6 @@ footer p{font:400 12px/1.6 var(--f-mono);color:var(--muted);max-width:90ch}
         <p>«Arco B y 2:00». Una ciudad en arcos, como Burning Man.</p>
         <p class="parts">Postes de madera · letreros · pulsera</p>
       </article>
-      <article class="card" id="p-barrios">
-        <figure class="vis" data-sketch="barrios" data-label="Boceto de banderas de barrio"><figcaption class="chip-cap">Boceto</figcaption></figure>
-        <h4>Barrios de color <span class="tag t-camp">Camp</span></h4>
-        <p>Cuatro colores y cuatro banderas de 6 m para no perderte.</p>
-        <p class="parts">Banderas tipo pluma · lastre</p>
-      </article>
       <article class="card" id="p-fogata">
         <figure class="vis" data-sketch="fogata" data-label="Boceto de la fogata del barrio"><figcaption class="chip-cap">Boceto</figcaption><figure class="inset"><img src="img/c-jardineras.webp" alt="Jardineras de madera con hiedra reales de Blüme" loading="lazy"><figcaption>Real</figcaption></figure></figure>
         <h4>Fogata del barrio <span class="tag t-camp">Camp</span></h4>
@@ -484,31 +491,64 @@ footer p{font:400 12px/1.6 var(--f-mono);color:var(--muted);max-width:90ch}
 
 <figure class="band"><img src="img/band-carpas.webp" alt="Hilera de carpas de Vive Camp al atardecer" loading="lazy" width="1700" height="595"><figcaption>Vive Camp hoy</figcaption></figure>
 
-<section id="identidad">
+<section id="porque">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow">Identidad</p>
-      <h2 class="display">Tres nombres</h2>
-      <p class="lede">Los tres usan la letra del logo de Vive Camp y el naranja de Blüme.</p>
+      <p class="eyebrow">Por qué Vive Camp</p>
+      <h2 class="display">Por qué estas carpas</h2>
+      <p class="lede">Lo que ya está resuelto antes de que Blüme mueva un dedo. Todo esto es foto real, no render.</p>
     </div>
-    <div class="lockups">
-      <div class="lk"><div class="lk-vis" data-lockup="a"></div><h3>Blüme Camp <span class="reco">Recomendado</span></h3><p>Corto. Cabe en pulsera, banderín y letrero.</p></div>
-      <div class="lk"><div class="lk-vis" data-lockup="b"></div><h3>Vive Blüme</h3><p>Funciona mejor como frase de campaña.</p></div>
-      <div class="lk"><div class="lk-vis" data-lockup="c"></div><h3>Blüme × Vive Camp</h3><p>Para boletos, prensa y marcas aliadas.</p></div>
+    <div class="proofs">
+      <figure class="proof">
+        <img src="img/c-carpa-abierta.webp" alt="Carpa de Vive Camp abierta, con dos colchonetas puestas" loading="lazy">
+        <figcaption><b>Llegan armadas</b><span>Con las colchonetas puestas. Blüme no monta, no desarma y no guarda nada.</span></figcaption>
+      </figure>
+      <figure class="proof">
+        <img src="img/c-hilera.webp" alt="Hilera de carpas iguales de Vive Camp sobre el pasto" loading="lazy">
+        <figcaption><b>Todas iguales</b><span>La fila pareja es lo que hace la foto. Carpas juntadas de aquí y de allá no dan eso.</span></figcaption>
+      </figure>
+      <figure class="proof">
+        <img src="img/c-grupo.webp" alt="Gente sentada en el pasto entre carpas a la hora dorada" loading="lazy">
+        <figcaption><b>Se ven bien sin ayuda</b><span>A la hora dorada no necesitan producción encima. Así se ven hoy, tal cual.</span></figcaption>
+      </figure>
+      <figure class="proof">
+        <img src="img/c-farol.webp" alt="Farol encendido en el pasto junto a una carpa" loading="lazy">
+        <figcaption><b>La luz ya viene</b><span>Los faroles son suyos. A las dos de la mañana el área sigue viéndose.</span></figcaption>
+      </figure>
+    </div>
+    <div class="paleta">
+      <div class="pal-h">
+        <b>Y el color ya es de la casa</b>
+        <span>El degradado del logo de Vive Camp es la misma familia que los arcos y la barra de Blüme. No hay que forzar nada para que se vean juntos.</span>
+      </div>
+      <ul class="sw-row">
+        <li class="dk" style="background:#EC0B73"><span>Logo Vive Camp</span></li>
+        <li class="lt" style="background:#FC8E01"><span>Logo Vive Camp</span></li>
+        <li class="lt" style="background:#F97826"><span>Barra Blüme</span></li>
+        <li class="lt" style="background:#F6C3A0"><span>Arcos Blüme</span></li>
+        <li class="lt" style="background:#EFE3D2"><span>Lona de la carpa</span></li>
+      </ul>
     </div>
   </div>
 </section>
 
-<section id="sigue">
+<section id="prueba">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow">Qué sigue</p>
-      <h2 class="display">Tres pasos</h2>
+      <p class="eyebrow">La prueba</p>
+      <h2 class="display">Empecemos con una carpa</h2>
     </div>
-    <div class="cierre">
-      <div><b>Preguntar</b><p>Si el venue permite pernocta. De ahí depende si es Modo 1 o los dos.</p></div>
-      <div><b>Vestir una carpa</b><p>Una sola, con banderín, número, tapete y farol. Foto real en hora dorada.</p></div>
-      <div><b>Medir</b><p>Los paneles de arco del escenario y el inventario de carpas para las fechas.</p></div>
+    <div class="deal">
+      <figure class="vis" data-sketch="carpa" data-label="Boceto de una carpa vestida"><figcaption class="chip-cap">Boceto</figcaption><figure class="inset"><img src="img/c-carpa.webp" alt="Carpa real de Vive Camp" loading="lazy"><figcaption>Real</figcaption></figure></figure>
+      <div class="deal-txt">
+        <p class="big">Una carpa vestida en el próximo Blüme, junto a la pista, vendida como VIP.</p>
+        <p>Si se vende y la gente se queda, hablamos del anillo completo. Y si el venue deja dormir, del camp.</p>
+        <ul class="chips"><li>Una carpa</li><li>Un evento</li><li>Sin compromiso</li></ul>
+      </div>
+    </div>
+    <div class="split">
+      <div><b>Vive Camp pone</b><p>Las carpas, los faroles, el armado y el desarmado.</p></div>
+      <div><b>Blüme pone</b><p>El lugar, el boleto y la producción que ya lleva al evento.</p></div>
     </div>
   </div>
 </section>
@@ -817,18 +857,6 @@ const SK={
     s+=callout({x:212,y:38,tx:176,ty:58,t:'banderín',end:true})+callout({x:104,y:254,tx:80,ty:206,t:'número',end:true})+callout({x:240,y:246,tx:262,ty:212,t:'cintas'})+callout({x:200,y:286,tx:110,ty:286,t:'tapete',end:true});
     return wrapSVG(p,s,'Carpa Blüme');
   },
-  barrios(p){
-    let s=sky(p,400,300,['#6FAEDC','#B9DCEE','#F2E6D2']);
-    s+=ridge({w:400,base:186,amp:66,seed:23,fill:'#97A3B6'})+ridge({w:400,base:190,amp:30,seed:29,fill:'#6D7E6C'});
-    s+=ground(186,400,300,'#80A04E');
-    s+=rowTents({y:204,from:8,to:400,step:30,w:22,p,seed:12,jitter:4});
-    const fl=[[60,'#EC0B73'],[160,'#FC8E01'],[255,'#F6C3A0'],[345,'#4E6B2B']];
-    fl.forEach(([x,c],i)=>{s+=flag({x,y:232+(i%2)*8,h:150,c});});
-    s+=rowTents({y:236,from:20,to:400,step:44,w:34,p,seed:13,jitter:6});
-    s+=rowTents({y:288,from:-10,to:420,step:84,w:62,p,seed:14,jitter:8});
-    ['MAGENTA','NARANJA','DURAZNO','HIEDRA'].forEach((t,i)=>{s+=pill({x:fl[i][0]-4,y:58+(i%2)*8,t});});
-    return wrapSVG(p,s,'Barrios de color');
-  },
   avenida(p){
     let s=sky(p,400,300,['#0D1030','#1E1C45','#3B2A55']);
     s+=stars({w:400,h:150,count:60,seed:5,o:1});
@@ -1054,14 +1082,6 @@ document.querySelectorAll('[data-sketch]').forEach(el=>{
 });
 
 /* Lockups */
-function lockupSVG(kind,p){
-  const g=`<defs><linearGradient id="${p}g" x1="0" x2="1"><stop offset="0" stop-color="#EC0B73"/><stop offset=".5" stop-color="#FF3A44"/><stop offset="1" stop-color="#FC8E01"/></linearGradient></defs>`;
-  const st=`style="${DISPLAY}" stroke="#141012" stroke-linejoin="round" paint-order="stroke"`;
-  if(kind==='a')return `<svg viewBox="0 0 1000 430" role="img" aria-label="BLÜME CAMP">${g}<g ${st} stroke-width="20"><text x="24" y="206" font-size="196" textLength="930" lengthAdjust="spacingAndGlyphs" fill="#FAFAFA">BLÜME</text><text x="96" y="400" font-size="196" textLength="790" lengthAdjust="spacingAndGlyphs" fill="url(#${p}g)">CAMP</text></g></svg>`;
-  if(kind==='b')return `<svg viewBox="0 0 1000 430" role="img" aria-label="VIVE BLÜME">${g}<g ${st} stroke-width="20"><text x="110" y="206" font-size="196" textLength="760" lengthAdjust="spacingAndGlyphs" fill="#FAFAFA">VIVE</text><text x="24" y="400" font-size="196" textLength="930" lengthAdjust="spacingAndGlyphs" fill="url(#${p}g)">BLÜME</text></g></svg>`;
-  return `<svg viewBox="0 0 1000 300" role="img" aria-label="BLÜME por VIVE CAMP">${g}<g ${st} stroke-width="14"><text x="20" y="140" font-size="132" textLength="600" lengthAdjust="spacingAndGlyphs" fill="#FAFAFA">BLÜME</text></g><circle cx="740" cy="96" r="58" fill="url(#${p}g)" stroke="#141012" stroke-width="10"/><path d="M712,68 L768,124 M768,68 L712,124" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round"/><g ${st} stroke-width="12"><text x="20" y="272" font-size="98" textLength="440" lengthAdjust="spacingAndGlyphs" fill="#FAFAFA">VIVE</text><text x="490" y="272" font-size="98" textLength="490" lengthAdjust="spacingAndGlyphs" fill="url(#${p}g)">CAMP</text></g></svg>`;
-}
-document.querySelectorAll('[data-lockup]').forEach(el=>{el.innerHTML=lockupSVG(el.dataset.lockup,'lk'+(uid++)+'-');});
 
 /* ---------- Escena: un día ---------- */
 const scene=document.getElementById('scene');
@@ -1138,11 +1158,11 @@ const mix=(a,b,t)=>{const A=hx(a),B=hx(b);return '#'+A.map((v,i)=>Math.round(v+(
 function keyAt(t,prop){for(let i=0;i<KEYS.length-1;i++){const a=KEYS[i],b=KEYS[i+1];if(t>=a.t&&t<=b.t){return mix(a[prop],b[prop],(t-a.t)/(b.t-a.t));}}return KEYS[0][prop];}
 function scal(t,arr){for(let i=0;i<arr.length-1;i++){const a=arr[i],b=arr[i+1];if(t>=a[0]&&t<=b[0])return a[1]+(b[1]-a[1])*((t-a[0])/(b[0]-a[0]||1));}return 0;}
 
-const PIECES={portal:'Portal de Arcos',calles:'Calles con dirección',kit:'Kit de bienvenida',carpa:'Carpa Blüme',barrios:'Barrios de color',avenida:'Avenida de faroles',fogata:'Fogata del barrio',oasis:'Barra Oasis',mirador:'Mirador',beams:'Beams como reloj',amanecer:'Sesión Amanecer',bienestar:'Bienestar en el pasto'};
+const PIECES={portal:'Portal de Arcos',calles:'Calles con dirección',kit:'Kit de bienvenida',carpa:'La carpa vestida',avenida:'Avenida de faroles',fogata:'Fogata del barrio',oasis:'Barra Oasis',mirador:'Mirador',beams:'Beams como reloj',amanecer:'Sesión Amanecer',bienestar:'Bienestar en el pasto'};
 const EVENTS=[
   {t:13,k:'Llegada',title:'Check-in',txt:'Pulsera con tu lugar y kit de bienvenida. La carpa ya está puesta.',p:['kit','carpa']},
   {t:16,k:'Tarde',title:'Sombra y barra',txt:'Lounge a la sombra y la barra redonda abierta.',p:['fogata','oasis']},
-  {t:18.75,k:'Hora dorada',title:'La foto del día',txt:'Todos al Mirador: carpas, montaña y atardecer.',p:['mirador','barrios']},
+  {t:18.75,k:'Hora dorada',title:'La foto del día',txt:'Todos al Mirador: carpas, montaña y atardecer.',p:['mirador','carpa']},
   {t:20,k:'Abre',title:'Se prenden los arcos',txt:'Empieza el festival. De tu carpa a la pista, dos minutos.',p:['portal','avenida']},
   {t:23,k:'Pico',title:'Beams sobre las carpas',txt:'La luz del escenario barre también el área de carpas.',p:['beams']},
   {t:26,k:'Cierre',title:'Los beams bajan',txt:'Señal de silencio. Los faroles te llevan de regreso.',p:['beams','avenida']},
