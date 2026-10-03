@@ -1,18 +1,18 @@
 # Blüme × Vive Camp
 
-Propuesta creativa (borrador) para una colaboración entre Blüme y las carpas de Vive Camp:
-un campamento dentro del festival con sensación Coachella / Burning Man, armado sólo con
-piezas que Blüme ya produce, que Vive Camp ya tiene o que se rentan.
+Propuesta visual para una colaboración entre Blüme y las carpas de Vive Camp.
+Abre `index.html` en el navegador.
 
-Abre `index.html` en el navegador. Incluye:
+La idea se plantea en dos modos, porque la pernocta depende del venue:
 
-- **La idea** y la paleta compartida (colores tomados de las fotos de ambas marcas).
-- **Por qué le conviene a Blüme**: seis razones de negocio y los tres paquetes que se venden.
-- **Un día en Blüme Camp**: escena ilustrada con control de hora (13:00 → 09:00).
-- **12 piezas visuales** con boceto, referencia (Coachella / Burning Man) y con qué se arma.
-- **Plano esquemático** interactivo: ciudad en arcos con direcciones tipo Burning Man.
-- **Identidad**: tres opciones de nombre y lockup.
-- **Referencias**, lo que no entra, **producción** (quién pone qué), shot list y siguientes pasos.
+- **Modo 1 — Las carpas son el VIP.** Nadie duerme. Las carpas rodean la pista
+  como palcos de lona, con mesa adentro y vista al escenario.
+- **Modo 2 — El VIP se queda a dormir.** Las mismas carpas con colchonetas, con
+  faroles, fogata y un set al amanecer.
 
-`img/` contiene las fotos de referencia proporcionadas y recortes de elementos reales
-(arcos, barra redonda, jardineras, beams, carpa, farol). Los bocetos son SVG generados en la página.
+Contenido: portada, los dos modos, la carpa VIP por dentro, una escena del día
+con control de hora, doce piezas producibles, un plano que cambia entre los dos
+modos, identidad y siguientes pasos.
+
+`img/` tiene las fotos de Blüme y de Vive Camp y sus recortes. Los bocetos son
+SVG que se dibujan en la propia página (`SK` en el script del final).

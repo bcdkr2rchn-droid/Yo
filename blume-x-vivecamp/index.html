@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap">
 <style>
-/* Layout: libro de producción. Fotos y bocetos con contorno grueso de sticker (del logo Vive Camp), etiquetas mono de rider técnico, la escena "Un día" como pieza central. */
+/* Layout: presentación visual. Bandas de foto a todo lo ancho, bocetos grandes con contorno de sticker, texto en dosis mínimas. */
 :root{
   --bg:#FFFCF8;
   --surface:#F5EDE3;
@@ -24,17 +24,15 @@
   --peach:#F6C3A0;
   --ivy:#4E6B2B;
   --beam:#1E93B1;
-  --sticker:#FFFFFF;
-  --tag-blume-bg:#FFE3CE; --tag-blume-fg:#7A3304;
-  --tag-vive-bg:#FFDAEA; --tag-vive-fg:#86063F;
-  --tag-renta-bg:#E6EDDA; --tag-renta-fg:#2F4417;
-  --tag-prod-bg:#ECE5DC; --tag-prod-fg:#46392F;
+  --tag-vip-bg:#FFDAEA; --tag-vip-fg:#86063F;
+  --tag-camp-bg:#FFE3CE; --tag-camp-fg:#7A3304;
+  --tag-dos-bg:#E6EDDA; --tag-dos-fg:#2F4417;
   --plan-street:#FFFCF8;
   --plan-tent:#F3E7D6;
   --f-display:"Archivo","Arial Black","Helvetica Neue",Arial,sans-serif;
   --f-body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-  --r:14px;
+  --r:16px;
   --sw:3px;
 }
 @media (prefers-color-scheme: dark){
@@ -42,8 +40,9 @@
     --bg:#110E13; --surface:#1C1720; --raised:#241E29; --ink:#F7EFE6; --muted:#ADA197;
     --hair:rgba(247,239,230,.16); --line:#F7EFE6;
     --magenta:#FF3B93; --magenta-text:#FF7DB6; --orange:#FFA126; --blume:#FF8A3D; --peach:#F2B892; --ivy:#97B867; --beam:#52CBEA;
-    --tag-blume-bg:#3B2213; --tag-blume-fg:#FFB47E; --tag-vive-bg:#3D1129; --tag-vive-fg:#FF93C4;
-    --tag-renta-bg:#243019; --tag-renta-fg:#BFDB97; --tag-prod-bg:#2D2621; --tag-prod-fg:#DCCFC3;
+    --tag-vip-bg:#3D1129; --tag-vip-fg:#FF93C4;
+    --tag-camp-bg:#3B2213; --tag-camp-fg:#FFB47E;
+    --tag-dos-bg:#243019; --tag-dos-fg:#BFDB97;
     --plan-street:#110E13; --plan-tent:#D9C7AE;
     color-scheme:dark;
   }
@@ -52,102 +51,113 @@
   --bg:#110E13; --surface:#1C1720; --raised:#241E29; --ink:#F7EFE6; --muted:#ADA197;
   --hair:rgba(247,239,230,.16); --line:#F7EFE6;
   --magenta:#FF3B93; --magenta-text:#FF7DB6; --orange:#FFA126; --blume:#FF8A3D; --peach:#F2B892; --ivy:#97B867; --beam:#52CBEA;
-  --tag-blume-bg:#3B2213; --tag-blume-fg:#FFB47E; --tag-vive-bg:#3D1129; --tag-vive-fg:#FF93C4;
-  --tag-renta-bg:#243019; --tag-renta-fg:#BFDB97; --tag-prod-bg:#2D2621; --tag-prod-fg:#DCCFC3;
+  --tag-vip-bg:#3D1129; --tag-vip-fg:#FF93C4;
+  --tag-camp-bg:#3B2213; --tag-camp-fg:#FFB47E;
+  --tag-dos-bg:#243019; --tag-dos-fg:#BFDB97;
   --plan-street:#110E13; --plan-tent:#D9C7AE;
   color-scheme:dark;
 }
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 var(--f-body)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 var(--f-body)}
 img{max-width:100%;display:block}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--magenta);outline-offset:3px;border-radius:6px}
-.wrap{max-width:1180px;margin-inline:auto;padding-inline:clamp(16px,4vw,40px)}
-section{padding-block:clamp(56px,8vw,104px);border-top:1px solid var(--hair)}
 h1,h2,h3,h4{margin:0;text-wrap:balance}
-p{margin:0;max-width:65ch}
+p{margin:0}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.display{font-family:var(--f-display);font-stretch:125%;font-weight:900;text-transform:uppercase;letter-spacing:-.005em;line-height:.98}
-.eyebrow{font:500 12px/1.3 var(--f-mono);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
-.lede{font-size:clamp(18px,1.7vw,21px);line-height:1.5}
-.muted{color:var(--muted)}
-.sec-head{display:grid;gap:16px;margin-bottom:clamp(28px,4vw,48px)}
-.sec-head h2{font-size:clamp(32px,5vw,60px)}
-.sec-head .lede{max-width:62ch}
+.wrap{max-width:1180px;margin-inline:auto;padding-inline:clamp(16px,4vw,40px)}
+section{padding-block:clamp(44px,6vw,80px)}
+section+section{border-top:1px solid var(--hair)}
+.display{font-family:var(--f-display);font-stretch:125%;font-weight:900;text-transform:uppercase;letter-spacing:-.005em;line-height:.97}
+.eyebrow{font:500 11.5px/1.3 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.lede{font-size:clamp(17px,1.6vw,20px);line-height:1.45;max-width:46ch;color:var(--muted)}
+.sec-head{display:grid;gap:12px;margin-bottom:clamp(22px,3vw,36px)}
+.sec-head h2{font-size:clamp(30px,4.6vw,56px)}
 
-/* Top bar */
+/* Barra */
 .topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--bg);border-bottom:1px solid var(--hair)}
-.topbar-in{display:flex;align-items:center;gap:20px;min-height:52px}
+.topbar-in{display:flex;align-items:center;gap:18px;min-height:50px}
 .brandmark{font:900 14px/1 var(--f-display);font-stretch:125%;text-transform:uppercase;white-space:nowrap}
 .brandmark span{color:var(--magenta-text)}
-.topnav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin-left:auto;min-width:0}
+.topnav{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;margin-left:auto;min-width:0}
 .topnav::-webkit-scrollbar{display:none}
 .topnav a{font:500 12px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.07em;text-decoration:none;padding:8px 10px;border-radius:999px;white-space:nowrap;color:var(--muted)}
 .topnav a:hover{background:var(--surface);color:var(--ink)}
 
-/* Hero */
-.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:center;padding-block:clamp(32px,6vw,72px) clamp(48px,7vw,88px)}
-.hero-copy{display:grid;gap:22px;min-width:0}
-.lockup{width:100%;height:auto;max-width:620px;display:block}
-.with{display:flex;align-items:center;flex-wrap:wrap;gap:12px;font:500 12px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.09em;color:var(--muted)}
-.vc-chip{background:var(--sticker);border:var(--sw) solid var(--line);border-radius:12px;padding:5px 10px;transform:rotate(-2deg)}
-.vc-chip img{height:30px;width:auto}
-.rule{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;align-items:start;border:var(--sw) solid var(--line);border-radius:var(--r);padding:14px 16px;max-width:560px;background:var(--raised)}
-.rule b{font:600 11px/1.5 var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--magenta-text);padding-top:2px}
-.rule p{font-size:15px}
-.collage{position:relative;aspect-ratio:1/1;width:100%;max-width:100%}
-.ph{position:absolute;margin:0;border:var(--sw) solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--surface)}
-.ph img{width:100%;height:100%;object-fit:cover}
-.ph figcaption,.chip-cap{position:absolute;left:8px;bottom:8px;font:500 10.5px/1 var(--f-mono);background:var(--raised);color:var(--ink);border:1.5px solid var(--line);border-radius:999px;padding:4px 8px;text-transform:uppercase;letter-spacing:.06em}
-.ph-a{left:3%;top:17%;width:78%;aspect-ratio:16/10.5;transform:rotate(-2.5deg);z-index:2}
-.ph-b{right:5%;top:2%;width:32%;aspect-ratio:2/3;transform:rotate(4deg);z-index:1}
-.ph-c{right:5%;bottom:3%;width:52%;aspect-ratio:3/2;transform:rotate(2.5deg);z-index:3}
+/* Portada */
+.hero{position:relative}
+.hero-ph{position:relative;margin:0;min-height:min(78vh,620px);display:grid}
+.hero-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,6,4,.55),rgba(10,6,4,.2) 40%,rgba(10,6,4,.78))}
+.hero-in{position:relative;z-index:2;align-self:end;display:grid;gap:18px;padding-block:clamp(28px,5vw,56px)}
+.hero-in .eyebrow{color:rgba(255,255,255,.82)}
+.lockup{width:min(100%,560px);height:auto}
+.hero-in p{color:#FFF6EC;font-size:clamp(18px,2vw,25px);line-height:1.35;max-width:24ch;font-weight:500;text-shadow:0 2px 14px rgba(0,0,0,.5)}
+.with{display:flex;align-items:center;gap:12px;font:500 11.5px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.82)}
+.with>*{flex:none}
+.vc-chip{background:#FFF;border:var(--sw) solid #141012;border-radius:12px;padding:7px 12px;transform:rotate(-2deg)}
+.vc-chip img{height:42px;width:auto}
 
-/* La idea */
-.big-say{font-size:clamp(30px,4.6vw,56px)}
-.big-say em{font-style:normal;background:linear-gradient(90deg,#EC0B73,#FF3A44 55%,#FC8E01);-webkit-background-clip:text;background-clip:text;color:transparent}
-.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.4vw,28px);margin-top:clamp(32px,4vw,48px)}
-.col{display:grid;gap:14px;align-content:start;min-width:0}
-.col .frame{position:relative;margin:0;border:var(--sw) solid var(--line);border-radius:var(--r);overflow:hidden;aspect-ratio:4/3;background:var(--surface)}
-.col .frame img,.col .frame svg{width:100%;height:100%;object-fit:cover;display:block}
-.col h3{font:900 21px/1.05 var(--f-display);font-stretch:118%;text-transform:uppercase}
-.col ul{margin:0;padding:0;list-style:none;display:grid;gap:7px;font-size:15.5px}
-.col li{display:grid;grid-template-columns:14px 1fr;gap:8px;align-items:baseline}
-.col li::before{content:"";width:9px;height:9px;border-radius:50%;border:2px solid var(--line);transform:translateY(-1px)}
-.col.c-blume li::before{background:var(--blume)}
-.col.c-vive li::before{background:var(--magenta)}
-.col.c-both li::before{background:linear-gradient(135deg,var(--magenta),var(--orange))}
+/* Banda de foto */
+.band{position:relative;margin-block:clamp(26px,4vw,44px)}
+.band img{width:100%;height:clamp(180px,26vw,320px);object-fit:cover}
+.band figcaption{position:absolute;left:clamp(16px,4vw,40px);bottom:16px;font:500 11px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.08em;background:var(--raised);color:var(--ink);border:2px solid var(--line);border-radius:999px;padding:6px 10px}
 
-.palette-head{display:grid;gap:10px;margin-top:clamp(48px,6vw,72px);margin-bottom:18px}
-.palette-head h3{font:900 clamp(22px,2.6vw,30px)/1.05 var(--f-display);font-stretch:118%;text-transform:uppercase}
-.palette{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));border:var(--sw) solid var(--line);border-radius:var(--r);overflow:hidden}
-.sw{min-height:190px;padding:12px 11px;display:flex;flex-direction:column;justify-content:flex-end;gap:3px;min-width:0}
-.sw b{font:600 14px/1.15 var(--f-body)}
-.sw span{font:400 11px/1.3 var(--f-mono)}
-.sw.dk{color:#FFF8F0}.sw.lt{color:#1A1310}
+/* Figura de boceto */
+.vis{position:relative;margin:0;border:var(--sw) solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--surface);aspect-ratio:var(--ar,4/3);max-width:100%}
+.vis>svg{display:block;width:100%;height:100%}
+.vis>img{width:100%;height:100%;object-fit:cover}
+.chip-cap{position:absolute;left:10px;top:10px;font:500 10.5px/1 var(--f-mono);background:var(--raised);color:var(--ink);border:2px solid var(--line);border-radius:999px;padding:5px 9px;text-transform:uppercase;letter-spacing:.07em}
+.inset{position:absolute;right:10px;bottom:10px;width:26%;max-width:200px;aspect-ratio:4/3;margin:0;border:2.5px solid #1A1310;border-radius:10px;overflow:hidden;transform:rotate(3deg);background:#EDE4D8;box-shadow:0 8px 18px rgba(0,0,0,.22)}
+.inset img{width:100%;height:100%;object-fit:cover}
+.inset figcaption{position:absolute;left:5px;top:5px;font:600 9px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;background:#FFFFFF;color:#1A1310;border:1.5px solid #1A1310;border-radius:999px;padding:3px 6px}
 
-/* Escena */
+/* Chips */
+.chips{display:flex;flex-wrap:wrap;gap:7px;list-style:none;margin:0;padding:0}
+.chips li{font:500 12px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.05em;border:1.5px solid var(--line);border-radius:999px;padding:7px 10px;white-space:nowrap}
+.tag{font:500 10.5px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.07em;padding:5px 9px;border-radius:999px;white-space:nowrap}
+.t-vip{background:var(--tag-vip-bg);color:var(--tag-vip-fg)}
+.t-camp{background:var(--tag-camp-bg);color:var(--tag-camp-fg)}
+.t-dos{background:var(--tag-dos-bg);color:var(--tag-dos-fg)}
+
+/* Dos modos */
+.modes{display:grid;gap:clamp(20px,3vw,34px)}
+.mode{display:grid;gap:14px;border:var(--sw) solid var(--line);border-radius:var(--r);padding:clamp(14px,1.8vw,20px);background:var(--raised)}
+.mode-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.mode-n{font:500 11px/1 var(--f-mono);letter-spacing:.09em;text-transform:uppercase;color:#FFF;background:var(--ink);border-radius:999px;padding:6px 10px}
+.mode h3{font:900 clamp(22px,3vw,34px)/1 var(--f-display);font-stretch:118%;text-transform:uppercase}
+.mode p{font-size:clamp(16px,1.5vw,18px);max-width:60ch}
+.mode .vis{--ar:900/360}
+
+/* VIP */
+.vipwrap{display:grid;gap:16px}
+.vipwrap .vis{--ar:900/420}
+.vipgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.vipgrid div{display:grid;gap:4px;border-top:2px solid var(--line);padding-top:10px;min-width:0}
+.vipgrid b{font:600 11px/1.3 var(--f-mono);text-transform:uppercase;letter-spacing:.07em;color:var(--magenta-text)}
+.vipgrid span{font-size:14.5px}
+
+/* Escena del día */
 .scene-card{border:var(--sw) solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--raised)}
 .scene{display:block;width:100%;height:auto;aspect-ratio:1200/560}
 .beam{transform-box:view-box;animation:sway 9s ease-in-out infinite alternate}
 @keyframes sway{from{transform:rotate(-7deg)}to{transform:rotate(7deg)}}
-.scene-ui{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);border-top:var(--sw) solid var(--line)}
-.scene-ctl{display:grid;gap:16px;padding:18px clamp(16px,2.2vw,24px);border-right:1px solid var(--hair);min-width:0}
-.clock-row{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap}
-.clock{font:900 clamp(40px,5vw,56px)/.9 var(--f-display);font-stretch:112%;font-variant-numeric:tabular-nums}
-.dayl{font:500 12px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding-bottom:4px}
+.scene-ui{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);border-top:var(--sw) solid var(--line)}
+.scene-ctl{display:grid;gap:14px;padding:16px clamp(14px,2vw,22px);border-right:1px solid var(--hair);min-width:0}
+.clock-row{display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap}
+.clock{font:900 clamp(38px,5vw,54px)/.9 var(--f-display);font-stretch:112%;font-variant-numeric:tabular-nums}
+.dayl{font:500 11.5px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding-bottom:4px}
 .btn{font:600 13px/1 var(--f-body);border:2px solid var(--line);background:var(--raised);color:var(--ink);border-radius:999px;padding:9px 14px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
 .btn:hover{background:var(--surface)}
-.btn[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
 .clock-row .btn{margin-left:auto}
 .range-wrap{display:grid;gap:6px}
 .range{-webkit-appearance:none;appearance:none;width:100%;height:30px;background:transparent;margin:0;cursor:pointer;--daygrad:linear-gradient(90deg,#A9D3EA,#EC7A8A 30%,#211E46 45%,#1B1C43 80%,#D9848E 88%,#A9D3EA)}
 .range::-webkit-slider-runnable-track{height:14px;border-radius:999px;background:var(--daygrad);border:2px solid var(--line)}
 .range::-moz-range-track{height:10px;border-radius:999px;background:var(--daygrad);border:2px solid var(--line)}
-.range::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:26px;height:26px;border-radius:50%;background:var(--sticker);border:3px solid #1A1310;margin-top:-8px}
-.range::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--sticker);border:3px solid #1A1310}
+.range::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:26px;height:26px;border-radius:50%;background:#FFF;border:3px solid #1A1310;margin-top:-8px}
+.range::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:#FFF;border:3px solid #1A1310}
 .ticks{position:relative;height:14px;font:500 10.5px/1 var(--f-mono);color:var(--muted)}
 .ticks span{position:absolute;transform:translateX(-50%);white-space:nowrap}
 .ticks span:first-child{transform:none}.ticks span:last-child{transform:translateX(-100%)}
@@ -155,159 +165,96 @@ p{margin:0;max-width:65ch}
 .moments button{font:500 12px/1 var(--f-mono);border:1.5px solid var(--hair);background:transparent;color:var(--ink);border-radius:999px;padding:7px 10px;cursor:pointer;font-variant-numeric:tabular-nums}
 .moments button:hover{border-color:var(--line)}
 .moments button[aria-current="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.ev{padding:18px clamp(16px,2.2vw,24px);display:grid;gap:10px;align-content:start;min-width:0}
-.ev h3{font:900 clamp(22px,2.4vw,28px)/1.02 var(--f-display);font-stretch:115%;text-transform:uppercase}
-.ev p{font-size:16px}
-.ev-links{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.ev{padding:16px clamp(14px,2vw,22px);display:grid;gap:9px;align-content:start;min-width:0}
+.ev h3{font:900 clamp(21px,2.3vw,27px)/1 var(--f-display);font-stretch:115%;text-transform:uppercase}
+.ev p{font-size:16px;color:var(--muted)}
+.ev-links{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
 .ev-links a{font:500 11.5px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;text-decoration:none;border:1.5px solid var(--line);border-radius:999px;padding:6px 9px}
 .ev-links a:hover{background:var(--surface)}
 
-/* Piezas */
-.group{margin-top:clamp(36px,5vw,56px)}
-.group:first-of-type{margin-top:0}
-.group-h{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:18px;padding-bottom:12px;border-bottom:var(--sw) solid var(--line)}
-.group-h h3{font:900 clamp(24px,3vw,34px)/1 var(--f-display);font-stretch:125%;text-transform:uppercase}
-.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,2.4vw,28px)}
-.pieza{display:grid;gap:14px;align-content:start;min-width:0;scroll-margin-top:80px}
-.vis{position:relative;margin:0;border:var(--sw) solid var(--line);border-radius:var(--r);overflow:hidden;aspect-ratio:4/3;background:var(--surface);max-width:100%}
-.vis>svg{display:block;width:100%;height:100%}
-.vis .chip-cap{top:9px;bottom:auto;left:9px}
-.inset{position:absolute;right:9px;bottom:9px;width:31%;aspect-ratio:4/3;margin:0;border:2.5px solid #1A1310;border-radius:10px;overflow:hidden;transform:rotate(3deg);background:#EDE4D8;box-shadow:0 6px 14px rgba(0,0,0,.18)}
-.inset img{width:100%;height:100%;object-fit:cover}
-.inset.tr{top:9px;bottom:auto;transform:rotate(-3deg)}
-.inset figcaption{position:absolute;left:5px;top:5px;font:600 9px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;background:#FFFFFF;color:#1A1310;border:1.5px solid #1A1310;border-radius:999px;padding:3px 6px}
-.pieza-body{display:grid;gap:10px;min-width:0}
-.pieza h4{font:900 22px/1.02 var(--f-display);font-stretch:115%;text-transform:uppercase}
-.pieza p{font-size:15.5px}
-.specs{display:grid;grid-template-columns:auto minmax(0,1fr);gap:5px 12px;font-size:14px;margin:0;padding-top:10px;border-top:1px solid var(--hair)}
-.specs dt{font:500 10.5px/1.75 var(--f-mono);text-transform:uppercase;letter-spacing:.07em;color:var(--muted);white-space:nowrap}
-.specs dd{margin:0;min-width:0}
-.tags{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:0;padding:0}
-.tag{font:500 10.5px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.07em;padding:5px 8px;border-radius:999px;white-space:nowrap}
-.t-blume{background:var(--tag-blume-bg);color:var(--tag-blume-fg)}
-.t-vive{background:var(--tag-vive-bg);color:var(--tag-vive-fg)}
-.t-renta{background:var(--tag-renta-bg);color:var(--tag-renta-fg)}
-.t-prod{background:var(--tag-prod-bg);color:var(--tag-prod-fg)}
+/* Galería de piezas */
+.gal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.2vw,26px)}
+.card{display:grid;gap:10px;align-content:start;min-width:0;scroll-margin-top:80px}
+.card h4{font:900 20px/1.02 var(--f-display);font-stretch:115%;text-transform:uppercase;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.card p{font-size:15px;color:var(--muted)}
+.card .parts{font:400 11.5px/1.5 var(--f-mono);color:var(--muted);border-top:1px solid var(--hair);padding-top:7px}
 
 /* Plano */
-.plan-layout{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:clamp(18px,2.4vw,28px);align-items:start}
-.plan-card{border:var(--sw) solid var(--line);border-radius:var(--r);background:var(--raised);overflow-x:auto}
-.plan{display:block;width:100%;min-width:680px;height:auto}
+.plan-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.modebar{display:flex;gap:4px;border:2px solid var(--line);border-radius:999px;padding:3px;background:var(--raised)}
+.modebar button{font:600 12.5px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;border:0;background:transparent;color:var(--ink);border-radius:999px;padding:9px 14px;cursor:pointer}
+.modebar button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.plan-layout{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(16px,2.2vw,26px);align-items:start}
+.plan-card{border:var(--sw) solid var(--line);border-radius:var(--r);background:var(--raised);overflow:hidden}
+.plan{display:block;width:100%;height:auto}
 .plan text{font-family:var(--f-mono)}
-.p-bg{fill:var(--raised)}
 .p-grid{stroke:var(--hair);stroke-width:1}
-.p-fence{stroke:var(--muted);stroke-width:2;stroke-dasharray:6 5;fill:none}
-.p-street{stroke:var(--plan-street);fill:none}
 .p-tent{fill:var(--plan-tent);stroke:var(--ink);stroke-width:1}
 .p-ink{fill:var(--ink)}
 .p-inkline{stroke:var(--ink);fill:none}
-.p-lbl{fill:var(--muted);font-size:9.5px;letter-spacing:.06em}
-.p-lbl-b{fill:var(--ink);font-size:10.5px;font-weight:600;letter-spacing:.06em}
+.p-lbl{fill:var(--muted);font-size:10px;letter-spacing:.06em}
+.p-lbl-b{fill:var(--ink);font-size:11px;font-weight:600;letter-spacing:.06em}
 .p-surface{fill:var(--surface)}
 .zone{cursor:pointer}
 .zone .hl{fill:transparent;stroke:transparent;stroke-width:3}
-.zone:hover .hl{stroke:var(--hair);fill:rgba(128,128,128,.06)}
-.zone.is-on .hl{stroke:var(--magenta);fill:rgba(236,11,115,.08)}
+.zone:hover .hl{stroke:var(--hair);fill:rgba(128,128,128,.07)}
+.zone.is-on .hl{stroke:var(--magenta);fill:rgba(236,11,115,.09)}
 .zone:focus{outline:none}
 .zone:focus-visible .hl{stroke:var(--magenta);stroke-dasharray:4 3}
 .p-badge circle{fill:var(--ink)}
-.p-badge text{fill:var(--bg);font-size:10.5px;font-weight:600;text-anchor:middle}
+.p-badge text{fill:var(--bg);font-size:11px;font-weight:600;text-anchor:middle}
 .zone.is-on .p-badge circle{fill:var(--magenta)}
 .zone.is-on .p-badge text{fill:#FFFFFF}
-.plan-side{display:grid;gap:16px;min-width:0}
-.zone-info{border:var(--sw) solid var(--line);border-radius:var(--r);padding:16px 18px;background:var(--raised);display:grid;gap:8px}
+.plan-side{display:grid;gap:14px;min-width:0}
+.zone-info{border:var(--sw) solid var(--line);border-radius:var(--r);padding:15px 17px;background:var(--raised);display:grid;gap:7px}
 .zone-info .eyebrow{color:var(--magenta-text)}
-.zone-info h3{font:900 22px/1.05 var(--f-display);font-stretch:115%;text-transform:uppercase}
-.zone-info p{font-size:15.5px}
-.zone-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.zone-info h3{font:900 21px/1.04 var(--f-display);font-stretch:115%;text-transform:uppercase}
+.zone-info p{font-size:15px;color:var(--muted)}
+.zone-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:3px}
 .zone-list button{width:100%;text-align:left;display:grid;grid-template-columns:22px 1fr;gap:8px;align-items:center;font:500 13.5px/1.2 var(--f-body);background:transparent;color:var(--ink);border:1.5px solid transparent;border-radius:10px;padding:6px 8px;cursor:pointer}
 .zone-list button:hover{border-color:var(--hair)}
 .zone-list button i{font:600 10.5px/22px var(--f-mono);font-style:normal;width:22px;height:22px;border-radius:50%;background:var(--ink);color:var(--bg);text-align:center}
 .zone-list button[aria-pressed="true"]{border-color:var(--line)}
 .zone-list button[aria-pressed="true"] i{background:var(--magenta);color:#FFFFFF}
-.plan-note{font:400 12px/1.5 var(--f-mono);color:var(--muted)}
 
 /* Identidad */
-.lockups{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.4vw,28px)}
-.lk{display:grid;gap:12px;align-content:start;min-width:0}
+.lockups{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.2vw,26px)}
+.lk{display:grid;gap:10px;align-content:start;min-width:0}
 .lk-vis{position:relative;border:var(--sw) solid var(--line);border-radius:var(--r);background:var(--surface);aspect-ratio:16/10;display:grid;place-items:center;padding:7%}
 .lk-vis svg{width:100%;height:auto;max-height:100%}
-.lk h3{font:900 18px/1.1 var(--f-display);font-stretch:115%;text-transform:uppercase;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.lk p{font-size:15px}
-.reco{font:600 10.5px/1 var(--f-mono);letter-spacing:.07em;text-transform:uppercase;background:var(--ink);color:var(--bg);border-radius:999px;padding:5px 8px}
-.id-rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.4vw,28px);margin-top:clamp(28px,4vw,40px);padding-top:20px;border-top:1px solid var(--hair)}
-.id-rules div{display:grid;gap:6px}
-.id-rules b{font:600 11px/1.4 var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
-.id-rules p{font-size:15px}
+.lk h3{font:900 17px/1.1 var(--f-display);font-stretch:115%;text-transform:uppercase;display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.lk p{font-size:14.5px;color:var(--muted)}
+.reco{font:600 10px/1 var(--f-mono);letter-spacing:.07em;text-transform:uppercase;background:var(--ink);color:var(--bg);border-radius:999px;padding:5px 8px}
 
-/* Referencias */
-.refs{border:var(--sw) solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--raised)}
-.ref-row{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr) minmax(0,1fr) minmax(0,1.25fr);gap:16px;padding:14px 18px;border-top:1px solid var(--hair);align-items:baseline}
-.ref-row:first-child{border-top:0}
-.ref-row.head{background:var(--surface);font:500 11px/1.3 var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
-.ref-row .src{font:600 11.5px/1.3 var(--f-mono);text-transform:uppercase;letter-spacing:.06em}
-.ref-row .blu{font-weight:600}
-.ref-row .blu a{text-decoration-thickness:1.5px;text-underline-offset:3px}
-.subh{font:900 clamp(20px,2.4vw,26px)/1.05 var(--f-display);font-stretch:118%;text-transform:uppercase;margin-top:clamp(36px,5vw,56px)}
+/* Cierre */
+.cierre{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.4vw,30px)}
+.cierre div{display:grid;gap:7px;align-content:start;border-top:var(--sw) solid var(--line);padding-top:12px}
+.cierre b{font:900 18px/1.05 var(--f-display);font-stretch:115%;text-transform:uppercase}
+.cierre p{font-size:15px;color:var(--muted)}
+.flag-note{border:2px dashed var(--magenta);border-radius:var(--r);padding:14px 16px;display:grid;gap:5px;max-width:62ch;margin-top:clamp(20px,3vw,30px)}
+.flag-note b{font:600 11px/1.3 var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--magenta-text)}
+.flag-note p{font-size:15.5px}
 
-/* Producción */
-.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
-.filters .btn{font-size:13px}
-.prod{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;list-style:none;margin:0;padding:0}
-.prod li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;align-items:start;border:1.5px solid var(--hair);border-radius:12px;padding:11px 13px;background:var(--raised)}
-.prod li b{font-weight:600;font-size:15px}
-.prod li span.n{grid-column:1/-1;font-size:13px;color:var(--muted)}
-.sponsor{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:clamp(18px,3vw,36px);align-items:center;margin-top:clamp(40px,5vw,56px);border:var(--sw) solid var(--line);border-radius:var(--r);padding:clamp(14px,2vw,20px);background:var(--raised)}
-.sponsor figure{position:relative;margin:0;border:var(--sw) solid var(--line);border-radius:12px;overflow:hidden;aspect-ratio:4/3}
-.sponsor figure img{width:100%;height:100%;object-fit:cover}
-.sponsor h3{font:900 clamp(22px,2.6vw,28px)/1.05 var(--f-display);font-stretch:118%;text-transform:uppercase;margin-bottom:10px}
-.sponsor ul{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0;padding:0;list-style:none}
-.sponsor li{font:500 12px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.05em;border:1.5px solid var(--line);border-radius:999px;padding:7px 10px}
+footer{border-top:1px solid var(--hair);padding-block:28px 44px}
+footer p{font:400 12px/1.6 var(--f-mono);color:var(--muted);max-width:90ch}
 
-/* Shot list + pasos */
-.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,56px)}
-.shots{list-style:none;margin:0;padding:0;display:grid}
-.shots li{display:grid;grid-template-columns:64px minmax(0,1fr);gap:14px;padding:12px 0;border-top:1px solid var(--hair);align-items:baseline}
-.shots li:first-child{border-top:0}
-.shots time{font:600 14px/1 var(--f-mono);font-variant-numeric:tabular-nums}
-.steps{margin:0;padding:0;list-style:none;counter-reset:s;display:grid}
-.steps li{counter-increment:s;display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;padding:12px 0;border-top:1px solid var(--hair);align-items:baseline}
-.steps li:first-child{border-top:0}
-.steps li::before{content:counter(s);font:900 22px/1 var(--f-display);font-stretch:125%;color:var(--magenta-text)}
-.two h3{font:900 clamp(22px,2.6vw,28px)/1.05 var(--f-display);font-stretch:118%;text-transform:uppercase;margin-bottom:10px}
-
-footer{border-top:1px solid var(--hair);padding-block:32px 48px}
-footer p{font:400 12.5px/1.6 var(--f-mono);color:var(--muted);max-width:90ch}
-
+@media (min-width:900px){
+  .mode{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(18px,2.4vw,30px);align-items:center}
+  .mode .vis{grid-row:span 3}
+  .modes{gap:clamp(16px,2vw,24px)}
+}
 @media (max-width:980px){
-  .palette{grid-template-columns:repeat(4,minmax(0,1fr))}
-  .sw{min-height:130px}
+  .vipgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .gal,.lockups,.cierre{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .plan-layout{grid-template-columns:minmax(0,1fr)}
   .scene-ui{grid-template-columns:minmax(0,1fr)}
   .scene-ctl{border-right:0;border-bottom:1px solid var(--hair)}
-  .plan-layout{grid-template-columns:minmax(0,1fr)}
-  .prod{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
-@media (max-width:900px){
-  .hero{grid-template-columns:minmax(0,1fr)}
-  .collage{max-width:560px}
-  .trio,.lockups,.id-rules{grid-template-columns:minmax(0,1fr)}
-  .grid3{grid-template-columns:minmax(0,1fr)}
-  .pieza{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:18px;align-items:start}
-  .trio .col{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);column-gap:18px}
-  .trio .col .frame{grid-row:span 2}
-  .lk{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);column-gap:18px}
-  .lk .lk-vis{grid-row:span 2}
-  .ref-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
-  .ref-row.head{display:none}
-  .ref-row .src{grid-column:1/-1}
-  .two,.sponsor{grid-template-columns:minmax(0,1fr)}
 }
 @media (max-width:620px){
-  .pieza,.trio .col,.lk{grid-template-columns:minmax(0,1fr)}
-  .trio .col .frame,.lk .lk-vis{grid-row:auto}
+  .vipgrid,.gal,.lockups,.cierre,.zone-list{grid-template-columns:minmax(0,1fr)}
   .scene{aspect-ratio:16/10}
-  .prod,.zone-list{grid-template-columns:minmax(0,1fr)}
-  .ref-row{grid-template-columns:minmax(0,1fr);gap:6px}
+  .hero-ph{min-height:min(84vh,560px)}
+  .inset{width:34%}
   .brandmark{font-size:12px}
   .ticks .t6{display:none}
 }
@@ -315,21 +262,6 @@ footer p{font:400 12.5px/1.6 var(--f-mono);color:var(--muted);max-width:90ch}
   html{scroll-behavior:auto}
   .beam{animation:none}
 }
-
-/* ---- Por qué conviene ---- */
-.razones{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,2.6vw,30px);list-style:none;margin:clamp(28px,4vw,40px) 0 0;padding:0}
-.razon{display:grid;gap:7px;align-content:start;border-top:var(--sw) solid var(--line);padding-top:13px;min-width:0}
-.razon .q{font:500 11px/1.4 var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--magenta-text)}
-.razon b{font:900 19px/1.06 var(--f-display);font-stretch:115%;text-transform:uppercase}
-.razon p{font-size:15.5px}
-.paks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,22px);margin-top:18px}
-.pak{border:var(--sw) solid var(--line);border-radius:var(--r);padding:15px 17px;background:var(--raised);display:grid;gap:10px;align-content:start;min-width:0}
-.pak h4{font:900 19px/1.05 var(--f-display);font-stretch:115%;text-transform:uppercase}
-.pak ul{margin:0;padding:0;list-style:none;display:grid;gap:5px;font-size:14.5px}
-.pak li{display:grid;grid-template-columns:13px 1fr;gap:8px;align-items:baseline}
-.pak li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--orange);border:1.5px solid var(--line)}
-@media (max-width:980px){.razones,.paks{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:620px){.razones,.paks{grid-template-columns:minmax(0,1fr)}}
 </style>
 </head>
 <body>
@@ -338,103 +270,88 @@ footer p{font:400 12.5px/1.6 var(--f-mono);color:var(--muted);max-width:90ch}
   <div class="wrap topbar-in">
     <div class="brandmark">Blüme <span>×</span> Vive Camp</div>
     <nav class="topnav" aria-label="Secciones">
-      <a href="#idea">Idea</a><a href="#caso">Conviene</a><a href="#dia">Un día</a><a href="#piezas">Piezas</a><a href="#plano">Plano</a><a href="#identidad">Identidad</a><a href="#referencias">Referencias</a><a href="#produccion">Producción</a>
+      <a href="#modos">Dos modos</a><a href="#vip">Carpa VIP</a><a href="#dia">Un día</a><a href="#piezas">Piezas</a><a href="#plano">Plano</a><a href="#identidad">Identidad</a>
     </nav>
   </div>
 </div>
 
-<header class="wrap hero">
-  <div class="hero-copy">
-    <p class="eyebrow">Propuesta creativa · Borrador · Octubre 2026</p>
-    <h1 class="sr-only">Blüme Camp, con Vive Camp</h1>
-    <svg class="lockup" viewBox="0 0 1000 430" role="img" aria-label="BLÜME CAMP">
-      <defs><linearGradient id="lk-hero" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#EC0B73"/><stop offset=".5" stop-color="#FF3A44"/><stop offset="1" stop-color="#FC8E01"/></linearGradient></defs>
-      <g style="font-family:Archivo,'Arial Black',sans-serif;font-weight:900;font-stretch:125%" stroke="#141012" stroke-width="20" stroke-linejoin="round" paint-order="stroke">
-        <text x="24" y="206" font-size="196" textLength="930" lengthAdjust="spacingAndGlyphs" fill="#FAFAFA">BLÜME</text>
-        <text x="96" y="400" font-size="196" textLength="790" lengthAdjust="spacingAndGlyphs" fill="url(#lk-hero)">CAMP</text>
-      </g>
-    </svg>
-    <div class="with">con <span class="vc-chip"><img src="img/vive-camp-logo.webp" alt="Vive Camp" width="900" height="409"></span></div>
-    <p class="lede">La aldea de carpas de Vive Camp dentro de un Blüme. Se siente como Coachella o Burning Man, pero cada pieza es algo que Blüme ya produce, algo que Vive Camp ya tiene o algo que se renta. Y no es decoración: es un segundo producto que se vende sobre un evento que ya está montado.</p>
-    <div class="rule"><b>Regla</b><p>Si Blüme no lo ha hecho, Vive Camp no lo tiene y no se puede rentar, no entra. Nada de esculturas gigantes ni efectos de render.</p></div>
-  </div>
-  <div class="collage" aria-label="Fotos de referencia">
-    <figure class="ph ph-b"><img src="img/blume-dia.webp" alt="Blüme de día: escenario con arcos, hiedra y barra redonda naranja" width="800" height="1200"><figcaption>Blüme · día</figcaption></figure>
-    <figure class="ph ph-a"><img src="img/vive-camp-carpas.webp" alt="Carpas de lona de Vive Camp al atardecer con faroles" width="1600" height="900"><figcaption>Vive Camp</figcaption></figure>
-    <figure class="ph ph-c"><img src="img/blume-noche.webp" alt="Blüme de noche: escenario con beams y activaciones de neón" width="800" height="534"><figcaption>Blüme · noche</figcaption></figure>
-  </div>
+<header class="hero">
+  <figure class="hero-ph">
+    <img src="img/hero-carpas.webp" alt="Carpas de lona de Vive Camp al atardecer, con faroles encendidos y montaña al fondo" width="1800" height="1013">
+    <div class="wrap hero-in">
+      <p class="eyebrow">Propuesta visual · Octubre 2026</p>
+      <h1 class="sr-only">Blüme Camp, con las carpas de Vive Camp</h1>
+      <svg class="lockup" viewBox="0 0 1000 430" role="img" aria-label="BLÜME CAMP">
+        <defs><linearGradient id="lk-hero" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#EC0B73"/><stop offset=".5" stop-color="#FF3A44"/><stop offset="1" stop-color="#FC8E01"/></linearGradient></defs>
+        <g style="font-family:Archivo,'Arial Black',sans-serif;font-weight:900;font-stretch:125%" stroke="#141012" stroke-width="20" stroke-linejoin="round" paint-order="stroke">
+          <text x="24" y="206" font-size="196" textLength="930" lengthAdjust="spacingAndGlyphs" fill="#FAFAFA">BLÜME</text>
+          <text x="96" y="400" font-size="196" textLength="790" lengthAdjust="spacingAndGlyphs" fill="url(#lk-hero)">CAMP</text>
+        </g>
+      </svg>
+      <div class="with">con <span class="vc-chip"><img src="img/vive-camp-logo.webp" alt="Vive Camp" width="900" height="409"></span></div>
+      <p>Estas carpas, dentro de un Blüme. Primero como el VIP del festival. Después, si se puede dormir, como campamento.</p>
+    </div>
+  </figure>
 </header>
 
-<section id="idea">
-  <div class="wrap">
-    <p class="eyebrow">La idea</p>
-    <h2 class="display big-say" style="margin-top:14px">El festival ya existe. Las carpas ya existen. Lo nuevo es <em>quedarse a dormir.</em></h2>
-    <div class="trio">
-      <div class="col c-blume">
-        <figure class="frame"><img src="img/c-arcos-hiedra.webp" alt="Paneles de arco con hiedra colgante del escenario Blüme" loading="lazy"><figcaption class="chip-cap">Foto Blüme</figcaption></figure>
-        <h3>Lo que pone Blüme</h3>
-        <ul><li>Arcos con degradado y hiedra colgante</li><li>Jardineras de madera</li><li>Barras redondas naranjas</li><li>Truss, letras BLÜME, pantalla y beams</li><li>Mesas con servicio y general</li><li>Activaciones de marca con neón</li><li>Sesiones de entrenamiento de día</li></ul>
-      </div>
-      <div class="col c-vive">
-        <figure class="frame"><img src="img/c-convivencia.webp" alt="Campers sentados en el pasto junto a un farol de Vive Camp" loading="lazy"><figcaption class="chip-cap">Foto Vive Camp</figcaption></figure>
-        <h3>Lo que pone Vive Camp</h3>
-        <ul><li>Carpas de lona tipo campana</li><li>Dos colchonetas por carpa</li><li>Faroles al piso</li><li>El atardecer como escenario</li><li>Carpas armadas antes de que llegues</li></ul>
-      </div>
-      <div class="col c-both">
-        <figure class="frame" data-sketch="juntos" data-label="Boceto: carpa, arco y faroles juntos"><figcaption class="chip-cap">Boceto</figcaption></figure>
-        <h3>Lo que sale de juntarlos</h3>
-        <ul><li>Una aldea con calles en arco y direcciones</li><li>Faroles que te llevan del escenario a tu carpa</li><li>Beams que marcan el cierre de la noche</li><li>Un set al amanecer</li><li>Paquetes de carpa con mesa</li></ul>
-      </div>
-    </div>
-
-    <div class="palette-head">
-      <h3>Las dos marcas ya comparten el atardecer</h3>
-      <p class="muted">El degradado del logo de Vive Camp y los arcos de Blüme son la misma familia de color. Cada muestra está tomada de las fotos.</p>
-    </div>
-    <div class="palette" role="list">
-      <div class="sw dk" role="listitem" style="background:#EC0B73"><b>Magenta</b><span>la C de CAMP</span><span>#EC0B73</span></div>
-      <div class="sw lt" role="listitem" style="background:#FC8E01"><b>Naranja Vive</b><span>la P de CAMP</span><span>#FC8E01</span></div>
-      <div class="sw lt" role="listitem" style="background:#F97826"><b>Naranja Blüme</b><span>barra redonda</span><span>#F97826</span></div>
-      <div class="sw lt" role="listitem" style="background:#F6C3A0"><b>Durazno</b><span>arcos del escenario</span><span>#F6C3A0</span></div>
-      <div class="sw lt" role="listitem" style="background:#EFE3D2"><b>Lona</b><span>carpas Vive Camp</span><span>#EFE3D2</span></div>
-      <div class="sw dk" role="listitem" style="background:#4E6B2B"><b>Hiedra</b><span>jardineras y paneles</span><span>#4E6B2B</span></div>
-      <div class="sw lt" role="listitem" style="background:#41B3D5"><b>Beam</b><span>arcos de noche</span><span>#41B3D5</span></div>
-      <div class="sw dk" role="listitem" style="background:#17120F"><b>Noche</b><span>cielo a las 2:00</span><span>#17120F</span></div>
-    </div>
-  </div>
-</section>
-
-<section id="caso">
+<section id="modos">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow">Por qué le conviene a Blüme</p>
-      <h2 class="display">La carpa no es decoración. Es un segundo producto sobre el mismo evento.</h2>
-      <p class="lede">El escenario, el staff, la licencia y la producción ya están pagados por el festival. El camp vende otra cosa encima de eso, y la carpa se renta: no hay que comprar nada.</p>
+      <p class="eyebrow">Dos modos</p>
+      <h2 class="display">Lo mismo, con o sin dormir</h2>
+      <p class="lede">La carpa es la misma. Lo único que cambia es si la gente se queda.</p>
     </div>
-    <ul class="razones">
-      <li class="razon"><span class="q">Ingreso</span><b>Segundo boleto</b><p>El camper paga su entrada y además la carpa. Es un ingreso nuevo sobre un evento que ya está montado, sin un escenario más ni un artista más.</p></li>
-      <li class="razon"><span class="q">Consumo</span><b>Las horas que hoy se pierden</b><p>Mucha gente se va antes del cierre porque tiene que manejar. El camper se queda hasta el final y desayuna ahí. Son horas de barra que hoy no existen.</p></li>
-      <li class="razon"><span class="q">Riesgo</span><b>Sin comprar nada</b><p>Rentar es cero inversión en carpas, cero bodega, cero lavandería y cero reposición. Si una edición no se llena, se instalan menos carpas y el costo baja con ellas.</p></li>
-      <li class="razon"><span class="q">Patrocinio</span><b>Inventario nuevo para marcas</b><p>Regaderas, estación de recarga, café del amanecer, kit de bienvenida y la foto del Mirador. Momentos con tiempo de permanencia que hoy no se pueden vender.</p></li>
-      <li class="razon"><span class="q">Crecimiento</span><b>Formatos que hoy no puede hacer</b><p>Con camp, Blüme puede hacer dos días seguidos o una edición fuera de la ciudad sin depender de hoteles ni de que todos manejen de regreso esa misma noche.</p></li>
-      <li class="razon"><span class="q">Marca</span><b>Contenido que nadie más tiene</b><p>Hora dorada sobre las carpas, faroles de madrugada y el amanecer. Material que no se puede grabar en un festival que cierra y se vacía.</p></li>
-    </ul>
-
-    <h3 class="subh">Qué se vende</h3>
-    <div class="paks">
-      <div class="pak"><h4>Carpa General</h4><ul><li>Carpa armada para dos, con colchonetas</li><li>Farol, tapete y número</li><li>Baños, regaderas y lockers</li><li>Acceso al camp toda la noche</li></ul></div>
-      <div class="pak"><h4>Carpa + Mesa</h4><ul><li>Todo lo de Carpa General</li><li>Mesa del festival con servicio</li><li>Carpa en el Arco A, junto a la Plaza</li><li>Entrada preferente por el Portal</li></ul></div>
-      <div class="pak"><h4>Barrio privado</h4><ul><li>Bloque de ocho carpas juntas</li><li>Su propia fogata y bandera</li><li>Para grupos, cumpleaños o una marca</li><li>Se vende completo</li></ul></div>
+    <div class="modes">
+      <article class="mode">
+        <figure class="vis" data-sketch="vipfila" data-label="Boceto: carpas VIP alrededor de la pista, de noche"><figcaption class="chip-cap">Boceto</figcaption></figure>
+        <div class="mode-h"><span class="mode-n">Modo 1</span><h3>Las carpas son el VIP</h3></div>
+        <p>Nadie duerme. Las carpas rodean la pista como palcos de lona: mesa adentro, servicio y vista al escenario. Se montan y se quitan el mismo día.</p>
+        <ul class="chips"><li>Sin pernocta</li><li>Mesa con servicio</li><li>Se vende como VIP</li></ul>
+      </article>
+      <article class="mode">
+        <figure class="vis" data-sketch="aldea" data-label="Boceto: la aldea de carpas de noche con el portal de arcos"><figcaption class="chip-cap">Boceto</figcaption></figure>
+        <div class="mode-h"><span class="mode-n">Modo 2</span><h3>El VIP se queda a dormir</h3></div>
+        <p>Las mismas carpas, con colchonetas. El festival no se acaba a las dos: sigue con faroles, fogata y un set al amanecer.</p>
+        <ul class="chips"><li>Pernocta por confirmar</li><li>Dos días</li><li>Set al amanecer</li></ul>
+      </article>
+    </div>
+    <div class="flag-note">
+      <b>Lo primero que hay que preguntar</b>
+      <p>Si el venue no permite dormir, el Modo 1 funciona solo y nada de esta propuesta se cae.</p>
     </div>
   </div>
 </section>
+
+<section id="vip">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">La carpa VIP</p>
+      <h2 class="display">Un palco de lona</h2>
+      <p class="lede">La misma carpa, con una mesa adentro en vez de colchonetas.</p>
+    </div>
+    <div class="vipwrap">
+      <figure class="vis" data-sketch="vipcarpa" data-label="Boceto de una carpa VIP por dentro, con tapete, cojines, mesa con hielera y farol">
+        <figcaption class="chip-cap">Boceto</figcaption>
+        <figure class="inset"><img src="img/c-carpa-abierta.webp" alt="Carpa real de Vive Camp abierta" loading="lazy"><figcaption>Real</figcaption></figure>
+      </figure>
+      <div class="vipgrid">
+        <div><b>Adentro</b><span>Tapete, cojines, mesa baja y hielera.</span></div>
+        <div><b>Luz</b><span>Un farol colgando del poste central.</span></div>
+        <div><b>Afuera</b><span>Cordón, número y banderín naranja.</span></div>
+        <div><b>Dónde</b><span>Pegada a la pista, viendo al escenario.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<figure class="band"><img src="img/band-noche.webp" alt="Blüme de noche: escenario con beams y activaciones de neón" loading="lazy" width="1400" height="578"><figcaption>Blüme hoy</figcaption></figure>
 
 <section id="dia">
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow">Un día en Blüme Camp</p>
       <h2 class="display">Mueve la hora</h2>
-      <p class="lede">De la llegada a la mañana siguiente. Cada momento usa piezas que ya existen; lo que cambia es dónde y cuándo se prenden.</p>
+      <p class="lede">De la llegada al amanecer. Lo que se prende y lo que se apaga.</p>
     </div>
     <div class="scene-card">
       <svg class="scene" id="scene" viewBox="0 0 1200 560" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Escena ilustrada del campamento: escenario Blüme, portal de arcos, carpas, faroles y montaña. Cambia con la hora."></svg>
@@ -462,140 +379,82 @@ footer p{font:400 12.5px/1.6 var(--f-mono);color:var(--muted);max-width:90ch}
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow">Las piezas</p>
-      <h2 class="display">Doce ideas visuales, todas producibles</h2>
-      <p class="lede">Ordenadas como las vive un camper. Cada una dice de dónde sale la referencia y con qué se arma. Donde la pieza ya existe en Blüme o Vive Camp, va la foto real en la esquina.</p>
+      <h2 class="display">Doce cosas que se pueden armar</h2>
+      <p class="lede">Nada nuevo que inventar: cada una sale de algo que Blüme ya produce, que Vive Camp ya tiene o que se renta.</p>
     </div>
-
-    <div class="group">
-      <div class="group-h"><h3>Llegar</h3><span class="muted">Del estacionamiento a tu carpa</span></div>
-      <div class="grid3">
-        <article class="pieza" id="p-portal">
-          <figure class="vis" data-sketch="portal" data-label="Boceto del Portal de Arcos"><figcaption class="chip-cap">Boceto</figcaption><figure class="inset tr"><img src="img/c-arcos-hiedra.webp" alt="Paneles de arco reales del escenario Blüme" loading="lazy"><figcaption>Real</figcaption></figure></figure>
-          <div class="pieza-body">
-            <h4>Portal de Arcos</h4>
-            <p>La entrada al camp es un arco del escenario Blüme en grande: tres módulos, el central más alto, con la misma hiedra colgante y letras BLÜME CAMP arriba. Es el único paso entre festival y camp, y desde la pista se ve como hito.</p>
-            <dl class="specs"><dt>Referencia</dt><dd>Coachella: instalaciones de color que se ven desde lejos</dd><dt>Se arma con</dt><dd>Paneles de arco y hiedra del escenario, truss, letras corpóreas</dd></dl>
-            <ul class="tags"><li class="tag t-blume">Blüme</li><li class="tag t-prod">Producción</li></ul>
-          </div>
-        </article>
-        <article class="pieza" id="p-calles">
-          <figure class="vis" data-sketch="calles" data-label="Boceto de letreros de calle y pulsera con dirección"><figcaption class="chip-cap">Boceto</figcaption></figure>
-          <div class="pieza-body">
-            <h4>Calles con dirección</h4>
-            <p>El camp es una ciudad en arcos: anillos Arco A a D y calles con hora, de 11:00 a 7:00. Tu pulsera dice tu dirección (Arco B y 2:00, carpa C‑14). Nadie se pierde a las 3 de la mañana.</p>
-            <dl class="specs"><dt>Referencia</dt><dd>Burning Man: las direcciones de reloj de Black Rock City</dd><dt>Se arma con</dt><dd>Postes de madera, letreros con la letra de Vive Camp, pulsera impresa</dd></dl>
-            <ul class="tags"><li class="tag t-prod">Producción</li></ul>
-          </div>
-        </article>
-        <article class="pieza" id="p-kit">
-          <figure class="vis" data-sketch="kit" data-label="Boceto del kit de bienvenida"><figcaption class="chip-cap">Boceto</figcaption></figure>
-          <div class="pieza-body">
-            <h4>Kit de bienvenida</h4>
-            <p>En el check-in: tote blanca, pulsera con tu dirección, bandana para el sol y el polvo, y un farol chico para la carpa. Es el regalo de Burning Man en versión simple.</p>
-            <dl class="specs"><dt>Referencia</dt><dd>Burning Man: la cultura de regalo</dd><dt>Se arma con</dt><dd>Tote serigrafiada, bandana, pulsera, farol mini</dd></dl>
-            <ul class="tags"><li class="tag t-prod">Producción</li></ul>
-          </div>
-        </article>
-      </div>
-    </div>
-
-    <div class="group">
-      <div class="group-h"><h3>Dormir</h3><span class="muted">La carpa y su barrio</span></div>
-      <div class="grid3">
-        <article class="pieza" id="p-carpa">
-          <figure class="vis" data-sketch="carpa" data-label="Boceto de la Carpa Blüme vestida"><figcaption class="chip-cap">Boceto</figcaption><figure class="inset tr"><img src="img/c-carpa.webp" alt="Carpa real de Vive Camp con dos colchonetas" loading="lazy"><figcaption>Real</figcaption></figure></figure>
-          <div class="pieza-body">
-            <h4>Carpa Blüme</h4>
-            <p>La carpa de Vive Camp tal cual, vestida con piezas que se quitan: banderín naranja en la punta, número en vinil, cintas en las amarras, tapete y farol. Versión Mesa: se vende junto con una mesa del festival.</p>
-            <dl class="specs"><dt>Referencia</dt><dd>Coachella: carpas ya armadas al llegar</dd><dt>Se arma con</dt><dd>Carpa y colchonetas Vive Camp, banderín, vinil removible, tapete</dd></dl>
-            <ul class="tags"><li class="tag t-vive">Vive Camp</li><li class="tag t-prod">Producción</li></ul>
-          </div>
-        </article>
-        <article class="pieza" id="p-barrios">
-          <figure class="vis" data-sketch="barrios" data-label="Boceto de banderas de barrio sobre las carpas"><figcaption class="chip-cap">Boceto</figcaption></figure>
-          <div class="pieza-body">
-            <h4>Barrios de color</h4>
-            <p>Cuatro barrios con los colores que ya comparten las marcas: Magenta, Naranja, Durazno y Hiedra. Cada uno con bandera de 6 m que se ve desde todo el camp y su propia fogata. El color se repite en banderín y pulsera.</p>
-            <dl class="specs"><dt>Referencia</dt><dd>Coachella: banderas e hitos para ubicarte</dd><dt>Se arma con</dt><dd>Banderas tipo pluma de 5 a 6 m con lastre</dd></dl>
-            <ul class="tags"><li class="tag t-renta">Renta</li></ul>
-          </div>
-        </article>
-        <article class="pieza" id="p-avenida">
-          <figure class="vis" data-sketch="avenida" data-label="Boceto de la avenida de faroles de noche"><figcaption class="chip-cap">Boceto</figcaption><figure class="inset"><img src="img/c-farol.webp" alt="Farol real de Vive Camp encendido en el pasto" loading="lazy"><figcaption>Real</figcaption></figure></figure>
-          <div class="pieza-body">
-            <h4>Avenida de faroles</h4>
-            <p>Del Portal a la Plaza: faroles al piso a los dos lados y guirnaldas de foco arriba. A las 2 de la mañana es lo único prendido, y la luz te lleva a casa.</p>
-            <dl class="specs"><dt>Referencia</dt><dd>Burning Man: la ciudad se lee con luz</dd><dt>Se arma con</dt><dd>Faroles Vive Camp, postes y guirnaldas</dd></dl>
-            <ul class="tags"><li class="tag t-vive">Vive Camp</li><li class="tag t-renta">Renta</li></ul>
-          </div>
-        </article>
-      </div>
-    </div>
-
-    <div class="group">
-      <div class="group-h"><h3>Convivir</h3><span class="muted">Donde pasa la tarde</span></div>
-      <div class="grid3">
-        <article class="pieza" id="p-fogata">
-          <figure class="vis" data-sketch="fogata" data-label="Boceto de la fogata lounge del barrio"><figcaption class="chip-cap">Boceto</figcaption><figure class="inset tr"><img src="img/c-jardineras.webp" alt="Jardineras de madera con hiedra reales de Blüme" loading="lazy"><figcaption>Real</figcaption></figure></figure>
-          <div class="pieza-body">
-            <h4>Fogata del barrio</h4>
-            <p>Un lounge por barrio: tapete grande, cojines y las jardineras de madera con hiedra de Blüme como respaldo. Al centro, fogatero de metal, o fogata LED si el venue no permite fuego.</p>
-            <dl class="specs"><dt>Referencia</dt><dd>Burning Man: campamentos temáticos con lounge</dd><dt>Se arma con</dt><dd>Jardineras y hiedra Blüme, tapetes, cojines, fogatero</dd></dl>
-            <ul class="tags"><li class="tag t-blume">Blüme</li><li class="tag t-renta">Renta</li></ul>
-          </div>
-        </article>
-        <article class="pieza" id="p-oasis">
-          <figure class="vis" data-sketch="oasis" data-label="Boceto de la Barra Oasis"><figcaption class="chip-cap">Boceto</figcaption><figure class="inset tr"><img src="img/c-barra-redonda.webp" alt="Barra redonda naranja real de Blüme" loading="lazy"><figcaption>Real</figcaption></figure></figure>
-          <div class="pieza-body">
-            <h4>Barra Oasis</h4>
-            <p>La barra redonda de Blüme al centro de la Plaza. De día café, agua y electrolitos; de noche la carta de siempre. Alrededor, jardineras con hiedra y estación de recarga.</p>
-            <dl class="specs"><dt>Referencia</dt><dd>Burning Man: Center Camp, el punto de encuentro</dd><dt>Se arma con</dt><dd>Barra redonda Blüme, jardineras, hielo y bebidas</dd></dl>
-            <ul class="tags"><li class="tag t-blume">Blüme</li></ul>
-          </div>
-        </article>
-        <article class="pieza" id="p-mirador">
-          <figure class="vis" data-sketch="mirador" data-label="Boceto del Mirador de andamio"><figcaption class="chip-cap">Boceto</figcaption></figure>
-          <div class="pieza-body">
-            <h4>Mirador</h4>
-            <p>En lugar de la rueda de la fortuna: una torre de andamio de 4 m con barandal y letras BLÜME. Desde arriba se ve todo el camp con el escenario y la montaña. Es la foto oficial de la hora dorada.</p>
-            <dl class="specs"><dt>Referencia</dt><dd>Coachella: la vista desde la rueda de la fortuna</dd><dt>Se arma con</dt><dd>Andamio certificado, barandal, letras, staff con cupo limitado</dd></dl>
-            <ul class="tags"><li class="tag t-renta">Renta</li><li class="tag t-blume">Blüme</li></ul>
-          </div>
-        </article>
-      </div>
-    </div>
-
-    <div class="group">
-      <div class="group-h"><h3>Noche y amanecer</h3><span class="muted">Del cierre al desayuno</span></div>
-      <div class="grid3">
-        <article class="pieza" id="p-beams">
-          <figure class="vis" data-sketch="beams" data-label="Boceto de beams sobre las carpas"><figcaption class="chip-cap">Boceto</figcaption><figure class="inset"><img src="img/c-beams.webp" alt="Beams reales sobre el escenario Blüme" loading="lazy"><figcaption>Real</figcaption></figure></figure>
-          <div class="pieza-body">
-            <h4>Beams como reloj</h4>
-            <p>Los beams que Blüme ya usa sobre el escenario apuntan también al cielo del camp. A las 2:00 bajan y se apagan despacio: esa es la señal de silencio. No hace falta un letrero.</p>
-            <dl class="specs"><dt>Referencia</dt><dd>Coachella y Burning Man: la luz se ve desde el camping</dd><dt>Se arma con</dt><dd>Beams y programación de luces del escenario</dd></dl>
-            <ul class="tags"><li class="tag t-blume">Blüme</li></ul>
-          </div>
-        </article>
-        <article class="pieza" id="p-amanecer">
-          <figure class="vis" data-sketch="amanecer" data-label="Boceto de la Sesión Amanecer"><figcaption class="chip-cap">Boceto</figcaption></figure>
-          <div class="pieza-body">
-            <h4>Sesión Amanecer</h4>
-            <p>Un solo módulo de arco del escenario, cabina y cuatro bocinas en el borde del camp. De 6:30 a 8:30, set tranquilo y café. Es el momento que la gente cuenta después.</p>
-            <dl class="specs"><dt>Referencia</dt><dd>Burning Man: los sets al amanecer</dd><dt>Se arma con</dt><dd>1 módulo de arco Blüme, cabina, 4 bocinas, DJ</dd></dl>
-            <ul class="tags"><li class="tag t-blume">Blüme</li><li class="tag t-renta">Renta</li></ul>
-          </div>
-        </article>
-        <article class="pieza" id="p-bienestar">
-          <figure class="vis" data-sketch="bienestar" data-label="Boceto de yoga en el pasto entre carpas"><figcaption class="chip-cap">Boceto</figcaption><figure class="inset"><img src="img/c-fitness.webp" alt="Sesión real de entrenamiento de día en Blüme" loading="lazy"><figcaption>Real</figcaption></figure></figure>
-          <div class="pieza-body">
-            <h4>Bienestar en el pasto</h4>
-            <p>Blüme ya hace sesiones de entrenamiento de día. En el camp es igual pero de mañana: tapetes entre las carpas, instructor frente al arco del amanecer y desayuno después.</p>
-            <dl class="specs"><dt>Referencia</dt><dd>Coachella: actividades de mañana en el camping</dd><dt>Se arma con</dt><dd>Tapetes, instructor, el sonido de la Sesión Amanecer</dd></dl>
-            <ul class="tags"><li class="tag t-blume">Blüme</li><li class="tag t-renta">Renta</li></ul>
-          </div>
-        </article>
-      </div>
+    <div class="gal">
+      <article class="card" id="p-carpa">
+        <figure class="vis" data-sketch="carpa" data-label="Boceto de la carpa vestida"><figcaption class="chip-cap">Boceto</figcaption><figure class="inset"><img src="img/c-carpa.webp" alt="Carpa real de Vive Camp" loading="lazy"><figcaption>Real</figcaption></figure></figure>
+        <h4>La carpa vestida <span class="tag t-dos">Los dos</span></h4>
+        <p>Banderín naranja, número en vinil, cintas y tapete. Todo se quita.</p>
+        <p class="parts">Carpa Vive Camp · vinil removible · tapete</p>
+      </article>
+      <article class="card" id="p-portal">
+        <figure class="vis" data-sketch="portal" data-label="Boceto del Portal de Arcos"><figcaption class="chip-cap">Boceto</figcaption><figure class="inset"><img src="img/c-arcos-hiedra.webp" alt="Paneles de arco reales del escenario Blüme" loading="lazy"><figcaption>Real</figcaption></figure></figure>
+        <h4>Portal de Arcos <span class="tag t-dos">Los dos</span></h4>
+        <p>La entrada, hecha con los mismos paneles de arco del escenario.</p>
+        <p class="parts">Paneles de arco · hiedra · truss · letras</p>
+      </article>
+      <article class="card" id="p-avenida">
+        <figure class="vis" data-sketch="avenida" data-label="Boceto de la avenida de faroles"><figcaption class="chip-cap">Boceto</figcaption><figure class="inset"><img src="img/c-farol.webp" alt="Farol real de Vive Camp encendido" loading="lazy"><figcaption>Real</figcaption></figure></figure>
+        <h4>Avenida de faroles <span class="tag t-dos">Los dos</span></h4>
+        <p>Faroles al piso y guirnaldas arriba: el camino entre la pista y las carpas.</p>
+        <p class="parts">Faroles Vive Camp · postes · guirnaldas</p>
+      </article>
+      <article class="card" id="p-oasis">
+        <figure class="vis" data-sketch="oasis" data-label="Boceto de la Barra Oasis"><figcaption class="chip-cap">Boceto</figcaption><figure class="inset"><img src="img/c-barra-redonda.webp" alt="Barra redonda naranja real de Blüme" loading="lazy"><figcaption>Real</figcaption></figure></figure>
+        <h4>Barra Oasis <span class="tag t-dos">Los dos</span></h4>
+        <p>La barra redonda de Blüme al centro, rodeada de jardineras con hiedra.</p>
+        <p class="parts">Barra redonda · jardineras Blüme</p>
+      </article>
+      <article class="card" id="p-mirador">
+        <figure class="vis" data-sketch="mirador" data-label="Boceto del Mirador de andamio"><figcaption class="chip-cap">Boceto</figcaption></figure>
+        <h4>Mirador <span class="tag t-dos">Los dos</span></h4>
+        <p>Torre de andamio de 4 m. Es la foto de la hora dorada.</p>
+        <p class="parts">Andamio certificado · barandal · letras</p>
+      </article>
+      <article class="card" id="p-beams">
+        <figure class="vis" data-sketch="beams" data-label="Boceto de beams sobre las carpas"><figcaption class="chip-cap">Boceto</figcaption><figure class="inset"><img src="img/c-beams.webp" alt="Beams reales sobre el escenario Blüme" loading="lazy"><figcaption>Real</figcaption></figure></figure>
+        <h4>Beams como reloj <span class="tag t-dos">Los dos</span></h4>
+        <p>A las dos bajan y se apagan despacio. Esa es la señal, sin letreros.</p>
+        <p class="parts">Beams del escenario · programación</p>
+      </article>
+      <article class="card" id="p-kit">
+        <figure class="vis" data-sketch="kit" data-label="Boceto del kit de bienvenida"><figcaption class="chip-cap">Boceto</figcaption></figure>
+        <h4>Kit de bienvenida <span class="tag t-dos">Los dos</span></h4>
+        <p>Tote, bandana, pulsera con tu lugar y un farol chico.</p>
+        <p class="parts">Serigrafía · pulsera impresa · farol mini</p>
+      </article>
+      <article class="card" id="p-calles">
+        <figure class="vis" data-sketch="calles" data-label="Boceto de letreros de calle y pulsera"><figcaption class="chip-cap">Boceto</figcaption></figure>
+        <h4>Calles con dirección <span class="tag t-camp">Camp</span></h4>
+        <p>«Arco B y 2:00». Una ciudad en arcos, como Burning Man.</p>
+        <p class="parts">Postes de madera · letreros · pulsera</p>
+      </article>
+      <article class="card" id="p-barrios">
+        <figure class="vis" data-sketch="barrios" data-label="Boceto de banderas de barrio"><figcaption class="chip-cap">Boceto</figcaption></figure>
+        <h4>Barrios de color <span class="tag t-camp">Camp</span></h4>
+        <p>Cuatro colores y cuatro banderas de 6 m para no perderte.</p>
+        <p class="parts">Banderas tipo pluma · lastre</p>
+      </article>
+      <article class="card" id="p-fogata">
+        <figure class="vis" data-sketch="fogata" data-label="Boceto de la fogata del barrio"><figcaption class="chip-cap">Boceto</figcaption><figure class="inset"><img src="img/c-jardineras.webp" alt="Jardineras de madera con hiedra reales de Blüme" loading="lazy"><figcaption>Real</figcaption></figure></figure>
+        <h4>Fogata del barrio <span class="tag t-camp">Camp</span></h4>
+        <p>Tapete, cojines y las jardineras de Blüme como respaldo.</p>
+        <p class="parts">Jardineras · tapetes · fogatero o LED</p>
+      </article>
+      <article class="card" id="p-amanecer">
+        <figure class="vis" data-sketch="amanecer" data-label="Boceto de la Sesión Amanecer"><figcaption class="chip-cap">Boceto</figcaption></figure>
+        <h4>Sesión Amanecer <span class="tag t-camp">Camp</span></h4>
+        <p>Un arco, una cabina y café, de 6:30 a 8:30.</p>
+        <p class="parts">1 módulo de arco · 4 bocinas · DJ</p>
+      </article>
+      <article class="card" id="p-bienestar">
+        <figure class="vis" data-sketch="bienestar" data-label="Boceto de yoga entre las carpas"><figcaption class="chip-cap">Boceto</figcaption><figure class="inset"><img src="img/c-fitness.webp" alt="Sesión real de entrenamiento de día en Blüme" loading="lazy"><figcaption>Real</figcaption></figure></figure>
+        <h4>Bienestar en el pasto <span class="tag t-camp">Camp</span></h4>
+        <p>La sesión que Blüme ya hace de día, pero de mañana entre las carpas.</p>
+        <p class="parts">Tapetes · instructor · sonido del amanecer</p>
+      </article>
     </div>
   </div>
 </section>
@@ -603,134 +462,73 @@ footer p{font:400 12.5px/1.6 var(--f-mono);color:var(--muted);max-width:90ch}
 <section id="plano">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow">Plano esquemático</p>
-      <h2 class="display">Una ciudad en arcos</h2>
-      <p class="lede">El escenario suena hacia el sur; el camp queda al lado, entrando por el Portal. Las carpas forman anillos alrededor de una plaza, como Black Rock City, pero cada anillo se llama Arco. Toca una zona para ver qué es.</p>
+      <p class="eyebrow">Plano</p>
+      <h2 class="display">Dónde va cada cosa</h2>
+      <p class="lede">El Modo 1 es sólo el anillo de carpas alrededor de la pista. El Modo 2 abre el camp atrás.</p>
+    </div>
+    <div class="plan-head">
+      <div class="modebar" role="group" aria-label="Modo del plano">
+        <button type="button" data-mode="vip" aria-pressed="true">Modo 1 · VIP</button>
+        <button type="button" data-mode="camp" aria-pressed="false">Modo 2 · Camp</button>
+      </div>
     </div>
     <div class="plan-layout">
-      <div class="plan-card"><svg class="plan" id="plan" viewBox="0 0 1040 640" role="img" aria-label="Plano esquemático del festival y el campamento"></svg></div>
+      <div class="plan-card"><svg class="plan" id="plan" viewBox="0 0 900 430" role="img" aria-label="Plano esquemático del festival y las carpas"></svg></div>
       <div class="plan-side">
         <div class="zone-info" id="zone-info" aria-live="polite"></div>
         <ul class="zone-list" id="zone-list"></ul>
-        <p class="plan-note">Medidas de referencia: 1 cuadro = 10 m, carpa de 4 m de diámetro, 6 m entre centros. Ajustar al venue real.</p>
       </div>
     </div>
   </div>
 </section>
+
+<figure class="band"><img src="img/band-carpas.webp" alt="Hilera de carpas de Vive Camp al atardecer" loading="lazy" width="1700" height="595"><figcaption>Vive Camp hoy</figcaption></figure>
 
 <section id="identidad">
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow">Identidad</p>
-      <h2 class="display">Tres nombres posibles</h2>
-      <p class="lede">Los tres usan el sistema del logo de Vive Camp, con letra extendida y contorno grueso, y el naranja y los arcos de Blüme. Así se ve la colaboración sin tener que explicarla.</p>
+      <h2 class="display">Tres nombres</h2>
+      <p class="lede">Los tres usan la letra del logo de Vive Camp y el naranja de Blüme.</p>
     </div>
     <div class="lockups">
-      <div class="lk"><div class="lk-vis" data-lockup="a"></div><h3>Blüme Camp <span class="reco">Recomendado</span></h3><p>Dice qué es: un Blüme con campamento. Corto, cabe en pulsera, banderín y letrero de calle.</p></div>
-      <div class="lk"><div class="lk-vis" data-lockup="b"></div><h3>Vive Blüme</h3><p>Juego con el nombre de Vive Camp. Funciona mejor como frase de campaña: «Vive Blüme toda la noche».</p></div>
-      <div class="lk"><div class="lk-vis" data-lockup="c"></div><h3>Blüme × Vive Camp</h3><p>La versión formal para boletos, prensa y marcas aliadas, cuando las dos marcas tienen que leerse completas.</p></div>
-    </div>
-    <div class="id-rules">
-      <div><b>Señalética</b><p>Letra de Vive Camp: mayúsculas extendidas, blanco con contorno negro. Se lee de lejos y de noche.</p></div>
-      <div><b>Marcos</b><p>Todo lo que enmarca (portal, mirador, letreros grandes) usa el arco de Blüme.</p></div>
-      <div><b>Color</b><p>Los cuatro colores de barrio, máximo dos por pieza. El degradado completo sólo en el logo.</p></div>
+      <div class="lk"><div class="lk-vis" data-lockup="a"></div><h3>Blüme Camp <span class="reco">Recomendado</span></h3><p>Corto. Cabe en pulsera, banderín y letrero.</p></div>
+      <div class="lk"><div class="lk-vis" data-lockup="b"></div><h3>Vive Blüme</h3><p>Funciona mejor como frase de campaña.</p></div>
+      <div class="lk"><div class="lk-vis" data-lockup="c"></div><h3>Blüme × Vive Camp</h3><p>Para boletos, prensa y marcas aliadas.</p></div>
     </div>
   </div>
 </section>
 
-<section id="referencias">
+<section id="sigue">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow">Coachella y Burning Man, en versión Blüme</p>
-      <h2 class="display">Qué tomamos de cada uno</h2>
-      <p class="lede">Lo que se copia es la sensación. La pieza física siempre es una que ya existe o se renta.</p>
+      <p class="eyebrow">Qué sigue</p>
+      <h2 class="display">Tres pasos</h2>
     </div>
-    <div class="refs">
-      <div class="ref-row head"><span>Referencia</span><span>Qué es</span><span>Lo que tomamos</span><span>Versión Blüme</span></div>
-      <div class="ref-row"><span class="src">Coachella</span><span>Instalaciones de color que se ven desde lejos</span><span>Un hito para ubicarte y para la foto</span><span class="blu"><a href="#p-portal">Portal de Arcos</a> con los paneles del escenario</span></div>
-      <div class="ref-row"><span class="src">Coachella</span><span>La rueda de la fortuna</span><span>La vista desde arriba al atardecer</span><span class="blu"><a href="#p-mirador">Mirador</a> de andamio de 4 m</span></div>
-      <div class="ref-row"><span class="src">Coachella</span><span>Camping con carpas ya armadas</span><span>Llegar y que tu carpa esté lista</span><span class="blu"><a href="#p-carpa">Carpa Blüme</a> armada y vestida</span></div>
-      <div class="ref-row"><span class="src">Burning Man</span><span>Ciudad en arcos con direcciones de reloj</span><span>Encontrar tu carpa sin GPS</span><span class="blu"><a href="#p-calles">Arco A–D y calles 11:00–7:00</a></span></div>
-      <div class="ref-row"><span class="src">Burning Man</span><span>Campamentos temáticos</span><span>Cada zona con identidad propia</span><span class="blu"><a href="#p-barrios">Barrios de color</a> con bandera y <a href="#p-fogata">fogata</a></span></div>
-      <div class="ref-row"><span class="src">Burning Man</span><span>Sets al amanecer</span><span>El momento que todos cuentan</span><span class="blu"><a href="#p-amanecer">Sesión Amanecer</a> en un arco</span></div>
-      <div class="ref-row"><span class="src">Burning Man</span><span>La ciudad se lee con luz</span><span>Volver a casa sin perderte</span><span class="blu"><a href="#p-avenida">Avenida de faroles</a> y guirnaldas</span></div>
-      <div class="ref-row"><span class="src">Burning Man</span><span>Cultura de regalo</span><span>Un detalle al llegar</span><span class="blu"><a href="#p-kit">Kit de bienvenida</a></span></div>
-    </div>
-      </div>
-</section>
-
-<section id="produccion">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow">Producción</p>
-      <h2 class="display">Quién pone qué</h2>
-      <p class="lede">Lo de Blüme y Vive Camp sale de sus propias fotos; hay que confirmar inventario y fechas. Lo demás es renta o producción nueva sencilla.</p>
-    </div>
-    <div class="filters" id="filters" role="group" aria-label="Filtrar por origen">
-      <button class="btn" type="button" data-f="all" aria-pressed="true">Todo</button>
-      <button class="btn" type="button" data-f="blume" aria-pressed="false">Blüme</button>
-      <button class="btn" type="button" data-f="vive" aria-pressed="false">Vive Camp</button>
-      <button class="btn" type="button" data-f="renta" aria-pressed="false">Renta</button>
-      <button class="btn" type="button" data-f="prod" aria-pressed="false">Producción nueva</button>
-    </div>
-    <ul class="prod" id="prod"></ul>
-
-    <div class="sponsor">
-      <figure><img src="img/c-neon.webp" alt="Activación de marca con neón en Blüme de noche" loading="lazy"><figcaption class="chip-cap">Así se ven hoy</figcaption></figure>
-      <div>
-        <h3>Espacios para marcas aliadas</h3>
-        <p>Las activaciones con neón que ya funcionan en el festival tienen versión camp, con momentos que el camper usa de verdad.</p>
-        <ul><li>Regaderas</li><li>Estación de recarga</li><li>Café del amanecer</li><li>Kit de bienvenida</li><li>Mirador, foto oficial</li><li>Fogatas de barrio</li></ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="siguiente">
-  <div class="wrap two">
-    <div>
-      <p class="eyebrow">Contenido</p>
-      <h3 style="margin-top:10px">Shot list para redes</h3>
-      <ul class="shots">
-        <li><time>18:45</time><span>Aérea desde el Mirador: carpas, banderas y montaña, con el escenario al fondo.</span></li>
-        <li><time>19:30</time><span>Desde dentro de la carpa: la puerta enmarca los arcos encendidos.</span></li>
-        <li><time>23:00</time><span>Contrapicada: puntas de carpa con banderín y los beams arriba.</span></li>
-        <li><time>02:10</time><span>La avenida de faroles con gente regresando.</span></li>
-        <li><time>06:45</time><span>Sesión Amanecer a contraluz.</span></li>
-        <li><time>09:00</time><span>Cenital de los tapetes entre las carpas.</span></li>
-      </ul>
-    </div>
-    <div>
-      <p class="eyebrow">Siguientes pasos</p>
-      <h3 style="margin-top:10px">Para aterrizarlo</h3>
-      <ol class="steps">
-        <li><span>Definir sede y tamaño: zona camp junto al venue de siempre, o edición de fin de semana fuera de la ciudad con montaña. De ahí sale el número de carpas.</span></li>
-        <li><span>Inventario de Vive Camp para esas fechas: carpas, colchonetas y faroles.</span></li>
-        <li><span>Vestir una carpa de prueba (banderín, vinil, cintas, tapete) y tomarle foto real en hora dorada.</span></li>
-        <li><span>Medir los paneles de arco del escenario para dibujar el Portal con medidas reales.</span></li>
-        <li><span>Armar los paquetes: Carpa General y Carpa + Mesa.</span></li>
-      </ol>
+    <div class="cierre">
+      <div><b>Preguntar</b><p>Si el venue permite pernocta. De ahí depende si es Modo 1 o los dos.</p></div>
+      <div><b>Vestir una carpa</b><p>Una sola, con banderín, número, tapete y farol. Foto real en hora dorada.</p></div>
+      <div><b>Medir</b><p>Los paneles de arco del escenario y el inventario de carpas para las fechas.</p></div>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="wrap"><p>Propuesta conceptual de trabajo, no es un anuncio oficial. Fotos: material de Blüme y Vive Camp. Los bocetos son ilustrativos y las medidas son de referencia.</p></div>
+  <div class="wrap"><p>Propuesta conceptual, no es un anuncio oficial. Fotos: material de Blüme y de Vive Camp. Los bocetos son ilustrativos; medidas y cantidades por confirmar.</p></div>
 </footer>
 
 <script>
 var ZONES={
-  escenario:{n:1,t:'Escenario Blüme',d:'El escenario de siempre: truss, letras BLÜME, pantalla, arcos con hiedra y beams. El sonido apunta al sur, en sentido contrario al camp.'},
-  pista:{n:2,t:'Pista y mesas',d:'General y mesas con servicio, igual que en cualquier Blüme. Las mesas se pueden vender con carpa incluida (Carpa + Mesa).'},
-  barras:{n:3,t:'Barras y activaciones',d:'Barras redondas y activaciones de marcas aliadas con neón en el perímetro del festival.'},
-  portal:{n:4,t:'Portal de Arcos',d:'El único paso entre festival y camp, con control de pulsera de camper. Está sobre la calle de las 9:00, como la entrada de una ciudad.'},
-  avenida:{n:5,t:'Avenida de faroles',d:'Del Portal a la Plaza: faroles al piso a los dos lados y guirnaldas arriba. Mide unos {avenida} m.'},
-  plaza:{n:6,t:'Plaza: Mirador y Barra Oasis',d:'El centro de la aldea, donde Burning Man pone al Man. Aquí no se quema nada: hay un Mirador de 4 m y la barra redonda. Unos {plaza} m de diámetro.'},
-  barrios:{n:7,t:'Barrios y calles',d:'Cuatro barrios de color. Anillos Arco A (interior) a Arco D (exterior) y calles radiales de 11:00 a 7:00; una dirección se lee «Arco B y 2:00». En este esquema caben {tents} carpas, {campers} personas.'},
-  fogatas:{n:8,t:'Fogatas de barrio',d:'Una por barrio, en Arco B con la calle central del barrio. Bandera de 6 m, tapetes y jardineras-banca con hiedra.'},
-  servicios:{n:9,t:'Servicios',d:'Tres puntos de baños sobre el anillo exterior, a las 12:00, 3:00 y 6:00, con regaderas, lockers y recarga. La carpa más lejana queda a unos {serv} m de un baño.'},
-  amanecer:{n:10,t:'Sesión Amanecer',d:'Un módulo de arco, cabina y cuatro bocinas en el borde este del camp. Funciona de 6:30 a 8:30.'},
-  checkin:{n:11,t:'Check-in del camp',d:'Acceso desde el estacionamiento. Entrega de pulsera con dirección y kit de bienvenida, y de ahí a la calle de las 7:00.'}
+  escenario:{n:1,t:'Escenario Blüme',d:'El de siempre: truss, letras, pantalla y beams. El sonido apunta en contra de las carpas.'},
+  pista:{n:2,t:'Pista, barras y marcas',d:'General, barras redondas y activaciones. Nada de lo que ya funciona se mueve.'},
+  vip:{n:3,t:'Carpas VIP',d:'{tents} carpas pegadas a la pista, con mesa adentro y vista al escenario.'},
+  acceso:{n:4,t:'Acceso',d:'La entrada de siempre. La pulsera dice si tu lugar es carpa o general.'},
+  portal:{n:5,t:'Portal de Arcos',d:'El paso entre la pista y el camp, con control de pulsera.'},
+  avenida:{n:6,t:'Avenida de faroles',d:'Faroles a los dos lados. De madrugada es lo único prendido.'},
+  barrios:{n:7,t:'Barrios y calles',d:'Anillos Arco A, B y C, y calles con hora: una dirección se lee «Arco B y 2:00». Caben {camp} carpas más.'},
+  fogatas:{n:8,t:'Fogatas',d:'Una por barrio, con tapetes, cojines y jardineras con hiedra.'},
+  plaza:{n:9,t:'Plaza',d:'El centro de la aldea: el Mirador de 4 m y la barra redonda.'},
+  servicios:{n:10,t:'Servicios',d:'Baños, regaderas y lockers en el anillo de afuera.'}
 };
 </script>
 <script>
@@ -784,7 +582,8 @@ function ivy({x,y,len,s=6,seed=1}){
 function tent(o){
   const {x,y,w,h=w,canvas=K.canvas,shade=K.shade,door=K.door,glow=0,pennant=K.orange,num='',bows=false,mats=false,p}=o;
   const sw=o.sw||Math.max(1,w*0.012);
-  const wall=h*0.17,eY=y-wall,ay=y-h,rh=h-wall,dTop=ay+rh*0.36;
+  const dW=o.doorW||0.19,dF=dW*1.42;
+  const wall=h*0.17,eY=y-wall,ay=y-h,rh=h-wall,dTop=ay+rh*(o.doorTop||0.36);
   const L=x-w*0.5,R=x+w*0.5,oL=x-w*0.545,oR=x+w*0.545;
   const body=`M${n(x)},${n(ay)} Q${n(x-w*0.16)},${n(ay+rh*0.55)} ${n(oL)},${n(eY)} L${n(L)},${n(eY)} L${n(L-w*0.012)},${n(y)} L${n(R+w*0.012)},${n(y)} L${n(R)},${n(eY)} L${n(oR)},${n(eY)} Q${n(x+w*0.16)},${n(ay+rh*0.55)} ${n(x)},${n(ay)}Z`;
   let s=`<ellipse cx="${n(x)}" cy="${n(y+1)}" rx="${n(w*0.64)}" ry="${n(Math.max(2,h*0.045))}" fill="#000" opacity=".16"/>`;
@@ -792,8 +591,8 @@ function tent(o){
   s+=`<path d="${body}" style="fill:${canvas}" stroke="${K.ink}" stroke-width="${n(sw)}" stroke-linejoin="round"/>`;
   s+=`<path d="M${n(x)},${n(ay)} Q${n(x+w*0.16)},${n(ay+rh*0.55)} ${n(oR)},${n(eY)} L${n(x+w*0.22)},${n(eY)}Z" style="fill:${shade}" opacity=".75"/>`;
   s+=`<path d="M${n(oL)},${n(eY)} L${n(oR)},${n(eY)}" stroke="${K.ink}" stroke-width="${n(sw*0.8)}"/>`;
-  s+=`<path d="M${n(x)},${n(dTop)} L${n(x-w*0.27)},${n(y)} L${n(x+w*0.27)},${n(y)}Z" fill="#FFF7EA" opacity=".35" stroke="${K.ink}" stroke-width="${n(sw*0.6)}"/>`;
-  s+=`<path d="M${n(x)},${n(dTop)} L${n(x-w*0.19)},${n(y)} L${n(x+w*0.19)},${n(y)}Z" style="fill:${door}" stroke="${K.ink}" stroke-width="${n(sw*0.8)}"/>`;
+  s+=`<path d="M${n(x)},${n(dTop)} L${n(x-w*dF)},${n(y)} L${n(x+w*dF)},${n(y)}Z" fill="#FFF7EA" opacity=".35" stroke="${K.ink}" stroke-width="${n(sw*0.6)}"/>`;
+  s+=`<path d="M${n(x)},${n(dTop)} L${n(x-w*dW)},${n(y)} L${n(x+w*dW)},${n(y)}Z" style="fill:${door}" stroke="${K.ink}" stroke-width="${n(sw*0.8)}"/>`;
   if(mats){
     s+=`<path d="M${n(x-w*0.15)},${n(y)} L${n(x-w*0.025)},${n(y)} L${n(x-w*0.025)},${n(y-h*0.1)} L${n(x-w*0.11)},${n(y-h*0.1)}Z M${n(x+w*0.025)},${n(y)} L${n(x+w*0.15)},${n(y)} L${n(x+w*0.11)},${n(y-h*0.1)} L${n(x+w*0.025)},${n(y-h*0.1)}Z" fill="${K.mat}" stroke="${K.ink}" stroke-width="${n(sw*0.5)}"/>`;
   }
@@ -1125,6 +924,127 @@ const SK={
   }
 };
 
+function wrapW(p,inner,label,w,h){return `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="${label}"><defs>${defs(p)}</defs>${inner}</svg>`;}
+function rope({x1,y1,x2,y2,sag,c='#D9B98A'}){
+  const mx=(x1+x2)/2,my=(y1+y2)/2+sag;
+  return `<path d="M${n(x1)},${n(y1)} Q${n(mx)},${n(my)} ${n(x2)},${n(y2)}" fill="none" stroke="${c}" stroke-width="2.4" stroke-linecap="round"/>`;
+}
+function post({x,y,h,c='#3A2C22'}){
+  return `<rect x="${n(x-3)}" y="${n(y-h)}" width="6" height="${n(h)}" rx="2" fill="${c}" stroke="${K.ink}" stroke-width="1.4"/><circle cx="${n(x)}" cy="${n(y-h-2)}" r="4.5" fill="${K.vOrange}" stroke="${K.ink}" stroke-width="1.4"/>`;
+}
+function cushion({x,y,w,h,c}){
+  return `<path d="M${n(x-w/2)},${n(y)} q0,${n(-h)} ${n(w/2)},${n(-h)} q${n(w/2)},0 ${n(w/2)},${n(h)} Z" fill="${c}" stroke="${K.ink}" stroke-width="1.6" stroke-linejoin="round"/>`;
+}
+function pouf({x,y,r,h,c,c2}){
+  return `<path d="M${n(x-r)},${n(y-h)} a${n(r)},${n(r*0.34)} 0 0 0 ${n(r*2)},0 v${n(h)} a${n(r)},${n(r*0.34)} 0 0 1 ${n(-r*2)},0 Z" fill="${c2}" stroke="${K.ink}" stroke-width="1.8"/><ellipse cx="${n(x)}" cy="${n(y-h)}" rx="${n(r)}" ry="${n(r*0.34)}" fill="${c}" stroke="${K.ink}" stroke-width="1.8"/>`;
+}
+function lowTable({x,y,r,h}){
+  let s=`<path d="M${n(x-r*0.52)},${n(y-h*0.1)} l${n(r*0.16)},${n(h*0.1)} M${n(x+r*0.52)},${n(y-h*0.1)} l${n(-r*0.16)},${n(h*0.1)}" stroke="${K.ink}" stroke-width="3"/>`;
+  s+=`<path d="M${n(x-r)},${n(y-h)} a${n(r)},${n(r*0.3)} 0 0 0 ${n(r*2)},0 v${n(h*0.26)} a${n(r)},${n(r*0.3)} 0 0 1 ${n(-r*2)},0 Z" fill="#5A3C24" stroke="${K.ink}" stroke-width="1.8"/>`;
+  s+=`<ellipse cx="${n(x)}" cy="${n(y-h)}" rx="${n(r)}" ry="${n(r*0.3)}" fill="#7B5A34" stroke="${K.ink}" stroke-width="1.8"/>`;
+  return s;
+}
+function bucket({x,y,w,h}){
+  let s=`<path d="M${n(x-w/2)},${n(y-h)} l${n(w*0.1)},${n(h)} h${n(w*0.8)} l${n(w*0.1)},${n(-h)} Z" fill="#C9CDD2" stroke="${K.ink}" stroke-width="1.8" stroke-linejoin="round"/>`;
+  s+=`<ellipse cx="${n(x)}" cy="${n(y-h)}" rx="${n(w/2)}" ry="${n(w*0.17)}" fill="#E4E8EC" stroke="${K.ink}" stroke-width="1.8"/>`;
+  s+=`<path d="M${n(x-w*0.22)},${n(y-h-2)} l${n(-w*0.1)},${n(-h*0.75)} l${n(w*0.16)},${n(-h*0.1)} l${n(w*0.1)},${n(h*0.8)} Z" fill="#2E5B3A" stroke="${K.ink}" stroke-width="1.6" stroke-linejoin="round"/>`;
+  s+=`<path d="M${n(x+w*0.08)},${n(y-h-3)} l${n(w*0.04)},${n(-h*0.8)} l${n(w*0.16)},${n(h*0.06)} l${n(-w*0.06)},${n(h*0.78)} Z" fill="#6B2C2C" stroke="${K.ink}" stroke-width="1.6" stroke-linejoin="round"/>`;
+  return s;
+}
+function glassPair({x,y,s}){
+  return `<path d="M${n(x-s*0.3)},${n(y-s)} h${n(s*0.6)} l${n(-s*0.08)},${n(s)} h${n(-s*0.44)} Z" fill="#E8F0F4" opacity=".85" stroke="${K.ink}" stroke-width="1.4"/>`;
+}
+function hangLantern({x,yTop,yLamp,s,p}){
+  return `<line x1="${n(x)}" y1="${n(yTop)}" x2="${n(x)}" y2="${n(yLamp-s*1.05)}" stroke="${K.ink}" stroke-width="1.6"/>`+lantern({x,y:yLamp,s,glow:1,p});
+}
+
+const SK2={
+  vipcarpa(p){
+    const W=900,H=420;
+    let s=sky(p,W,H,['#080B22','#181A40','#3C2C56']);
+    s+=stars({w:W,h:236,count:80,seed:7,o:.9});
+    s+=beams({srcs:[{x:706,y:300,a:-32},{x:746,y:300,a:-11},{x:790,y:300,a:11},{x:826,y:300,a:31}],len:330,p,o:.85});
+    s+=ridge({w:W,base:244,amp:50,seed:29,fill:'#17142C',step:10});
+    s+=ground(240,W,H,'#1F2719');
+    s+=stage({cx:770,y:306,w:214,h:108,p,on:1});
+    s+=tent({x:96,y:324,w:150,h:142,p,glow:.85,canvas:'#6E5444',shade:'#4C382E',door:'#FFB458'});
+    s+=tent({x:232,y:316,w:120,h:114,p,glow:.85,canvas:'#6E5444',shade:'#4C382E',door:'#FFB458'});
+    s+=tent({x:648,y:312,w:112,h:106,p,glow:.85,canvas:'#6E5444',shade:'#4C382E',door:'#FFB458'});
+    s+=lantern({x:170,y:330,s:17,glow:1,p})+lantern({x:596,y:322,s:16,glow:1,p})+lantern({x:700,y:330,s:16,glow:1,p});
+    // tarima
+    s+=`<ellipse cx="420" cy="384" rx="214" ry="30" fill="#2A2419" stroke="${K.ink}" stroke-width="2"/>`;
+    s+=tent({x:420,y:378,w:430,h:330,p,glow:.45,canvas:'#F2C79E',shade:'#D09872',door:'#3C2418',bows:true,doorW:0.33,doorTop:0.60,sw:3});
+    // interior
+    s+=`<g><ellipse cx="420" cy="374" rx="116" ry="17" fill="#8C4A28" stroke="${K.ink}" stroke-width="1.6"/><ellipse cx="420" cy="374" rx="90" ry="12" fill="none" stroke="#F6C3A0" stroke-width="1.8" stroke-dasharray="7 6"/>`;
+    s+=pouf({x:334,y:372,r:30,h:20,c:'#E4A86F',c2:'#C4854D'})+pouf({x:506,y:372,r:30,h:20,c:'#E4A86F',c2:'#C4854D'});
+    s+=cushion({x:368,y:378,w:42,h:18,c:'#EC0B73'})+cushion({x:472,y:378,w:42,h:18,c:'#FC8E01'});
+    s+=person({x:350,y:354,s:62,c:'#2B1E22',pose:'sit'})+person({x:490,y:354,s:62,c:'#3A2526',pose:'sit'});
+    s+=lowTable({x:420,y:362,r:48,h:26});
+    s+=bucket({x:420,y:336,w:40,h:26})+glassPair({x:380,y:336,s:17})+glassPair({x:460,y:336,s:17});
+    s+=hangLantern({x:420,yTop:250,yLamp:300,s:27,p});
+    s+=`</g>`;
+    // cordón y número al frente
+    s+=post({x:238,y:398,h:44})+post({x:602,y:398,h:44})+rope({x1:238,y1:354,x2:602,y2:354,sag:28,c:'#F0D2A6'});
+    s+=`<g transform="rotate(-5 216 386)"><rect x="180" y="372" width="72" height="26" rx="5" fill="#FFFDF8" stroke="${K.ink}" stroke-width="2.4"/><text x="216" y="390" text-anchor="middle" style="${DISPLAY}" font-size="16" fill="${K.magenta}">VIP 04</text></g>`;
+    s+=callout({x:420,y:338,tx:196,ty:214,t:'hielera y servicio',end:true});
+    s+=callout({x:366,y:374,tx:196,ty:344,t:'tapete y cojines',end:true});
+    s+=callout({x:420,y:302,tx:666,ty:214,t:'farol'});
+    s+=callout({x:486,y:56,tx:618,ty:40,t:'banderín de la carpa'});
+    s+=callout({x:770,y:330,tx:666,ty:392,t:'vista al escenario',end:true});
+    return wrapW(p,s,'Boceto de una carpa VIP por dentro: tapete, cojines, mesa con hielera y farol, con el escenario al fondo',W,H);
+  },
+
+  vipfila(p){
+    const W=900,H=360;
+    let s=sky(p,W,H,['#080B22','#171940','#3A2A54']);
+    s+=stars({w:W,h:200,count:60,seed:11,o:.9});
+    s+=beams({srcs:[{x:390,y:214,a:-40},{x:430,y:214,a:-16},{x:478,y:214,a:10},{x:516,y:214,a:32}],len:260,p,o:1});
+    s+=ridge({w:W,base:210,amp:36,seed:31,fill:'#15132A',step:10});
+    s+=ground(206,W,H,'#20281B');
+    s+=stage({cx:450,y:244,w:270,h:128,p,on:1});
+    const r=rnd(5);
+    for(let i=0;i<46;i++){
+      const x=170+r()*560,y=258+r()*44;
+      s+=person({x,y,s:30+ (y-258)*0.75,c:i%3?'#100C12':'#1A1118',pose:r()>.72?'up':'stand'});
+    }
+    const tents=[[62,338,168],[196,320,142],[318,304,116],[584,304,116],[706,320,142],[840,338,168]];
+    tents.forEach((t,i)=>{
+      s+=tent({x:t[0],y:t[1],w:t[2],h:t[2]*0.95,p,glow:.95,canvas:'#E7B692',shade:'#BE8862',door:'#FFB458',bows:true,pennant:i%2?K.magenta:K.vOrange});
+    });
+    [[130,344],[258,328],[380,310],[522,310],[648,328],[776,344]].forEach(q=>{s+=lantern({x:q[0],y:q[1],s:19,glow:1,p});});
+    s+=post({x:352,y:352,h:26})+post({x:548,y:352,h:26})+rope({x1:352,y1:326,x2:548,y2:326,sag:14});
+        return wrapW(p,s,'Boceto de las carpas VIP en semicírculo alrededor de la pista, con el escenario al fondo',W,H);
+  },
+
+  aldea(p){
+    const W=900,H=360;
+    let s=sky(p,W,H,['#12153A','#5C3A6A','#E8885E']);
+    s+=stars({w:W,h:140,count:36,seed:13,o:.45});
+    s+=ridge({w:W,base:196,amp:76,seed:17,fill:'#6B4A72',step:10,peaks:4});
+    s+=ridge({w:W,base:200,amp:34,seed:19,fill:'#3C3148',step:10,peaks:5});
+    s+=ground(196,W,H,'#4A5A31');
+    s+=beams({srcs:[{x:812,y:236,a:-26},{x:846,y:236,a:0},{x:876,y:236,a:24}],len:220,p,o:.55});
+    s+=stage({cx:830,y:252,w:180,h:92,p,on:.9});
+    s+=rowTents({y:238,from:30,to:330,step:52,w:40,p,glow:.85,canvas:'#E9B48F',door:'#FFB458',seed:23});
+    s+=rowTents({y:242,from:560,to:790,step:54,w:42,p,glow:.85,canvas:'#E9B48F',door:'#FFB458',seed:24});
+    s+=portal({cx:450,y:268,w:250,h:128,p,seed:12,lit:.8});
+    s+=`<path d="M424,268 L476,268 L560,360 L340,360Z" fill="#6E5A42"/>`;
+    s+=flag({x:160,y:266,h:84,c:K.magenta})+flag({x:742,y:272,h:92,c:K.peach});
+    s+=rowTents({y:296,from:20,to:300,step:92,w:78,p,glow:.9,canvas:'#E9B48F',door:'#FFB458',seed:25});
+    s+=rowTents({y:300,from:600,to:880,step:94,w:80,p,glow:.9,canvas:'#E9B48F',door:'#FFB458',seed:26});
+    [[.18,0],[.34,0],[.56,0],[.86,0]].forEach((z,i)=>{
+      const t=z[0],yy=268+92*t,hw=22+108*t;
+      s+=festoon({x1:450-hw-10*t,y1:yy-58*t,x2:450+hw+10*t,y2:yy-58*t,sag:8*t,nb:9,on:1,r:Math.max(1,2.4*t)});
+      s+=lantern({x:450-hw+3,y:yy,s:10+22*t,glow:1,p})+lantern({x:450+hw-3,y:yy,s:10+22*t,glow:1,p});
+    });
+    s+=tent({x:96,y:348,w:168,h:152,p,glow:.9,canvas:'#F0C49B',shade:'#CE9770',door:'#FFB458',bows:true,mats:true,num:'C-14'});
+    s+=tent({x:812,y:350,w:176,h:156,p,glow:.9,canvas:'#F0C49B',shade:'#CE9770',door:'#FFB458',bows:true,mats:true});
+    s+=firepit({x:300,y:338,s:17,on:1,p})+person({x:272,y:334,s:48,c:'#241A1E',pose:'sit'})+person({x:330,y:334,s:48,c:'#2B1E22',pose:'sit'});
+        return wrapW(p,s,'Boceto de la aldea de carpas de noche, con el portal de arcos, faroles y el escenario al fondo',W,H);
+  }
+};
+Object.keys(SK2).forEach(k=>{SK[k]=SK2[k];});
+
 let uid=0;
 document.querySelectorAll('[data-sketch]').forEach(el=>{
   const fn=SK[el.dataset.sketch];if(!fn)return;
@@ -1220,14 +1140,14 @@ function scal(t,arr){for(let i=0;i<arr.length-1;i++){const a=arr[i],b=arr[i+1];i
 
 const PIECES={portal:'Portal de Arcos',calles:'Calles con dirección',kit:'Kit de bienvenida',carpa:'Carpa Blüme',barrios:'Barrios de color',avenida:'Avenida de faroles',fogata:'Fogata del barrio',oasis:'Barra Oasis',mirador:'Mirador',beams:'Beams como reloj',amanecer:'Sesión Amanecer',bienestar:'Bienestar en el pasto'};
 const EVENTS=[
-  {t:13,k:'Llegada',title:'Check-in',txt:'Llegas por el acceso del camp. Te dan la pulsera con tu dirección (Arco B y 2:00, carpa C-14) y el kit. Tu carpa ya está armada y vestida.',p:['kit','calles','carpa']},
-  {t:16,k:'Tarde',title:'Lounge y sombra',txt:'Tarde en la fogata del barrio y en la Barra Oasis: agua, café frío, música baja. El escenario se ve al fondo, todavía apagado.',p:['fogata','oasis']},
-  {t:18.75,k:'Hora dorada',title:'Todos al Mirador',txt:'La foto del camp con la montaña y el atardecer. Es la toma principal para redes y se repite cada día del evento.',p:['mirador','barrios']},
-  {t:20,k:'Abre Blüme',title:'Se prenden los arcos',txt:'Abre el escenario con su producción de siempre. Del camp a la pista son dos minutos caminando por el Portal de Arcos.',p:['portal','avenida']},
-  {t:23,k:'Pico',title:'Beams sobre las carpas',txt:'Los beams del escenario también barren el cielo del camp. Mesas, pista y activaciones funcionan como en cualquier Blüme.',p:['beams']},
-  {t:26,k:'Cierre',title:'Los beams bajan',txt:'A las 2:00 los beams bajan y se apagan despacio: es la señal de silencio. La avenida de faroles te lleva a tu carpa.',p:['beams','avenida']},
-  {t:30.5,k:'Amanecer',title:'Sesión Amanecer',txt:'Un arco, una cabina y cuatro bocinas. Set tranquilo y café para quien sigue despierto o se levanta temprano.',p:['amanecer']},
-  {t:32.75,k:'Mañana',title:'Bienestar en el pasto',txt:'Entrenamiento o yoga entre las carpas, como la sesión de día de Blüme. Después, desayuno en la Barra Oasis.',p:['bienestar','oasis']}
+  {t:13,k:'Llegada',title:'Check-in',txt:'Pulsera con tu lugar y kit de bienvenida. La carpa ya está puesta.',p:['kit','carpa']},
+  {t:16,k:'Tarde',title:'Sombra y barra',txt:'Lounge a la sombra y la barra redonda abierta.',p:['fogata','oasis']},
+  {t:18.75,k:'Hora dorada',title:'La foto del día',txt:'Todos al Mirador: carpas, montaña y atardecer.',p:['mirador','barrios']},
+  {t:20,k:'Abre',title:'Se prenden los arcos',txt:'Empieza el festival. De tu carpa a la pista, dos minutos.',p:['portal','avenida']},
+  {t:23,k:'Pico',title:'Beams sobre las carpas',txt:'La luz del escenario barre también el área de carpas.',p:['beams']},
+  {t:26,k:'Cierre',title:'Los beams bajan',txt:'Señal de silencio. Los faroles te llevan de regreso.',p:['beams','avenida']},
+  {t:30.5,k:'Amanecer',title:'Sesión Amanecer',txt:'Un arco, una cabina y café. Sólo si se duerme ahí.',p:['amanecer']},
+  {t:32.75,k:'Mañana',title:'Bienestar en el pasto',txt:'Tapetes entre las carpas y desayuno.',p:['bienestar','oasis']}
 ];
 const range=document.getElementById('t'),clock=document.getElementById('clock'),dayl=document.getElementById('dayl'),evEl=document.getElementById('ev'),momEl=document.getElementById('moments'),sunG=document.getElementById('sun');
 const fmt=t=>{const h=Math.floor(t)%24,m=Math.round((t%1)*60);return String(h).padStart(2,'0')+':'+String(m===60?0:m).padStart(2,'0');};
@@ -1267,138 +1187,135 @@ play.addEventListener('click',()=>{
 });
 render();
 
-/* ---------- Plano ---------- */
+/* ---------- Plano: modo VIP y modo camp ---------- */
 (function buildPlan(){
-  const svg=document.getElementById('plan');
-  const cx=720,cy=320,S=0.3,PX10=10/S;
-  const ang=h=>((h%12)/12)*Math.PI*2;
-  const pt=(r,h)=>[cx+r*Math.sin(ang(h)),cy-r*Math.cos(ang(h))];
-  const arc=(r,h0,h1)=>{const a=pt(r,h0),b=pt(r,h1);return `M${n(a[0])},${n(a[1])} A${r},${r} 0 ${(h1-h0)>6?1:0} 1 ${n(b[0])},${n(b[1])}`;};
-  const wedge=(r1,r2,h0,h1)=>{const a=pt(r2,h0),b=pt(r2,h1),c=pt(r1,h1),d=pt(r1,h0),lg=(h1-h0)>6?1:0;return `M${n(a[0])},${n(a[1])} A${r2},${r2} 0 ${lg} 1 ${n(b[0])},${n(b[1])} L${n(c[0])},${n(c[1])} A${r1},${r1} 0 ${lg} 0 ${n(d[0])},${n(d[1])}Z`;};
-  const R={plaza:75,A:85,t1:105,B:127,t2:147,C:169,t3:189,D:211,edge:225};
-  const BAR=[{n:'Magenta',c:'#EC0B73',h0:11,h1:13,f:12},{n:'Naranja',c:'#FC8E01',h0:13,h1:15,f:14},{n:'Durazno',c:'#F6C3A0',h0:15,h1:17,f:16},{n:'Hiedra',c:'#4E6B2B',h0:17,h1:19,f:18}];
-  let s=`<rect class="p-bg" width="1040" height="640"/>`;
-  let g='';for(let x=0;x<=1040;x+=PX10)g+=`<line class="p-grid" x1="${n(x)}" y1="0" x2="${n(x)}" y2="640"/>`;for(let y=0;y<=640;y+=PX10)g+=`<line class="p-grid" x1="0" y1="${n(y)}" x2="1040" y2="${n(y)}"/>`;
-  s+=g;
-  const Z={};
-  const zone=(id,inner,outline,badge)=>{Z[id]=`<g class="zone" data-z="${id}" tabindex="0" role="button" aria-label="${ZONES[id].t}">${inner}${outline}<g class="p-badge"><circle cx="${n(badge[0])}" cy="${n(badge[1])}" r="10"/><text x="${n(badge[0])}" y="${n(badge[1]+3.8)}">${ZONES[id].n}</text></g></g>`;};
-  const hlRect=(x,y,w,h)=>`<rect class="hl" x="${x}" y="${y}" width="${w}" height="${h}" rx="8"/>`;
-  // Festival
-  s+=`<text class="p-lbl-b" x="24" y="22">ZONA FESTIVAL</text>`;
-  zone('escenario',`<rect class="p-ink" x="130" y="40" width="230" height="34" rx="3"/><text x="245" y="61" text-anchor="middle" style="fill:var(--bg);font-size:10.5px;font-weight:600;letter-spacing:.08em">ESCENARIO BLÜME</text><text class="p-lbl" x="245" y="90" text-anchor="middle">sonido ↓ sur</text>`,hlRect(120,30,250,66),[120,30]);
-  let mesas='';for(let y=104;y<=318;y+=22){[56,76,404,424].forEach(x=>{mesas+=`<rect x="${x}" y="${y}" width="13" height="13" rx="2" style="fill:var(--blume);opacity:.75" stroke="currentColor" stroke-width=".8"/>`;});}
-  zone('pista',`<rect x="104" y="100" width="282" height="232" rx="6" style="fill:var(--hair)"/><text class="p-lbl-b" x="245" y="220" text-anchor="middle">PISTA GENERAL</text>${mesas}<text class="p-lbl" x="70" y="346" text-anchor="middle">MESAS</text><text class="p-lbl" x="420" y="346" text-anchor="middle">MESAS</text>`,hlRect(44,94,402,262),[44,94]);
-  let booths='';for(let i=0;i<5;i++)booths+=`<rect x="${52+i*78}" y="470" width="62" height="32" rx="6" fill="none" style="stroke:var(--beam)" stroke-width="2.5"/>`;
-  zone('barras',`<circle cx="120" cy="412" r="24" fill="none" style="stroke:var(--blume)" stroke-width="7"/><circle cx="370" cy="412" r="24" fill="none" style="stroke:var(--blume)" stroke-width="7"/><text class="p-lbl" x="245" y="416" text-anchor="middle">BARRAS REDONDAS</text>${booths}<text class="p-lbl" x="245" y="522" text-anchor="middle">ACTIVACIONES DE MARCA</text>`,hlRect(40,378,412,156),[40,378]);
-  s+=`<text class="p-lbl" x="245" y="616" text-anchor="middle">↑ ACCESO FESTIVAL</text>`;
-  s+=`<path class="p-fence" d="M470,16 L470,296 M470,344 L470,624"/>`;
-  // Camp sectors
-  BAR.forEach(b=>{s+=`<path d="${wedge(R.plaza,R.edge,b.h0,b.h1)}" style="fill:${b.c};opacity:.2"/>`;});
-  // streets
-  [R.A,R.B,R.C,R.D].forEach((r,i)=>{s+=`<path class="p-street" d="${arc(r,11,19)}" stroke-width="${i===3?11:9}"/>`;});
-  for(let h=11;h<=19;h++){const a=pt(R.plaza,h),b=pt(R.edge,h);s+=`<line class="p-street" x1="${n(a[0])}" y1="${n(a[1])}" x2="${n(b[0])}" y2="${n(b[1])}" stroke-width="8"/>`;}
-  // tents
-  let tents='',count=0;const fogPts=BAR.map(b=>pt(R.B,b.f));const tentPts=[];
-  [R.t1,R.t2,R.t3].forEach(r=>{
-    const a0=ang(11),span=Math.PI*2*8/12,stepA=20.5/r;
-    for(let a=a0+stepA/2;a<a0+span;a+=stepA){
-      const hh=11+(a-a0)/(Math.PI*2)*12;
-      const nearSt=Math.abs(hh-Math.round(hh))*Math.PI*2/12*r<11.5;if(nearSt)continue;
-      const x=cx+r*Math.sin(a),y=cy-r*Math.cos(a);
-      if(fogPts.some(f=>Math.hypot(f[0]-x,f[1]-y)<26))continue;
-      const dx=(cx-x)/r,dy=(cy-y)/r;
-      tents+=`<circle class="p-tent" cx="${n(x)}" cy="${n(y)}" r="6.3"/><line x1="${n(x+dx*2)}" y1="${n(y+dy*2)}" x2="${n(x+dx*6.3)}" y2="${n(y+dy*6.3)}" class="p-inkline" stroke-width="1.2"/>`;
-      tentPts.push([x,y]);count++;
+  const svg=document.getElementById('plan');if(!svg)return;
+  const W=900,HV=430,HC=860,PC={x:450,y:606};
+  const Z={},HL=(x,y,w,h,r=10)=>`<rect class="hl" x="${n(x)}" y="${n(y)}" width="${n(w)}" height="${n(h)}" rx="${r}"/>`;
+  function zone(id,inner,hl,bx,by){
+    Z[id]=`<g class="zone" data-z="${id}" tabindex="0" role="button" aria-label="${ZONES[id].t}">${inner}${hl}`
+      +`<g class="p-badge"><circle cx="${n(bx)}" cy="${n(by)}" r="11"/><text x="${n(bx)}" y="${n(by+4)}">${ZONES[id].n}</text></g></g>`;
+  }
+  const ptent=(x,y,a)=>`<circle class="p-tent" cx="${n(x)}" cy="${n(y)}" r="7"/>`
+    +`<line class="p-inkline" x1="${n(x+Math.sin(a)*2.5)}" y1="${n(y-Math.cos(a)*2.5)}" x2="${n(x+Math.sin(a)*7)}" y2="${n(y-Math.cos(a)*7)}" stroke-width="1.3"/>`;
+
+  /* --- festival, siempre visible --- */
+  zone('escenario',
+    `<rect class="p-ink" x="330" y="38" width="240" height="34" rx="4"/>`
+    +`<text x="450" y="60" text-anchor="middle" style="fill:var(--bg);font-size:11px;font-weight:600;letter-spacing:.1em">ESCENARIO</text>`
+    +`<text class="p-lbl" x="450" y="88" text-anchor="middle">sonido ↓</text>`,
+    HL(322,30,256,66),318,34);
+
+  let act='';[[150,196],[150,238],[664,196],[664,238]].forEach(q=>{act+=`<rect x="${q[0]}" y="${q[1]}" width="86" height="26" rx="7" fill="none" style="stroke:var(--beam)" stroke-width="2.5"/>`;});
+  zone('pista',
+    `<rect x="270" y="96" width="360" height="206" rx="12" class="p-surface"/>`
+    +`<text class="p-lbl-b" x="450" y="203" text-anchor="middle">PISTA GENERAL</text>`
+    +`<circle cx="206" cy="146" r="17" fill="none" style="stroke:var(--blume)" stroke-width="6"/>`
+    +`<circle cx="694" cy="146" r="17" fill="none" style="stroke:var(--blume)" stroke-width="6"/>`
+    +`<text class="p-lbl" x="206" y="178" text-anchor="middle">BARRA</text>`
+    +`<text class="p-lbl" x="694" y="178" text-anchor="middle">BARRA</text>`
+    +act+`<text class="p-lbl" x="193" y="282" text-anchor="middle">ACTIVACIONES</text><text class="p-lbl" x="707" y="282" text-anchor="middle">ACTIVACIONES</text>`,
+    HL(142,90,616,216),306,120);
+
+  let vip='',nvip=0;
+  for(let i=0;i<7;i++){const y=116+i*28.7;vip+=ptent(238,y,Math.PI/2)+ptent(662,y,-Math.PI/2);nvip+=2;}
+  [286,327,368,409,491,532,573,614].forEach(x=>{vip+=ptent(x,322,0);nvip++;});
+  vip+=`<text class="p-lbl" x="238" y="100" text-anchor="middle">CARPAS VIP</text>`
+    +`<text class="p-lbl" x="662" y="100" text-anchor="middle">CARPAS VIP</text>`;
+  zone('vip',vip,HL(224,106,28,212,12)+HL(648,106,28,212,12)+HL(272,308,356,28,12),176,118);
+
+  zone('acceso',
+    `<path d="M170,392 L170,344 M162,354 L170,342 L178,354" class="p-inkline" stroke-width="2"/>`
+    +`<text class="p-lbl" x="186" y="372">ACCESO FESTIVAL</text>`,
+    HL(154,336,180,62),166,350);
+
+  /* --- camp, sólo modo 2 --- */
+  zone('portal',
+    `<rect x="426" y="352" width="48" height="16" rx="3" fill="var(--peach)" stroke="currentColor" stroke-width="1.6"/>`
+    +`<path d="M434,368 L434,358 a6,6 0 0 1 12,0 L446,368 M454,368 L454,358 a6,6 0 0 1 12,0 L466,368" fill="none" stroke="#E0542B" stroke-width="2"/>`
+    +`<text class="p-lbl-b" x="492" y="366">PORTAL</text>`,
+    HL(418,344,64,32,8),406,344);
+
+  let av='';for(let y=386;y<=450;y+=13){av+=`<circle cx="428" cy="${y}" r="3" fill="#FC8E01"/><circle cx="472" cy="${y}" r="3" fill="#FC8E01"/>`;}
+  zone('avenida',
+    `<rect x="434" y="378" width="32" height="84" rx="4" class="p-surface"/>`+av
+    +`<text class="p-lbl" x="492" y="424">AVENIDA DE FAROLES</text>`,
+    HL(418,374,64,92,8),406,420);
+
+  const rings=[78,112,146];let camp='',ncamp=0;
+  rings.forEach((r,ri)=>{
+    const step=26/r,a0=0.34*Math.PI,a1=1.66*Math.PI;
+    for(let a=a0;a<=a1;a+=step){
+      const x=PC.x+r*Math.sin(a),y=PC.y-r*Math.cos(a);
+      camp+=ptent(x,y,a+Math.PI);ncamp++;
     }
+    camp+=`<text class="p-lbl" x="${n(PC.x-0.637*r-4)}" y="${n(PC.y-0.771*r)}" text-anchor="end">ARCO ${'ABC'[ri]}</text>`;
   });
-  let rl='';[['A',R.A],['B',R.B],['C',R.C],['D',R.D]].forEach(([k,r])=>{const q=pt(r,10.82);rl+=`<text class="p-lbl" x="${n(q[0]+4)}" y="${n(q[1]+3)}">ARCO ${k}</text>`;});
-  for(let h=11;h<=19;h++){const q=pt(R.edge+19,h);const lab=((h-1)%12+1)+':00';rl+=`<text class="p-lbl" x="${n(q[0])}" y="${n(q[1]+3)}" text-anchor="middle">${lab}</text>`;}
-  zone('barrios',tents+rl,`<path class="hl" d="${wedge(R.plaza+3,R.edge+2,11,19)}"/>`,pt(R.edge+18,17.4));
-  // fogatas
-  let fog='';BAR.forEach((b,i)=>{const q=fogPts[i];fog+=`<circle cx="${n(q[0])}" cy="${n(q[1])}" r="14" class="p-bg" stroke="currentColor" stroke-width="1"/><circle cx="${n(q[0])}" cy="${n(q[1])}" r="5" fill="#FC8E01"/><path d="M${n(q[0]+6)},${n(q[1]-6)} l0,-16 l10,4 l-10,4" style="fill:${b.c}" class="p-inkline" stroke-width="1"/>`;});
-  zone('fogatas',fog,fogPts.map(q=>`<circle class="hl" cx="${n(q[0])}" cy="${n(q[1])}" r="19"/>`).join(''),[fogPts[0][0]-22,fogPts[0][1]-4]);
-  // plaza
-  zone('plaza',`<circle cx="${cx}" cy="${cy}" r="${R.plaza}" class="p-surface"/><rect x="${cx-9}" y="${cy-9}" width="18" height="18" class="p-ink"/><text class="p-lbl" x="${cx}" y="${cy-16}" text-anchor="middle">MIRADOR</text><circle cx="${cx+30}" cy="${cy+30}" r="13" fill="none" style="stroke:var(--blume)" stroke-width="5"/><text class="p-lbl" x="${cx+30}" y="${cy+56}" text-anchor="middle">BARRA OASIS</text><text class="p-lbl-b" x="${cx-30}" y="${cy+40}" text-anchor="middle">PLAZA</text>`,`<circle class="hl" cx="${cx}" cy="${cy}" r="${R.plaza+3}"/>`,[cx-56,cy-52]);
-  // avenida
-  let lav='';for(let x=496;x<cx-R.plaza;x+=12){lav+=`<circle cx="${x}" cy="${cy-10}" r="2.6" fill="#FC8E01"/><circle cx="${x}" cy="${cy+10}" r="2.6" fill="#FC8E01"/>`;}
-  zone('avenida',`<line class="p-street" x1="486" y1="${cy}" x2="${cx-R.plaza}" y2="${cy}" stroke-width="14"/>${lav}<text class="p-lbl" x="${(486+cx-R.plaza)/2}" y="${cy-18}" text-anchor="middle">AVENIDA DE FAROLES</text>`,hlRect(486,cy-26,cx-R.plaza-486,46),[(486+cx-R.plaza)/2,cy+28]);
-  // portal
-  zone('portal',`<rect x="462" y="${cy-24}" width="16" height="48" rx="2" fill="#F6C3A0" stroke="currentColor" stroke-width="1.5"/><path d="M466,${cy+24} L466,${cy-8} A4,4 0 0 1 474,${cy-8} L474,${cy+24}" fill="none" stroke="#E0542B" stroke-width="2"/><text class="p-lbl-b" x="456" y="${cy-32}" text-anchor="end">PORTAL</text><text class="p-lbl" x="456" y="${cy+40}" text-anchor="end">9:00</text>`,hlRect(452,cy-30,36,60),[470,cy-44]);
-  // servicios
-  const sv=[[12,'WC'],[15,'WC'],[18,'WC']];const SVR=R.edge+52;let svs='',svh='';const svPts=[];
-  sv.forEach(([h,t])=>{const q=pt(SVR,h);svPts.push(q);svs+=`<rect x="${n(q[0]-17)}" y="${n(q[1]-11)}" width="34" height="22" rx="4" class="p-ink"/><text x="${n(q[0])}" y="${n(q[1]+3.6)}" text-anchor="middle" style="fill:var(--bg);font-size:9.5px;font-weight:600">${t}</text>`;svh+=`<rect class="hl" x="${n(q[0]-22)}" y="${n(q[1]-16)}" width="44" height="32" rx="6"/>`;});
-  svs+=`<text class="p-lbl" x="${n(svPts[0][0]+24)}" y="${n(svPts[0][1]+3)}">baños · regaderas</text><text class="p-lbl" x="${n(svPts[1][0])}" y="${n(svPts[1][1]+24)}" text-anchor="middle">baños</text><text class="p-lbl" x="${n(svPts[2][0]+24)}" y="${n(svPts[2][1]+3)}">baños · lockers · recarga</text>`;
-  zone('servicios',svs,svh,[svPts[0][0]-30,svPts[0][1]-12]);
-  // amanecer
-  const sq=pt(R.edge+40,13.5);
-  zone('amanecer',`<path d="M${n(sq[0]-12)},${n(sq[1]+8)} L${n(sq[0]-12)},${n(sq[1]-2)} A12,12 0 0 1 ${n(sq[0]+12)},${n(sq[1]-2)} L${n(sq[0]+12)},${n(sq[1]+8)}" fill="none" stroke="#FC8E01" stroke-width="5"/><rect x="${n(sq[0]-8)}" y="${n(sq[1]+10)}" width="16" height="6" class="p-ink"/><text class="p-lbl" x="${n(sq[0])}" y="${n(sq[1]+30)}" text-anchor="middle">AMANECER</text>`,hlRect(n(sq[0]-26),n(sq[1]-22),52,58),[sq[0]+26,sq[1]-20]);
-  // check-in
-  zone('checkin',`<rect x="528" y="560" width="74" height="26" rx="5" fill="none" class="p-inkline" stroke-width="2"/><text class="p-lbl-b" x="565" y="577" text-anchor="middle">CHECK-IN</text><path d="M565,620 L565,592 M559,598 L565,590 L571,598" class="p-inkline" stroke-width="1.8"/><text class="p-lbl" x="575" y="616">desde estacionamiento</text><path d="M590,560 Q600,520 ${n(pt(R.edge,19)[0])},${n(pt(R.edge,19)[1])}" class="p-inkline" stroke-width="1.5" stroke-dasharray="4 4"/>`,hlRect(520,552,90,42),[520,552]);
-  s+=['pista','barras','escenario','barrios','fogatas','plaza','avenida','portal','servicios','amanecer','checkin'].map(k=>Z[k]).join('');
-  // scale + north
-  s+=`<g class="p-inkline" stroke-width="2"><line x1="780" y1="618" x2="${n(780+50/S)}" y2="618"/><line x1="780" y1="612" x2="780" y2="624"/><line x1="${n(780+50/S)}" y1="612" x2="${n(780+50/S)}" y2="624"/></g><text class="p-lbl" x="${n(780+25/S)}" y="608" text-anchor="middle">50 m</text>`;
-  s+=`<g><path d="M1010,46 L1002,64 L1010,59 L1018,64Z" class="p-ink"/><text class="p-lbl-b" x="1010" y="40" text-anchor="middle">N</text></g>`;
-  s+=`<text class="p-lbl-b" x="486" y="22">ZONA CAMP</text>`;
-  svg.innerHTML=s;svg.style.color='var(--ink)';
-  // medidas
-  let maxD=0;tentPts.forEach(q=>{const d=Math.min(...svPts.map(v=>Math.hypot(v[0]-q[0],v[1]-q[1]))) ;if(d>maxD)maxD=d;});
-  const M={avenida:Math.round((cx-R.plaza-486)*S),plaza:Math.round(R.plaza*2*S),tents:count,campers:count*2,serv:Math.round(maxD*S/5)*5};
+  for(let k=0;k<7;k++){
+    const a=0.34*Math.PI+k*(1.32*Math.PI/6);
+    camp+=`<line class="p-inkline" x1="${n(PC.x+52*Math.sin(a))}" y1="${n(PC.y-52*Math.cos(a))}" x2="${n(PC.x+166*Math.sin(a))}" y2="${n(PC.y-166*Math.cos(a))}" stroke-width="1" opacity=".35"/>`;
+  }
+  zone('barrios',camp,`<circle class="hl" cx="${PC.x}" cy="${PC.y}" r="162"/>`,PC.x+150,PC.y-116);
+
+  let fog='';[0.6,1.0,1.4,1.72].forEach(f=>{
+    const a=f*Math.PI,x=PC.x+95*Math.sin(a),y=PC.y-95*Math.cos(a);
+    fog+=`<circle cx="${n(x)}" cy="${n(y)}" r="9" fill="var(--raised)" stroke="currentColor" stroke-width="1.2"/><circle cx="${n(x)}" cy="${n(y)}" r="4" fill="#FC8E01"/>`;
+  });
+  zone('fogatas',fog,'',PC.x-150,PC.y+108);
+
+  zone('plaza',
+    `<circle cx="${PC.x}" cy="${PC.y}" r="46" class="p-surface"/>`
+    +`<rect x="${PC.x-9}" y="${PC.y-16}" width="18" height="18" class="p-ink"/>`
+    +`<text class="p-lbl" x="${PC.x}" y="${PC.y-22}" text-anchor="middle">MIRADOR</text>`
+    +`<circle cx="${PC.x}" cy="${PC.y+18}" r="11" fill="none" style="stroke:var(--blume)" stroke-width="5"/>`
+    +`<text class="p-lbl" x="${PC.x}" y="${PC.y+44}" text-anchor="middle">BARRA</text>`,
+    `<circle class="hl" cx="${PC.x}" cy="${PC.y}" r="50"/>`,PC.x+74,PC.y-58);
+
+  let sv='';[0.62,1.0,1.38].forEach(f=>{
+    const a=f*Math.PI,x=PC.x+192*Math.sin(a),y=PC.y-192*Math.cos(a);
+    sv+=`<rect x="${n(x-19)}" y="${n(y-12)}" width="38" height="24" rx="5" class="p-ink"/>`
+      +`<text x="${n(x)}" y="${n(y+4)}" text-anchor="middle" style="fill:var(--bg);font-size:10px;font-weight:600">WC</text>`;
+  });
+  zone('servicios',sv+`<text class="p-lbl" x="${PC.x}" y="${PC.y+216}" text-anchor="middle">BAÑOS · REGADERAS · LOCKERS</text>`,'',PC.x+176,PC.y+140);
+
+  const order={vip:['escenario','pista','vip','acceso'],camp:['escenario','pista','vip','acceso','portal','avenida','barrios','fogatas','plaza','servicios']};
+  const M={tents:nvip,camp:ncamp,total:nvip+ncamp};
   Object.keys(ZONES).forEach(k=>{ZONES[k].d=ZONES[k].d.replace(/\{(\w+)\}/g,(_,v)=>M[v]);});
-  // interacción
+
   const info=document.getElementById('zone-info'),list=document.getElementById('zone-list');
-  const order=Object.keys(ZONES).sort((a,b)=>ZONES[a].n-ZONES[b].n);
-  order.forEach(k=>{const li=document.createElement('li');li.innerHTML=`<button type="button" data-z="${k}" aria-pressed="false"><i>${ZONES[k].n}</i>${ZONES[k].t}</button>`;list.appendChild(li);});
+  let mode='vip',sel='vip';
+  function paint(){
+    svg.setAttribute('viewBox',`0 0 ${W} ${mode==='vip'?HV:HC}`);
+    svg.innerHTML=order[mode].map(k=>Z[k]).join('');
+    svg.style.color='var(--ink)';
+    list.innerHTML='';
+    order[mode].forEach(k=>{
+      const li=document.createElement('li');
+      li.innerHTML=`<button type="button" data-z="${k}" aria-pressed="false"><i>${ZONES[k].n}</i>${ZONES[k].t}</button>`;
+      list.appendChild(li);
+    });
+    if(order[mode].indexOf(sel)<0)sel=order[mode][0];
+    select(sel);
+  }
   function select(k){
+    sel=k;
     svg.querySelectorAll('.zone').forEach(z=>z.classList.toggle('is-on',z.dataset.z===k));
     list.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.z===k?'true':'false'));
-    const z=ZONES[k];info.innerHTML=`<p class="eyebrow">Zona ${z.n}</p><h3>${z.t}</h3><p>${z.d}</p>`;
+    info.innerHTML=`<p class="eyebrow">Zona ${ZONES[k].n}</p><h3>${ZONES[k].t}</h3><p>${ZONES[k].d}</p>`;
   }
   svg.addEventListener('click',e=>{const z=e.target.closest('.zone');if(z)select(z.dataset.z);});
   svg.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.classList.contains('zone')){e.preventDefault();select(e.target.dataset.z);}});
   list.addEventListener('click',e=>{const b=e.target.closest('button');if(b)select(b.dataset.z);});
-  select('barrios');
+  const bar=document.querySelector('.modebar');
+  bar.addEventListener('click',e=>{
+    const b=e.target.closest('button[data-mode]');if(!b)return;
+    mode=b.dataset.mode;
+    bar.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
+    paint();
+  });
+  paint();
 })();
 
-/* ---------- Producción ---------- */
-(function(){
-  const D=[
-    ['blume','Paneles de arco con degradado','Los del escenario; módulos para Portal, Sesión Amanecer y Mirador'],
-    ['blume','Hiedra colgante','Misma que en paneles y truss'],
-    ['blume','Jardineras de madera','Como respaldo de las fogatas y alrededor de la Barra Oasis'],
-    ['blume','Truss, letras BLÜME y pantalla','Escenario sin cambios'],
-    ['blume','Beams y programación de luces','Más una secuencia de apagado a las 2:00'],
-    ['blume','Barras redondas','Una se muda a la Plaza como Barra Oasis'],
-    ['blume','Activaciones con neón','Versión camp con marcas aliadas'],
-    ['blume','Mesas con servicio','Paquete Carpa + Mesa'],
-    ['blume','Sesión de entrenamiento','Pasa a la mañana, entre carpas'],
-    ['vive','Carpas de lona tipo campana','Confirmar cantidad para las fechas'],
-    ['vive','Colchonetas','Dos por carpa, como en su foto'],
-    ['vive','Faroles','Para la avenida y uno por carpa'],
-    ['vive','Armado y desarmado','Carpas listas antes del check-in'],
-    ['renta','Banderas tipo pluma de 5–6 m','Cuatro colores, con lastre'],
-    ['renta','Andamio certificado de 4 m','Para el Mirador, con barandal'],
-    ['renta','Fogateros o fogatas LED','Según permiso del venue'],
-    ['renta','Tapetes y cojines','Para las cuatro fogatas'],
-    ['renta','Guirnaldas y postes','Avenida de faroles'],
-    ['renta','Baños, regaderas y lockers','Tres puntos sobre el anillo exterior'],
-    ['renta','Bocinas y cabina','Sesión Amanecer'],
-    ['renta','Seguridad y staff de camp 24 h','Control en Portal y check-in'],
-    ['prod','Postes y letreros de calle','Letra de Vive Camp'],
-    ['prod','Pulseras con dirección','Arco, hora y número de carpa'],
-    ['prod','Vinil de número por carpa','Removible'],
-    ['prod','Banderines naranjas','Uno por carpa'],
-    ['prod','Tote, bandana y farol mini','Kit de bienvenida'],
-    ['prod','Letras BLÜME CAMP','Sobre el Portal de Arcos']
-  ];
-  const lbl={blume:['Blüme','t-blume'],vive:['Vive Camp','t-vive'],renta:['Renta','t-renta'],prod:['Producción','t-prod']};
-  const ul=document.getElementById('prod');
-  ul.innerHTML=D.map(([k,a,b])=>`<li data-k="${k}"><b>${a}</b><span class="tag ${lbl[k][1]}">${lbl[k][0]}</span><span class="n">${b}</span></li>`).join('');
-  const fb=document.getElementById('filters');
-  fb.querySelectorAll('button').forEach(b=>{const k=b.dataset.f;const c=k==='all'?D.length:D.filter(d=>d[0]===k).length;b.textContent+=` · ${c}`;});
-  fb.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const k=b.dataset.f;
-    fb.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));
-    ul.querySelectorAll('li').forEach(li=>{li.hidden=!(k==='all'||li.dataset.k===k);});});
-})();
 })();
 </script>
 </body>
