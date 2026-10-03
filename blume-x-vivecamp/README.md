@@ -7,6 +7,9 @@ piezas que Blüme ya produce, que Vive Camp ya tiene o que se rentan.
 Abre `index.html` en el navegador. Incluye:
 
 - **La idea** y la paleta compartida (colores tomados de las fotos de ambas marcas).
+- **Por qué le conviene a Blüme**: seis razones de negocio, calculadora editable del margen
+  del camp (con gráficas y tabla), paquetes de venta, comparación rentar / comprar / no hacer,
+  objeciones y plan piloto.
 - **Un día en Blüme Camp**: escena ilustrada con control de hora (13:00 → 09:00).
 - **12 piezas visuales** con boceto, referencia (Coachella / Burning Man) y con qué se arma.
 - **Plano esquemático** interactivo: ciudad en arcos con direcciones tipo Burning Man.

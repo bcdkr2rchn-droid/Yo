@@ -320,6 +320,104 @@ footer p{font:400 12.5px/1.6 var(--f-mono);color:var(--muted);max-width:90ch}
   html{scroll-behavior:auto}
   .beam{animation:none}
 }
+
+/* ---- Caso de negocio ---- */
+.razones{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,2.6vw,30px);list-style:none;margin:clamp(28px,4vw,40px) 0 0;padding:0}
+.razon{display:grid;gap:7px;align-content:start;border-top:var(--sw) solid var(--line);padding-top:13px;min-width:0}
+.razon .q{font:500 11px/1.4 var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--magenta-text)}
+.razon b{font:900 19px/1.06 var(--f-display);font-stretch:115%;text-transform:uppercase}
+.razon p{font-size:15.5px}
+
+.calc-wrap{--ck-in1:#F09A1E;--ck-in2:#A85400;--ck-out1:#A2958A;--ck-out2:#584D44;--ck-line:#D10060;display:grid;grid-template-columns:minmax(0,310px) minmax(0,1fr);gap:clamp(16px,2.2vw,26px);align-items:start}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .calc-wrap{--ck-in1:#F5A93F;--ck-in2:#B46310;--ck-out1:#B9ADA1;--ck-out2:#6B6056;--ck-line:#F0478C}}
+:root[data-theme="dark"] .calc-wrap{--ck-in1:#F5A93F;--ck-in2:#B46310;--ck-out1:#B9ADA1;--ck-out2:#6B6056;--ck-line:#F0478C}
+.inputs{border:var(--sw) solid var(--line);border-radius:var(--r);background:var(--raised);padding:15px 17px;display:grid;gap:13px;min-width:0}
+.inputs h3{font:900 15px/1.1 var(--f-display);font-stretch:115%;text-transform:uppercase}
+.inputs h3+.fld{margin-top:-4px}
+.inputs hr{border:0;border-top:1px solid var(--hair);margin:3px 0 0}
+.fld{display:grid;gap:4px;min-width:0}
+.fld label{font:500 10.5px/1.35 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.fld .row{display:flex;align-items:center;gap:10px}
+.srange{-webkit-appearance:none;appearance:none;flex:1;min-width:0;height:22px;background:transparent;margin:0;cursor:pointer}
+.srange::-webkit-slider-runnable-track{height:5px;border-radius:999px;background:var(--hair)}
+.srange::-moz-range-track{height:5px;border-radius:999px;background:var(--hair)}
+.srange::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:17px;height:17px;border-radius:50%;background:var(--raised);border:2.5px solid var(--ink);margin-top:-6px}
+.srange::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--raised);border:2.5px solid var(--ink)}
+.fld .out{font:600 13.5px/1 var(--f-body);font-variant-numeric:tabular-nums;min-width:84px;text-align:right;white-space:nowrap}
+.calc-out{display:grid;gap:12px;min-width:0}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.kpi{border:1.5px solid var(--hair);border-radius:12px;padding:11px 13px;background:var(--raised);display:grid;gap:3px;align-content:start;min-width:0}
+.kpi .lab{font:500 10.5px/1.35 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.kpi .val{font:600 clamp(18px,1.9vw,22px)/1.1 var(--f-body)}
+.kpi .sub{font-size:12.5px;color:var(--muted);line-height:1.4}
+.kpi.big{grid-column:span 2;border:var(--sw) solid var(--line)}
+.kpi.big .val{font:700 clamp(32px,4.2vw,50px)/1 var(--f-body);white-space:nowrap}
+.kpi.neg .val{color:var(--magenta-text)}
+.charts{display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
+.chart{position:relative;border:1.5px solid var(--hair);border-radius:12px;background:var(--raised);padding:13px 14px 11px;min-width:0}
+.chart h4{font:600 14px/1.3 var(--f-body)}
+.chart .cap{font-size:12.5px;color:var(--muted);margin-top:1px}
+.chart svg{display:block;width:100%;height:auto;margin-top:6px}
+.chart svg text{font-family:var(--f-body)}
+.chart svg .tk{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.chart svg:focus-visible{outline:3px solid var(--magenta);outline-offset:2px;border-radius:6px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:9px;font-size:12.5px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:11px;height:11px;border-radius:3px;flex:none}
+.tip{position:absolute;pointer-events:none;z-index:6;background:var(--raised);border:1.5px solid var(--line);border-radius:9px;padding:7px 10px;box-shadow:0 6px 18px rgba(0,0,0,.16);opacity:0;transition:opacity .12s;max-width:200px}
+.tip.on{opacity:1}
+.tip .tv{font:700 15px/1.2 var(--f-body);font-variant-numeric:tabular-nums}
+.tip .tk{font:400 11.5px/1.35 var(--f-body);color:var(--muted)}
+.tbl-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tbl-bar .note{font:400 12px/1.5 var(--f-mono);color:var(--muted)}
+.dtable{width:100%;border-collapse:collapse;font-size:14px;border:1.5px solid var(--hair);border-radius:12px;overflow:hidden}
+.dtable caption{text-align:left;font:500 11px/1.4 var(--f-mono);text-transform:uppercase;letter-spacing:.07em;color:var(--muted);padding:0 0 7px}
+.dtable th,.dtable td{padding:7px 11px;border-top:1px solid var(--hair);text-align:right;font-variant-numeric:tabular-nums}
+.dtable th:first-child,.dtable td:first-child{text-align:left;font-variant-numeric:normal}
+.dtable thead th{border-top:0;background:var(--surface);font:500 11px/1.4 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.dtable tbody tr.tot td{font-weight:600;border-top:2px solid var(--line)}
+
+.cmp{border:var(--sw) solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--raised);margin-top:clamp(28px,4vw,40px)}
+.cmp-row{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.15fr) minmax(0,1.05fr) minmax(0,.95fr);gap:14px;padding:12px 18px;border-top:1px solid var(--hair);align-items:baseline}
+.cmp-row:first-child{border-top:0}
+.cmp-row.head{background:var(--surface);font:500 11px/1.35 var(--f-mono);text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+.cmp-row.head b{color:var(--ink);font:600 11px/1.35 var(--f-mono);letter-spacing:.07em}
+.cmp-row .k{font:600 13px/1.4 var(--f-mono);text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.cmp-row .win{font-weight:600}
+.cmp-row span{font-size:14.5px}
+
+.qa{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,2vw,22px);list-style:none;margin:clamp(28px,4vw,40px) 0 0;padding:0}
+.qa li{display:grid;gap:5px;border:1.5px solid var(--hair);border-radius:12px;padding:13px 15px;background:var(--raised);min-width:0}
+.qa b{font-size:15.5px;font-weight:600}
+.qa p{font-size:15px;color:var(--muted)}
+.gana{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,2vw,22px);list-style:none;margin:18px 0 0;padding:0}
+.gana li{display:grid;gap:4px;border-top:2px solid var(--hair);padding-top:11px;font-size:14.5px;min-width:0}
+.gana b{font:600 11px/1.4 var(--f-mono);text-transform:uppercase;letter-spacing:.07em;color:var(--magenta-text)}
+.paks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,22px);margin-top:clamp(24px,3vw,32px)}
+.pak{border:var(--sw) solid var(--line);border-radius:var(--r);padding:15px 17px;background:var(--raised);display:grid;gap:8px;align-content:start;min-width:0}
+.pak h4{font:900 19px/1.05 var(--f-display);font-stretch:115%;text-transform:uppercase}
+.pak .pr{font:700 clamp(22px,2.4vw,28px)/1 var(--f-body)}
+.pak .pr small{font:400 12.5px/1 var(--f-body);color:var(--muted)}
+.pak ul{margin:0;padding:0;list-style:none;display:grid;gap:5px;font-size:14.5px}
+.pak li{display:grid;grid-template-columns:13px 1fr;gap:8px;align-items:baseline}
+.pak li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--orange);border:1.5px solid var(--line)}
+
+@media (max-width:980px){
+  .calc-wrap{grid-template-columns:minmax(0,1fr)}
+  .calc-wrap>.inputs{order:2}
+  .calc-wrap>.calc-out{order:1}
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .razones,.paks,.gana{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cmp-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .cmp-row.head{display:none}
+  .cmp-row .k{grid-column:1/-1}
+}
+@media (max-width:620px){
+  .kpis,.razones,.paks,.gana,.qa{grid-template-columns:minmax(0,1fr)}
+  .kpi.big{grid-column:span 1}
+  .cmp-row{grid-template-columns:minmax(0,1fr);gap:5px}
+}
+
 </style>
 </head>
 <body>
@@ -328,7 +426,7 @@ footer p{font:400 12.5px/1.6 var(--f-mono);color:var(--muted);max-width:90ch}
   <div class="wrap topbar-in">
     <div class="brandmark">Blüme <span>×</span> Vive Camp</div>
     <nav class="topnav" aria-label="Secciones">
-      <a href="#idea">Idea</a><a href="#dia">Un día</a><a href="#piezas">Piezas</a><a href="#plano">Plano</a><a href="#identidad">Identidad</a><a href="#referencias">Referencias</a><a href="#produccion">Producción</a>
+      <a href="#idea">Idea</a><a href="#caso">Conviene</a><a href="#numeros">Números</a><a href="#riesgo">Riesgo</a><a href="#dia">Un día</a><a href="#piezas">Piezas</a><a href="#plano">Plano</a><a href="#identidad">Identidad</a><a href="#referencias">Referencias</a><a href="#produccion">Producción</a>
     </nav>
   </div>
 </div>
@@ -345,7 +443,7 @@ footer p{font:400 12.5px/1.6 var(--f-mono);color:var(--muted);max-width:90ch}
       </g>
     </svg>
     <div class="with">con <span class="vc-chip"><img src="img/vive-camp-logo.webp" alt="Vive Camp" width="900" height="409"></span></div>
-    <p class="lede">La aldea de carpas de Vive Camp dentro de un Blüme. Se siente como Coachella o Burning Man, pero cada pieza es algo que Blüme ya produce, algo que Vive Camp ya tiene o algo que se renta.</p>
+    <p class="lede">La aldea de carpas de Vive Camp dentro de un Blüme. Se siente como Coachella o Burning Man, pero cada pieza es algo que Blüme ya produce, algo que Vive Camp ya tiene o algo que se renta. Y no es decoración: es un segundo producto que se vende sobre un evento que ya está montado.</p>
     <div class="rule"><b>Regla</b><p>Si Blüme no lo ha hecho, Vive Camp no lo tiene y no se puede rentar, no entra. Nada de esculturas gigantes ni efectos de render.</p></div>
   </div>
   <div class="collage" aria-label="Fotos de referencia">
@@ -391,6 +489,138 @@ footer p{font:400 12.5px/1.6 var(--f-mono);color:var(--muted);max-width:90ch}
       <div class="sw lt" role="listitem" style="background:#41B3D5"><b>Beam</b><span>arcos de noche</span><span>#41B3D5</span></div>
       <div class="sw dk" role="listitem" style="background:#17120F"><b>Noche</b><span>cielo a las 2:00</span><span>#17120F</span></div>
     </div>
+  </div>
+</section>
+
+<section id="caso">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Por qué le conviene a Blüme</p>
+      <h2 class="display">La carpa no es decoración. Es un segundo producto sobre el mismo evento.</h2>
+      <p class="lede">El escenario, el staff, la licencia y la producción ya están pagados por el festival. El camp vende otra cosa encima de eso, y la carpa se renta: no hay que comprar nada.</p>
+    </div>
+    <ul class="razones">
+      <li class="razon"><span class="q">Ingreso</span><b>Segundo boleto</b><p>El camper paga su entrada y además la carpa. Es un ingreso nuevo sobre un evento que ya está montado, sin un escenario más ni un artista más.</p></li>
+      <li class="razon"><span class="q">Consumo</span><b>Las horas que hoy se pierden</b><p>Mucha gente se va antes del cierre porque tiene que manejar. El camper se queda hasta el final y desayuna ahí. Son horas de barra que hoy no existen.</p></li>
+      <li class="razon"><span class="q">Riesgo</span><b>Sin comprar nada</b><p>Rentar es cero inversión en carpas, cero bodega, cero lavandería y cero reposición. Si una edición no se llena, se instalan menos carpas y el costo baja con ellas.</p></li>
+      <li class="razon"><span class="q">Patrocinio</span><b>Inventario nuevo para marcas</b><p>Regaderas, estación de recarga, café del amanecer, kit de bienvenida y la foto del Mirador. Momentos con tiempo de permanencia que hoy no se pueden vender.</p></li>
+      <li class="razon"><span class="q">Crecimiento</span><b>Formatos que hoy no puede hacer</b><p>Con camp, Blüme puede hacer dos días seguidos o una edición fuera de la ciudad sin depender de hoteles ni de que todos manejen de regreso esa misma noche.</p></li>
+      <li class="razon"><span class="q">Marca</span><b>Contenido que nadie más tiene</b><p>Hora dorada sobre las carpas, faroles de madrugada y el amanecer. Material que no se puede grabar en un festival que cierra y se vacía.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section id="numeros">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Los números</p>
+      <h2 class="display">Cuánto deja el camp</h2>
+      <p class="lede">Los supuestos de abajo son un punto de partida, no datos de Blüme. Mueve cada uno con los números reales y el modelo se recalcula. La idea es ver qué tanto margen hay y a partir de cuántas carpas vendidas deja de costar.</p>
+    </div>
+    <div class="calc-wrap">
+      <form class="inputs" id="inputs" autocomplete="off">
+        <h3>Lo que entra</h3>
+        <div class="fld"><label for="i-carpas">Carpas instaladas</label><div class="row"><input class="srange" type="range" id="i-carpas" min="40" max="400" step="10" value="150"><span class="out" id="o-carpas"></span></div></div>
+        <div class="fld"><label for="i-vendidas">Carpas vendidas</label><div class="row"><input class="srange" type="range" id="i-vendidas" min="0" max="400" step="5" value="150"><span class="out" id="o-vendidas"></span></div></div>
+        <div class="fld"><label for="i-precio">Precio del paquete por carpa, 2 personas</label><div class="row"><input class="srange" type="range" id="i-precio" min="1200" max="6000" step="100" value="2800"><span class="out" id="o-precio"></span></div></div>
+        <div class="fld"><label for="i-consumo">Consumo extra en barra por persona</label><div class="row"><input class="srange" type="range" id="i-consumo" min="0" max="1200" step="50" value="350"><span class="out" id="o-consumo"></span></div></div>
+        <div class="fld"><label for="i-margen">Margen de barra</label><div class="row"><input class="srange" type="range" id="i-margen" min="40" max="80" step="5" value="65"><span class="out" id="o-margen"></span></div></div>
+        <div class="fld"><label for="i-patro">Patrocinio del camp</label><div class="row"><input class="srange" type="range" id="i-patro" min="0" max="800000" step="25000" value="250000"><span class="out" id="o-patro"></span></div></div>
+        <hr>
+        <h3>Lo que sale</h3>
+        <div class="fld"><label for="i-renta">Renta por carpa, con armado</label><div class="row"><input class="srange" type="range" id="i-renta" min="400" max="2000" step="50" value="900"><span class="out" id="o-renta"></span></div></div>
+        <div class="fld"><label for="i-opex">Operación por carpa: baños, seguridad, limpieza</label><div class="row"><input class="srange" type="range" id="i-opex" min="150" max="1200" step="50" value="450"><span class="out" id="o-opex"></span></div></div>
+        <div class="fld"><label for="i-fijos">Montaje del camp, una vez</label><div class="row"><input class="srange" type="range" id="i-fijos" min="0" max="600000" step="20000" value="180000"><span class="out" id="o-fijos"></span></div></div>
+      </form>
+      <div class="calc-out">
+        <div class="kpis">
+          <div class="kpi big" id="k-util"><span class="lab">Utilidad del camp</span><span class="val">—</span><span class="sub"></span></div>
+          <div class="kpi" id="k-deja"><span class="lab">Deja cada carpa vendida</span><span class="val">—</span><span class="sub">Después de renta y operación</span></div>
+          <div class="kpi" id="k-be"><span class="lab">Punto de equilibrio</span><span class="val">—</span><span class="sub"></span></div>
+        </div>
+        <div class="charts">
+          <figure class="chart" id="ch-a">
+            <h4>Por cada carpa vendida</h4>
+            <p class="cap">Lo que entra contra lo que sale, por carpa y por edición.</p>
+            <svg viewBox="0 0 560 150" role="img" aria-labelledby="cha-t"><title id="cha-t">Barras apiladas: entra el paquete de carpa más el consumo extra en barra; sale la renta de la carpa más la operación del camp.</title></svg>
+            <div class="legend">
+              <span><i style="background:var(--ck-in1)"></i>Paquete de carpa</span>
+              <span><i style="background:var(--ck-in2)"></i>Barra extra, 2 personas</span>
+              <span><i style="background:var(--ck-out1)"></i>Renta de la carpa</span>
+              <span><i style="background:var(--ck-out2)"></i>Operación del camp</span>
+            </div>
+            <div class="tip" role="status"></div>
+          </figure>
+          <figure class="chart" id="ch-b">
+            <h4>Utilidad según carpas vendidas</h4>
+            <p class="cap">Cada carpa suma lo mismo; abajo de la línea de equilibrio el camp cuesta.</p>
+            <svg viewBox="0 0 560 230" role="img" tabindex="0" aria-labelledby="chb-t"><title id="chb-t">Línea de utilidad del camp según cuántas carpas se venden, con la línea de equilibrio en cero.</title></svg>
+            <div class="tip" role="status"></div>
+          </figure>
+        </div>
+        <div class="tbl-bar">
+          <button class="btn" type="button" id="t-toggle" aria-expanded="false" aria-controls="t-data">Ver la tabla</button>
+          <span class="note">Pesos mexicanos, por edición. Supuestos editables.</span>
+        </div>
+        <div id="t-data" hidden>
+          <table class="dtable" id="tbl-carpa"><caption>Por carpa vendida</caption><thead><tr><th scope="col">Concepto</th><th scope="col">Monto</th></tr></thead><tbody></tbody></table>
+          <table class="dtable" id="tbl-ocup" style="margin-top:12px"><caption>Utilidad del camp según cuántas carpas se vendan</caption><thead><tr><th scope="col">Carpas vendidas</th><th scope="col">Ocupación</th><th scope="col">Utilidad</th></tr></thead><tbody></tbody></table>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="subh">Qué se vende</h3>
+    <div class="paks">
+      <div class="pak"><h4>Carpa General</h4><p class="pr" id="pk1">—</p><ul><li>Carpa armada para 2, con colchonetas</li><li>Farol, tapete y número</li><li>Acceso al camp las dos noches del formato de dos días</li><li>Baños y regaderas</li></ul></div>
+      <div class="pak"><h4>Carpa + Mesa</h4><p class="pr" id="pk2">—</p><ul><li>Todo lo de Carpa General</li><li>Mesa del festival con servicio</li><li>Carpa en el Arco A, junto a la Plaza</li><li>Entrada preferente por el Portal</li></ul></div>
+      <div class="pak"><h4>Barrio privado</h4><p class="pr" id="pk3">—</p><ul><li>Bloque de 8 carpas juntas</li><li>Su propia fogata y bandera</li><li>Para grupos, cumpleaños o una marca</li><li>Se vende completo, sin importar cuántos lleguen</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="riesgo">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Riesgo y decisión</p>
+      <h2 class="display">Rentar, comprar o no hacer camp</h2>
+      <p class="lede">Rentar es la única de las tres que permite probarlo este año y salirse sin cargar con nada si no funciona.</p>
+    </div>
+    <div class="cmp">
+      <div class="cmp-row head"><span></span><span><b>Rentar a Vive Camp</b></span><span>Comprar carpas</span><span>No hacer camp</span></div>
+      <div class="cmp-row"><span class="k">Inversión inicial</span><span class="win">Sólo el montaje del camp</span><span id="cmp-compra">—</span><span>Cero, y tampoco hay ingreso nuevo</span></div>
+      <div class="cmp-row"><span class="k">Si no se llena</span><span class="win">Se instalan menos carpas y el costo baja</span><span>Las carpas ya se pagaron, llenas o vacías</span><span>No aplica</span></div>
+      <div class="cmp-row"><span class="k">Bodega, lavado y reposición</span><span class="win">De Vive Camp</span><span>De Blüme, todo el año</span><span>No aplica</span></div>
+      <div class="cmp-row"><span class="k">Armado y desarmado</span><span class="win">Incluido, con su propio equipo</span><span>Equipo propio o contratado cada edición</span><span>No aplica</span></div>
+      <div class="cmp-row"><span class="k">Qué tan rápido se prueba</span><span class="win">Una edición</span><span>Una compra y una bodega antes de la primera</span><span>Nunca se sabe</span></div>
+      <div class="cmp-row"><span class="k">Si crece a dos días o a otra ciudad</span><span class="win">Se pide más inventario</span><span>Se compra más y se traslada</span><span>No se puede</span></div>
+    </div>
+
+    <h3 class="subh">Las preguntas que van a salir en la junta</h3>
+    <ul class="qa">
+      <li><b>¿Y si no se vende?</b><p>El camp se instala por bloques. El primero se arma con la preventa en la mano y el segundo se confirma una semana antes. No se renta una carpa que no se vendió.</p></li>
+      <li><b>¿Y si llueve?</b><p>La carpa de lona aguanta, pero el piso es el problema: tarima o tapete, terreno con drenaje y un punto techado de respaldo. Hay que negociar la cláusula de clima con Vive Camp desde el primer contrato.</p></li>
+      <li><b>¿Seguridad?</b><p>Un solo acceso, el Portal, con pulsera de camper. Staff de camp 24 horas rentado aparte, no el equipo del escenario. Lockers en los tres puntos de servicio.</p></li>
+      <li><b>¿Permisos?</b><p>Pernocta y servicios cambian el permiso del evento. Es lo primero que hay que preguntarle al venue, antes que cualquier otra cosa de esta propuesta.</p></li>
+      <li><b>¿No se ve improvisado?</b><p>La carpa de Vive Camp ya se ve bien en foto hoy. Lo que se agrega es vestido y luz: banderín, número, tapete y farol. Nada que dependa de una producción nueva.</p></li>
+      <li><b>¿Nos distrae del festival?</b><p>El camp es un proveedor y un paquete de boleto, no una segunda producción. Lo único que Blüme pone de su propio inventario son piezas que ya viajan al evento.</p></li>
+    </ul>
+
+    <h3 class="subh">Cómo probarlo sin apostar la edición</h3>
+    <ol class="steps">
+      <li><span>Edición piloto con un bloque chico de carpas en una esquina del venue, no un camp completo. Se vende como paquete limitado.</span></li>
+      <li><span>Se mide con la pulsera: qué tan rápido se vendió, cuánto consumió un camper contra alguien que no se quedó, y a qué hora se fue cada quien.</span></li>
+      <li><span>Se cuenta lo que salió mal: incidencias, quejas, carpas dañadas y horas extra de staff.</span></li>
+      <li><span>Con esos números se decide el tamaño del camp de la siguiente edición y si el formato de dos días tiene sentido.</span></li>
+      <li><span>Se negocia con Vive Camp precio por volumen y exclusividad para las fechas de Blüme, ya con demanda comprobada.</span></li>
+    </ol>
+
+    <h3 class="subh">Qué gana Vive Camp</h3>
+    <ul class="gana">
+      <li><b>Volumen</b><span>Fechas fijas y muchas carpas en un solo lugar, en vez de rentas sueltas.</span></li>
+      <li><b>Público</b><span>Su carpa frente a miles de personas que son exactamente su cliente.</span></li>
+      <li><b>Contenido</b><span>Su carpa fotografiada de noche y al amanecer, con producción de festival.</span></li>
+      <li><b>Cero costo de venta</b><span>Blüme vende el paquete; ellos entregan carpas armadas.</span></li>
+    </ul>
   </div>
 </section>
 
@@ -1373,6 +1603,227 @@ render();
     fb.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));
     ul.querySelectorAll('li').forEach(li=>{li.hidden=!(k==='all'||li.dataset.k===k);});});
 })();
+})();
+</script>
+<script>
+(function(){
+'use strict';
+var form=document.getElementById('inputs');
+if(!form)return;
+var KEYS=['carpas','vendidas','precio','consumo','margen','patro','renta','opex','fijos'];
+var IN={},OUT={};
+KEYS.forEach(function(k){IN[k]=document.getElementById('i-'+k);OUT[k]=document.getElementById('o-'+k);});
+var MX=new Intl.NumberFormat('es-MX',{maximumFractionDigits:0});
+function money(v){return (v<0?'−$':'$')+MX.format(Math.abs(Math.round(v)));}
+function moneyK(v){return Math.abs(v)>=1000?(v<0?'−$':'$')+MX.format(Math.round(Math.abs(v)/1000))+'k':money(v);}
+function cw(fig){var w=(fig.clientWidth||600)-28;return Math.max(276,Math.min(760,w));}
+function num(v){return MX.format(Math.round(v));}
+var FMT={carpas:num,vendidas:num,margen:function(v){return v+'%';}};
+function read(){var v={};KEYS.forEach(function(k){v[k]=parseFloat(IN[k].value);});return v;}
+
+function model(v){
+  var barra=2*v.consumo*(v.margen/100);
+  var entra=v.precio+barra;
+  var sale=v.renta+v.opex;
+  var deja=entra-sale;
+  var costos=v.carpas*sale+v.fijos;
+  var util=function(V){return V*entra+v.patro-costos;};
+  var be=entra>0?(costos-v.patro)/entra:Infinity;
+  var be0=entra>0?costos/entra:Infinity;
+  return {v:v,barra:barra,entra:entra,sale:sale,deja:deja,costos:costos,util:util,
+    utilidad:util(v.vendidas),ingresos:v.vendidas*entra+v.patro,be:be,be0:be0};
+}
+
+/* ---------- gráfica A: entra contra sale, por carpa ---------- */
+var svgA=document.querySelector('#ch-a svg'),figA=document.getElementById('ch-a'),tipA=document.querySelector('#ch-a .tip');
+function place(tip,fig,svg,vbW,vbH,x,y){
+  var r=svg.getBoundingClientRect(),fr=fig.getBoundingClientRect();
+  if(!r.width)return;
+  var px=(r.left-fr.left)+x*(r.width/vbW),py=(r.top-fr.top)+y*(r.height/vbH);
+  var w=tip.offsetWidth,h=tip.offsetHeight;
+  tip.style.left=Math.max(6,Math.min(fr.width-w-6,px-w/2))+'px';
+  tip.style.top=Math.max(6,py-h-12)+'px';
+}
+function tipFill(tip,val,key){
+  tip.innerHTML='';
+  var a=document.createElement('div');a.className='tv';a.textContent=val;
+  var b=document.createElement('div');b.className='tk';b.textContent=key;
+  tip.appendChild(a);tip.appendChild(b);tip.classList.add('on');
+}
+var vbA={w:560,h:150};
+function chartA(m){
+  var W=cw(figA),H=150,narrow=W<430,L=narrow?50:74,RGT=narrow?80:112,bh=24,gap=2,plot=W-L-RGT;
+  vbA={w:W,h:H};svgA.setAttribute('viewBox','0 0 '+W+' '+H);
+  var rows=[
+    {y:34,lab:'Entra',total:m.entra,segs:[
+      {k:'Paquete de carpa',v:m.v.precio,c:'var(--ck-in1)',ink:'#1A1310'},
+      {k:'Barra extra, 2 personas',v:m.barra,c:'var(--ck-in2)',ink:'#FFF8F0'}]},
+    {y:88,lab:'Sale',total:m.sale,segs:[
+      {k:'Renta de la carpa',v:m.v.renta,c:'var(--ck-out1)',ink:'#1A1310'},
+      {k:'Operación del camp',v:m.v.opex,c:'var(--ck-out2)',ink:'#FFF8F0'}]}
+  ];
+  var max=Math.max(m.entra,m.sale,1);
+  var s='<title id="cha-t">Barras apiladas: entra el paquete de carpa más el consumo extra en barra; sale la renta de la carpa más la operación del camp.</title>';
+  rows.forEach(function(r){
+    s+='<text x="'+(L-12)+'" y="'+(r.y+bh*0.5+5)+'" text-anchor="end" font-size="'+(narrow?12.5:13.5)+'" font-weight="600" fill="var(--ink)">'+r.lab+'</text>';
+    var x=L,barW=r.total/max*plot;
+    r.segs.forEach(function(sg,i){
+      var w=sg.v/max*plot,last=i===r.segs.length-1,ww=Math.max(0,last?w:w-gap);
+      if(ww>0.5){
+        var d=(last&&ww>8)
+          ? 'M'+x.toFixed(1)+','+r.y+' H'+(x+ww-4).toFixed(1)+' a4,4 0 0 1 4,4 V'+(r.y+bh-4)+' a4,4 0 0 1 -4,4 H'+x.toFixed(1)+' Z'
+          : 'M'+x.toFixed(1)+','+r.y+' h'+ww.toFixed(1)+' v'+bh+' h'+(-ww).toFixed(1)+' Z';
+        s+='<path d="'+d+'" fill="'+sg.c+'" tabindex="0" role="img" aria-label="'+sg.k+': '+money(sg.v)+'" data-k="'+sg.k+'" data-v="'+money(sg.v)+'" data-x="'+(x+ww/2).toFixed(1)+'" data-y="'+r.y+'"/>';
+        var lbl=money(sg.v),tw=lbl.length*6.6;
+        if(tw+16<ww)s+='<text x="'+(x+ww/2).toFixed(1)+'" y="'+(r.y+bh*0.5+4.3)+'" text-anchor="middle" font-size="11.5" font-weight="600" fill="'+sg.ink+'" pointer-events="none">'+lbl+'</text>';
+      }
+      x+=w;
+    });
+    s+='<text x="'+(L+barW+12).toFixed(1)+'" y="'+(r.y+bh*0.5+5)+'" font-size="'+(narrow?12:13.5)+'" font-weight="600" fill="var(--ink)" class="tk">'+money(r.total)+'</text>';
+  });
+  s+='<line x1="'+L+'" y1="'+(rows[0].y+bh+15)+'" x2="'+(W-RGT)+'" y2="'+(rows[0].y+bh+15)+'" stroke="var(--hair)" stroke-width="1"/>';
+  s+='<text x="'+L+'" y="'+(H-8)+'" font-size="12.5" fill="var(--muted)">Deja <tspan font-size="15.5" font-weight="700" fill="'+(m.deja>=0?'var(--ink)':'var(--magenta-text)')+'" class="tk">'+money(m.deja)+'</tspan> por carpa vendida</text>';
+  svgA.innerHTML=s;
+}
+function bindA(){
+  function on(e){
+    var t=e.target.closest?e.target.closest('path[data-k]'):null;if(!t)return;
+    tipFill(tipA,t.dataset.v,t.dataset.k);
+    place(tipA,figA,svgA,vbA.w,vbA.h,parseFloat(t.dataset.x),parseFloat(t.dataset.y));
+  }
+  function off(){tipA.classList.remove('on');}
+  svgA.addEventListener('pointerover',on);svgA.addEventListener('focusin',on);
+  svgA.addEventListener('pointerleave',off);svgA.addEventListener('focusout',off);
+}
+
+/* ---------- gráfica B: utilidad según carpas vendidas ---------- */
+var svgB=document.querySelector('#ch-b svg'),figB=document.getElementById('ch-b'),tipB=document.querySelector('#ch-b .tip'),curM=null,hoverV=null;
+function ticks(lo,hi){
+  var span=hi-lo||1,raw=span/4,mag=Math.pow(10,Math.floor(Math.log10(raw))),step=mag;
+  [1,2,2.5,5,10].some(function(k){if(mag*k>=raw){step=mag*k;return true;}return false;});
+  var out=[],t=Math.ceil(lo/step)*step;
+  for(;t<=hi+step*0.001;t+=step)out.push(Math.round(t));
+  return out;
+}
+var VBB={w:560,h:230,L:76,R:18,T:18,B:38};
+function chartB(m){
+  var W=cw(figB),narrow=W<430,H=narrow?210:230,L=narrow?52:76,RGT=narrow?14:18,T=18,B=narrow?34:38;
+  VBB={w:W,h:H,L:L,R:RGT,T:T,B:B};svgB.setAttribute('viewBox','0 0 '+W+' '+H);
+  var fmt=narrow?moneyK:money,N=Math.max(m.v.carpas,1);
+  var y0=m.util(0),y1=m.util(N),lo=Math.min(y0,y1,0),hi=Math.max(y0,y1,0);
+  var pad=(hi-lo||1)*0.14;lo-=pad;hi+=pad;
+  var X=function(v){return L+(v/N)*(W-L-RGT);},Y=function(v){return T+(1-(v-lo)/(hi-lo))*(H-T-B);};
+  var s='<title id="chb-t">Línea de utilidad del camp según cuántas carpas se venden, con la línea de equilibrio en cero.</title>';
+  ticks(lo,hi).forEach(function(t){
+    if(Math.abs(t)<1)return;
+    s+='<line x1="'+L+'" y1="'+Y(t).toFixed(1)+'" x2="'+(W-RGT)+'" y2="'+Y(t).toFixed(1)+'" stroke="var(--hair)" stroke-width="1"/>';
+    s+='<text x="'+(L-9)+'" y="'+(Y(t)+4).toFixed(1)+'" text-anchor="end" font-size="11.5" fill="var(--muted)" class="tk">'+fmt(t)+'</text>';
+  });
+  s+='<line x1="'+L+'" y1="'+Y(0).toFixed(1)+'" x2="'+(W-RGT)+'" y2="'+Y(0).toFixed(1)+'" stroke="var(--ink)" stroke-width="1.5"/>';
+  s+='<text x="'+(L-9)+'" y="'+(Y(0)+4).toFixed(1)+'" text-anchor="end" font-size="11.5" font-weight="600" fill="var(--ink)" class="tk">$0</text>';
+  if(!narrow)s+='<text x="'+(W-RGT)+'" y="'+(Y(0)-8).toFixed(1)+'" text-anchor="end" font-size="11.5" font-weight="600" fill="var(--muted)">Equilibrio</text>';
+  [0,0.25,0.5,0.75,1].forEach(function(f){
+    var v=Math.round(N*f);
+    s+='<text x="'+X(v).toFixed(1)+'" y="'+(H-B+19)+'" text-anchor="'+(f===0?'start':f===1?'end':'middle')+'" font-size="11.5" fill="var(--muted)" class="tk">'+num(v)+'</text>';
+  });
+  if(!narrow)s+='<text x="'+((L+W-RGT)/2).toFixed(1)+'" y="'+(H-5)+'" text-anchor="middle" font-size="12" fill="var(--muted)">Carpas vendidas</text>';
+  s+='<path d="M'+X(0).toFixed(1)+','+Y(y0).toFixed(1)+' L'+X(N).toFixed(1)+','+Y(y1).toFixed(1)+'" fill="none" stroke="var(--ck-line)" stroke-width="2" stroke-linecap="round"/>';
+  if(isFinite(m.be)&&m.be>=0&&m.be<=N){
+    var bx=X(m.be),anc=bx>W*0.72?'end':'start';
+    s+='<text x="'+(bx+(anc==='end'?-11:11)).toFixed(1)+'" y="'+(Y(0)-9).toFixed(1)+'" text-anchor="'+anc+'" font-size="12" font-weight="600" fill="var(--ink)">'+num(Math.ceil(m.be))+' carpas</text>';
+    s+='<circle cx="'+bx.toFixed(1)+'" cy="'+Y(0).toFixed(1)+'" r="5" fill="var(--raised)" stroke="var(--ink)" stroke-width="2"/>';
+  }
+  var V=hoverV==null?m.v.vendidas:hoverV,uv=m.util(V);
+  if(hoverV!=null)s+='<line x1="'+X(V).toFixed(1)+'" y1="'+T+'" x2="'+X(V).toFixed(1)+'" y2="'+(H-B)+'" stroke="var(--muted)" stroke-width="1"/>';
+  s+='<circle cx="'+X(V).toFixed(1)+'" cy="'+Y(uv).toFixed(1)+'" r="6" fill="var(--ck-line)" stroke="var(--raised)" stroke-width="2"/>';
+  s+='<rect x="'+L+'" y="'+T+'" width="'+(W-L-RGT)+'" height="'+(H-T-B)+'" fill="transparent"/>';
+  svgB.innerHTML=s;
+  if(hoverV==null){tipB.classList.remove('on');}
+  else{tipFill(tipB,money(uv),num(V)+' carpas vendidas');place(tipB,figB,svgB,W,H,X(V),Y(uv));}
+}
+function bindB(){
+  svgB.addEventListener('pointermove',function(e){
+    if(!curM)return;
+    var r=svgB.getBoundingClientRect();if(!r.width)return;
+    var N=Math.max(curM.v.carpas,1);
+    var f=((e.clientX-r.left)/r.width*VBB.w-VBB.L)/(VBB.w-VBB.L-VBB.R);
+    hoverV=Math.max(0,Math.min(N,Math.round(f*N)));chartB(curM);
+  });
+  svgB.addEventListener('pointerleave',function(){hoverV=null;chartB(curM);});
+  svgB.addEventListener('keydown',function(e){
+    if(!curM)return;
+    var N=Math.max(curM.v.carpas,1),step=Math.max(1,Math.round(N/20));
+    if(e.key==='ArrowRight'||e.key==='ArrowLeft'){
+      e.preventDefault();
+      var base=hoverV==null?curM.v.vendidas:hoverV;
+      hoverV=Math.max(0,Math.min(N,base+(e.key==='ArrowRight'?step:-step)));chartB(curM);
+    }else if(e.key==='Escape'){hoverV=null;chartB(curM);}
+  });
+  svgB.addEventListener('blur',function(){hoverV=null;chartB(curM);});
+}
+
+/* ---------- tabla ---------- */
+function tables(m){
+  var t1=document.querySelector('#tbl-carpa tbody'),t2=document.querySelector('#tbl-ocup tbody');
+  var rows=[['Paquete de carpa',m.v.precio],['Barra extra, 2 personas',m.barra],['Renta de la carpa',-m.v.renta],['Operación del camp',-m.v.opex]];
+  t1.innerHTML='';
+  rows.forEach(function(r){
+    var tr=document.createElement('tr'),th=document.createElement('th');
+    th.scope='row';th.textContent=r[0];
+    var td=document.createElement('td');td.textContent=money(r[1]);
+    tr.appendChild(th);tr.appendChild(td);t1.appendChild(tr);
+  });
+  var tr=document.createElement('tr');tr.className='tot';
+  var th=document.createElement('th');th.scope='row';th.textContent='Deja por carpa vendida';
+  var td=document.createElement('td');td.textContent=money(m.deja);
+  tr.appendChild(th);tr.appendChild(td);t1.appendChild(tr);
+  t2.innerHTML='';
+  [0,.25,.5,.75,1].forEach(function(f){
+    var V=Math.round(m.v.carpas*f),r2=document.createElement('tr');
+    [num(V),Math.round(f*100)+'%',money(m.util(V))].forEach(function(txt,i){
+      var c=document.createElement(i===0?'th':'td');if(i===0)c.scope='row';
+      c.textContent=txt;r2.appendChild(c);
+    });
+    t2.appendChild(r2);
+  });
+}
+
+function kpi(id,val,sub,neg){
+  var el=document.getElementById(id);
+  el.querySelector('.val').textContent=val;
+  el.querySelector('.sub').textContent=sub;
+  el.classList.toggle('neg',!!neg);
+}
+function render(){
+  var v=read();
+  IN.vendidas.max=v.carpas;
+  if(v.vendidas>v.carpas){IN.vendidas.value=v.carpas;v.vendidas=v.carpas;}
+  KEYS.forEach(function(k){OUT[k].textContent=(FMT[k]||money)(v[k]);});
+  var m=model(v);curM=m;
+  kpi('k-util',money(m.utilidad),
+    m.utilidad>=0?'Con '+num(v.vendidas)+' de '+num(v.carpas)+' carpas vendidas, sobre un evento que ya está montado':'Con estos supuestos el camp cuesta más de lo que deja',
+    m.utilidad<0);
+  kpi('k-deja',money(m.deja),'Paquete y barra, menos renta y operación',m.deja<0);
+  var beTxt=isFinite(m.be)&&m.be>0?num(Math.ceil(m.be))+' carpas':(m.be<=0?'Desde la primera':'No llega');
+  kpi('k-be',beTxt,
+    isFinite(m.be0)?'Sin patrocinio sube a '+num(Math.ceil(m.be0))+' de '+num(v.carpas):'Sin patrocinio no llega',
+    isFinite(m.be)&&m.be>v.carpas);
+  chartA(m);chartB(m);tables(m);
+  document.getElementById('pk1').innerHTML=money(v.precio)+' <small>por carpa, 2 personas</small>';
+  document.getElementById('pk2').innerHTML=money(v.precio*2.6)+' <small>carpa y mesa</small>';
+  document.getElementById('pk3').innerHTML=money(v.precio*8*0.92)+' <small>8 carpas, 16 personas</small>';
+  var cmp=document.getElementById('cmp-compra');
+  if(cmp)cmp.textContent='Unas 10 ediciones de renta por adelantado, cerca de '+money(v.renta*10*v.carpas)+' en carpas';
+}
+form.addEventListener('input',render);
+var tog=document.getElementById('t-toggle'),box=document.getElementById('t-data');
+tog.addEventListener('click',function(){
+  var open=box.hidden;box.hidden=!open;
+  tog.setAttribute('aria-expanded',String(open));
+  tog.textContent=open?'Ocultar la tabla':'Ver la tabla';
+});
+bindA();bindB();render();
+var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){if(curM){chartA(curM);chartB(curM);}},120);});
 })();
 </script>
 </body>
