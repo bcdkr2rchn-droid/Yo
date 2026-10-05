@@ -84,7 +84,8 @@ section+section::before{content:"";position:absolute;top:0;left:clamp(18px,4.5vw
 .hero-ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,6,9,.72) 0%,rgba(8,6,9,.22) 38%,rgba(11,10,13,.86) 82%,var(--bg) 100%)}
 .hero-in{position:relative;z-index:2;align-self:end;justify-self:stretch;width:100%;display:grid;gap:22px;padding-block:clamp(36px,7vw,84px)}
 .hero-in .eyebrow{color:rgba(255,255,255,.72)}
-.lockup{width:min(100%,600px);height:auto;filter:drop-shadow(0 18px 40px rgba(0,0,0,.5))}
+.hero-title{font-size:clamp(46px,9vw,124px);color:#FFF;max-width:14ch;text-shadow:0 10px 50px rgba(0,0,0,.6)}
+.hero-title em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero-in p{color:#FFF6EC;font-size:clamp(18px,2.1vw,27px);line-height:1.32;max-width:23ch;font-weight:500;text-shadow:0 2px 20px rgba(0,0,0,.55)}
 .with{display:flex;align-items:center;gap:13px;font:500 11px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.2em;color:rgba(255,255,255,.7)}
 .with>*{flex:none}
@@ -329,14 +330,7 @@ footer p{font:400 11.5px/1.7 var(--f-mono);letter-spacing:.04em;color:var(--fain
     <img src="img/hero-carpas.webp" alt="Carpas de lona de Vive Camp al atardecer, con faroles encendidos y montaña al fondo" width="1800" height="1013">
     <div class="wrap hero-in">
       <p class="eyebrow">Propuesta visual · Octubre 2026</p>
-      <h1 class="sr-only">Blüme Camp, con las carpas de Vive Camp</h1>
-      <svg class="lockup" viewBox="0 0 1000 430" role="img" aria-label="BLÜME CAMP">
-        <defs><linearGradient id="lk-hero" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#EC0B73"/><stop offset=".5" stop-color="#FF3A44"/><stop offset="1" stop-color="#FC8E01"/></linearGradient></defs>
-        <g style="font-family:Archivo,'Arial Black',sans-serif;font-weight:900;font-stretch:125%" stroke="#141012" stroke-width="20" stroke-linejoin="round" paint-order="stroke">
-          <text x="24" y="206" font-size="196" textLength="930" lengthAdjust="spacingAndGlyphs" fill="#FAFAFA">BLÜME</text>
-          <text x="96" y="400" font-size="196" textLength="790" lengthAdjust="spacingAndGlyphs" fill="url(#lk-hero)">CAMP</text>
-        </g>
-      </svg>
+      <h1 class="hero-title display">El VIP <em>es una carpa</em></h1>
       <div class="with">con <span class="vc-chip"><img src="img/vive-camp-logo.webp" alt="Vive Camp" width="900" height="409"></span></div>
       <p>Estas carpas, dentro de un Blüme. Primero como el VIP del festival. Después, si se puede dormir, como campamento.</p>
     </div>
@@ -410,7 +404,7 @@ footer p{font:400 11.5px/1.7 var(--f-mono);letter-spacing:.04em;color:var(--fain
 <section id="dia">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow">Un día en Blüme Camp</p>
+      <p class="eyebrow">Un día completo</p>
       <h2 class="display">Mueve la hora</h2>
       <p class="lede">De la llegada al amanecer. Lo que se prende y lo que se apaga.</p>
     </div>
@@ -709,7 +703,7 @@ function panel({cx,y,w,h,p,lit=0,litColor=K.teal}){
   s+=`<path d="${archD(cx,ib,w*0.34,h*0.36)}" fill="none" stroke="${K.archLine}" stroke-width="${n(Math.max(1,w*0.045))}"/>`;
   return `<g>${s}</g>`;
 }
-function portal({cx,y,w,h,p,text='BLÜME CAMP',seed=4,lit=0}){
+function portal({cx,y,w,h,p,text='BLÜME',seed=4,lit=0}){
   const cw=w*0.42,sw=w*0.29,sh=h*0.78;
   const mods=[{x:cx-cw/2-sw/2,w:sw,h:sh},{x:cx+cw/2+sw/2,w:sw,h:sh},{x:cx,w:cw,h:h}];
   let s='';
@@ -895,7 +889,7 @@ const SK={
     let s=`<rect width="400" height="300" fill="#EFE3D2"/>`;
     for(let i=0;i<30;i++)s+=`<line x1="0" y1="${i*10+3}" x2="400" y2="${i*10+3}" stroke="#E2D2BC" stroke-width="1"/>`;
     s+=`<g transform="rotate(-6 110 160)"><path d="M70,78 Q70,40 98,40 Q126,40 126,78" fill="none" stroke="${K.ink}" stroke-width="5"/><path d="M114,78 Q114,46 140,46 Q166,46 166,78" fill="none" stroke="#D8CDBD" stroke-width="5"/><rect x="40" y="76" width="160" height="170" rx="4" fill="#FFFFFF" stroke="${K.ink}" stroke-width="3"/>`;
-    s+=`<g style="${DISPLAY}" stroke="${K.ink}" stroke-width="5" stroke-linejoin="round" paint-order="stroke"><text x="120" y="152" text-anchor="middle" font-size="34" textLength="128" lengthAdjust="spacingAndGlyphs" fill="#FFFFFF">BLÜME</text><text x="120" y="188" text-anchor="middle" font-size="34" textLength="108" lengthAdjust="spacingAndGlyphs" fill="url(#${p}brand)">CAMP</text></g></g>`;
+    s+=`<g style="${DISPLAY}" stroke="${K.ink}" stroke-width="5" stroke-linejoin="round" paint-order="stroke"><text x="120" y="172" text-anchor="middle" font-size="40" textLength="150" lengthAdjust="spacingAndGlyphs" fill="#FFFFFF">BLÜME</text></g><rect x="56" y="188" width="128" height="12" rx="6" fill="url(#${p}brand)" stroke="${K.ink}" stroke-width="3"/></g>`;
     s+=`<g transform="rotate(10 300 90)"><path d="M232,52 L372,52 L302,138Z" fill="url(#${p}brand)" stroke="${K.ink}" stroke-width="3" stroke-linejoin="round"/>`;
     const r=rnd(21);for(let i=0;i<16;i++){const u=r(),v=r()*(1-u*0.9);s+=`<circle cx="${n(244+u*116+(v-0.5)*0)}" cy="${n(58+v*70)}" r="2.2" fill="#FFFFFF" opacity=".8"/>`;}
     s+=`</g>`;

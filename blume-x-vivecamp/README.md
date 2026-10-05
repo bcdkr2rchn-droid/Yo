@@ -1,6 +1,7 @@
 # Blüme × Vive Camp
 
 Propuesta visual para una colaboración entre Blüme y las carpas de Vive Camp.
+No propone un nombre conjunto: las dos marcas se mantienen separadas.
 Abre `index.html` en el navegador.
 
 La idea se plantea en dos modos, porque la pernocta depende del venue:
