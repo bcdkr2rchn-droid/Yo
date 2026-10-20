@@ -1,11 +1,18 @@
 (() => {
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
   // H.264 para Safari y Chrome; WebM (VP9) para navegadores sin H.264.
-  const videoExt = document.createElement("video").canPlayType('video/mp4; codecs="avc1.42E01E"') ? ".mp4" : ".webm";
+  const videoExt = document
+    .createElement("video")
+    .canPlayType('video/mp4; codecs="avc1.42E01E"')
+    ? ".mp4"
+    : ".webm";
   const loadVideo = (video) => {
-    if (video.dataset.src && !video.getAttribute("src")) video.src = video.dataset.src.replace(/\.mp4$/, videoExt);
+    if (video.dataset.src && !video.getAttribute("src"))
+      video.src = video.dataset.src.replace(/\.mp4$/, videoExt);
   };
 
   // ---------- Letras: cada carácter entra con un giro, palabra por palabra ----------
@@ -39,15 +46,19 @@
   const typeText = (el) => {
     el.setAttribute("aria-label", el.textContent.trim());
     const chars = [...el.textContent];
-    el.textContent = "";
+    // Un solo contenedor para que el gap del eyebrow no separe cada letra.
+    const run = document.createElement("span");
+    run.className = "type-run";
+    run.setAttribute("aria-hidden", "true");
     chars.forEach((ch, i) => {
       const t = document.createElement("span");
       t.className = "t";
-      t.setAttribute("aria-hidden", "true");
       t.textContent = ch;
       t.style.setProperty("--i", i);
-      el.append(t);
+      run.append(t);
     });
+    el.textContent = "";
+    el.append(run);
   };
   $$("[data-split]").forEach(splitHeading);
   $$("[data-type]").forEach(typeText);
@@ -63,7 +74,9 @@
     { rootMargin: "0px 0px -12% 0px" },
   );
   const hero = $(".hero");
-  const animated = $$("[data-split], [data-type], .fade-up, .reveal-img").filter((el) => !el.closest(".loader") && !hero.contains(el));
+  const animated = $$(
+    "[data-split], [data-type], .fade-up, .reveal-img",
+  ).filter((el) => !el.closest(".loader") && !hero.contains(el));
 
   // ---------- Pantalla de carga ----------
   const loader = $(".loader");
@@ -71,7 +84,9 @@
   const revealHero = () => {
     document.body.classList.remove("is-locked");
     document.body.classList.add("is-ready");
-    $$("[data-split], [data-type], .fade-up", hero).forEach((el) => el.classList.add("is-in"));
+    $$("[data-split], [data-type], .fade-up", hero).forEach((el) =>
+      el.classList.add("is-in"),
+    );
     animated.forEach((el) => inObserver.observe(el));
   };
   loadVideo(heroVideo);
@@ -79,7 +94,9 @@
     loader.remove();
     revealHero();
   } else {
-    requestAnimationFrame(() => $(".loader-text", loader).classList.add("is-in"));
+    requestAnimationFrame(() =>
+      $(".loader-text", loader).classList.add("is-in"),
+    );
     heroVideo.play().catch(() => {});
     setTimeout(() => {
       loader.classList.add("is-done");
@@ -107,20 +124,35 @@
   const setMenu = (open) => {
     mobileNav.classList.toggle("is-open", open);
     menuToggle.setAttribute("aria-expanded", String(open));
-    $("use", menuToggle).setAttribute("href", open ? "#i-x-light" : "#i-list-light");
+    $("use", menuToggle).setAttribute(
+      "href",
+      open ? "#i-x-light" : "#i-list-light",
+    );
   };
-  menuToggle.addEventListener("click", () => setMenu(!mobileNav.classList.contains("is-open")));
-  $$("a", mobileNav).forEach((a) => a.addEventListener("click", () => setMenu(false)));
+  menuToggle.addEventListener("click", () =>
+    setMenu(!mobileNav.classList.contains("is-open")),
+  );
+  $$("a", mobileNav).forEach((a) =>
+    a.addEventListener("click", () => setMenu(false)),
+  );
 
   const navLinks = $$(".nav a");
   const sectionObserver = new IntersectionObserver(
     (entries) =>
       entries.forEach((entry) => {
-        if (entry.isIntersecting) navLinks.forEach((a) => a.classList.toggle("is-active", a.dataset.section === entry.target.id));
+        if (entry.isIntersecting)
+          navLinks.forEach((a) =>
+            a.classList.toggle(
+              "is-active",
+              a.dataset.section === entry.target.id,
+            ),
+          );
       }),
     { rootMargin: "-45% 0px -50% 0px" },
   );
-  navLinks.forEach((a) => sectionObserver.observe(document.getElementById(a.dataset.section)));
+  navLinks.forEach((a) =>
+    sectionObserver.observe(document.getElementById(a.dataset.section)),
+  );
 
   // ---------- Cifras que cuentan ----------
   const countObserver = new IntersectionObserver(
@@ -150,7 +182,8 @@
       entries.forEach(({ target: video, isIntersecting }) => {
         if (isIntersecting) {
           loadVideo(video);
-          if (!reduceMotion && !userPaused.has(video)) video.play().catch(() => {});
+          if (!reduceMotion && !userPaused.has(video))
+            video.play().catch(() => {});
         } else if (video.getAttribute("src")) {
           video.pause();
         }
@@ -163,7 +196,10 @@
     const video = $("video", btn.parentElement);
     const sync = () => {
       $("use", btn).setAttribute("href", video.paused ? "#i-play" : "#i-pause");
-      btn.setAttribute("aria-label", video.paused ? "Reproducir video" : "Pausar video");
+      btn.setAttribute(
+        "aria-label",
+        video.paused ? "Reproducir video" : "Pausar video",
+      );
     };
     video.addEventListener("play", sync);
     video.addEventListener("pause", sync);
@@ -186,7 +222,10 @@
     const start = () => {
       if (reduceMotion) return;
       loadVideo(video);
-      video.play().then(() => tile.classList.add("is-playing")).catch(() => {});
+      video
+        .play()
+        .then(() => tile.classList.add("is-playing"))
+        .catch(() => {});
     };
     const stop = () => {
       tile.classList.remove("is-playing");
@@ -201,7 +240,12 @@
   // ---------- Carrusel ----------
   $$("[data-rail]").forEach((btn) => {
     const rail = $(".rail", btn.closest(".rail-wrap"));
-    btn.addEventListener("click", () => rail.scrollBy({ left: Number(btn.dataset.rail) * rail.clientWidth * 0.8, behavior: reduceMotion ? "auto" : "smooth" }));
+    btn.addEventListener("click", () =>
+      rail.scrollBy({
+        left: Number(btn.dataset.rail) * rail.clientWidth * 0.8,
+        behavior: reduceMotion ? "auto" : "smooth",
+      }),
+    );
   });
 
   // ---------- Paralaje suave y encabezado sólido ----------
@@ -212,12 +256,24 @@
   let ticking = false;
   const onScroll = () => {
     header.classList.toggle("is-solid", window.scrollY > 80);
+    // Un salto con ancla puede pasar elementos sin que el observador los vea.
+    if (document.body.classList.contains("is-ready")) {
+      animated.forEach((el) => {
+        if (!el.classList.contains("is-in") && el.getBoundingClientRect().top < innerHeight * 0.88) {
+          el.classList.add("is-in");
+          inObserver.unobserve(el);
+        }
+      });
+    }
     if (reduceMotion) return;
     parallaxItems.forEach(({ box, media }) => {
       const r = box.getBoundingClientRect();
       if (r.bottom < 0 || r.top > innerHeight) return;
       const offset = (r.top + r.height / 2 - innerHeight / 2) * -0.12;
-      media.forEach((m) => (m.style.transform = `translate3d(0, ${offset.toFixed(1)}px, 0)`));
+      media.forEach(
+        (m) =>
+          (m.style.transform = `translate3d(0, ${offset.toFixed(1)}px, 0)`),
+      );
     });
   };
   window.addEventListener(
@@ -263,11 +319,20 @@
     document.body.style.overflow = "";
     lastFocus?.focus();
   };
-  $$("[data-gallery] button img").forEach((img) => img.closest("button").addEventListener("click", () => openLightbox(img)));
+  $$("[data-gallery] button img").forEach((img) =>
+    img.closest("button").addEventListener("click", () => openLightbox(img)),
+  );
   $(".lb-close", lightbox).addEventListener("click", closeLightbox);
-  $(".lb-prev", lightbox).addEventListener("click", () => showPhoto(groupIndex - 1));
-  $(".lb-next", lightbox).addEventListener("click", () => showPhoto(groupIndex + 1));
-  lightbox.addEventListener("click", (e) => e.target === lightbox && closeLightbox());
+  $(".lb-prev", lightbox).addEventListener("click", () =>
+    showPhoto(groupIndex - 1),
+  );
+  $(".lb-next", lightbox).addEventListener("click", () =>
+    showPhoto(groupIndex + 1),
+  );
+  lightbox.addEventListener(
+    "click",
+    (e) => e.target === lightbox && closeLightbox(),
+  );
 
   // ---------- Modal de reservación ----------
   const modal = $(".modal");
@@ -281,9 +346,14 @@
     modal.hidden = true;
     lastFocus?.focus();
   };
-  $$("[data-open-reservation]").forEach((b) => b.addEventListener("click", openModal));
+  $$("[data-open-reservation]").forEach((b) =>
+    b.addEventListener("click", openModal),
+  );
   $(".modal-close", modal).addEventListener("click", closeModal);
-  modal.addEventListener("mousedown", (e) => e.target === modal && closeModal());
+  modal.addEventListener(
+    "mousedown",
+    (e) => e.target === modal && closeModal(),
+  );
 
   window.addEventListener("keydown", (e) => {
     if (lightbox.classList.contains("is-open")) {
