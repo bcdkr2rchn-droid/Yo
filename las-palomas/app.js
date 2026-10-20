@@ -1,7 +1,5 @@
 (() => {
-  const reduceMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)",
-  ).matches;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
   // H.264 para Safari y Chrome; WebM (VP9) para navegadores sin H.264.
@@ -10,204 +8,162 @@
     if (video.dataset.src && !video.getAttribute("src")) video.src = video.dataset.src.replace(/\.mp4$/, videoExt);
   };
 
-  // ---------- Hero: cuatro experiencias que rotan ----------
-  const slides = [
-    {
-      id: "hotel",
-      eyebrow: "SANTIAGO, NUEVO LEÓN",
-      title: ["VIVE EL LUGAR.", "SIENTE LA", "HISTORIA."],
-      body: "Hotel, gastronomía, spa y celebraciones en el corazón del Pueblo Mágico.",
-      image: "media/video/santiago-atardecer.jpg",
-    },
-    {
-      id: "restaurante",
-      eyebrow: "COCINA DEL NORESTE",
-      title: ["SABORES QUE", "CUENTAN", "HISTORIAS."],
-      body: "Gastronomía, tradición y hospitalidad servidas en un espacio con identidad propia.",
-      image: "media/img/restaurante-arco-azul.webp",
-    },
-    {
-      id: "spa",
-      eyebrow: "UN MOMENTO PARA TI",
-      title: ["PAUSA.", "RESPIRA.", "RENUEVA."],
-      body: "Una experiencia de bienestar en medio de la calma y el encanto de Santiago.",
-      image: "media/img/spa-alberca.webp",
-    },
-    {
-      id: "eventos",
-      eyebrow: "CELEBRACIONES CON ALMA",
-      title: ["HAZLO TUYO.", "HAZLO", "INOLVIDABLE."],
-      body: "Un escenario con historia para celebrar los momentos que merecen quedarse contigo.",
-      image: "media/img/evento-noche.webp",
-    },
-  ];
-  const hero = $(".hero");
-  const layers = $$(".hero-layer", hero);
-  const heroVideo = $("video.hero-layer", hero);
-  const content = $(".hero-content", hero);
-  const videoToggle = $(".video-toggle", hero);
-  let current = 0;
-  let timer = null;
-  let videoPaused = reduceMotion;
-
-  function renderSlide(index) {
-    current = (index + slides.length) % slides.length;
-    const s = slides[current];
-    hero.className = `hero hero-${s.id}`;
-    hero.style.setProperty("--hero-image", `url(${s.image})`);
-    layers.forEach((layer) =>
-      layer.classList.toggle(
-        "is-active",
-        Number(layer.dataset.slide) === current,
-      ),
-    );
-    $('[data-hero="eyebrow"]', hero).textContent = s.eyebrow;
-    $('[data-hero="title"]', hero).replaceChildren(
-      ...s.title.map((line) =>
-        Object.assign(document.createElement("span"), { textContent: line }),
-      ),
-    );
-    $('[data-hero="body"]', hero).textContent = s.body;
-    $('[data-hero="count"]', hero).textContent = `0${current + 1} / 04`;
-    $(".progress-track i", hero).style.width =
-      `${((current + 1) / slides.length) * 100}%`;
-    content.style.animation = "none";
-    void content.offsetWidth;
-    content.style.animation = "";
-    videoToggle.hidden = current !== 0;
-    if (current === 0 && !videoPaused) {
-      loadVideo(heroVideo);
-      heroVideo.play().catch(() => {});
-    }
-    else heroVideo.pause();
-  }
-
-  function schedule() {
-    clearInterval(timer);
-    if (!reduceMotion)
-      timer = setInterval(
-        () => renderSlide(current + 1),
-        current === 0 ? 11000 : 8000,
-      );
-  }
-
-  $$(".slide-controls [data-step]", hero).forEach((btn) =>
-    btn.addEventListener("click", () => {
-      renderSlide(current + Number(btn.dataset.step));
-      schedule();
-    }),
-  );
-  hero.addEventListener("mouseenter", () => clearInterval(timer));
-  hero.addEventListener("mouseleave", schedule);
-
-  videoToggle.addEventListener("click", () => {
-    videoPaused = !videoPaused;
-    if (videoPaused) heroVideo.pause();
-    else {
-      loadVideo(heroVideo);
-      heroVideo.play().catch(() => {});
-    }
-    videoToggle.setAttribute("aria-pressed", String(videoPaused));
-    $("use", videoToggle).setAttribute(
-      "href",
-      videoPaused ? "#i-play" : "#i-pause",
-    );
-    $("span", videoToggle).textContent = videoPaused
-      ? "REPRODUCIR VIDEO"
-      : "PAUSAR VIDEO";
-  });
-
-  if (reduceMotion) {
-    heroVideo.removeAttribute("autoplay");
-    heroVideo.pause();
-    videoToggle.setAttribute("aria-pressed", "true");
-    $("use", videoToggle).setAttribute("href", "#i-play");
-    $("span", videoToggle).textContent = "REPRODUCIR VIDEO";
-  } else {
-    loadVideo(heroVideo);
-    heroVideo.play().catch(() => {});
-  }
-  renderSlide(0);
-  schedule();
-
-  // ---------- Header flotante, menú móvil y sección activa ----------
-  const header = $(".glass-header");
-  const menuButton = $(".menu-button");
-  const mobileMenu = $("#mobile-menu");
-  const setMenu = (open) => {
-    mobileMenu.classList.toggle("is-open", open);
-    menuButton.setAttribute("aria-expanded", String(open));
-    $("use", menuButton).setAttribute(
-      "href",
-      open ? "#i-x-regular" : "#i-list-regular",
-    );
-  };
-  menuButton.addEventListener("click", () =>
-    setMenu(!mobileMenu.classList.contains("is-open")),
-  );
-  $$("a", mobileMenu).forEach((a) =>
-    a.addEventListener("click", () => setMenu(false)),
-  );
-
-  new IntersectionObserver(
-    ([entry]) =>
-      header.classList.toggle(
-        "is-floating",
-        !entry.isIntersecting && window.innerWidth > 900,
-      ),
-    {
-      rootMargin: "-140px 0px 0px 0px",
-    },
-  ).observe(hero);
-
-  const navLinks = $$(".desktop-nav a");
-  const sectionObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting)
-          navLinks.forEach((a) =>
-            a.classList.toggle(
-              "is-active",
-              a.dataset.section === entry.target.id,
-            ),
-          );
+  // ---------- Letras: cada carácter entra con un giro, palabra por palabra ----------
+  const splitHeading = (el) => {
+    el.setAttribute("aria-label", el.textContent.replace(/\s+/g, " ").trim());
+    let index = 0;
+    const lines = $$(".line", el).length ? $$(".line", el) : [el];
+    lines.forEach((line) => {
+      const text = line.textContent;
+      line.textContent = "";
+      text.split(/(\s+)/).forEach((part) => {
+        if (!part) return;
+        if (/^\s+$/.test(part)) {
+          line.append(" ");
+          return;
+        }
+        const word = document.createElement("span");
+        word.className = "w";
+        word.setAttribute("aria-hidden", "true");
+        [...part].forEach((ch) => {
+          const c = document.createElement("span");
+          c.className = "c";
+          c.textContent = ch;
+          c.style.setProperty("--i", index++);
+          word.append(c);
+        });
+        line.append(word);
       });
-    },
+    });
+  };
+  const typeText = (el) => {
+    el.setAttribute("aria-label", el.textContent.trim());
+    const chars = [...el.textContent];
+    el.textContent = "";
+    chars.forEach((ch, i) => {
+      const t = document.createElement("span");
+      t.className = "t";
+      t.setAttribute("aria-hidden", "true");
+      t.textContent = ch;
+      t.style.setProperty("--i", i);
+      el.append(t);
+    });
+  };
+  $$("[data-split]").forEach(splitHeading);
+  $$("[data-type]").forEach(typeText);
+
+  // ---------- Entradas al hacer scroll ----------
+  const inObserver = new IntersectionObserver(
+    (entries) =>
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-in");
+        inObserver.unobserve(entry.target);
+      }),
+    { rootMargin: "0px 0px -12% 0px" },
+  );
+  const hero = $(".hero");
+  const animated = $$("[data-split], [data-type], .fade-up, .reveal-img").filter((el) => !el.closest(".loader") && !hero.contains(el));
+
+  // ---------- Pantalla de carga ----------
+  const loader = $(".loader");
+  const heroVideo = $(".hero-media video");
+  const revealHero = () => {
+    document.body.classList.remove("is-locked");
+    document.body.classList.add("is-ready");
+    $$("[data-split], [data-type], .fade-up", hero).forEach((el) => el.classList.add("is-in"));
+    animated.forEach((el) => inObserver.observe(el));
+  };
+  loadVideo(heroVideo);
+  if (reduceMotion) {
+    loader.remove();
+    revealHero();
+  } else {
+    requestAnimationFrame(() => $(".loader-text", loader).classList.add("is-in"));
+    heroVideo.play().catch(() => {});
+    setTimeout(() => {
+      loader.classList.add("is-done");
+      revealHero();
+      setTimeout(() => loader.remove(), 1400);
+    }, 2300);
+  }
+
+  // Pausa del video principal
+  const videoToggle = $(".video-toggle");
+  const setHeroPaused = (paused) => {
+    if (paused) heroVideo.pause();
+    else heroVideo.play().catch(() => {});
+    videoToggle.setAttribute("aria-pressed", String(paused));
+    $("use", videoToggle).setAttribute("href", paused ? "#i-play" : "#i-pause");
+    $("span", videoToggle).textContent = paused ? "REPRODUCIR" : "PAUSAR";
+  };
+  videoToggle.addEventListener("click", () => setHeroPaused(!heroVideo.paused));
+  if (reduceMotion) setHeroPaused(true);
+
+  // ---------- Encabezado, menú móvil y sección activa ----------
+  const header = $(".site-header");
+  const menuToggle = $(".menu-toggle");
+  const mobileNav = $("#mobile-nav");
+  const setMenu = (open) => {
+    mobileNav.classList.toggle("is-open", open);
+    menuToggle.setAttribute("aria-expanded", String(open));
+    $("use", menuToggle).setAttribute("href", open ? "#i-x-light" : "#i-list-light");
+  };
+  menuToggle.addEventListener("click", () => setMenu(!mobileNav.classList.contains("is-open")));
+  $$("a", mobileNav).forEach((a) => a.addEventListener("click", () => setMenu(false)));
+
+  const navLinks = $$(".nav a");
+  const sectionObserver = new IntersectionObserver(
+    (entries) =>
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) navLinks.forEach((a) => a.classList.toggle("is-active", a.dataset.section === entry.target.id));
+      }),
     { rootMargin: "-45% 0px -50% 0px" },
   );
-  ["hotel", "restaurante", "spa", "eventos"].forEach((id) =>
-    sectionObserver.observe(document.getElementById(id)),
-  );
+  navLinks.forEach((a) => sectionObserver.observe(document.getElementById(a.dataset.section)));
 
-  // ---------- Videos: cargan y se reproducen sólo cuando están a la vista ----------
+  // ---------- Cifras que cuentan ----------
+  const countObserver = new IntersectionObserver(
+    (entries) =>
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        countObserver.unobserve(entry.target);
+        if (reduceMotion) return;
+        const el = entry.target;
+        const target = Number(el.dataset.count);
+        const start = performance.now();
+        const tick = (now) => {
+          const p = Math.min(1, (now - start) / 1600);
+          el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      }),
+    { threshold: 0.6 },
+  );
+  $$("[data-count]").forEach((el) => countObserver.observe(el));
+
+  // ---------- Videos: cargan y se reproducen sólo a la vista ----------
   const userPaused = new WeakSet();
   const videoObserver = new IntersectionObserver(
-    (entries) => {
+    (entries) =>
       entries.forEach(({ target: video, isIntersecting }) => {
         if (isIntersecting) {
           loadVideo(video);
-          if (!reduceMotion && !userPaused.has(video))
-            video.play().catch(() => {});
-        } else if (video.src) {
+          if (!reduceMotion && !userPaused.has(video)) video.play().catch(() => {});
+        } else if (video.getAttribute("src")) {
           video.pause();
         }
-      });
-    },
+      }),
     { rootMargin: "200px 0px" },
   );
   $$("video[data-autoplay]").forEach((video) => videoObserver.observe(video));
 
-  $$(".reel").forEach((reel) => {
-    const video = $("video", reel);
-    const btn = $(".reel-toggle", reel);
-    const label = $("figcaption", reel).textContent.toLowerCase();
+  $$(".play-toggle").forEach((btn) => {
+    const video = $("video", btn.parentElement);
     const sync = () => {
-      const paused = video.paused;
-      $("use", btn).setAttribute("href", paused ? "#i-play" : "#i-pause");
-      btn.setAttribute(
-        "aria-label",
-        `${paused ? "Reproducir" : "Pausar"} video de ${label}`,
-      );
+      $("use", btn).setAttribute("href", video.paused ? "#i-play" : "#i-pause");
+      btn.setAttribute("aria-label", video.paused ? "Reproducir video" : "Pausar video");
     };
     video.addEventListener("play", sync);
     video.addEventListener("pause", sync);
@@ -225,15 +181,12 @@
   });
 
   // Tarjetas de experiencias: video al pasar el cursor
-  $$(".experience-tile").forEach((tile) => {
+  $$(".exp-tile").forEach((tile) => {
     const video = $("video", tile);
     const start = () => {
       if (reduceMotion) return;
       loadVideo(video);
-      video
-        .play()
-        .then(() => tile.classList.add("is-playing"))
-        .catch(() => {});
+      video.play().then(() => tile.classList.add("is-playing")).catch(() => {});
     };
     const stop = () => {
       tile.classList.remove("is-playing");
@@ -245,16 +198,41 @@
     tile.addEventListener("blur", stop);
   });
 
-  // ---------- Carrusel de platillos ----------
-  const rail = $(".rail");
-  $$("[data-rail]").forEach((btn) =>
-    btn.addEventListener("click", () =>
-      rail.scrollBy({
-        left: Number(btn.dataset.rail) * rail.clientWidth * 0.8,
-        behavior: reduceMotion ? "auto" : "smooth",
-      }),
-    ),
+  // ---------- Carrusel ----------
+  $$("[data-rail]").forEach((btn) => {
+    const rail = $(".rail", btn.closest(".rail-wrap"));
+    btn.addEventListener("click", () => rail.scrollBy({ left: Number(btn.dataset.rail) * rail.clientWidth * 0.8, behavior: reduceMotion ? "auto" : "smooth" }));
+  });
+
+  // ---------- Paralaje suave y encabezado sólido ----------
+  const parallaxItems = $$("[data-parallax]").map((el) => ({
+    box: el.closest(".band, .town") || el,
+    media: el.matches(".band") ? $$(":scope > video, :scope > img", el) : [el],
+  }));
+  let ticking = false;
+  const onScroll = () => {
+    header.classList.toggle("is-solid", window.scrollY > 80);
+    if (reduceMotion) return;
+    parallaxItems.forEach(({ box, media }) => {
+      const r = box.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > innerHeight) return;
+      const offset = (r.top + r.height / 2 - innerHeight / 2) * -0.12;
+      media.forEach((m) => (m.style.transform = `translate3d(0, ${offset.toFixed(1)}px, 0)`));
+    });
+  };
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        onScroll();
+        ticking = false;
+      });
+    },
+    { passive: true },
   );
+  onScroll();
 
   // ---------- Visor de fotos ----------
   const lightbox = $(".lightbox");
@@ -264,7 +242,6 @@
   let group = [];
   let groupIndex = 0;
   let lastFocus = null;
-
   const showPhoto = (i) => {
     groupIndex = (i + group.length) % group.length;
     const img = group[groupIndex];
@@ -274,8 +251,7 @@
     lbCount.textContent = `${groupIndex + 1} / ${group.length}`;
   };
   const openLightbox = (img) => {
-    const gallery = img.closest("[data-gallery]");
-    group = $$("button img", gallery);
+    group = $$("button img", img.closest("[data-gallery]"));
     lastFocus = document.activeElement;
     lightbox.classList.add("is-open");
     document.body.style.overflow = "hidden";
@@ -287,76 +263,37 @@
     document.body.style.overflow = "";
     lastFocus?.focus();
   };
-  $$("[data-gallery] button img").forEach((img) =>
-    img.parentElement.addEventListener("click", () => openLightbox(img)),
-  );
+  $$("[data-gallery] button img").forEach((img) => img.closest("button").addEventListener("click", () => openLightbox(img)));
   $(".lb-close", lightbox).addEventListener("click", closeLightbox);
-  $(".lb-prev", lightbox).addEventListener("click", () =>
-    showPhoto(groupIndex - 1),
-  );
-  $(".lb-next", lightbox).addEventListener("click", () =>
-    showPhoto(groupIndex + 1),
-  );
-  lightbox.addEventListener(
-    "click",
-    (e) => e.target === lightbox && closeLightbox(),
-  );
+  $(".lb-prev", lightbox).addEventListener("click", () => showPhoto(groupIndex - 1));
+  $(".lb-next", lightbox).addEventListener("click", () => showPhoto(groupIndex + 1));
+  lightbox.addEventListener("click", (e) => e.target === lightbox && closeLightbox());
 
   // ---------- Modal de reservación ----------
-  const backdrop = $(".modal-backdrop");
-  const setPurpose = (purpose) => {
-    $$("[data-purpose]", backdrop).forEach((b) =>
-      b.classList.toggle("is-active", b.dataset.purpose === purpose),
-    );
-    $$("[data-purpose-panel]", backdrop).forEach(
-      (p) => (p.hidden = p.dataset.purposePanel !== purpose),
-    );
-  };
-  const openModal = (purpose = "hospedaje") => {
-    setPurpose(purpose);
+  const modal = $(".modal");
+  const openModal = () => {
     lastFocus = document.activeElement;
-    backdrop.hidden = false;
+    modal.hidden = false;
     setMenu(false);
-    $(".modal-close", backdrop).focus();
+    $(".modal-close", modal).focus();
   };
   const closeModal = () => {
-    backdrop.hidden = true;
+    modal.hidden = true;
     lastFocus?.focus();
   };
-  $$("[data-open-reservation]").forEach((b) =>
-    b.addEventListener("click", () =>
-      openModal(b.dataset.openReservation || "hospedaje"),
-    ),
-  );
-  $$("[data-purpose]", backdrop).forEach((b) =>
-    b.addEventListener("click", () => setPurpose(b.dataset.purpose)),
-  );
-  $(".modal-close", backdrop).addEventListener("click", closeModal);
-  backdrop.addEventListener(
-    "mousedown",
-    (e) => e.target === backdrop && closeModal(),
-  );
+  $$("[data-open-reservation]").forEach((b) => b.addEventListener("click", openModal));
+  $(".modal-close", modal).addEventListener("click", closeModal);
+  modal.addEventListener("mousedown", (e) => e.target === modal && closeModal());
 
   window.addEventListener("keydown", (e) => {
     if (lightbox.classList.contains("is-open")) {
       if (e.key === "Escape") closeLightbox();
       if (e.key === "ArrowLeft") showPhoto(groupIndex - 1);
       if (e.key === "ArrowRight") showPhoto(groupIndex + 1);
-    } else if (!backdrop.hidden && e.key === "Escape") {
+    } else if (!modal.hidden && e.key === "Escape") {
       closeModal();
+    } else if (e.key === "Escape") {
+      setMenu(false);
     }
   });
-
-  // ---------- Revelado suave al hacer scroll ----------
-  const revealObserver = new IntersectionObserver(
-    (entries) =>
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          revealObserver.unobserve(entry.target);
-        }
-      }),
-    { rootMargin: "0px 0px -10% 0px" },
-  );
-  $$(".reveal").forEach((el) => revealObserver.observe(el));
 })();
