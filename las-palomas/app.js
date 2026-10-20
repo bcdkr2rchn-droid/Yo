@@ -4,6 +4,11 @@
   ).matches;
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
+  // H.264 para Safari y Chrome; WebM (VP9) para navegadores sin H.264.
+  const videoExt = document.createElement("video").canPlayType('video/mp4; codecs="avc1.42E01E"') ? ".mp4" : ".webm";
+  const loadVideo = (video) => {
+    if (video.dataset.src && !video.getAttribute("src")) video.src = video.dataset.src.replace(/\.mp4$/, videoExt);
+  };
 
   // ---------- Hero: cuatro experiencias que rotan ----------
   const slides = [
@@ -58,7 +63,9 @@
     );
     $('[data-hero="eyebrow"]', hero).textContent = s.eyebrow;
     $('[data-hero="title"]', hero).replaceChildren(
-      ...s.title.map((line) => Object.assign(document.createElement("span"), { textContent: line })),
+      ...s.title.map((line) =>
+        Object.assign(document.createElement("span"), { textContent: line }),
+      ),
     );
     $('[data-hero="body"]', hero).textContent = s.body;
     $('[data-hero="count"]', hero).textContent = `0${current + 1} / 04`;
@@ -68,7 +75,10 @@
     void content.offsetWidth;
     content.style.animation = "";
     videoToggle.hidden = current !== 0;
-    if (current === 0 && !videoPaused) heroVideo.play().catch(() => {});
+    if (current === 0 && !videoPaused) {
+      loadVideo(heroVideo);
+      heroVideo.play().catch(() => {});
+    }
     else heroVideo.pause();
   }
 
@@ -93,7 +103,10 @@
   videoToggle.addEventListener("click", () => {
     videoPaused = !videoPaused;
     if (videoPaused) heroVideo.pause();
-    else heroVideo.play().catch(() => {});
+    else {
+      loadVideo(heroVideo);
+      heroVideo.play().catch(() => {});
+    }
     videoToggle.setAttribute("aria-pressed", String(videoPaused));
     $("use", videoToggle).setAttribute(
       "href",
@@ -111,6 +124,7 @@
     $("use", videoToggle).setAttribute("href", "#i-play");
     $("span", videoToggle).textContent = "REPRODUCIR VIDEO";
   } else {
+    loadVideo(heroVideo);
     heroVideo.play().catch(() => {});
   }
   renderSlide(0);
@@ -166,9 +180,6 @@
   );
 
   // ---------- Videos: cargan y se reproducen sólo cuando están a la vista ----------
-  const loadVideo = (video) => {
-    if (video.dataset.src && !video.src) video.src = video.dataset.src;
-  };
   const userPaused = new WeakSet();
   const videoObserver = new IntersectionObserver(
     (entries) => {
