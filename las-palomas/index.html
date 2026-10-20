@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#002554" />
+    <meta name="description" content="Hotel, restaurante, spa y eventos frente a la plaza principal de Santiago, Nuevo León." />
+    <title>Las Palomas de Santiago</title>
+    <link rel="preload" href="media/fonts/cormorant-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="media/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!--SPRITE-->
+    <main>
+      <section class="hero hero-hotel" id="inicio" aria-label="Las Palomas de Santiago" style="--hero-image: url(media/video/santiago-atardecer.jpg)">
+        <div class="hero-layers" aria-hidden="true">
+          <video class="hero-layer is-active" data-slide="0" src="media/video/santiago-atardecer.mp4" poster="media/video/santiago-atardecer.jpg" muted loop playsinline preload="auto"></video>
+          <img class="hero-layer" data-slide="1" src="media/img/restaurante-arco-azul.webp" alt="" loading="lazy" />
+          <img class="hero-layer" data-slide="2" src="media/img/spa-alberca.webp" alt="" loading="lazy" />
+          <img class="hero-layer" data-slide="3" src="media/img/evento-noche.webp" alt="" loading="lazy" />
+        </div>
+        <div class="hero-veil"></div>
+        <div class="hero-bloom hero-bloom-left"></div>
+        <div class="hero-bloom hero-bloom-right"></div>
+
+        <header class="glass-header">
+          <a class="brand-button" href="#inicio" aria-label="Ir a inicio"><img src="media/img/logo.png" alt="Las Palomas de Santiago" width="300" height="104" /></a>
+          <span class="header-divider" aria-hidden="true"></span>
+          <nav class="desktop-nav" aria-label="Navegación principal">
+            <a href="#hotel" data-section="hotel">HOTEL</a>
+            <a href="#restaurante" data-section="restaurante">RESTAURANTE</a>
+            <a href="#spa" data-section="spa">SPA</a>
+            <a href="#eventos" data-section="eventos">EVENTOS</a>
+          </nav>
+          <span class="header-divider header-divider-end" aria-hidden="true"></span>
+          <button class="reserve-button" type="button" data-open-reservation>RESERVAR <svg class="icon" style="width:21px;height:21px"><use href="#i-arrow-right-light" /></svg></button>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menú"><svg class="icon" style="width:27px;height:27px"><use href="#i-list-regular" /></svg></button>
+        </header>
+        <div id="mobile-menu" class="mobile-menu">
+          <a href="#hotel"><span>01</span> HOTEL</a>
+          <a href="#restaurante"><span>02</span> RESTAURANTE</a>
+          <a href="#spa"><span>03</span> SPA</a>
+          <a href="#eventos"><span>04</span> EVENTOS</a>
+          <a href="#pueblo"><span>05</span> PUEBLO MÁGICO</a>
+          <button class="mobile-reserve" type="button" data-open-reservation>RESERVAR <svg class="icon" style="width:20px;height:20px"><use href="#i-arrow-right-regular" /></svg></button>
+        </div>
+
+        <div class="hero-content">
+          <div class="eyebrow-row"><p data-hero="eyebrow">SANTIAGO, NUEVO LEÓN</p><span></span></div>
+          <h1 data-hero="title"><span>VIVE EL LUGAR.</span><span>SIENTE LA</span><span>HISTORIA.</span></h1>
+          <p class="hero-description" data-hero="body">Hotel, gastronomía, spa y celebraciones en el corazón del Pueblo Mágico.</p>
+          <div class="hero-actions">
+            <a class="primary-action" href="#experiencias" style="text-decoration:none">DESCUBRIR LAS PALOMAS <svg class="icon" style="width:20px;height:20px"><use href="#i-arrow-right-light" /></svg></a>
+            <a class="secondary-action" href="#vive" style="text-decoration:none">VER VIDEOS</a>
+          </div>
+        </div>
+
+        <button class="video-toggle" type="button" aria-pressed="false"><svg class="icon"><use href="#i-pause" /></svg><span>PAUSAR VIDEO</span></button>
+
+        <div class="experience-glass" aria-label="Accesos rápidos">
+          <div class="experience-card-title"><span>TU EXPERIENCIA</span><i></i></div>
+          <div class="experience-links">
+            <button type="button" data-open-reservation="hospedaje"><svg class="icon" style="width:29px;height:29px"><use href="#i-bed-light" /></svg><span>HOSPEDAJE</span><svg class="icon" style="width:20px;height:20px"><use href="#i-arrow-right-light" /></svg></button>
+            <span class="experience-divider"></span>
+            <button type="button" data-open-reservation="eventos"><svg class="icon" style="width:29px;height:29px"><use href="#i-calendar-light" /></svg><span>EVENTOS</span><svg class="icon" style="width:20px;height:20px"><use href="#i-arrow-right-light" /></svg></button>
+          </div>
+        </div>
+
+        <div class="slide-controls" aria-label="Control de experiencias">
+          <span data-hero="count">01 / 04</span>
+          <div class="progress-track"><i style="width:25%"></i></div>
+          <button type="button" data-step="-1" aria-label="Experiencia anterior"><svg class="icon" style="width:20px;height:20px"><use href="#i-arrow-left-light" /></svg></button>
+          <button type="button" data-step="1" aria-label="Siguiente experiencia"><svg class="icon" style="width:20px;height:20px"><use href="#i-arrow-right-light" /></svg></button>
+        </div>
+        <a class="scroll-cue" href="#experiencias" aria-label="Bajar a experiencias" style="text-decoration:none"><span></span><i></i><b>SCROLL</b></a>
+      </section>
+
+      <section id="experiencias" class="experiences-section">
+        <div class="section-intro">
+          <p>UN DESTINO · CUATRO EXPERIENCIAS</p>
+          <h2>Elige cómo vivir Las Palomas.</h2>
+          <p class="section-copy">Descubre la hospitalidad, los sabores, el bienestar y los espacios que hacen de cada visita algo distinto. Pasa el cursor sobre cada tarjeta para verla en movimiento.</p>
+        </div>
+        <div class="experience-grid">
+          <a class="experience-tile" href="#hotel"><img src="media/img/orig-hotel-card.webp" alt="Hotel en Las Palomas de Santiago" loading="lazy" /><video muted loop playsinline preload="none" data-src="media/video/patio.mp4"></video><span class="tile-shade"></span><span class="tile-number">01</span><span class="tile-hint"><svg class="icon"><use href="#i-play" /></svg>VIDEO</span><span class="tile-label"><svg class="icon" style="width:24px;height:24px"><use href="#i-bed-light" /></svg> Hotel</span><svg class="icon tile-arrow" style="width:22px;height:22px"><use href="#i-arrow-right-light" /></svg></a>
+          <a class="experience-tile" href="#restaurante"><img src="media/img/orig-restaurante-card.webp" alt="Restaurante en Las Palomas de Santiago" loading="lazy" /><video muted loop playsinline preload="none" data-src="media/video/restaurante.mp4"></video><span class="tile-shade"></span><span class="tile-number">02</span><span class="tile-hint"><svg class="icon"><use href="#i-play" /></svg>VIDEO</span><span class="tile-label"><svg class="icon" style="width:24px;height:24px"><use href="#i-fork-knife-light" /></svg> Restaurante</span><svg class="icon tile-arrow" style="width:22px;height:22px"><use href="#i-arrow-right-light" /></svg></a>
+          <a class="experience-tile" href="#spa"><img src="media/img/orig-spa-card.webp" alt="Spa en Las Palomas de Santiago" loading="lazy" /><video muted loop playsinline preload="none" data-src="media/video/alberca.mp4"></video><span class="tile-shade"></span><span class="tile-number">03</span><span class="tile-hint"><svg class="icon"><use href="#i-play" /></svg>VIDEO</span><span class="tile-label"><svg class="icon" style="width:24px;height:24px"><use href="#i-sparkle-light" /></svg> Spa</span><svg class="icon tile-arrow" style="width:22px;height:22px"><use href="#i-arrow-right-light" /></svg></a>
+          <a class="experience-tile" href="#eventos"><img src="media/img/orig-eventos-card.webp" alt="Eventos en Las Palomas de Santiago" loading="lazy" /><video muted loop playsinline preload="none" data-src="media/video/musica.mp4"></video><span class="tile-shade"></span><span class="tile-number">04</span><span class="tile-hint"><svg class="icon"><use href="#i-play" /></svg>VIDEO</span><span class="tile-label"><svg class="icon" style="width:24px;height:24px"><use href="#i-calendar-light" /></svg> Eventos</span><svg class="icon tile-arrow" style="width:22px;height:22px"><use href="#i-arrow-right-light" /></svg></a>
+        </div>
+      </section>
+
+      <section id="hotel" class="story story-dark">
+        <div class="story-head reveal">
+          <div>
+            <p class="kicker">01 · HOTEL</p>
+            <h2>Un patio con vista a la Parroquia.</h2>
+          </div>
+          <div class="story-copy">
+            <p>Pasillos con arcos, bugambilias en los balcones y una fuente que se enciende al caer la tarde. Desde la terraza, las torres de la Parroquia de Santiago Apóstol y la sierra al fondo.</p>
+            <ul class="feature-list">
+              <li><svg class="icon"><use href="#i-bed-light" /></svg>Habitaciones con balcón</li>
+              <li><svg class="icon"><use href="#i-sparkle-light" /></svg>Terraza bar con vista</li>
+              <li><svg class="icon"><use href="#i-fork-knife-light" /></svg>Restaurante en el hotel</li>
+              <li><svg class="icon"><use href="#i-calendar-light" /></svg>Frente a la plaza principal</li>
+            </ul>
+            <div class="cta-row"><a class="cta" href="https://hotels.cloudbeds.com/es/reservation/pEs5S8" target="_blank" rel="noreferrer">VER DISPONIBILIDAD <svg class="icon"><use href="#i-arrow-right-regular" /></svg></a></div>
+          </div>
+        </div>
+        <div class="mosaic reveal" data-gallery="hotel">
+          <figure class="m-item big"><button type="button"><img src="media/img/hotel-patio-parroquia.webp" alt="Patio del hotel con bugambilias y la Parroquia al fondo" loading="lazy" /></button><figcaption>PATIO CENTRAL</figcaption></figure>
+          <figure class="m-item tall"><video muted loop playsinline preload="none" data-autoplay data-src="media/video/bugambilias.mp4" poster="media/video/bugambilias.jpg" aria-label="Video de los balcones con bugambilias"></video><span class="badge"><svg class="icon"><use href="#i-play" /></svg>EN VIVO</span></figure>
+          <figure class="m-item"><button type="button"><img src="media/img/habitacion-doble.webp" alt="Habitación doble con balcón" loading="lazy" /></button><figcaption>HABITACIONES</figcaption></figure>
+          <figure class="m-item"><button type="button"><img src="media/img/hotel-chimenea.webp" alt="Lobby con chimenea azul" loading="lazy" /></button><figcaption>LOBBY</figcaption></figure>
+          <figure class="m-item wide"><button type="button"><img src="media/img/terraza-bar.webp" alt="Terraza bar con vista a la sierra" loading="lazy" /></button><figcaption>TERRAZA BAR</figcaption></figure>
+          <figure class="m-item"><button type="button"><img src="media/img/hotel-patio-noche.webp" alt="Fuente del patio iluminada de noche" loading="lazy" /></button><figcaption>FUENTE DE NOCHE</figcaption></figure>
+          <figure class="m-item"><button type="button"><img src="media/img/fachada-noche.webp" alt="Fachada del hotel al anochecer" loading="lazy" /></button><figcaption>FACHADA</figcaption></figure>
+        </div>
+      </section>
+
+      <section id="restaurante" class="story story-light">
+        <div class="story-head reveal">
+          <div>
+            <p class="kicker">02 · RESTAURANTE</p>
+            <h2>Sabores que cuentan historias.</h2>
+          </div>
+          <div class="story-copy">
+            <p>Cocina del noreste y platillos de temporada, servidos entre muros de piedra, arcos azules y sillas de colores. Del desayuno en la terraza a la cena con vista a la plaza.</p>
+            <div class="cta-row"><a class="cta" href="https://wa.link/pkdzrh" target="_blank" rel="noreferrer">RESERVAR MESA <svg class="icon"><use href="#i-arrow-right-regular" /></svg></a></div>
+          </div>
+        </div>
+        <div class="rail-wrap reveal">
+          <div class="rail" data-gallery="platillos" tabindex="0" aria-label="Platillos del restaurante">
+            <figure class="dish"><button type="button"><img src="media/img/platillo-asado.webp" alt="Platillo regional con arroz, frijoles y guacamole" loading="lazy" /></button><figcaption><b>Cocina regional</b><span>PLATO FUERTE</span></figcaption></figure>
+            <figure class="dish"><button type="button"><img src="media/img/chile-en-nogada.webp" alt="Chile en nogada con granada" loading="lazy" /></button><figcaption><b>Chile en nogada</b><span>TEMPORADA</span></figcaption></figure>
+            <figure class="dish"><button type="button"><img src="media/img/molcajete.webp" alt="Molcajete con guacamole y chiles" loading="lazy" /></button><figcaption><b>Molcajete</b><span>PARA COMPARTIR</span></figcaption></figure>
+            <figure class="dish"><button type="button"><img src="media/img/platillo-huevos.webp" alt="Huevos con salsa verde y frijoles" loading="lazy" /></button><figcaption><b>Desayunos</b><span>TODOS LOS DÍAS</span></figcaption></figure>
+            <figure class="dish"><button type="button"><img src="media/img/platillo-costilla.webp" alt="Corte con papa al horno y salsas" loading="lazy" /></button><figcaption><b>Cortes</b><span>PLATO FUERTE</span></figcaption></figure>
+            <figure class="dish"><button type="button"><img src="media/img/tacos.webp" alt="Tacos con salsa" loading="lazy" /></button><figcaption><b>Tacos</b><span>ANTOJITOS</span></figcaption></figure>
+            <figure class="dish"><button type="button"><img src="media/img/desayuno-chilaquiles.webp" alt="Desayuno con café y salsas" loading="lazy" /></button><figcaption><b>Mañanas largas</b><span>DESAYUNO</span></figcaption></figure>
+            <figure class="dish"><button type="button"><img src="media/img/mesa-mexicana.webp" alt="Mesa con varios platillos mexicanos" loading="lazy" /></button><figcaption><b>Mesa mexicana</b><span>PARA COMPARTIR</span></figcaption></figure>
+            <figure class="dish"><button type="button"><img src="media/img/cafe-de-olla.webp" alt="Postre bañado en cajeta" loading="lazy" /></button><figcaption><b>Postres</b><span>DE LA CASA</span></figcaption></figure>
+          </div>
+          <div class="rail-controls">
+            <button type="button" data-rail="-1" aria-label="Platillos anteriores"><svg class="icon"><use href="#i-arrow-left-light" /></svg></button>
+            <button type="button" data-rail="1" aria-label="Más platillos"><svg class="icon"><use href="#i-arrow-right-light" /></svg></button>
+          </div>
+        </div>
+        <div class="space-row reveal">
+          <h3>El espacio</h3>
+          <div class="mosaic" data-gallery="restaurante">
+            <figure class="m-item big"><button type="button"><img src="media/img/restaurante-arco.webp" alt="Salón del restaurante con arco azul y palomas" loading="lazy" /></button><figcaption>SALÓN DE LAS PALOMAS</figcaption></figure>
+            <figure class="m-item tall"><video muted loop playsinline preload="none" data-autoplay data-src="media/video/restaurante.mp4" poster="media/video/restaurante.jpg" aria-label="Video de la terraza del restaurante"></video><span class="badge"><svg class="icon"><use href="#i-play" /></svg>TERRAZA</span></figure>
+            <figure class="m-item"><button type="button"><img src="media/img/chef.webp" alt="Chef del restaurante" loading="lazy" /></button><figcaption>NUESTRA COCINA</figcaption></figure>
+            <figure class="m-item"><button type="button"><img src="media/img/restaurante-cava.webp" alt="Salón con muros de piedra" loading="lazy" /></button><figcaption>MUROS DE PIEDRA</figcaption></figure>
+            <figure class="m-item wide"><button type="button"><img src="media/img/restaurante-salon.webp" alt="Restaurante lleno de comensales" loading="lazy" /></button><figcaption>FIN DE SEMANA</figcaption></figure>
+            <figure class="m-item wide"><button type="button"><img src="media/img/restaurante-arco-azul.webp" alt="Salón con altar y arco azul" loading="lazy" /></button><figcaption>ALTAR Y ARCO AZUL</figcaption></figure>
+          </div>
+        </div>
+      </section>
+
+      <section id="pueblo" class="town" aria-label="Pueblo Mágico de Santiago">
+        <img class="town-poster" src="media/video/santiago-noche.jpg" alt="" />
+        <video muted loop playsinline preload="none" data-autoplay data-src="media/video/santiago-noche.mp4" poster="media/video/santiago-noche.jpg" aria-label="Video aéreo de la Parroquia de Santiago de noche"></video>
+        <div class="town-inner reveal">
+          <p class="kicker">PUEBLO MÁGICO</p>
+          <h2>Frente a la plaza principal de Santiago.</h2>
+          <p class="town-copy">Sal a caminar por las calles empedradas, cruza la plaza hacia la Parroquia de Santiago Apóstol y vuelve al atardecer a una terraza con la sierra de fondo.</p>
+          <p class="address"><i></i>ABASOLO 101 · VILLA DE SANTIAGO, N.L.</p>
+        </div>
+      </section>
+      <div class="town-strip" data-gallery="pueblo">
+        <figure class="m-item"><button type="button"><img src="media/img/parroquia-altar.webp" alt="Altar de muertos frente a la Parroquia" loading="lazy" /></button><figcaption>TRADICIONES</figcaption></figure>
+        <figure class="m-item"><button type="button"><img src="media/img/santiago-aerea.webp" alt="Vista aérea de Santiago y la sierra" loading="lazy" /></button><figcaption>SANTIAGO DESDE EL AIRE</figcaption></figure>
+        <figure class="m-item"><button type="button"><img src="media/img/terraza-faroles.webp" alt="Terraza con faroles y la Parroquia" loading="lazy" /></button><figcaption>TERRAZA</figcaption></figure>
+        <figure class="m-item"><button type="button"><img src="media/img/atardecer-hotel.webp" alt="Atardecer sobre el hotel y la sierra" loading="lazy" /></button><figcaption>ATARDECER</figcaption></figure>
+      </div>
+
+      <section id="spa" class="story story-sand">
+        <div class="story-head reveal">
+          <div>
+            <p class="kicker">03 · SPA Y JARDÍN</p>
+            <h2>Pausa. Respira. Renueva.</h2>
+          </div>
+          <div class="story-copy">
+            <p>Cabinas tranquilas, un jardín con fuente y una alberca rodeada de árboles. Un momento para ti en medio de la calma de Santiago.</p>
+            <ul class="feature-list">
+              <li><svg class="icon"><use href="#i-sparkle-light" /></svg>Masajes y tratamientos</li>
+              <li><svg class="icon"><use href="#i-sparkle-light" /></svg>Alberca y jardín</li>
+            </ul>
+            <div class="cta-row"><a class="cta" href="https://wa.link/pkdzrh" target="_blank" rel="noreferrer">AGENDAR TRATAMIENTO <svg class="icon"><use href="#i-arrow-right-regular" /></svg></a></div>
+          </div>
+        </div>
+        <div class="mosaic reveal" data-gallery="spa">
+          <figure class="m-item big"><button type="button"><img src="media/img/spa-masaje.webp" alt="Masaje con piedras calientes" loading="lazy" /></button><figcaption>MASAJES</figcaption></figure>
+          <figure class="m-item wide"><button type="button"><img src="media/img/spa-alberca.webp" alt="Alberca entre jardines" loading="lazy" /></button><figcaption>ALBERCA</figcaption></figure>
+          <figure class="m-item tall"><video muted loop playsinline preload="none" data-autoplay data-src="media/video/alberca.mp4" poster="media/video/alberca.jpg" aria-label="Video de la alberca"></video><span class="badge"><svg class="icon"><use href="#i-play" /></svg>ALBERCA</span></figure>
+          <figure class="m-item"><button type="button"><img src="media/img/spa-jardin.webp" alt="Jardín con fuente" loading="lazy" /></button><figcaption>JARDÍN</figcaption></figure>
+          <figure class="m-item"><button type="button"><img src="media/img/spa-terraza.webp" alt="Terraza techada junto al jardín" loading="lazy" /></button><figcaption>TERRAZA</figcaption></figure>
+          <figure class="m-item wide"><button type="button"><img src="media/img/jardin-fuente.webp" alt="Fuente del jardín y portal" loading="lazy" /></button><figcaption>FUENTE</figcaption></figure>
+        </div>
+      </section>
+
+      <section id="eventos" class="story story-dark">
+        <div class="story-head reveal">
+          <div>
+            <p class="kicker">04 · EVENTOS</p>
+            <h2>Hazlo tuyo. Hazlo inolvidable.</h2>
+          </div>
+          <div class="story-copy">
+            <p>Bodas en el patio iluminado, cenas en la terraza frente a la Parroquia y reuniones de trabajo con coffee break. Un escenario con historia para los momentos que merecen quedarse contigo.</p>
+            <ul class="feature-list">
+              <li><svg class="icon"><use href="#i-calendar-light" /></svg>Bodas y callejoneadas</li>
+              <li><svg class="icon"><use href="#i-calendar-light" /></svg>Eventos sociales</li>
+              <li><svg class="icon"><use href="#i-calendar-light" /></svg>Reuniones corporativas</li>
+              <li><svg class="icon"><use href="#i-bed-light" /></svg>Hospedaje para invitados</li>
+            </ul>
+            <div class="cta-row"><a class="cta" href="https://wa.link/pkdzrh" target="_blank" rel="noreferrer">COTIZAR POR WHATSAPP <svg class="icon"><use href="#i-arrow-right-regular" /></svg></a></div>
+          </div>
+        </div>
+        <div class="mosaic reveal" data-gallery="eventos">
+          <figure class="m-item big"><button type="button"><img src="media/img/evento-noche.webp" alt="Banquete de noche en el patio del hotel" loading="lazy" /></button><figcaption>PATIO DE NOCHE</figcaption></figure>
+          <figure class="m-item"><button type="button"><img src="media/img/boda-pareja.webp" alt="Pareja de novios en un muro azul" loading="lazy" /></button><figcaption>BODAS</figcaption></figure>
+          <figure class="m-item tall"><button type="button"><img src="media/img/evento-terraza-parroquia.webp" alt="Mesa en la terraza con la Parroquia iluminada" loading="lazy" /></button><figcaption>TERRAZA</figcaption></figure>
+          <figure class="m-item"><button type="button"><img src="media/img/evento-mesa-aerea.webp" alt="Mesa redonda vista desde arriba" loading="lazy" /></button><figcaption>MONTAJES</figcaption></figure>
+          <figure class="m-item wide"><button type="button"><img src="media/img/evento-patio.webp" alt="Montaje de banquete en el patio" loading="lazy" /></button><figcaption>BANQUETES</figcaption></figure>
+          <figure class="m-item"><button type="button"><img src="media/img/evento-mesa-dulces.webp" alt="Mesa de dulces junto a la alberca" loading="lazy" /></button><figcaption>MESA DE DULCES</figcaption></figure>
+          <figure class="m-item"><button type="button"><img src="media/img/evento-lounge.webp" alt="Sala lounge con velas" loading="lazy" /></button><figcaption>LOUNGE</figcaption></figure>
+        </div>
+      </section>
+
+      <section id="vive" class="story story-deep">
+        <div class="story-head reveal">
+          <div>
+            <p class="kicker">EN MOVIMIENTO</p>
+            <h2>Vive Las Palomas.</h2>
+          </div>
+          <div class="story-copy"><p>Coctelería en el jardín, música en vivo, la combi de la casa y las bugambilias del patio. Así se siente un día aquí.</p></div>
+        </div>
+        <div class="reels-grid reveal">
+          <figure class="reel"><video muted loop playsinline preload="none" data-autoplay data-src="media/video/coctel.mp4" poster="media/video/coctel.jpg"></video><figcaption>Coctelería</figcaption><button class="reel-toggle" type="button" aria-label="Pausar video de coctelería"><svg class="icon"><use href="#i-pause" /></svg></button></figure>
+          <figure class="reel"><video muted loop playsinline preload="none" data-autoplay data-src="media/video/musica.mp4" poster="media/video/musica.jpg"></video><figcaption>Música en vivo</figcaption><button class="reel-toggle" type="button" aria-label="Pausar video de música en vivo"><svg class="icon"><use href="#i-pause" /></svg></button></figure>
+          <figure class="reel"><video muted loop playsinline preload="none" data-autoplay data-src="media/video/combi.mp4" poster="media/video/combi.jpg"></video><figcaption>La combi</figcaption><button class="reel-toggle" type="button" aria-label="Pausar video de la combi"><svg class="icon"><use href="#i-pause" /></svg></button></figure>
+          <figure class="reel"><video muted loop playsinline preload="none" data-autoplay data-src="media/video/patio.mp4" poster="media/video/patio.jpg"></video><figcaption>El patio</figcaption><button class="reel-toggle" type="button" aria-label="Pausar video del patio"><svg class="icon"><use href="#i-pause" /></svg></button></figure>
+          <figure class="reel"><video muted loop playsinline preload="none" data-autoplay data-src="media/video/alberca.mp4" poster="media/video/alberca.jpg"></video><figcaption>Alberca</figcaption><button class="reel-toggle" type="button" aria-label="Pausar video de la alberca"><svg class="icon"><use href="#i-pause" /></svg></button></figure>
+          <figure class="reel"><video muted loop playsinline preload="none" data-autoplay data-src="media/video/restaurante.mp4" poster="media/video/restaurante.jpg"></video><figcaption>La terraza</figcaption><button class="reel-toggle" type="button" aria-label="Pausar video de la terraza"><svg class="icon"><use href="#i-pause" /></svg></button></figure>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <img src="media/img/logo.png" alt="Las Palomas de Santiago" width="300" height="104" loading="lazy" />
+        <div class="footer-info"><b>Las Palomas de Santiago</b>Abasolo 101, Villa de Santiago, Nuevo León<br />Frente a la plaza principal</div>
+        <button type="button" data-open-reservation>PLANEA TU EXPERIENCIA <svg class="icon" style="width:18px;height:18px"><use href="#i-arrow-right-regular" /></svg></button>
+      </footer>
+    </main>
+
+    <div class="modal-backdrop" role="presentation" hidden>
+      <section class="reservation-modal" role="dialog" aria-modal="true" aria-labelledby="reservation-title">
+        <button class="modal-close" type="button" aria-label="Cerrar reservación"><svg class="icon" style="width:22px;height:22px"><use href="#i-x-light" /></svg></button>
+        <p class="modal-kicker">TU EXPERIENCIA</p>
+        <h2 id="reservation-title">¿Qué deseas reservar?</h2>
+        <div class="purpose-toggle" aria-label="Tipo de reservación">
+          <button type="button" class="is-active" data-purpose="hospedaje"><svg class="icon" style="width:22px;height:22px"><use href="#i-bed-regular" /></svg> Hospedaje</button>
+          <button type="button" data-purpose="eventos"><svg class="icon" style="width:22px;height:22px"><use href="#i-calendar-regular" /></svg> Eventos</button>
+        </div>
+        <div class="reservation-content" data-purpose-panel="hospedaje">
+          <p>Consulta habitaciones y fechas disponibles directamente en el sistema de reservaciones.</p>
+          <a class="modal-primary" href="https://hotels.cloudbeds.com/es/reservation/pEs5S8" target="_blank" rel="noreferrer">VER DISPONIBILIDAD <svg class="icon" style="width:18px;height:18px"><use href="#i-arrow-right-regular" /></svg></a>
+        </div>
+        <div class="reservation-content" data-purpose-panel="eventos" hidden>
+          <p>Cuéntanos qué deseas celebrar y prepara una experiencia a la medida en Las Palomas.</p>
+          <a class="modal-primary" href="https://wa.link/pkdzrh" target="_blank" rel="noreferrer">COTIZAR POR WHATSAPP <svg class="icon" style="width:18px;height:18px"><use href="#i-arrow-right-regular" /></svg></a>
+        </div>
+      </section>
+    </div>
+
+    <div class="lightbox" role="dialog" aria-modal="true" aria-label="Galería de fotos">
+      <span class="lb-count"></span>
+      <button class="lb-btn lb-close" type="button" aria-label="Cerrar galería"><svg class="icon"><use href="#i-x-light" /></svg></button>
+      <button class="lb-btn lb-prev" type="button" aria-label="Foto anterior"><svg class="icon"><use href="#i-arrow-left-light" /></svg></button>
+      <figure><img alt="" /><figcaption></figcaption></figure>
+      <button class="lb-btn lb-next" type="button" aria-label="Foto siguiente"><svg class="icon"><use href="#i-arrow-right-light" /></svg></button>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
