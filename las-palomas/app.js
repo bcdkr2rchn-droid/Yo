@@ -290,6 +290,57 @@
   );
   onScroll();
 
+  // ---------- Barra de avance dorada ----------
+  const progress = $(".progress i");
+  const updateProgress = () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    progress.style.transform = `scaleX(${max > 0 ? Math.min(1, scrollY / max) : 0})`;
+  };
+  window.addEventListener("scroll", updateProgress, { passive: true });
+  updateProgress();
+
+  // ---------- Brillo que sigue al cursor sobre el vidrio ----------
+  document.addEventListener(
+    "pointermove",
+    (e) => {
+      const card = e.target.closest?.(".glass");
+      if (!card) return;
+      const r = card.getBoundingClientRect();
+      card.style.setProperty("--mx", `${e.clientX - r.left}px`);
+      card.style.setProperty("--my", `${e.clientY - r.top}px`);
+    },
+    { passive: true },
+  );
+
+  // ---------- Temporadas ----------
+  const tabs = $$(".season-tab");
+  const selectSeason = (tab) => {
+    tabs.forEach((t) => {
+      const active = t === tab;
+      t.classList.toggle("is-active", active);
+      t.setAttribute("aria-selected", String(active));
+      t.tabIndex = active ? 0 : -1;
+      const panel = document.getElementById(t.getAttribute("aria-controls"));
+      panel.hidden = !active;
+      panel.classList.toggle("is-active", active);
+      $$("video[data-autoplay]", panel).forEach((v) => {
+        if (active) {
+          loadVideo(v);
+          if (!reduceMotion) v.play().catch(() => {});
+        } else v.pause();
+      });
+    });
+  };
+  tabs.forEach((tab, i) => {
+    tab.addEventListener("click", () => selectSeason(tab));
+    tab.addEventListener("keydown", (e) => {
+      if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+      const next = tabs[(i + (e.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length];
+      selectSeason(next);
+      next.focus();
+    });
+  });
+
   // ---------- Visor de fotos ----------
   const lightbox = $(".lightbox");
   const lbImg = $("img", lightbox);
