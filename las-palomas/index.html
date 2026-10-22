@@ -16,11 +16,12 @@
 
     <div class="progress" aria-hidden="true"><i></i></div>
     <div class="loader" aria-hidden="true">
-      <div class="loader-mark">
-        <svg viewBox="0 0 168 168"><circle class="track" cx="84" cy="84" r="80" /><circle class="ring" cx="84" cy="84" r="80" /></svg>
-        <img src="media/img/logo.png" alt="" width="300" height="104" />
+      <div class="loader-stage">
+        <div class="loader-orbit"><i></i><i></i><i></i></div>
+        <img class="loader-logo" src="media/img/logo.png" alt="" width="300" height="104" />
       </div>
       <p class="loader-text" data-type>Vive Santiago desde su corazón</p>
+      <div class="loader-bar"><i></i></div>
     </div>
 
     <header class="site-header">
@@ -78,6 +79,9 @@
 
       <!-- ============ INTRO / CIFRAS ============ -->
       <section class="section section-dark" id="historia" aria-labelledby="historia-title">
+        <span class="sphere bug" data-depth=".35" style="--s: 132px; top: 9%; right: 7%"></span>
+        <span class="sphere azul" data-depth=".18" style="--s: 74px; bottom: 16%; left: 5%"></span>
+        <span class="sphere cristal" data-depth=".5" style="--s: 44px; top: 34%; left: 12%"></span>
         <span class="orb magenta" style="top: -10%; left: -12%"></span>
         <span class="orb cobalt" style="bottom: -20%; right: -10%"></span>
         <header class="sec-head">
@@ -101,7 +105,7 @@
 
       <!-- ============ EXPERIENCIAS ============ -->
       <section class="section section-cream" id="experiencias" aria-labelledby="exp-title">
-        <span class="orb gold" style="top: 10%; right: -14%"></span>
+        <span class="orb violet" style="top: 10%; right: -14%"></span>
         <header class="sec-head">
           <p class="eyebrow" data-type>Un destino · Cuatro experiencias</p>
           <h2 id="exp-title" class="title" data-split><span class="line">Elige cómo vivir</span><span class="line it">Las Palomas.</span></h2>
@@ -116,6 +120,8 @@
 
       <!-- ============ HOTEL ============ -->
       <section class="section section-navy" id="hotel" aria-labelledby="hotel-title">
+        <span class="sphere cristal" data-depth=".4" style="--s: 92px; top: 5%; left: 7%"></span>
+        <span class="sphere bug" data-depth=".22" style="--s: 46px; top: 15%; right: 13%"></span>
         <span class="orb cobalt" style="top: -8%; right: -12%"></span>
         <span class="orb magenta" style="bottom: 20%; left: -16%"></span>
         <header class="sec-head" data-num="01">
@@ -161,12 +167,14 @@
           <figure class="tile reveal-img" style="--d: 150ms"><button type="button"><img src="media/img/fachada-noche.webp" alt="Fachada del hotel al anochecer" loading="lazy" /></button><figcaption>Fachada</figcaption></figure>
         </div>
         <div class="split">
-          <div class="split-media reveal-img"><img src="media/img/area-ninos.webp" alt="Área de juegos infantiles entre árboles" loading="lazy" /></div>
+          <div class="split-visual">
+            <div class="split-media reveal-img"><img src="media/img/area-ninos.webp" alt="Área de juegos infantiles entre árboles" loading="lazy" /></div>
+            <figure class="phone kid fade-up" style="--d: 300ms"><video muted loop playsinline preload="none" data-autoplay data-src="media/video/galletas.mp4" poster="media/video/galletas.jpg" aria-label="Manos decorando galletas en un taller infantil"></video></figure>
+          </div>
           <div class="split-text">
             <p class="eyebrow" data-type>Para los pequeños</p>
             <h3 class="title" data-split><span class="line">Un jardín</span><span class="line it">para jugar.</span></h3>
             <p class="fade-up">Resbaladillas y columpios a la sombra de los árboles, y talleres en fechas especiales, como la decoración de galletas del Día del Niño.</p>
-            <figure class="phone mini fade-up"><video muted loop playsinline preload="none" data-autoplay data-src="media/video/galletas.mp4" poster="media/video/galletas.jpg" aria-label="Manos decorando galletas en un taller infantil"></video></figure>
           </div>
         </div>
         <div class="band" data-parallax>
@@ -182,8 +190,10 @@
 
       <!-- ============ RESTAURANTE ============ -->
       <section class="section section-cream" id="restaurante" aria-labelledby="rest-title">
+        <span class="sphere bug" data-depth=".3" style="--s: 70px; top: 6%; right: 12%"></span>
+        <span class="sphere azul" data-depth=".2" style="--s: 40px; top: 15%; left: 14%"></span>
         <span class="orb magenta" style="top: 4%; left: -18%"></span>
-        <span class="orb gold" style="bottom: 8%; right: -16%"></span>
+        <span class="orb violet" style="bottom: 8%; right: -16%"></span>
         <header class="sec-head" data-num="02">
           <p class="eyebrow" data-type>02 · Restaurante</p>
           <h2 id="rest-title" class="title" data-split><span class="line">Sabores que</span><span class="line it">cuentan historias.</span></h2>
@@ -290,7 +300,7 @@
       <!-- ============ BAR ============ -->
       <section class="section section-dark" id="bar" aria-labelledby="bar-title">
         <span class="orb magenta" style="top: 20%; left: -14%"></span>
-        <span class="orb gold" style="bottom: -14%; right: -10%"></span>
+        <span class="orb violet" style="bottom: -14%; right: -10%"></span>
         <header class="sec-head">
           <p class="eyebrow" data-type>Bar y cava</p>
           <h2 id="bar-title" class="title" data-split><span class="line">Brindar</span><span class="line it">con vino de la casa.</span></h2>
@@ -319,7 +329,7 @@
       <!-- ============ VINO DE LA CASA ============ -->
       <section class="section section-cream" id="vino" aria-labelledby="vino-title">
         <span class="orb magenta" style="top: -10%; right: -14%"></span>
-        <span class="orb gold" style="bottom: -14%; left: -12%"></span>
+        <span class="orb violet" style="bottom: -14%; left: -12%"></span>
         <div class="editorial">
           <div class="editorial-media">
             <div class="reveal-img tall-frame"><img src="media/img/vino-servir.webp" alt="Vino tinto Las Palomas servido en copa sobre mesa con sillas de colores" loading="lazy" /></div>
@@ -361,7 +371,7 @@
 
       <!-- ============ SPA ============ -->
       <section class="section section-sand" id="spa" aria-labelledby="spa-title">
-        <span class="orb gold" style="top: -12%; left: -12%"></span>
+        <span class="orb violet" style="top: -12%; left: -12%"></span>
         <span class="orb magenta" style="bottom: -14%; right: -14%"></span>
         <header class="sec-head" data-num="05">
           <p class="eyebrow" data-type>05 · Spa y jardín</p>
@@ -381,9 +391,11 @@
 
       <!-- ============ EVENTOS ============ -->
       <section class="section section-dark" id="eventos" aria-labelledby="ev-title">
+        <span class="sphere azul" data-depth=".3" style="--s: 150px; top: 2%; right: 6%"></span>
+        <span class="sphere bug" data-depth=".45" style="--s: 58px; top: 8%; left: 10%"></span>
         <span class="orb magenta" style="top: -6%; left: -16%"></span>
         <span class="orb cobalt" style="top: 40%; right: -18%"></span>
-        <span class="orb gold" style="bottom: -8%; left: 20%"></span>
+        <span class="orb violet" style="bottom: -8%; left: 20%"></span>
         <header class="sec-head" data-num="06">
           <p class="eyebrow" data-type>06 · Eventos</p>
           <h2 id="ev-title" class="title" data-split><span class="line">Hazlo tuyo.</span><span class="line it">Hazlo inolvidable.</span></h2>
@@ -483,7 +495,7 @@
       <!-- ============ TRADICIONES ============ -->
       <section class="section section-dark" id="tradiciones" aria-labelledby="trad-title">
         <span class="orb magenta" style="top: 6%; right: -14%"></span>
-        <span class="orb gold" style="bottom: 10%; left: -14%"></span>
+        <span class="orb violet" style="bottom: 10%; left: -14%"></span>
         <header class="sec-head" data-num="07">
           <p class="eyebrow" data-type>07 · Tradiciones</p>
           <h2 id="trad-title" class="title" data-split><span class="line">Un año entero</span><span class="line it">de fiesta en la plaza.</span></h2>
@@ -562,7 +574,10 @@
 
       <!-- ============ PREGUNTAS ============ -->
       <section class="section section-cream" id="preguntas" aria-labelledby="faq-title">
-        <span class="orb gold" style="top: -10%; left: -10%"></span>
+        <span class="sphere bug" data-depth=".3" style="--s: 112px; top: 10%; left: 8%"></span>
+        <span class="sphere cristal" data-depth=".45" style="--s: 70px; bottom: 12%; right: 9%"></span>
+        <span class="sphere azul" data-depth=".2" style="--s: 38px; top: 30%; right: 16%"></span>
+        <span class="orb violet" style="top: -10%; left: -10%"></span>
         <header class="sec-head" data-num="09">
           <p class="eyebrow" data-type>09 · Antes de llegar</p>
           <h2 id="faq-title" class="title" data-split><span class="line">Preguntas</span><span class="line it">frecuentes.</span></h2>
@@ -583,8 +598,10 @@
 
       <!-- ============ CONTACTO ============ -->
       <footer class="section section-dark" id="contacto" aria-labelledby="contacto-title">
+        <span class="sphere cristal" data-depth=".35" style="--s: 120px; top: 9%; left: 7%"></span>
+        <span class="sphere bug" data-depth=".25" style="--s: 58px; top: 22%; right: 13%"></span>
         <span class="orb magenta" style="bottom: -20%; left: -10%"></span>
-        <span class="orb gold" style="top: -10%; right: -10%"></span>
+        <span class="orb violet" style="top: -10%; right: -10%"></span>
         <header class="sec-head">
           <p class="eyebrow" data-type>Contacto</p>
           <h2 id="contacto-title" class="title" data-split><span class="line">Te esperamos</span><span class="line it">en Santiago.</span></h2>

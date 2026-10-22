@@ -41,6 +41,13 @@
         });
         line.append(word);
       });
+      // Degradado letra por letra en la cursiva: --p va de 0 (bugambilia) a 1 (azul).
+      if (line.classList.contains("it")) {
+        const chars = $$(".c", line);
+        chars.forEach((c, i) =>
+          c.style.setProperty("--p", (i / Math.max(1, chars.length - 1)).toFixed(3)),
+        );
+      }
     });
   };
   const typeText = (el) => {
@@ -101,7 +108,9 @@
     setTimeout(() => {
       loader.classList.add("is-done");
       revealHero();
-      setTimeout(() => loader.remove(), 1400);
+      setTimeout(() => loader.remove(), 1300);
+      // Cuando termina la entrada, el video sigue al scroll como tarjeta 3D.
+      setTimeout(() => hero.classList.add("is-live"), 2500);
     }, 2300);
   }
 
@@ -253,6 +262,11 @@
     box: el.closest(".band, .town") || el,
     media: el.matches(".band") ? $$(":scope > video, :scope > img", el) : [el],
   }));
+  const spheres = $$(".sphere").map((el) => ({
+    el,
+    depth: Number(el.dataset.depth) || 0.2,
+    box: el.closest("section, footer"),
+  }));
   let ticking = false;
   const onScroll = () => {
     header.classList.toggle("is-solid", window.scrollY > 80);
@@ -266,6 +280,16 @@
       });
     }
     if (reduceMotion) return;
+    hero.style.setProperty(
+      "--hp",
+      Math.min(1, Math.max(0, scrollY / hero.offsetHeight)).toFixed(3),
+    );
+    spheres.forEach(({ el, depth, box }) => {
+      const y = box.getBoundingClientRect().top + el.offsetTop;
+      if (y < -500 || y > innerHeight + 500) return;
+      const offset = (y + el.offsetHeight / 2 - innerHeight / 2) * -depth * 0.45;
+      el.style.transform = `translate3d(0, ${offset.toFixed(1)}px, 0)`;
+    });
     parallaxItems.forEach(({ box, media }) => {
       const r = box.getBoundingClientRect();
       if (r.bottom < 0 || r.top > innerHeight) return;
@@ -290,7 +314,7 @@
   );
   onScroll();
 
-  // ---------- Barra de avance dorada ----------
+  // ---------- Barra de avance ----------
   const progress = $(".progress i");
   const updateProgress = () => {
     const max = document.documentElement.scrollHeight - innerHeight;
@@ -311,6 +335,43 @@
     },
     { passive: true },
   );
+
+  // ---------- Tarjetas que se inclinan en 3D con el cursor ----------
+  if (!reduceMotion && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    const tiltCards = $$(
+      ".room, .dish-card, .exp-tile, .celebration, .wine, .stat, .include, .contact-card, .reel, .step, .capacity, .rail-item, .tile, .plate",
+    );
+    tiltCards.forEach((card) => {
+      card.classList.add("tilt");
+      if (card.matches(".exp-tile, .celebration, .reel, .tile, .room, .dish-card")) {
+        const glare = document.createElement("span");
+        glare.className = "glare";
+        glare.setAttribute("aria-hidden", "true");
+        card.append(glare);
+      }
+      const set = (rx, ry, lift) => {
+        card.style.setProperty("--rx", `${rx.toFixed(2)}deg`);
+        card.style.setProperty("--ry", `${ry.toFixed(2)}deg`);
+        card.style.setProperty("--lift", `${lift}px`);
+      };
+      card.addEventListener("pointerenter", () =>
+        card.classList.add("is-settled", "is-tilting"),
+      );
+      card.addEventListener("pointermove", (e) => {
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        const max = r.width > 520 ? 3 : 7;
+        set(-y * max * 2, x * max * 2, 16);
+        card.style.setProperty("--gx", `${((x + 0.5) * 100).toFixed(1)}%`);
+        card.style.setProperty("--gy", `${((y + 0.5) * 100).toFixed(1)}%`);
+      });
+      card.addEventListener("pointerleave", () => {
+        card.classList.remove("is-tilting");
+        set(0, 0, 0);
+      });
+    });
+  }
 
   // ---------- Temporadas ----------
   const tabs = $$(".season-tab");
