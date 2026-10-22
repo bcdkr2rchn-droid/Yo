@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#081a3a" />
+    <meta name="description" content="Hotel, restaurante, spa y eventos frente a la plaza principal de Santiago, Nuevo León. Vive Santiago desde su corazón." />
+    <title>Las Palomas de Santiago</title>
+    <link rel="preload" href="media/fonts/eb-garamond-normal-400-700-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="media/fonts/lato-normal-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="is-locked">
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-arrow-left-light" viewBox="0 0 256 256"><path d="M222,128a6,6,0,0,1-6,6H54.49l61.75,61.76a6,6,0,1,1-8.48,8.48l-72-72a6,6,0,0,1,0-8.48l72-72a6,6,0,0,1,8.48,8.48L54.49,122H216A6,6,0,0,1,222,128Z"/></symbol><symbol id="i-arrow-left-regular" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"/></symbol><symbol id="i-arrow-right-light" viewBox="0 0 256 256"><path d="M220.24,132.24l-72,72a6,6,0,0,1-8.48-8.48L201.51,134H40a6,6,0,0,1,0-12H201.51L139.76,60.24a6,6,0,0,1,8.48-8.48l72,72A6,6,0,0,1,220.24,132.24Z"/></symbol><symbol id="i-arrow-right-regular" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></symbol><symbol id="i-bed-light" viewBox="0 0 256 256"><path d="M216,74H30V48a6,6,0,0,0-12,0V208a6,6,0,0,0,12,0V174H242v34a6,6,0,0,0,12,0V112A38,38,0,0,0,216,74ZM30,86h76v76H30Zm88,76V86h98a26,26,0,0,1,26,26v50Z"/></symbol><symbol id="i-bed-regular" viewBox="0 0 256 256"><path d="M216,72H32V48a8,8,0,0,0-16,0V208a8,8,0,0,0,16,0V176H240v32a8,8,0,0,0,16,0V112A40,40,0,0,0,216,72ZM32,88h72v72H32Zm88,72V88h96a24,24,0,0,1,24,24v48Z"/></symbol><symbol id="i-calendar-light" viewBox="0 0 256 256"><path d="M208,34H182V24a6,6,0,0,0-12,0V34H86V24a6,6,0,0,0-12,0V34H48A14,14,0,0,0,34,48V208a14,14,0,0,0,14,14H208a14,14,0,0,0,14-14V48A14,14,0,0,0,208,34ZM48,46H74V56a6,6,0,0,0,12,0V46h84V56a6,6,0,0,0,12,0V46h26a2,2,0,0,1,2,2V82H46V48A2,2,0,0,1,48,46ZM208,210H48a2,2,0,0,1-2-2V94H210V208A2,2,0,0,1,208,210Z"/></symbol><symbol id="i-calendar-regular" viewBox="0 0 256 256"><path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Z"/></symbol><symbol id="i-fork-knife-light" viewBox="0 0 256 256"><path d="M74,88V40a6,6,0,0,1,12,0V88a6,6,0,0,1-12,0ZM214,40V224a6,6,0,0,1-12,0V174H152a6,6,0,0,1-6-6c0-4.41.68-108.25,59.64-133.51A6,6,0,0,1,214,40ZM202,50c-36.79,24.29-42.82,91.48-43.81,112H202ZM117.92,39a6,6,0,1,0-11.84,2L114,88.48a34,34,0,0,1-68,0L53.92,41a6,6,0,0,0-11.84-2l-8,48A6.61,6.61,0,0,0,34,88a46.06,46.06,0,0,0,40,45.6V224a6,6,0,0,0,12,0V133.6A46.06,46.06,0,0,0,126,88a6.61,6.61,0,0,0-.08-1Z"/></symbol><symbol id="i-fork-knife-regular" viewBox="0 0 256 256"><path d="M72,88V40a8,8,0,0,1,16,0V88a8,8,0,0,1-16,0ZM216,40V224a8,8,0,0,1-16,0V176H152a8,8,0,0,1-8-8,268.75,268.75,0,0,1,7.22-56.88c9.78-40.49,28.32-67.63,53.63-78.47A8,8,0,0,1,216,40ZM200,53.9c-32.17,24.57-38.47,84.42-39.7,106.1H200ZM119.89,38.69a8,8,0,1,0-15.78,2.63L112,88.63a32,32,0,0,1-64,0l7.88-47.31a8,8,0,1,0-15.78-2.63l-8,48A8.17,8.17,0,0,0,32,88a48.07,48.07,0,0,0,40,47.32V224a8,8,0,0,0,16,0V135.32A48.07,48.07,0,0,0,128,88a8.17,8.17,0,0,0-.11-1.31Z"/></symbol><symbol id="i-list-light" viewBox="0 0 256 256"><path d="M222,128a6,6,0,0,1-6,6H40a6,6,0,0,1,0-12H216A6,6,0,0,1,222,128ZM40,70H216a6,6,0,0,0,0-12H40a6,6,0,0,0,0,12ZM216,186H40a6,6,0,0,0,0,12H216a6,6,0,0,0,0-12Z"/></symbol><symbol id="i-list-regular" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"/></symbol><symbol id="i-sparkle-light" viewBox="0 0 256 256"><path d="M196.89,130.94,144.4,111.6,125.06,59.11a13.92,13.92,0,0,0-26.12,0L79.6,111.6,27.11,130.94a13.92,13.92,0,0,0,0,26.12L79.6,176.4l19.34,52.49a13.92,13.92,0,0,0,26.12,0L144.4,176.4l52.49-19.34a13.92,13.92,0,0,0,0-26.12Zm-4.15,14.86-55.08,20.3a6,6,0,0,0-3.56,3.56l-20.3,55.08a1.92,1.92,0,0,1-3.6,0L89.9,169.66a6,6,0,0,0-3.56-3.56L31.26,145.8a1.92,1.92,0,0,1,0-3.6l55.08-20.3a6,6,0,0,0,3.56-3.56l20.3-55.08a1.92,1.92,0,0,1,3.6,0l20.3,55.08a6,6,0,0,0,3.56,3.56l55.08,20.3a1.92,1.92,0,0,1,0,3.6ZM146,40a6,6,0,0,1,6-6h18V16a6,6,0,0,1,12,0V34h18a6,6,0,0,1,0,12H182V64a6,6,0,0,1-12,0V46H152A6,6,0,0,1,146,40ZM246,88a6,6,0,0,1-6,6H230v10a6,6,0,0,1-12,0V94H208a6,6,0,0,1,0-12h10V72a6,6,0,0,1,12,0V82h10A6,6,0,0,1,246,88Z"/></symbol><symbol id="i-sparkle-regular" viewBox="0 0 256 256"><path d="M197.58,129.06,146,110l-19-51.62a15.92,15.92,0,0,0-29.88,0L78,110l-51.62,19a15.92,15.92,0,0,0,0,29.88L78,178l19,51.62a15.92,15.92,0,0,0,29.88,0L146,178l51.62-19a15.92,15.92,0,0,0,0-29.88ZM137,164.22a8,8,0,0,0-4.74,4.74L112,223.85,91.78,169A8,8,0,0,0,87,164.22L32.15,144,87,123.78A8,8,0,0,0,91.78,119L112,64.15,132.22,119a8,8,0,0,0,4.74,4.74L191.85,144ZM144,40a8,8,0,0,1,8-8h16V16a8,8,0,0,1,16,0V32h16a8,8,0,0,1,0,16H184V64a8,8,0,0,1-16,0V48H152A8,8,0,0,1,144,40ZM248,88a8,8,0,0,1-8,8h-8v8a8,8,0,0,1-16,0V96h-8a8,8,0,0,1,0-16h8V72a8,8,0,0,1,16,0v8h8A8,8,0,0,1,248,88Z"/></symbol><symbol id="i-x-light" viewBox="0 0 256 256"><path d="M204.24,195.76a6,6,0,1,1-8.48,8.48L128,136.49,60.24,204.24a6,6,0,0,1-8.48-8.48L119.51,128,51.76,60.24a6,6,0,0,1,8.48-8.48L128,119.51l67.76-67.75a6,6,0,0,1,8.48,8.48L136.49,128Z"/></symbol><symbol id="i-x-regular" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></symbol><symbol id="i-play" viewBox="0 0 256 256"><path d="M80 48v160l128-80z"/></symbol><symbol id="i-pause" viewBox="0 0 256 256"><path d="M72 48h40v160H72zM144 48h40v160h-40z"/></symbol></svg>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="l-cloth" viewBox="0 0 32 32"><path d="M5 9h22l-2 14H7z"/><path d="M9 23l-1 4M23 23l1 4M5 9l3-4h16l3 4"/></symbol><symbol id="l-chair" viewBox="0 0 32 32"><path d="M10 4v13h12V4"/><path d="M8 17h16v4H8z"/><path d="M10 21v8M22 21v8"/></symbol><symbol id="l-plate" viewBox="0 0 32 32"><circle cx="16" cy="16" r="11"/><circle cx="16" cy="16" r="6"/><path d="M2 8v6a2 2 0 0 0 2 2v10M30 6v20"/></symbol><symbol id="l-spark" viewBox="0 0 32 32"><path d="M16 3l3 9 9 3-9 3-3 10-3-10-9-3 9-3z"/></symbol><symbol id="l-waiter" viewBox="0 0 32 32"><circle cx="16" cy="8" r="4"/><path d="M8 29v-8a8 8 0 0 1 16 0v8"/><path d="M4 16h10M9 16a5 5 0 0 1 0-1"/></symbol><symbol id="l-pot" viewBox="0 0 32 32"><path d="M5 14h22v4a9 9 0 0 1-9 9h-4a9 9 0 0 1-9-9z"/><path d="M2 14h28M11 9c0-2 2-2 2-4M17 9c0-2 2-2 2-4"/></symbol><symbol id="l-clip" viewBox="0 0 32 32"><rect x="7" y="5" width="18" height="24" rx="2"/><path d="M12 5V3h8v2M11 13h10M11 18h10M11 23h6"/></symbol><symbol id="l-bed" viewBox="0 0 32 32"><path d="M3 25V8M3 19h26v6M29 19v-4a4 4 0 0 0-4-4H13v8"/><circle cx="8" cy="14" r="2.5"/></symbol></svg>
+
+    <div class="progress" aria-hidden="true"><i></i></div>
+    <div class="loader" aria-hidden="true">
+      <div class="loader-stage">
+        <div class="loader-orbit"><i></i><i></i><i></i></div>
+        <img class="loader-logo" src="media/img/logo.png" alt="" width="300" height="104" />
+      </div>
+      <p class="loader-text" data-type>Vive Santiago desde su corazón</p>
+      <div class="loader-bar"><i></i></div>
+    </div>
+
+    <header class="site-header">
+      <a class="brand" href="#inicio" aria-label="Las Palomas de Santiago, inicio"><img src="media/img/logo.png" alt="Las Palomas de Santiago" width="300" height="104" /></a>
+      <nav class="nav" aria-label="Navegación principal">
+        <a href="#hotel" data-section="hotel">HOTEL</a>
+        <a href="#restaurante" data-section="restaurante">RESTAURANTE</a>
+        <a href="#desayunos" data-section="desayunos">DESAYUNOS</a>
+        <a href="#spa" data-section="spa">SPA</a>
+        <a href="#eventos" data-section="eventos">EVENTOS</a>
+        <a href="#tradiciones" data-section="tradiciones">TRADICIONES</a>
+        <a href="#pueblo" data-section="pueblo">PUEBLO</a>
+      </nav>
+      <div class="header-actions">
+        <button class="btn btn-glow btn-sm" type="button" data-open-reservation>Reservar <svg class="icon"><use href="#i-arrow-right-regular" /></svg></button>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Abrir menú"><svg class="icon"><use href="#i-list-light" /></svg></button>
+      </div>
+    </header>
+    <nav id="mobile-nav" class="mobile-nav" aria-label="Menú móvil">
+      <a href="#hotel"><span>01</span> HOTEL</a>
+      <a href="#restaurante"><span>02</span> RESTAURANTE</a>
+      <a href="#desayunos"><span>03</span> DESAYUNOS</a>
+      <a href="#spa"><span>04</span> SPA</a>
+      <a href="#eventos"><span>05</span> EVENTOS</a>
+      <a href="#pueblo"><span>06</span> PUEBLO MÁGICO</a>
+      <a href="#tradiciones"><span>07</span> TRADICIONES</a>
+      <a href="#boutique"><span>08</span> BOUTIQUE</a>
+      <a href="#preguntas"><span>09</span> PREGUNTAS</a>
+      <a href="#contacto"><span>10</span> CONTACTO</a>
+    </nav>
+
+    <main>
+      <!-- ============ HERO ============ -->
+      <section class="hero" id="inicio" aria-labelledby="hero-title">
+        <div class="hero-media">
+          <video data-src="media/video/santiago-atardecer.mp4" poster="media/video/santiago-atardecer.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
+        </div>
+        <div class="hero-inner">
+          <p class="eyebrow" data-type>Santiago, Nuevo León · Pueblo Mágico</p>
+          <h1 id="hero-title" class="title" data-split><span class="line">Vive Santiago</span><span class="line it">desde su corazón.</span></h1>
+          <p class="hero-sub fade-up" style="--d: 700ms">Hotel, restaurante, spa y eventos frente a la plaza principal. Cincuenta años de sabor y tradición.</p>
+          <div class="hero-actions fade-up" style="--d: 850ms">
+            <button class="btn btn-glow" type="button" data-open-reservation>Reservar estancia <svg class="icon"><use href="#i-arrow-right-regular" /></svg></button>
+            <a class="btn btn-glass" href="#experiencias">Descubrir</a>
+          </div>
+        </div>
+        <button class="video-toggle" type="button" aria-pressed="false"><svg class="icon"><use href="#i-pause" /></svg><span>PAUSAR</span></button>
+        <nav class="quick-bar fade-up" style="--d: 1000ms" aria-label="Accesos rápidos">
+          <a href="#hotel"><b>Hotel</b><span>25 HABITACIONES</span></a>
+          <a href="#restaurante"><b>Restaurante</b><span>DESDE LAS 8 AM</span></a>
+          <a href="#spa"><b>Spa</b><span>PIEDRAS CALIENTES</span></a>
+          <a href="#eventos"><b>Eventos</b><span>HASTA 180 INVITADOS</span></a>
+        </nav>
+      </section>
+
+      <!-- ============ INTRO / CIFRAS ============ -->
+      <section class="section section-dark" id="historia" aria-labelledby="historia-title">
+        <span class="sphere bug" data-depth=".35" style="--s: 132px; top: 9%; right: 7%"></span>
+        <span class="sphere azul" data-depth=".18" style="--s: 74px; bottom: 16%; left: 5%"></span>
+        <span class="sphere cristal" data-depth=".5" style="--s: 44px; top: 34%; left: 12%"></span>
+        <span class="orb magenta" style="top: -10%; left: -12%"></span>
+        <span class="orb cobalt" style="bottom: -20%; right: -10%"></span>
+        <header class="sec-head">
+          <p class="eyebrow" data-type>50 aniversario · Sabor y tradición</p>
+          <h2 id="historia-title" class="title" data-split><span class="line">Una casa de arcos y fuentes</span><span class="line it">en el corazón del pueblo.</span></h2>
+          <p class="lead fade-up">Frente a la plaza principal de Villa de Santiago, Las Palomas reúne hotel, cocina regional, spa y salones para celebrar. Muros color crema, puertas azul añil, bugambilias en los balcones y la Parroquia de Santiago Apóstol a unos pasos.</p>
+        </header>
+        <div class="stats">
+          <div class="stat glass glow-hover fade-up"><b data-count="50">50</b><span>Años de sabor</span></div>
+          <div class="stat glass glow-hover fade-up" style="--d: 100ms"><b data-count="25">25</b><span>Habitaciones</span></div>
+          <div class="stat glass glow-hover fade-up" style="--d: 200ms"><b data-count="180">180</b><span>Invitados por evento</span></div>
+          <div class="stat glass glow-hover fade-up" style="--d: 300ms"><b>1</b><span>Plaza principal enfrente</span></div>
+        </div>
+        <div class="marquee" aria-hidden="true">
+          <div class="marquee-track">
+            <span>Hotel</span><i></i><span>Cocina regional</span><i></i><span>Desayunos</span><i></i><span>Spa</span><i></i><span>Bodas y banquetes</span><i></i><span>Pueblo Mágico</span><i></i>
+            <span>Hotel</span><i></i><span>Cocina regional</span><i></i><span>Desayunos</span><i></i><span>Spa</span><i></i><span>Bodas y banquetes</span><i></i><span>Pueblo Mágico</span><i></i>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ EXPERIENCIAS ============ -->
+      <section class="section section-cream" id="experiencias" aria-labelledby="exp-title">
+        <span class="orb violet" style="top: 10%; right: -14%"></span>
+        <header class="sec-head">
+          <p class="eyebrow" data-type>Un destino · Cuatro experiencias</p>
+          <h2 id="exp-title" class="title" data-split><span class="line">Elige cómo vivir</span><span class="line it">Las Palomas.</span></h2>
+        </header>
+        <div class="exp-grid">
+          <a class="exp-tile fade-up" href="#hotel"><img src="media/img/orig-hotel-card.webp" alt="Patio del hotel con balcones" loading="lazy" /><video muted loop playsinline preload="none" data-src="media/video/patio.mp4" aria-hidden="true"></video><span class="exp-info glass"><span><small>01</small><b>Hotel</b></span><svg class="icon"><use href="#i-arrow-right-light" /></svg></span></a>
+          <a class="exp-tile fade-up" style="--d: 100ms" href="#restaurante"><img src="media/img/orig-restaurante-card.webp" alt="Salón del restaurante con arco azul" loading="lazy" /><video muted loop playsinline preload="none" data-src="media/video/nogada.mp4" aria-hidden="true"></video><span class="exp-info glass"><span><small>02</small><b>Restaurante</b></span><svg class="icon"><use href="#i-arrow-right-light" /></svg></span></a>
+          <a class="exp-tile fade-up" style="--d: 200ms" href="#spa"><img src="media/img/orig-spa-card.webp" alt="Portal del spa hacia el jardín" loading="lazy" /><video muted loop playsinline preload="none" data-src="media/video/alberca.mp4" aria-hidden="true"></video><span class="exp-info glass"><span><small>03</small><b>Spa</b></span><svg class="icon"><use href="#i-arrow-right-light" /></svg></span></a>
+          <a class="exp-tile fade-up" style="--d: 300ms" href="#eventos"><img src="media/img/orig-eventos-card.webp" alt="Novios bailando entre confeti" loading="lazy" /><video muted loop playsinline preload="none" data-src="media/video/cena-romantica.mp4" aria-hidden="true"></video><span class="exp-info glass"><span><small>04</small><b>Eventos</b></span><svg class="icon"><use href="#i-arrow-right-light" /></svg></span></a>
+        </div>
+      </section>
+
+      <!-- ============ HOTEL ============ -->
+      <section class="section section-navy" id="hotel" aria-labelledby="hotel-title">
+        <span class="sphere cristal" data-depth=".4" style="--s: 92px; top: 5%; left: 7%"></span>
+        <span class="sphere bug" data-depth=".22" style="--s: 46px; top: 15%; right: 13%"></span>
+        <span class="orb cobalt" style="top: -8%; right: -12%"></span>
+        <span class="orb magenta" style="bottom: 20%; left: -16%"></span>
+        <header class="sec-head" data-num="01">
+          <p class="eyebrow" data-type>01 · Hotel</p>
+          <h2 id="hotel-title" class="title" data-split><span class="line">Un patio con vista</span><span class="line it">a la Parroquia.</span></h2>
+          <p class="lead fade-up">Veinticinco habitaciones decoradas en estilo norestense, alrededor de un patio con fuente y balcones llenos de bugambilias. Desde la terraza se ven las torres de la Parroquia y la sierra.</p>
+        </header>
+        <div class="rooms">
+          <article class="room glass glow-hover fade-up">
+            <div class="reveal-img"><img src="media/img/habitacion-estandar.webp" alt="Habitación estándar con dos camas matrimoniales" loading="lazy" /></div>
+            <div class="room-body">
+              <h4>Habitación Estándar</h4>
+              <p>Dos camas matrimoniales, pensada para familias. Veinte habitaciones de este tipo.</p>
+              <ul class="specs"><li>2 adultos + 2 menores de 12</li><li>Wi-Fi</li><li>Aire acondicionado</li></ul>
+            </div>
+          </article>
+          <article class="room glass glow-hover fade-up" style="--d: 120ms">
+            <div class="reveal-img"><img src="media/img/jr-suite.webp" alt="Junior Suite con cama king size" loading="lazy" /></div>
+            <div class="room-body">
+              <h4>Junior Suite</h4>
+              <p>Una cama king size para dos personas. Cinco suites en el hotel.</p>
+              <ul class="specs"><li>2 personas</li><li>Cama king size</li><li>Wi-Fi</li><li>Aire acondicionado</li></ul>
+            </div>
+          </article>
+        </div>
+        <div class="info-strip glass fade-up">
+          <div><b>3:00 pm</b><span>Check-in</span></div>
+          <div><b>12:00 pm</b><span>Check-out</span></div>
+          <div><b>10 a 20 h</b><span>Alberca diario</span></div>
+          <div><b>Jue a sáb</b><span>Tarifa con 2 desayunos</span></div>
+        </div>
+        <div class="sub-head">
+          <h3 data-split><span class="line">Rincones</span> <span class="line it">para quedarse.</span></h3>
+          <p class="fade-up">Elevador, room service en horario del restaurante, valet parking los sábados y domingos y una chimenea azul en el lobby.</p>
+        </div>
+        <div class="mosaic" data-gallery="hotel">
+          <figure class="tile big reveal-img"><button type="button"><img src="media/img/hotel-patio-parroquia.webp" alt="Patio del hotel con bugambilias y la Parroquia al fondo" loading="lazy" /></button><figcaption>Patio central</figcaption></figure>
+          <figure class="tile tall reveal-img" style="--d: 100ms"><video muted loop playsinline preload="none" data-autoplay data-src="media/video/bugambilias.mp4" poster="media/video/bugambilias.jpg" aria-label="Balcones con bugambilias"></video><span class="chip"><svg class="icon"><use href="#i-play" /></svg>Video</span></figure>
+          <figure class="tile reveal-img" style="--d: 150ms"><button type="button"><img src="media/img/habitacion-balcon.webp" alt="Habitación con balcón abierto" loading="lazy" /></button><figcaption>Balcones</figcaption></figure>
+          <figure class="tile reveal-img" style="--d: 200ms"><button type="button"><img src="media/img/lounge-chimenea.webp" alt="Sala con chimenea azul encendida" loading="lazy" /></button><figcaption>Chimenea</figcaption></figure>
+          <figure class="tile wide reveal-img"><button type="button"><img src="media/img/terraza-mecedoras.webp" alt="Terraza con mecedoras frente a la Parroquia" loading="lazy" /></button><figcaption>Terraza con mecedoras</figcaption></figure>
+          <figure class="tile reveal-img" style="--d: 100ms"><button type="button"><img src="media/img/desayuno-habitacion.webp" alt="Desayuno servido en la habitación" loading="lazy" /></button><figcaption>Room service</figcaption></figure>
+          <figure class="tile reveal-img" style="--d: 150ms"><button type="button"><img src="media/img/fachada-noche.webp" alt="Fachada del hotel al anochecer" loading="lazy" /></button><figcaption>Fachada</figcaption></figure>
+        </div>
+        <div class="split">
+          <div class="split-visual">
+            <div class="split-media reveal-img"><img src="media/img/area-ninos.webp" alt="Área de juegos infantiles entre árboles" loading="lazy" /></div>
+            <figure class="phone kid fade-up" style="--d: 300ms"><video muted loop playsinline preload="none" data-autoplay data-src="media/video/galletas.mp4" poster="media/video/galletas.jpg" aria-label="Manos decorando galletas en un taller infantil"></video></figure>
+          </div>
+          <div class="split-text">
+            <p class="eyebrow" data-type>Para los pequeños</p>
+            <h3 class="title" data-split><span class="line">Un jardín</span><span class="line it">para jugar.</span></h3>
+            <p class="fade-up">Resbaladillas y columpios a la sombra de los árboles, y talleres en fechas especiales, como la decoración de galletas del Día del Niño.</p>
+          </div>
+        </div>
+        <div class="band" data-parallax>
+          <video muted loop playsinline preload="none" data-autoplay data-src="media/video/hotel-dron.mp4" poster="media/video/hotel-dron.jpg" aria-label="Vista aérea del hotel y la plaza"></video>
+          <div class="band-text">
+            <p class="eyebrow" data-type>Desde el aire</p>
+            <h3 class="title" data-split><span class="line">El primer hotel</span><span class="line it">de Villa de Santiago.</span></h3>
+            <p class="fade-up">Terrazas, faroles y la plaza iluminada al caer la tarde.</p>
+            <div class="sec-cta fade-up"><a class="btn btn-glow" href="https://hotels.cloudbeds.com/es/reservation/pEs5S8" target="_blank" rel="noreferrer">Ver disponibilidad <svg class="icon"><use href="#i-arrow-right-regular" /></svg></a></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ RESTAURANTE ============ -->
+      <section class="section section-cream" id="restaurante" aria-labelledby="rest-title">
+        <span class="sphere bug" data-depth=".3" style="--s: 70px; top: 6%; right: 12%"></span>
+        <span class="sphere azul" data-depth=".2" style="--s: 40px; top: 15%; left: 14%"></span>
+        <span class="orb magenta" style="top: 4%; left: -18%"></span>
+        <span class="orb violet" style="bottom: 8%; right: -16%"></span>
+        <header class="sec-head" data-num="02">
+          <p class="eyebrow" data-type>02 · Restaurante</p>
+          <h2 id="rest-title" class="title" data-split><span class="line">Sabores que</span><span class="line it">cuentan historias.</span></h2>
+          <p class="lead fade-up">Sabores, aromas y texturas de la gastronomía típica del noreste. Cada ingrediente se elige con cuidado, con la tradición de la auténtica comida regional.</p>
+        </header>
+        <div class="dish-grid">
+          <article class="dish-card glass glow-hover fade-up">
+            <div class="reveal-img"><img src="media/img/asado-de-puerco.webp" alt="Asado de puerco con arroz, frijoles y salsas" loading="lazy" /><span class="badge-emblem">Emblemático</span></div>
+            <div class="dish-body"><small>Especialidad</small><h4>Tradicional asado de puerco</h4><p>Con arroz, frijoles y tortillas recién hechas.</p></div>
+          </article>
+          <article class="dish-card glass glow-hover fade-up" style="--d: 100ms">
+            <div class="reveal-img"><img src="media/img/chamorro.webp" alt="Chamorro de cerdo con papa al horno" loading="lazy" /><span class="badge-emblem">Emblemático</span></div>
+            <div class="dish-body"><small>Para compartir</small><h4>Chamorro de cerdo</h4><p>Dorado al horno, servido con arroz y papa.</p></div>
+          </article>
+          <article class="dish-card glass glow-hover fade-up" style="--d: 200ms">
+            <div class="reveal-img"><video muted loop playsinline preload="none" data-autoplay data-src="media/video/nogada-corte.mp4" poster="media/video/nogada-corte.jpg" aria-label="Chile en nogada servido en plato de talavera"></video><span class="badge-emblem">Temporada</span></div>
+            <div class="dish-body"><small>Temporada de septiembre</small><h4>Chile en nogada</h4><p>Nogada de nuez y granada fresca sobre talavera.</p></div>
+          </article>
+        </div>
+
+
+        <div class="sub-head">
+          <h3 data-split><span class="line">El salón</span> <span class="line it">de las palomas.</span></h3>
+          <p class="fade-up">Muros de piedra, arcos azul añil, sillas de colores y una cocina que abre todos los días.</p>
+        </div>
+        <div class="mosaic" data-gallery="salon">
+          <figure class="tile big reveal-img"><button type="button"><img src="media/img/restaurante-arco.webp" alt="Salón del restaurante con arco azul y palomas pintadas" loading="lazy" /></button><figcaption>Salón principal</figcaption></figure>
+          <figure class="tile tall reveal-img" style="--d: 100ms"><video muted loop playsinline preload="none" data-autoplay data-src="media/video/restaurante.mp4" poster="media/video/restaurante.jpg" aria-label="Terraza del restaurante entre árboles"></video><span class="chip"><svg class="icon"><use href="#i-play" /></svg>Terraza</span></figure>
+          <figure class="tile reveal-img" style="--d: 150ms"><button type="button"><img src="media/img/chef.webp" alt="Chef del restaurante en el salón" loading="lazy" /></button><figcaption>Nuestra cocina</figcaption></figure>
+          <figure class="tile reveal-img" style="--d: 200ms"><button type="button"><img src="media/img/restaurante-cava.webp" alt="Salón con muros de piedra y arco azul" loading="lazy" /></button><figcaption>Muros de piedra</figcaption></figure>
+          <figure class="tile wide reveal-img"><button type="button"><img src="media/img/restaurante-salon.webp" alt="Restaurante con comensales en fin de semana" loading="lazy" /></button><figcaption>Fin de semana</figcaption></figure>
+          <figure class="tile wide reveal-img" style="--d: 100ms"><button type="button"><img src="media/img/restaurante-arco-azul.webp" alt="Altar y arco azul en el salón" loading="lazy" /></button><figcaption>Altar y arco azul</figcaption></figure>
+        </div>
+
+        <div class="sub-head">
+          <h3 data-split><span class="line">Antojitos</span> <span class="line it">y especialidades.</span></h3>
+          <p class="fade-up">De la carta de la casa: envueltos, botanas, cortes y parrilladas para compartir.</p>
+        </div>
+        <div class="rail-wrap fade-up">
+          <div class="rail" data-gallery="cocina" tabindex="0" aria-label="Antojitos y especialidades">
+            <figure class="rail-item"><div class="media"><button type="button"><img src="media/img/enmoladas.webp" alt="Enmoladas con ajonjolí y arroz" loading="lazy" /></button></div><figcaption><b>Enmoladas</b><span>Pollo o queso</span></figcaption></figure>
+            <figure class="rail-item"><div class="media"><video muted loop playsinline preload="none" data-autoplay data-src="media/video/caldo.mp4" poster="media/video/caldo.jpg" aria-label="Caldo de res en cazuela de barro"></video><span class="chip"><svg class="icon"><use href="#i-play" /></svg>Video</span></div><figcaption><b>Caldo de res</b><span>Sopas de la casa</span></figcaption></figure>
+            <figure class="rail-item"><div class="media"><button type="button"><img src="media/img/envueltos-verdes.webp" alt="Envueltos en salsa verde con queso" loading="lazy" /></button></div><figcaption><b>Envueltos en salsa verde</b><span>Pollo o queso</span></figcaption></figure>
+            <figure class="rail-item"><div class="media"><button type="button"><img src="media/img/envueltos-rojos.webp" alt="Envueltos en salsa roja sobre plato de talavera" loading="lazy" /></button></div><figcaption><b>Envueltos en salsa roja</b><span>Pollo o queso</span></figcaption></figure>
+            <figure class="rail-item"><div class="media"><button type="button"><img src="media/img/quesadillas-fritas.webp" alt="Quesadillas fritas con ensalada" loading="lazy" /></button></div><figcaption><b>Quesadillas fritas</b><span>Antojitos · 3 piezas</span></figcaption></figure>
+            <figure class="rail-item"><div class="media"><button type="button"><img src="media/img/chicharron-guacamole.webp" alt="Chicharrón sobre guacamole en plato de barro" loading="lazy" /></button></div><figcaption><b>Chicharrón sobre guacamole</b><span>Botanas</span></figcaption></figure>
+            <figure class="rail-item"><div class="media"><button type="button"><img src="media/img/parrillada.webp" alt="Parrillada con cortes, chorizo y papa" loading="lazy" /></button></div><figcaption><b>Parrillada palomas</b><span>Para 4 personas</span></figcaption></figure>
+            <figure class="rail-item"><div class="media"><button type="button"><img src="media/img/betabel-asado.webp" alt="Ensalada de betabel asado con queso" loading="lazy" /></button></div><figcaption><b>Betabel asado</b><span>Ensaladas</span></figcaption></figure>
+            <figure class="rail-item"><div class="media"><button type="button"><img src="media/img/tacos.webp" alt="Tacos con salsa y tomate" loading="lazy" /></button></div><figcaption><b>Tacos de la casa</b><span>Antojitos · 3 piezas</span></figcaption></figure>
+            <figure class="rail-item"><div class="media"><button type="button"><img src="media/img/molcajete.webp" alt="Guacamole en molcajete con chorizo y chiles" loading="lazy" /></button></div><figcaption><b>Guacamole</b><span>Botanas</span></figcaption></figure>
+          </div>
+          <div class="rail-controls"><button type="button" data-rail="-1" aria-label="Anteriores"><svg class="icon"><use href="#i-arrow-left-light" /></svg></button><button type="button" data-rail="1" aria-label="Siguientes"><svg class="icon"><use href="#i-arrow-right-light" /></svg></button></div>
+        </div>
+
+        <div class="sub-head">
+          <h3 data-split><span class="line">Postres</span> <span class="line it">regionales.</span></h3>
+          <p class="fade-up">Pan de elote, flan con cajeta y nuez, arroz con leche, brownie con nuez y la gordita palomas.</p>
+        </div>
+        <div class="mosaic" data-gallery="postres">
+          <figure class="tile big reveal-img"><button type="button"><img src="media/img/postres-regionales.webp" alt="Pan de elote, flan y arroz con leche" loading="lazy" /></button><figcaption>Pan de elote · flan · arroz con leche</figcaption></figure>
+          <figure class="tile tall reveal-img" style="--d: 100ms"><button type="button"><img src="media/img/brownie.webp" alt="Brownie con nuez y helado" loading="lazy" /></button><figcaption>Brownie con nuez</figcaption></figure>
+          <figure class="tile reveal-img" style="--d: 150ms"><button type="button"><img src="media/img/gordita-palomas.webp" alt="Gordita palomas con azúcar glass" loading="lazy" /></button><figcaption>Gordita palomas</figcaption></figure>
+          <figure class="tile reveal-img" style="--d: 200ms"><button type="button"><img src="media/img/cafe-de-olla.webp" alt="Postre bañado en cajeta" loading="lazy" /></button><figcaption>Con cajeta</figcaption></figure>
+        </div>
+
+        <div class="hours glass fade-up">
+          <div><b>8:00 a 22:00</b><span>Domingo a miércoles</span></div>
+          <div><b>8:00 a 23:00</b><span>Jueves a sábado</span></div>
+          <div><b>Sin reservación</b><span>Mesas por orden de llegada</span></div>
+        </div>
+        <div class="sec-cta fade-up"><a class="btn btn-glow" href="https://qrco.de/Palomas2026" target="_blank" rel="noreferrer">Ver menú completo <svg class="icon"><use href="#i-arrow-right-regular" /></svg></a></div>
+      </section>
+
+      <!-- ============ DESAYUNOS ============ -->
+      <section class="section section-sand" id="desayunos" aria-labelledby="des-title">
+        <span class="orb magenta" style="top: -6%; right: -14%"></span>
+        <span class="orb cobalt" style="bottom: -10%; left: -18%"></span>
+        <header class="sec-head" data-num="03">
+          <p class="eyebrow" data-type>03 · Desayunos</p>
+          <h2 id="des-title" class="title" data-split><span class="line">Mañanas lentas</span><span class="line it">frente a la plaza.</span></h2>
+          <p class="lead fade-up">Desde las 8 de la mañana, todos los días. Café de olla, jugos naturales, pan dulce del día y los clásicos del norte.</p>
+        </header>
+        <div class="breakfast">
+          <figure class="phone fade-up">
+            <video muted loop playsinline preload="none" data-autoplay data-src="media/video/san-pancho.mp4" poster="media/video/san-pancho.jpg" aria-label="Huevos San Pancho con aguacate y salsa"></video>
+            <figcaption class="glass"><span>De la casa</span><b>Huevos San Pancho</b></figcaption>
+          </figure>
+          <div class="bf-grid" data-gallery="desayunos">
+            <figure class="rail-item fade-up"><div class="media"><button type="button"><img src="media/img/machacado.webp" alt="Machacado con huevo, frijoles y tortillas" loading="lazy" /></button><span class="badge-emblem">Emblemático</span></div><figcaption><b>Machacado con huevo</b><span>Natural · ranchero · mexicana</span></figcaption></figure>
+            <figure class="rail-item fade-up" style="--d: 80ms"><div class="media"><button type="button"><img src="media/img/hot-cakes.webp" alt="Hot cakes con fresa y miel" loading="lazy" /></button></div><figcaption><b>Hot cakes</b><span>3 piezas</span></figcaption></figure>
+            <figure class="rail-item fade-up" style="--d: 160ms"><div class="media"><button type="button"><img src="media/img/chilaquiles-verdes.webp" alt="Chilaquiles verdes con queso y frijoles" loading="lazy" /></button></div><figcaption><b>Chilaquiles</b><span>Verdes, rojos o divorciados</span></figcaption></figure>
+            <figure class="rail-item fade-up" style="--d: 80ms"><div class="media"><button type="button"><img src="media/img/tamales.webp" alt="Tamales con frijoles y salsas en la terraza" loading="lazy" /></button></div><figcaption><b>Tamales</b><span>Del desayuno norteño</span></figcaption></figure>
+            <figure class="rail-item fade-up" style="--d: 160ms"><div class="media"><button type="button"><img src="media/img/huevos-jamon.webp" alt="Huevos con jamón, frijoles y jugo de naranja" loading="lazy" /></button></div><figcaption><b>Huevos al gusto</b><span>Chorizo · jamón · tocino</span></figcaption></figure>
+            <figure class="rail-item fade-up" style="--d: 240ms"><div class="media"><video muted loop playsinline preload="none" data-autoplay data-src="media/video/hotcakes.mp4" poster="media/video/hotcakes.jpg" aria-label="Miel cayendo sobre hot cakes"></video><span class="chip"><svg class="icon"><use href="#i-play" /></svg>Video</span></div><figcaption><b>Recién hechos</b><span>Hot cakes con miel</span></figcaption></figure>
+          </div>
+        </div>
+        <div class="hours glass fade-up">
+          <div><b>Desde 8:00 am</b><span>Todos los días</span></div>
+          <div><b>2 cupones</b><span>En tarifa de fin de semana</span></div>
+          <div><b>Room service</b><span>En horario del restaurante</span></div>
+        </div>
+      </section>
+
+      <!-- ============ BAR ============ -->
+      <section class="section section-dark" id="bar" aria-labelledby="bar-title">
+        <span class="orb magenta" style="top: 20%; left: -14%"></span>
+        <span class="orb violet" style="bottom: -14%; right: -10%"></span>
+        <header class="sec-head">
+          <p class="eyebrow" data-type>Bar y cava</p>
+          <h2 id="bar-title" class="title" data-split><span class="line">Brindar</span><span class="line it">con vino de la casa.</span></h2>
+          <p class="lead fade-up">Coctelería de autor, mezcal y los vinos Las Palomas del Valle de Bernal.</p>
+        </header>
+        <div class="bar">
+          <figure class="phone fade-up"><video muted loop playsinline preload="none" data-autoplay data-src="media/video/bartender.mp4" poster="media/video/bartender.jpg" aria-label="Bartender sirviendo un coctel"></video><figcaption class="glass" style="color:#fff"><span style="color:var(--gold-soft)">Barra</span><b>Coctelería</b></figcaption></figure>
+          <figure class="phone fade-up" style="--d: 100ms"><video muted loop playsinline preload="none" data-autoplay data-src="media/video/sangria.mp4" poster="media/video/sangria.jpg" aria-label="Sangría con fruta"></video><figcaption class="glass" style="color:#fff"><span style="color:var(--gold-soft)">Clásico</span><b>Sangría</b></figcaption></figure>
+          <figure class="phone fade-up" style="--d: 200ms"><video muted loop playsinline preload="none" data-autoplay data-src="media/video/coctel.mp4" poster="media/video/coctel.jpg" aria-label="Coctel servido en el jardín"></video><figcaption class="glass" style="color:#fff"><span style="color:var(--gold-soft)">Jardín</span><b>De temporada</b></figcaption></figure>
+          <div class="bar-card glass fade-up" style="--d: 300ms">
+            <h4>De la carta</h4>
+            <ul>
+              <li>Paloma <em>clásico de la casa</em></li>
+              <li>Margarita <em>limón · mango · fresa</em></li>
+              <li>Carajillo <em>Nespresso</em></li>
+              <li>Las Palomas Blend <em>Valle de Bernal</em></li>
+              <li>Las Palomas Nebbiolo <em>Valle de Bernal</em></li>
+              <li>Mezcal 28 <em>de la carta</em></li>
+            </ul>
+            <a class="btn btn-glass" href="https://qrco.de/Palomas2026" target="_blank" rel="noreferrer">Ver carta de bebidas <svg class="icon"><use href="#i-arrow-right-regular" /></svg></a>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ============ VINO DE LA CASA ============ -->
+      <section class="section section-cream" id="vino" aria-labelledby="vino-title">
+        <span class="orb magenta" style="top: -10%; right: -14%"></span>
+        <span class="orb violet" style="bottom: -14%; left: -12%"></span>
+        <div class="editorial">
+          <div class="editorial-media">
+            <div class="reveal-img tall-frame"><img src="media/img/vino-servir.webp" alt="Vino tinto Las Palomas servido en copa sobre mesa con sillas de colores" loading="lazy" /></div>
+            <figure class="phone floating fade-up" style="--d: 300ms"><video muted loop playsinline preload="none" data-autoplay data-src="media/video/vino.mp4" poster="media/video/vino.jpg" aria-label="Botella de vino Las Palomas y copa"></video></figure>
+          </div>
+          <div class="editorial-text">
+            <p class="eyebrow" data-type>Vino de la casa</p>
+            <h2 id="vino-title" class="title" data-split><span class="line">Una etiqueta</span><span class="line it">con nuestro nombre.</span></h2>
+            <p class="lead fade-up">Dos vinos tintos con etiqueta de talavera, hechos en el Valle de Bernal, para acompañar la cocina regional.</p>
+            <div class="wine-list">
+              <article class="wine glass glow-hover fade-up"><small>Tinto · Valle de Bernal</small><h4>Las Palomas Blend</h4><p>Grenache, Tempranillo, Nebbiolo y Ruby Red.</p><span>Por copa o botella</span></article>
+              <article class="wine glass glow-hover fade-up" style="--d: 120ms"><small>Tinto · Valle de Bernal</small><h4>Las Palomas Nebbiolo</h4><p>Nebbiolo de un solo varietal.</p><span>Por copa o botella</span></article>
+            </div>
+            <div class="mezcal fade-up">
+              <div class="reveal-img"><img src="media/img/mezcal-terraza.webp" alt="Coctel de mezcal en la terraza con la Parroquia al fondo" loading="lazy" /></div>
+              <p><b>Mezcal 28</b> en la carta de mezcales, también en cocteles servidos en la terraza frente a la Parroquia.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PUEBLO ============ -->
+      <section class="town" id="pueblo" aria-labelledby="pueblo-title" data-parallax-root>
+        <img class="town-poster" src="media/video/santiago-noche.jpg" alt="" data-parallax />
+        <video muted loop playsinline preload="none" data-autoplay data-src="media/video/santiago-noche.mp4" poster="media/video/santiago-noche.jpg" aria-label="Vista aérea nocturna de la Parroquia de Santiago" data-parallax></video>
+        <div class="town-inner">
+          <p class="eyebrow" data-type>04 · Pueblo Mágico</p>
+          <h2 id="pueblo-title" class="title" data-split><span class="line">Frente a la plaza</span><span class="line it">principal de Santiago.</span></h2>
+          <p class="lead fade-up">Calles empedradas, la Parroquia de Santiago Apóstol, artesanías y tradiciones que se viven todo el año, del Día de Muertos a las posadas.</p>
+          <p class="address glass fade-up">ABASOLO 101 · SANTIAGO, NUEVO LEÓN</p>
+        </div>
+      </section>
+      <div class="town-strip" data-gallery="pueblo">
+        <figure class="tile reveal-img"><button type="button"><img src="media/img/parroquia-altar.webp" alt="Altar de muertos frente a la Parroquia" loading="lazy" /></button><figcaption>Tradiciones</figcaption></figure>
+        <figure class="tile reveal-img" style="--d: 100ms"><button type="button"><img src="media/img/santiago-aerea.webp" alt="Vista aérea de Santiago y la sierra" loading="lazy" /></button><figcaption>Santiago desde el aire</figcaption></figure>
+        <figure class="tile reveal-img" style="--d: 200ms"><button type="button"><img src="media/img/musica-plaza.webp" alt="Música en vivo en la plaza de noche" loading="lazy" /></button><figcaption>Música en la plaza</figcaption></figure>
+        <figure class="tile reveal-img" style="--d: 300ms"><button type="button"><img src="media/img/atardecer-hotel.webp" alt="Atardecer sobre el hotel y la sierra" loading="lazy" /></button><figcaption>Atardecer</figcaption></figure>
+      </div>
+
+      <!-- ============ SPA ============ -->
+      <section class="section section-sand" id="spa" aria-labelledby="spa-title">
+        <span class="orb violet" style="top: -12%; left: -12%"></span>
+        <span class="orb magenta" style="bottom: -14%; right: -14%"></span>
+        <header class="sec-head" data-num="05">
+          <p class="eyebrow" data-type>05 · Spa y jardín</p>
+          <h2 id="spa-title" class="title" data-split><span class="line">Pausa. Respira.</span><span class="line it">Renueva.</span></h2>
+          <p class="lead fade-up">Déjate consentir por nuestras terapeutas con un masaje con piedras calientes, un facial o el tratamiento que necesites. Después, el jardín y la alberca.</p>
+        </header>
+        <div class="mosaic" data-gallery="spa">
+          <figure class="tile big reveal-img"><button type="button"><img src="media/img/spa-masaje.webp" alt="Masaje con piedras calientes" loading="lazy" /></button><figcaption>Piedras calientes</figcaption></figure>
+          <figure class="tile tall reveal-img" style="--d: 100ms"><video muted loop playsinline preload="none" data-autoplay data-src="media/video/alberca.mp4" poster="media/video/alberca.jpg" aria-label="Alberca entre jardines"></video><span class="chip"><svg class="icon"><use href="#i-play" /></svg>Alberca</span></figure>
+          <figure class="tile reveal-img" style="--d: 150ms"><button type="button"><img src="media/img/spa-jardin.webp" alt="Jardín con fuente" loading="lazy" /></button><figcaption>Jardín</figcaption></figure>
+          <figure class="tile reveal-img" style="--d: 200ms"><button type="button"><img src="media/img/spa-terraza.webp" alt="Terraza techada junto al jardín" loading="lazy" /></button><figcaption>Terraza</figcaption></figure>
+          <figure class="tile wide reveal-img"><button type="button"><img src="media/img/spa-alberca.webp" alt="Alberca y camastros" loading="lazy" /></button><figcaption>Alberca · 10 a 20 h</figcaption></figure>
+          <figure class="tile wide reveal-img" style="--d: 100ms"><button type="button"><img src="media/img/jardin-fuente.webp" alt="Fuente del jardín y portal" loading="lazy" /></button><figcaption>Fuente</figcaption></figure>
+        </div>
+        <div class="sec-cta fade-up"><a class="btn btn-glow" href="https://wa.link/pkdzrh" target="_blank" rel="noreferrer">Agendar tratamiento <svg class="icon"><use href="#i-arrow-right-regular" /></svg></a></div>
+      </section>
+
+      <!-- ============ EVENTOS ============ -->
+      <section class="section section-dark" id="eventos" aria-labelledby="ev-title">
+        <span class="sphere azul" data-depth=".3" style="--s: 150px; top: 2%; right: 6%"></span>
+        <span class="sphere bug" data-depth=".45" style="--s: 58px; top: 8%; left: 10%"></span>
+        <span class="orb magenta" style="top: -6%; left: -16%"></span>
+        <span class="orb cobalt" style="top: 40%; right: -18%"></span>
+        <span class="orb violet" style="bottom: -8%; left: 20%"></span>
+        <header class="sec-head" data-num="06">
+          <p class="eyebrow" data-type>06 · Eventos</p>
+          <h2 id="ev-title" class="title" data-split><span class="line">Hazlo tuyo.</span><span class="line it">Hazlo inolvidable.</span></h2>
+          <p class="lead fade-up">Un lugar único para celebrar, con la calidez de un pueblo mágico y un equipo que opera cada detalle.</p>
+        </header>
+        <div class="event-hero">
+          <div class="reveal-img"><img src="media/img/evento-noche.webp" alt="Banquete de noche en el patio del hotel con arreglos de rosas" loading="lazy" /></div>
+          <div class="capacity glass fade-up">
+            <b data-count="180">180</b>
+            <strong>Invitados</strong>
+            <p>Eventos sociales y corporativos, operados por un profesional en organización de eventos, con la garantía de un evento de primer nivel.</p>
+            <div class="sec-cta"><a class="btn btn-glow" href="https://wa.link/pkdzrh" target="_blank" rel="noreferrer">Cotizar por WhatsApp <svg class="icon"><use href="#i-arrow-right-regular" /></svg></a></div>
+          </div>
+        </div>
+
+        <div class="sub-head">
+          <h3 data-split><span class="line">Tu paquete</span> <span class="line it">incluye.</span></h3>
+        </div>
+        <div class="includes">
+          <div class="include glass glow-hover fade-up"><svg class="icon-line"><use href="#l-cloth" /></svg><b>Mantelería</b><span>Manteles y servilletas para cada mesa.</span></div>
+          <div class="include glass glow-hover fade-up" style="--d: 80ms"><svg class="icon-line"><use href="#l-chair" /></svg><b>Mobiliario</b><span>Mesas y sillas para tu montaje.</span></div>
+          <div class="include glass glow-hover fade-up" style="--d: 160ms"><svg class="icon-line"><use href="#l-plate" /></svg><b>Vajilla</b><span>Loza, cristalería y cubiertos.</span></div>
+          <div class="include glass glow-hover fade-up" style="--d: 240ms"><svg class="icon-line"><use href="#l-spark" /></svg><b>Ambientación</b><span>Decoración del espacio según tu evento.</span></div>
+          <div class="include glass glow-hover fade-up"><svg class="icon-line"><use href="#l-waiter" /></svg><b>Meseros</b><span>Servicio de meseros durante el evento.</span></div>
+          <div class="include glass glow-hover fade-up" style="--d: 80ms"><svg class="icon-line"><use href="#l-pot" /></svg><b>Banquete</b><span>Menú de banquete de nuestra cocina.</span></div>
+          <div class="include glass glow-hover fade-up" style="--d: 160ms"><svg class="icon-line"><use href="#l-clip" /></svg><b>Coordinación</b><span>Un profesional en eventos a cargo.</span></div>
+          <div class="include glass glow-hover fade-up" style="--d: 240ms"><svg class="icon-line"><use href="#l-bed" /></svg><b>Hospedaje</b><span>25 habitaciones para tus invitados.</span></div>
+        </div>
+
+        <div class="sub-head">
+          <h3 data-split><span class="line">Para cada</span> <span class="line it">celebración.</span></h3>
+        </div>
+        <div class="celebrations">
+          <article class="celebration fade-up"><img src="media/img/boda-pareja.webp" alt="Pareja de novios junto a un muro azul" loading="lazy" /><div class="cel-body glass"><h4>Bodas</h4><p>Ceremonia, banquete en el patio y hospedaje para la familia.</p></div></article>
+          <article class="celebration fade-up" style="--d: 100ms"><video muted loop playsinline preload="none" data-autoplay data-src="media/video/cena-romantica.mp4" poster="media/video/cena-romantica.jpg" aria-label="Cena romántica en la terraza frente a la Parroquia"></video><div class="cel-body glass"><h4>Cenas románticas</h4><p>Paquetes con cena y habitación, o solo la ambientación.</p></div></article>
+          <article class="celebration fade-up" style="--d: 200ms"><img src="media/img/salon-montaje.webp" alt="Salón con montaje en herradura para reunión" loading="lazy" /><div class="cel-body glass"><h4>Corporativos</h4><p>Juntas, capacitaciones y comidas de trabajo en salón.</p></div></article>
+          <article class="celebration fade-up" style="--d: 300ms"><img src="media/img/coffee-break.webp" alt="Mesa de coffee break con bocadillos" loading="lazy" /><div class="cel-body glass"><h4>Coffee break</h4><p>Café, jugos y bocadillos para tus sesiones.</p></div></article>
+        </div>
+
+        <div class="sub-head">
+          <h3 data-split><span class="line">Espacios</span> <span class="line it">con historia.</span></h3>
+        </div>
+        <div class="spaces" data-gallery="espacios">
+          <article class="space"><div class="reveal-img"><img src="media/img/patio-evento-noche.webp" alt="Patio central iluminado durante un evento nocturno" loading="lazy" /></div><div class="space-body"><small>01</small><h4>Patio central</h4><p>Rodeado de arcos y balcones, iluminado con velas.</p></div></article>
+          <article class="space"><div class="reveal-img" style="--d: 100ms"><img src="media/img/cena-terraza.webp" alt="Mesa en la terraza con la Parroquia al fondo" loading="lazy" /></div><div class="space-body"><small>02</small><h4>Terraza</h4><p>Frente a las torres de la Parroquia de Santiago Apóstol.</p></div></article>
+          <article class="space"><div class="reveal-img"><img src="media/img/salon-banquete.webp" alt="Salón con mesas montadas para banquete" loading="lazy" /></div><div class="space-body"><small>03</small><h4>Salones</h4><p>Para eventos sociales y corporativos de cualquier tipo.</p></div></article>
+          <article class="space"><div class="reveal-img" style="--d: 100ms"><img src="media/img/evento-mesa-dulces.webp" alt="Mesa de dulces junto a la alberca" loading="lazy" /></div><div class="space-body"><small>04</small><h4>Jardín y alberca</h4><p>Mesas de dulces y recepciones al aire libre.</p></div></article>
+        </div>
+
+
+        <div class="sub-head">
+          <h3 data-split><span class="line">Momentos</span> <span class="line it">que se quedan.</span></h3>
+        </div>
+        <div class="mosaic" data-gallery="eventos">
+          <figure class="tile big reveal-img"><button type="button"><img src="media/img/evento-terraza-parroquia.webp" alt="Cena en la terraza con la Parroquia iluminada" loading="lazy" /></button><figcaption>Terraza de noche</figcaption></figure>
+          <figure class="tile reveal-img" style="--d: 100ms"><button type="button"><img src="media/img/boda-balcon.webp" alt="Novios en un balcón del hotel" loading="lazy" /></button><figcaption>Bodas</figcaption></figure>
+          <figure class="tile reveal-img" style="--d: 150ms"><button type="button"><img src="media/img/evento-mesa-aerea.webp" alt="Mesa redonda vista desde arriba" loading="lazy" /></button><figcaption>Montajes</figcaption></figure>
+          <figure class="tile wide reveal-img" style="--d: 200ms"><button type="button"><img src="media/img/evento-patio.webp" alt="Banquete con velas en el patio" loading="lazy" /></button><figcaption>Banquetes</figcaption></figure>
+          <figure class="tile wide reveal-img"><button type="button"><img src="media/img/cena-romantica.webp" alt="Mesa con pétalos de rosa, velas y vino" loading="lazy" /></button><figcaption>Cena romántica</figcaption></figure>
+          <figure class="tile wide reveal-img" style="--d: 100ms"><button type="button"><img src="media/img/evento-lounge.webp" alt="Sala lounge con velas y flores" loading="lazy" /></button><figcaption>Lounge</figcaption></figure>
+        </div>
+
+        <div class="sub-head">
+          <h3 data-split><span class="line">Menú</span> <span class="line it">de banquete.</span></h3>
+          <p class="fade-up">Tiempos servidos en loza de talavera azul. Ejemplos de nuestros montajes.</p>
+        </div>
+        <div class="menu-plates" data-gallery="banquete">
+          <figure class="plate fade-up"><div class="reveal-img"><button type="button" style="all:unset;display:block;width:100%;height:100%;cursor:zoom-in"><img src="media/img/evento-ensalada.webp" alt="Ensalada servida en talavera" loading="lazy" /></button></div><figcaption><small>Entrada</small><b>Ensalada</b></figcaption></figure>
+          <figure class="plate fade-up" style="--d: 100ms"><div class="reveal-img"><button type="button" style="all:unset;display:block;width:100%;height:100%;cursor:zoom-in"><img src="media/img/evento-salmon.webp" alt="Salmón con guarnición" loading="lazy" /></button></div><figcaption><small>Plato fuerte</small><b>Pescado</b></figcaption></figure>
+          <figure class="plate fade-up" style="--d: 200ms"><div class="reveal-img"><button type="button" style="all:unset;display:block;width:100%;height:100%;cursor:zoom-in"><img src="media/img/evento-filete.webp" alt="Filete con puré y verduras" loading="lazy" /></button></div><figcaption><small>Plato fuerte</small><b>Filete</b></figcaption></figure>
+          <figure class="plate fade-up" style="--d: 300ms"><div class="reveal-img"><button type="button" style="all:unset;display:block;width:100%;height:100%;cursor:zoom-in"><img src="media/img/evento-postre.webp" alt="Pastel con fresa y cajeta" loading="lazy" /></button></div><figcaption><small>Postre</small><b>Postre</b></figcaption></figure>
+        </div>
+
+        <div class="sub-head">
+          <h3 data-split><span class="line">Cómo</span> <span class="line it">lo hacemos.</span></h3>
+        </div>
+        <div class="steps">
+          <div class="step glass fade-up"><b>Cuéntanos tu idea</b><p>Escríbenos por WhatsApp con fecha, tipo de evento y número de invitados.</p></div>
+          <div class="step glass fade-up" style="--d: 100ms"><b>Elige espacio y menú</b><p>Patio, terraza, salón o jardín, con el menú de banquete que prefieras.</p></div>
+          <div class="step glass fade-up" style="--d: 200ms"><b>Nosotros lo operamos</b><p>Un profesional en eventos coordina montaje, cocina y meseros.</p></div>
+          <div class="step glass fade-up" style="--d: 300ms"><b>Tus invitados se quedan</b><p>Hospedaje en el hotel, a unos pasos de la plaza principal.</p></div>
+        </div>
+
+        <div class="sub-head">
+          <h3 data-split><span class="line">Detrás</span> <span class="line it">de cada evento.</span></h3>
+        </div>
+        <div class="video-row">
+          <figure class="phone fade-up"><video muted loop playsinline preload="none" data-autoplay data-src="media/video/montaje.mp4" poster="media/video/montaje.jpg" aria-label="Mesero preparando el montaje de mesas"></video><figcaption class="glass"><span>Montaje</span><b>Cada mesa a mano</b></figcaption></figure>
+          <figure class="phone fade-up" style="--d: 100ms"><video muted loop playsinline preload="none" data-autoplay data-src="media/video/velas.mp4" poster="media/video/velas.jpg" aria-label="Mesa con velas y vino"></video><figcaption class="glass"><span>Ambientación</span><b>Velas y vino</b></figcaption></figure>
+          <figure class="phone fade-up" style="--d: 200ms"><video muted loop playsinline preload="none" data-autoplay data-src="media/video/cena-romantica.mp4" poster="media/video/cena-romantica.jpg" aria-label="Cena en la terraza frente a la Parroquia"></video><figcaption class="glass"><span>Terraza</span><b>Cena frente a la Parroquia</b></figcaption></figure>
+          <figure class="phone fade-up" style="--d: 300ms"><video muted loop playsinline preload="none" data-autoplay data-src="media/video/musica.mp4" poster="media/video/musica.jpg" aria-label="Trío tocando música en vivo"></video><figcaption class="glass"><span>Música</span><b>En vivo</b></figcaption></figure>
+        </div>
+        <div class="sec-cta fade-up"><a class="btn btn-glow" href="https://wa.link/pkdzrh" target="_blank" rel="noreferrer">Cotizar mi evento <svg class="icon"><use href="#i-arrow-right-regular" /></svg></a></div>
+      </section>
+
+
+      <!-- ============ TRADICIONES ============ -->
+      <section class="section section-dark" id="tradiciones" aria-labelledby="trad-title">
+        <span class="orb magenta" style="top: 6%; right: -14%"></span>
+        <span class="orb violet" style="bottom: 10%; left: -14%"></span>
+        <header class="sec-head" data-num="07">
+          <p class="eyebrow" data-type>07 · Tradiciones</p>
+          <h2 id="trad-title" class="title" data-split><span class="line">Un año entero</span><span class="line it">de fiesta en la plaza.</span></h2>
+          <p class="lead fade-up">Desde nuestras terrazas se ven las celebraciones del pueblo. Cada temporada llega con su menú, su decoración y su música.</p>
+        </header>
+        <div class="seasons" role="tablist" aria-label="Temporadas">
+          <button class="season-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="season-0" id="tab-0"><small>Febrero</small>San Valentín</button>
+          <button class="season-tab" type="button" role="tab" aria-selected="false" aria-controls="season-1" id="tab-1"><small>Septiembre</small>Fiestas Patrias</button>
+          <button class="season-tab" type="button" role="tab" aria-selected="false" aria-controls="season-2" id="tab-2"><small>Octubre y noviembre</small>Día de Muertos</button>
+          <button class="season-tab" type="button" role="tab" aria-selected="false" aria-controls="season-3" id="tab-3"><small>Diciembre</small>Navidad</button>
+        </div>
+        <div class="season-panels">
+          <article class="season-panel is-active" id="season-0" role="tabpanel" aria-labelledby="tab-0">
+            <div class="season-media reveal-img"><img src="media/img/sanvalentin-parroquia.webp" alt="Cena en la terraza frente a la Parroquia iluminada" loading="lazy" /></div>
+            <div class="season-copy glass"><small>Febrero</small><h3>Cena en la terraza</h3><p>Mesas para dos frente a la Parroquia iluminada, con música en vivo. También hay paquetes románticos con cena y habitación.</p><div class="season-thumbs"><img src="media/img/sanvalentin-terraza.webp" alt="Terraza con mariachi y mesas decoradas en rojo" loading="lazy" /><img src="media/img/cena-romantica.webp" alt="Mesa con pétalos y velas" loading="lazy" /><img src="media/img/vino-brindis.webp" alt="Brindis con vino tinto de la casa" loading="lazy" /></div></div>
+          </article>
+          <article class="season-panel" id="season-1" role="tabpanel" aria-labelledby="tab-1" hidden>
+            <div class="season-media"><img src="media/img/fiestas-bugambilias.webp" alt="Fuegos artificiales sobre la Parroquia vistos desde la terraza entre bugambilias" loading="lazy" /></div>
+            <div class="season-copy glass"><small>Septiembre</small><h3>Fuegos sobre la plaza</h3><p>La noche del Grito se vive desde nuestras terrazas, con mariachi y el chile en nogada de temporada.</p><div class="season-thumbs"><img src="media/img/fiestas-fuegos.webp" alt="Fuegos artificiales sobre fachada iluminada" loading="lazy" /><video muted loop playsinline preload="none" data-autoplay data-src="media/video/mariachi.mp4" poster="media/video/mariachi.jpg" aria-label="Mariachi en el restaurante"></video><img src="media/img/fiestas-terraza.webp" alt="Terraza decorada para las fiestas patrias" loading="lazy" /></div></div>
+          </article>
+          <article class="season-panel" id="season-2" role="tabpanel" aria-labelledby="tab-2" hidden>
+            <div class="season-media"><img src="media/img/catrinas-parroquia.webp" alt="Catrinas monumentales frente a la Parroquia de Santiago" loading="lazy" /></div>
+            <div class="season-copy glass"><small>Octubre y noviembre</small><h3>Altares y catrinas</h3><p>Catrinas monumentales en la plaza, ofrenda con cempasúchil en el hotel y pan de muerto de nuestra cocina.</p><div class="season-thumbs"><img src="media/img/altar-hotel.webp" alt="Ofrenda de cempasúchil en el lobby del hotel" loading="lazy" /><img src="media/img/pan-de-muerto-higo.webp" alt="Pan de muerto relleno con higo" loading="lazy" /><video muted loop playsinline preload="none" data-autoplay data-src="media/video/altar-muertos.mp4" poster="media/video/altar-muertos.jpg" aria-label="Altar de muertos con cempasúchil"></video></div></div>
+          </article>
+          <article class="season-panel" id="season-3" role="tabpanel" aria-labelledby="tab-3" hidden>
+            <div class="season-media"><img src="media/img/navidad-arbol.webp" alt="Árbol de Navidad iluminado en la plaza de Santiago" loading="lazy" /></div>
+            <div class="season-copy glass"><small>Diciembre</small><h3>Navidad y posadas</h3><p>El árbol de la plaza encendido frente al hotel, posadas y chocolate caliente para las noches frías.</p><div class="season-thumbs"><img src="media/img/navidad-parroquia.webp" alt="Plaza de Santiago iluminada en Navidad" loading="lazy" /><video muted loop playsinline preload="none" data-autoplay data-src="media/video/chocolate.mp4" poster="media/video/chocolate.jpg" aria-label="Chocolate caliente con galleta de jengibre"></video><img src="media/img/navidad-plaza.webp" alt="Plaza de Santiago con luces navideñas" loading="lazy" /></div></div>
+          </article>
+        </div>
+        <div class="band" data-parallax>
+          <video muted loop playsinline preload="none" data-autoplay data-src="media/video/navidad-dron.mp4" poster="media/video/navidad-dron.jpg" aria-label="Vista aérea de la plaza de Santiago iluminada en Navidad"></video>
+          <div class="band-text">
+            <p class="eyebrow" data-type>Diciembre en Santiago</p>
+            <h3 class="title" data-split><span class="line">La plaza</span><span class="line it">se enciende.</span></h3>
+            <p class="fade-up">Reserva con tiempo: para fines de semana recomendamos de 3 a 4 semanas de anticipación.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ BOUTIQUE ============ -->
+      <section class="section section-sand" id="boutique" aria-labelledby="bout-title">
+        <span class="orb cobalt" style="top: -10%; left: -14%"></span>
+        <span class="orb magenta" style="bottom: -12%; right: -12%"></span>
+        <header class="sec-head" data-num="08">
+          <p class="eyebrow" data-type>08 · Boutique de artesanías</p>
+          <h2 id="bout-title" class="title" data-split><span class="line">Llévate</span><span class="line it">un pedazo de México.</span></h2>
+          <p class="lead fade-up">Talavera, barro, muñecas de trapo, papel picado y piezas de artesanos mexicanos, dentro del hotel.</p>
+        </header>
+        <div class="mosaic" data-gallery="boutique">
+          <figure class="tile big reveal-img"><button type="button"><img src="media/img/boutique-tienda.webp" alt="Boutique con textiles, talavera y papel picado" loading="lazy" /></button><figcaption>Textiles y talavera</figcaption></figure>
+          <figure class="tile tall reveal-img" style="--d: 100ms"><button type="button"><img src="media/img/boutique-virgen.webp" alt="Virgen de barro y piezas de cerámica" loading="lazy" /></button><figcaption>Barro</figcaption></figure>
+          <figure class="tile reveal-img" style="--d: 150ms"><button type="button"><img src="media/img/boutique-munecas.webp" alt="Muñecas de trapo y bordados" loading="lazy" /></button><figcaption>Muñecas de trapo</figcaption></figure>
+          <figure class="tile reveal-img" style="--d: 200ms"><button type="button"><img src="media/img/boutique-papel-picado.webp" alt="Tienda con papel picado de colores" loading="lazy" /></button><figcaption>Papel picado</figcaption></figure>
+          <figure class="tile wide reveal-img"><button type="button"><img src="media/img/boutique-ceramica.webp" alt="Vitrina con cerámica blanca y negra" loading="lazy" /></button><figcaption>Cerámica</figcaption></figure>
+          <figure class="tile wide reveal-img" style="--d: 100ms"><button type="button"><img src="media/img/santiago-sierra.webp" alt="Plaza de Santiago y la sierra" loading="lazy" /></button><figcaption>Hecho en México</figcaption></figure>
+        </div>
+      </section>
+
+      <!-- ============ VIVE LAS PALOMAS ============ -->
+      <section class="section section-navy" id="vive" aria-labelledby="vive-title">
+        <span class="orb magenta" style="top: 10%; right: -12%"></span>
+        <header class="sec-head">
+          <p class="eyebrow" data-type>En movimiento</p>
+          <h2 id="vive-title" class="title" data-split><span class="line">Así se vive</span><span class="line it">un día aquí.</span></h2>
+        </header>
+        <div class="reels">
+          <figure class="reel fade-up"><video muted loop playsinline preload="none" data-autoplay data-src="media/video/nogada.mp4" poster="media/video/nogada.jpg"></video><figcaption>Chile en nogada</figcaption><button class="play-toggle" type="button" aria-label="Pausar video"><svg class="icon"><use href="#i-pause" /></svg></button></figure>
+          <figure class="reel fade-up" style="--d: 80ms"><video muted loop playsinline preload="none" data-autoplay data-src="media/video/musica.mp4" poster="media/video/musica.jpg"></video><figcaption>Música en vivo</figcaption><button class="play-toggle" type="button" aria-label="Pausar video"><svg class="icon"><use href="#i-pause" /></svg></button></figure>
+          <figure class="reel fade-up" style="--d: 160ms"><video muted loop playsinline preload="none" data-autoplay data-src="media/video/combi.mp4" poster="media/video/combi.jpg"></video><figcaption>La combi</figcaption><button class="play-toggle" type="button" aria-label="Pausar video"><svg class="icon"><use href="#i-pause" /></svg></button></figure>
+          <figure class="reel fade-up" style="--d: 240ms"><video muted loop playsinline preload="none" data-autoplay data-src="media/video/patio.mp4" poster="media/video/patio.jpg"></video><figcaption>El patio</figcaption><button class="play-toggle" type="button" aria-label="Pausar video"><svg class="icon"><use href="#i-pause" /></svg></button></figure>
+          <figure class="reel fade-up" style="--d: 320ms"><video muted loop playsinline preload="none" data-autoplay data-src="media/video/restaurante.mp4" poster="media/video/restaurante.jpg"></video><figcaption>La terraza</figcaption><button class="play-toggle" type="button" aria-label="Pausar video"><svg class="icon"><use href="#i-pause" /></svg></button></figure>
+          <figure class="reel fade-up" style="--d: 400ms"><video muted loop playsinline preload="none" data-autoplay data-src="media/video/caldo.mp4" poster="media/video/caldo.jpg"></video><figcaption>Caldo de res</figcaption><button class="play-toggle" type="button" aria-label="Pausar video"><svg class="icon"><use href="#i-pause" /></svg></button></figure>
+        </div>
+      </section>
+
+
+      <!-- ============ PREGUNTAS ============ -->
+      <section class="section section-cream" id="preguntas" aria-labelledby="faq-title">
+        <span class="sphere bug" data-depth=".3" style="--s: 112px; top: 10%; left: 8%"></span>
+        <span class="sphere cristal" data-depth=".45" style="--s: 70px; bottom: 12%; right: 9%"></span>
+        <span class="sphere azul" data-depth=".2" style="--s: 38px; top: 30%; right: 16%"></span>
+        <span class="orb violet" style="top: -10%; left: -10%"></span>
+        <header class="sec-head" data-num="09">
+          <p class="eyebrow" data-type>09 · Antes de llegar</p>
+          <h2 id="faq-title" class="title" data-split><span class="line">Preguntas</span><span class="line it">frecuentes.</span></h2>
+        </header>
+        <div class="faq">
+          <details class="glass fade-up"><summary>¿A qué hora es el check-in y el check-out?</summary><p>El check-in es a partir de las 3:00 pm y el check-out a las 12:00 del mediodía.</p></details>
+          <details class="glass fade-up"><summary>¿Qué incluye la tarifa de fin de semana?</summary><p>La tarifa de jueves a sábado incluye dos cupones de desayuno a la carta: huevos, machacado, menudo o tamales, con café americano de refill.</p></details>
+          <details class="glass fade-up"><summary>¿Cuántas personas caben por habitación?</summary><p>La habitación Estándar tiene dos camas matrimoniales para dos adultos y hasta dos menores de 12 años. La Junior Suite tiene una cama king size para dos personas.</p></details>
+          <details class="glass fade-up"><summary>¿Cuál es el horario de la alberca?</summary><p>De 10:00 am a 8:00 pm, todos los días.</p></details>
+          <details class="glass fade-up"><summary>¿El restaurante toma reservaciones?</summary><p>No. Las mesas se asignan por orden de llegada. Abrimos de domingo a miércoles de 8:00 am a 10:00 pm y de jueves a sábado de 8:00 am a 11:00 pm. El room service tiene el mismo horario.</p></details>
+          <details class="glass fade-up"><summary>¿Hay estacionamiento?</summary><p>Sí. El valet parking funciona sábados y domingos.</p></details>
+          <details class="glass fade-up"><summary>¿Aceptan mascotas?</summary><p>No se permiten mascotas en las habitaciones.</p></details>
+          <details class="glass fade-up"><summary>¿Con cuánto tiempo conviene reservar?</summary><p>Para viernes o sábado recomendamos reservar con 3 a 4 semanas de anticipación. Las fechas se pueden cambiar con al menos 10 días de aviso, sujeto a disponibilidad.</p></details>
+          <details class="glass fade-up"><summary>¿Qué formas de pago aceptan?</summary><p>Tarjeta de débito o crédito, transferencia o depósito bancario. Al hacer check-in se deja una tarjeta en garantía.</p></details>
+          <details class="glass fade-up"><summary>¿Tienen paquetes románticos?</summary><p>Sí: paquetes con cena y habitación, o solo la ambientación de la habitación.</p></details>
+        </div>
+      </section>
+
+      <!-- ============ CONTACTO ============ -->
+      <footer class="section section-dark" id="contacto" aria-labelledby="contacto-title">
+        <span class="sphere cristal" data-depth=".35" style="--s: 120px; top: 9%; left: 7%"></span>
+        <span class="sphere bug" data-depth=".25" style="--s: 58px; top: 22%; right: 13%"></span>
+        <span class="orb magenta" style="bottom: -20%; left: -10%"></span>
+        <span class="orb violet" style="top: -10%; right: -10%"></span>
+        <header class="sec-head">
+          <p class="eyebrow" data-type>Contacto</p>
+          <h2 id="contacto-title" class="title" data-split><span class="line">Te esperamos</span><span class="line it">en Santiago.</span></h2>
+        </header>
+        <div class="contact-grid">
+          <div class="contact-card glass glow-hover fade-up"><h4>Dirección</h4><p>Abasolo 101, Santiago<br />Nuevo León, 67300<br /><a href="https://maps.google.com/?q=Las+Palomas+de+Santiago+Abasolo+101+Santiago+Nuevo+Leon" target="_blank" rel="noreferrer">Ver en el mapa</a></p></div>
+          <div class="contact-card glass glow-hover fade-up" style="--d: 100ms"><h4>Teléfonos</h4><p><a href="tel:+528122854330">(81) 2285 4330</a><br /><a href="tel:+528122854331">(81) 2285 4331</a></p></div>
+          <div class="contact-card glass glow-hover fade-up" style="--d: 200ms"><h4>Reservaciones</h4><p><a href="mailto:reservaciones@laspalomasdesantiago.com">reservaciones@<br />laspalomasdesantiago.com</a></p></div>
+        </div>
+        <div class="sec-cta fade-up">
+          <button class="btn btn-glow" type="button" data-open-reservation>Planea tu visita <svg class="icon"><use href="#i-arrow-right-regular" /></svg></button>
+          <a class="btn btn-glass" href="https://wa.link/pkdzrh" target="_blank" rel="noreferrer">WhatsApp</a>
+        </div>
+        <div class="footer-bottom">
+          <img src="media/img/logo.png" alt="Las Palomas de Santiago" width="300" height="104" loading="lazy" />
+          <span>Vive Santiago desde su corazón · 50 años de sabor y tradición</span>
+        </div>
+      </footer>
+    </main>
+
+    <div class="modal" hidden>
+      <section class="modal-card glass" role="dialog" aria-modal="true" aria-labelledby="modal-title" style="background: linear-gradient(135deg, rgba(14,42,92,.92), rgba(5,15,36,.94))">
+        <button class="modal-close" type="button" aria-label="Cerrar"><svg class="icon"><use href="#i-x-light" /></svg></button>
+        <p class="eyebrow">Tu experiencia</p>
+        <h2 id="modal-title">¿Qué deseas reservar?</h2>
+        <div class="modal-options">
+          <a class="modal-option" href="https://hotels.cloudbeds.com/es/reservation/pEs5S8" target="_blank" rel="noreferrer"><span><b>Hospedaje</b><span>Habitaciones y fechas disponibles</span></span><svg class="icon"><use href="#i-arrow-right-regular" /></svg></a>
+          <a class="modal-option" href="https://wa.link/pkdzrh" target="_blank" rel="noreferrer"><span><b>Eventos</b><span>Cotiza por WhatsApp</span></span><svg class="icon"><use href="#i-arrow-right-regular" /></svg></a>
+          <a class="modal-option" href="https://wa.link/pkdzrh" target="_blank" rel="noreferrer"><span><b>Spa</b><span>Agenda tu tratamiento</span></span><svg class="icon"><use href="#i-arrow-right-regular" /></svg></a>
+        </div>
+      </section>
+    </div>
+
+    <div class="lightbox" role="dialog" aria-modal="true" aria-label="Galería de fotos">
+      <span class="lb-count"></span>
+      <button class="lb-btn lb-close" type="button" aria-label="Cerrar galería"><svg class="icon"><use href="#i-x-light" /></svg></button>
+      <button class="lb-btn lb-prev" type="button" aria-label="Foto anterior"><svg class="icon"><use href="#i-arrow-left-light" /></svg></button>
+      <figure><img alt="" /><figcaption></figcaption></figure>
+      <button class="lb-btn lb-next" type="button" aria-label="Foto siguiente"><svg class="icon"><use href="#i-arrow-right-light" /></svg></button>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
