@@ -64,6 +64,7 @@
     button { cursor: pointer; }
     button:disabled { cursor: not-allowed; }
     :focus-visible { outline: 2px solid var(--oro); outline-offset: 2px; }
+    [hidden] { display: none !important; }
     .sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
     .ico {
       font-family: "Material Symbols Outlined";
@@ -198,7 +199,7 @@
        ========================================================= */
     .principal {
       max-width: 1240px; margin: 0 auto;
-      padding: 16px 14px calc(var(--alto-compra) + 28px + env(safe-area-inset-bottom));
+      padding: 16px 14px 28px;
       display: grid; gap: 14px;
       grid-template-areas: "pov" "config" "plano" "carrito";
     }
@@ -404,7 +405,8 @@
     .pov.inmersivo { position: fixed; inset: 0; z-index: 150; border-radius: 0; border: 0; display: flex; flex-direction: column; }
     .pov.inmersivo .pov__vista { flex: 1; height: auto; }
     .pov.inmersivo .pov__cerrar { display: inline-flex; }
-    .pov.inmersivo .pov__mundo { transform-origin: 50% 40%; }
+    .pov.inmersivo .pov__mundo { inset: auto 0; top: calc(50% - 170px); height: 300px; }
+    .pov.inmersivo .pov__cerrar { top: auto; bottom: 64px; left: 50%; right: auto; transform: translateX(-50%); }
     body.bloqueado { overflow: hidden; }
 
     /* =========================================================
@@ -611,7 +613,7 @@
     .temporizador .ico { font-size: 15px; }
     .temporizador.urgente { background: var(--rosa); color: #fff; animation: latido 1s ease-in-out infinite; }
     .compra__pagos { display: flex; justify-content: space-between; align-items: center; gap: 8px; font: 500 10px/1.2 var(--f-mono); color: var(--texto-3); }
-    .compra__pagos ul { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .compra__pagos ul { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: 6px; flex-wrap: nowrap; white-space: nowrap; }
     .compra__pagos li { padding: 3px 7px; border-radius: 6px; background: var(--tarjeta); border: 1px solid var(--borde); color: var(--texto-2); }
     .compra__pagos li:first-child { background: none; border: 0; padding: 0; text-transform: uppercase; letter-spacing: .08em; }
     .compra__seguro { display: inline-flex; align-items: center; gap: 3px; color: var(--lima); font-weight: 700; white-space: nowrap; }
@@ -622,13 +624,13 @@
     .compra__total strong { font: 800 26px/1.05 var(--f-titulo); }
     .compra__total span { font: 700 12px/1 var(--f-mono); color: var(--lima); }
     .compra .btn-primario { flex: 1; min-height: 50px; font-size: 13px; }
+    @media (max-width: 459px) { .compra__seguro { display: none; } }
     @media (max-width: 379px) { .compra__pagos { display: none; } :root { --alto-compra: 122px; } }
 
     /* =========================================================
        PIE
        ========================================================= */
-    .pie { max-width: 1240px; margin: 0 auto; padding: 8px 16px calc(var(--alto-compra) + 30px); display: grid; gap: 14px; justify-items: center; text-align: center; }
-    .principal + .pie { margin-top: calc(-1 * (var(--alto-compra) + 8px)); }
+    .pie { max-width: 1240px; margin: 0 auto; padding: 8px 16px calc(var(--alto-compra) + 30px + env(safe-area-inset-bottom)); display: grid; gap: 14px; justify-items: center; text-align: center; }
     .pie__logo { width: 72px; height: 72px; border-radius: 16px; border: 1px solid var(--borde); }
     .pie__marca { margin: 0; font: 800 16px/1.2 var(--f-titulo); }
     .pie__ciudad { margin: 2px 0 0; color: var(--texto-3); font-size: 13px; }
@@ -1340,7 +1342,9 @@
 
       // Cámara: lejos = escenario más pequeño; de lado = escenario girado
       const ancho = povVista.clientWidth || 360;
-      const escala = 1.18 * Math.pow(6.5 / (l.y + 3), .72);
+      const inmersivo = pov.classList.contains('inmersivo');
+      const extra = inmersivo ? Math.max(1, Math.min(2, povVista.clientHeight / 300, ancho / 380)) : 1;
+      const escala = 1.18 * Math.pow(6.5 / (l.y + 3), .72) * extra;
       const rotY = Math.max(-38, Math.min(38, -ang * .75));
       const tx = -giro * ancho / 95 + (-ang * ancho / 260);
       const ty = (dePie ? 26 : 0) + (1 - Math.min(escala, 1)) * 18;
