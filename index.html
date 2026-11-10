@@ -1,0 +1,1877 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0e0b1c">
+  <meta name="color-scheme" content="dark">
+  <title>Mesas VIP · Expo Feria Monterrey</title>
+  <meta name="description" content="Aparta tu mesa VIP Diamante o tu silla en Zona Oro para Expo Feria Monterrey y mira el escenario desde tu lugar con el simulador 3D.">
+  <link rel="icon" type="image/png" href="assets/expo-feria-icono.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0..1,0&icon_names=360,accessibility_new,add,arrow_forward,calendar_today,center_focus_strong,chair,chat,check_circle,close,confirmation_number,diamond,event_seat,expand_less,fullscreen,liquor,lock,panorama_photosphere,radar,remove,restart_alt,rotate_left,rotate_right,star,straighten,swipe,timer,view_in_ar,visibility,zoom_in,zoom_out&display=block">
+  <style>
+    /* =========================================================
+       TOKENS (paleta nocturna del simulador + neón del boceto)
+       ========================================================= */
+    :root {
+      --noche: #0e0b1c;
+      --noche-2: #120e24;
+      --tarjeta: #17122b;
+      --elevado: #211a3d;
+      --borde: #2d2352;
+      --linea: rgba(255, 255, 255, .10);
+      --texto: #f3f1fa;
+      --texto-2: #bcb8d4;
+      --texto-3: #8a85a8;
+      --rosa: #FF2E93;
+      --oro: #FFD233;
+      --lima: #10E57A;
+      --naranja: #FF6B00;
+      --violeta: #B44CFF;
+      --ocupado: #2c2645;
+      --ocupado-borde: #4b4568;
+      --f-titulo: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --f-texto: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+      --radio: 16px;
+      --radio-lg: 24px;
+      --alto-barra: 58px;
+      --alto-compra: 152px;
+      color-scheme: dark;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(900px 520px at 85% -120px, rgba(180, 76, 255, .22), transparent 70%),
+        radial-gradient(700px 480px at -10% 420px, rgba(255, 46, 147, .12), transparent 70%),
+        var(--noche);
+      color: var(--texto);
+      font-family: var(--f-texto);
+      font-size: 15px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    button, select, input { font: inherit; color: inherit; }
+    button { cursor: pointer; }
+    button:disabled { cursor: not-allowed; }
+    :focus-visible { outline: 2px solid var(--oro); outline-offset: 2px; }
+    [hidden] { display: none !important; }
+    .sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+    .ico {
+      font-family: "Material Symbols Outlined";
+      font-weight: normal; font-style: normal; font-size: 18px; line-height: 1;
+      display: inline-block; width: 1em; height: 1em; overflow: hidden;
+      letter-spacing: normal; text-transform: none; white-space: nowrap; direction: ltr;
+      font-feature-settings: "liga"; -webkit-font-feature-settings: "liga";
+      flex: none; vertical-align: middle;
+    }
+    .mono { font-family: var(--f-mono); }
+
+    .saltar { position: absolute; left: 12px; top: -60px; z-index: 200; background: var(--oro); color: var(--noche); padding: 10px 14px; border-radius: 10px; font-weight: 700; text-decoration: none; }
+    .saltar:focus { top: 12px; }
+
+    /* ---------- Piezas comunes ---------- */
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 3px 10px; border-radius: 999px;
+      font: 700 10px/1.4 var(--f-titulo); letter-spacing: .08em; text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .badge--rosa { color: var(--rosa); background: rgba(255, 46, 147, .14); border: 1px solid rgba(255, 46, 147, .35); box-shadow: 0 0 10px rgba(255, 46, 147, .25); }
+    .badge--oro { color: var(--oro); background: rgba(255, 210, 51, .14); border: 1px solid rgba(255, 210, 51, .4); font-family: var(--f-mono); }
+    .badge--lima { color: var(--lima); background: rgba(16, 229, 122, .12); border: 1px solid rgba(16, 229, 122, .35); font-family: var(--f-mono); }
+    .punto { width: 7px; height: 7px; border-radius: 50%; background: currentColor; flex: none; }
+    .punto--vivo { background: var(--lima); box-shadow: 0 0 8px var(--lima); animation: latido 1.6s ease-in-out infinite; }
+    .punto--ping { position: relative; }
+    .punto--ping::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: currentColor; animation: ping 1.4s cubic-bezier(0, 0, .2, 1) infinite; }
+    @keyframes ping { 75%, 100% { transform: scale(2.4); opacity: 0; } }
+    @keyframes latido { 50% { opacity: .45; } }
+
+    .tarjeta {
+      background: var(--tarjeta);
+      border: 1px solid var(--borde);
+      border-radius: var(--radio-lg);
+    }
+    .seccion-titulo {
+      display: flex; align-items: center; gap: 8px;
+      margin: 0; font: 800 13px/1.3 var(--f-titulo); letter-spacing: .06em; text-transform: uppercase;
+    }
+    .seccion-titulo .ico { color: var(--oro); font-size: 18px; }
+    .etiqueta { margin: 0; font: 700 10px/1.4 var(--f-titulo); letter-spacing: .1em; text-transform: uppercase; color: var(--texto-3); }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 46px; padding: 10px 18px; border-radius: 14px; border: 1px solid transparent;
+      font: 800 14px/1.2 var(--f-titulo); letter-spacing: .01em; text-decoration: none;
+      transition: transform .12s ease, filter .15s ease, background-color .15s ease, border-color .15s ease;
+    }
+    .btn:active:not(:disabled) { transform: scale(.98); }
+    .btn-primario { background: linear-gradient(90deg, var(--lima), #2feea0 45%, var(--oro)); color: var(--noche); box-shadow: 0 8px 24px rgba(16, 229, 122, .22); }
+    .btn-primario:hover:not(:disabled) { filter: brightness(1.08); }
+    .btn-primario:disabled { background: var(--elevado); color: var(--texto-3); box-shadow: none; border-color: var(--borde); }
+    .btn-secundario { background: var(--elevado); color: var(--texto); border-color: var(--borde); }
+    .btn-secundario:hover:not(:disabled) { border-color: rgba(255, 255, 255, .3); }
+    .btn-fantasma { background: transparent; color: var(--texto-2); border-color: var(--borde); }
+    .btn-fantasma:hover { color: var(--texto); border-color: rgba(255, 255, 255, .3); }
+    .btn-whatsapp { background: #25D366; color: #06210f; }
+    .btn-mini { background: transparent; border: 1px solid var(--borde); color: var(--texto-2); border-radius: 999px; padding: 6px 12px; font: 600 12px/1 var(--f-titulo); display: inline-flex; align-items: center; gap: 6px; }
+    .btn-mini:hover { color: var(--texto); border-color: rgba(255, 255, 255, .3); }
+
+    /* =========================================================
+       BARRA SUPERIOR (fija)
+       ========================================================= */
+    .barra {
+      position: sticky; top: 0; z-index: 60;
+      height: var(--alto-barra);
+      background: rgba(14, 11, 28, .86);
+      -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(45, 35, 82, .8);
+    }
+    .barra__fila { max-width: 1240px; height: 100%; margin: 0 auto; padding: 0 16px; display: flex; align-items: center; gap: 10px; }
+    .barra__marca { flex: none; width: 38px; height: 38px; border-radius: 10px; overflow: hidden; border: 1px solid var(--borde); }
+    .barra__marca img { width: 100%; height: 100%; object-fit: cover; }
+    .barra__evento { min-width: 0; flex: 1; }
+    .barra__evento .badge { padding: 2px 8px; font-size: 9px; }
+    .barra__titulo { margin: 2px 0 0; font: 800 14px/1.2 var(--f-titulo); letter-spacing: -.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .barra__foco { flex: none; text-align: right; min-width: 0; }
+    .chip-foco {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 4px 9px; border-radius: 10px;
+      background: var(--tarjeta); border: 1px solid rgba(255, 210, 51, .45);
+      color: var(--oro); font: 700 12px/1.2 var(--f-titulo); white-space: nowrap;
+    }
+    .chip-foco .ico { font-size: 15px; }
+    .barra__foco p { margin: 3px 0 0; font: 500 10px/1.2 var(--f-mono); color: var(--texto-3); white-space: nowrap; }
+
+    /* =========================================================
+       PORTADA
+       ========================================================= */
+    .portada { position: relative; isolation: isolate; overflow: hidden; border-bottom: 1px solid var(--borde); }
+    .portada::before {
+      content: ""; position: absolute; inset: 0; z-index: -2;
+      background: url("assets/feria-noche.webp") center 30% / cover no-repeat;
+      opacity: .38;
+    }
+    .portada::after {
+      content: ""; position: absolute; inset: 0; z-index: -1;
+      background: linear-gradient(180deg, rgba(14, 11, 28, .55) 0%, rgba(14, 11, 28, .82) 55%, var(--noche) 100%);
+    }
+    .portada__cuerpo { max-width: 1240px; margin: 0 auto; padding: 22px 16px 22px; display: grid; gap: 16px; }
+    .portada__logo { width: min(340px, 82vw); }
+    .portada h1 { margin: 0; font: 800 clamp(26px, 6.4vw, 42px)/1.08 var(--f-titulo); letter-spacing: -.03em; max-width: 18ch; }
+    .degradado { background: linear-gradient(90deg, var(--oro), var(--naranja) 35%, var(--rosa) 70%, var(--violeta)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .portada__sub { margin: 0; color: var(--texto-2); max-width: 54ch; }
+    .portada__controles { display: flex; flex-wrap: wrap; align-items: end; gap: 12px 16px; }
+    .selector { display: grid; gap: 6px; min-width: min(100%, 280px); }
+    .selector__caja { position: relative; }
+    .selector__caja .ico { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--oro); pointer-events: none; }
+    .selector select {
+      width: 100%; min-height: 48px; padding: 10px 40px 10px 40px;
+      appearance: none; -webkit-appearance: none;
+      background: rgba(23, 18, 43, .92) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23FFD233' stroke-width='2'/%3E%3C/svg%3E") right 14px center no-repeat;
+      border: 1px solid rgba(255, 210, 51, .4); border-radius: 14px;
+      font: 700 14px/1.2 var(--f-titulo); color: var(--texto);
+    }
+    .selector small { color: var(--texto-3); font-size: 11px; }
+    .sellos { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 14px; font: 600 12px/1.4 var(--f-titulo); color: var(--texto-2); }
+    .sellos li { display: inline-flex; align-items: center; gap: 5px; }
+    .sellos .ico { color: var(--lima); font-size: 16px; }
+    .pasos { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+    .pasos li {
+      display: flex; align-items: center; gap: 8px;
+      padding: 9px 10px; border-radius: 14px;
+      background: rgba(23, 18, 43, .8); border: 1px solid var(--borde);
+      font: 600 12px/1.25 var(--f-titulo); color: var(--texto-2);
+    }
+    .pasos b { flex: none; display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--oro); color: var(--noche); font: 800 12px/1 var(--f-titulo); }
+
+    /* =========================================================
+       DISPOSICIÓN PRINCIPAL
+       ========================================================= */
+    .principal {
+      max-width: 1240px; margin: 0 auto;
+      padding: 16px 14px 28px;
+      display: grid; gap: 14px;
+      grid-template-areas: "pov" "config" "plano" "carrito";
+    }
+    .area-pov { grid-area: pov; }
+    .area-config { grid-area: config; }
+    .area-plano { grid-area: plano; }
+    .area-carrito { grid-area: carrito; }
+    .columna { display: grid; gap: 14px; align-content: start; min-width: 0; }
+    [id] { scroll-margin-top: calc(var(--alto-barra) + 10px); }
+
+    @media (min-width: 1000px) {
+      .principal {
+        grid-template-columns: minmax(0, 1.08fr) minmax(380px, .92fr);
+        grid-template-areas: "plano lateral";
+        align-items: start;
+        padding-left: 20px; padding-right: 20px;
+      }
+      .columna--lateral {
+        grid-area: lateral;
+        position: sticky; top: calc(var(--alto-barra) + 14px);
+        max-height: calc(100vh - var(--alto-barra) - var(--alto-compra) - 36px);
+        overflow-y: auto; overscroll-behavior: contain;
+        scrollbar-width: thin; scrollbar-color: var(--borde) transparent;
+        padding-right: 2px;
+      }
+      .area-pov, .area-config, .area-carrito { grid-area: auto; }
+      .portada__cuerpo { grid-template-columns: 1fr auto; align-items: end; padding: 30px 20px 26px; }
+      .portada__texto { display: grid; gap: 14px; }
+      .portada__lado { display: grid; gap: 14px; justify-items: end; }
+      .pasos { grid-column: 1 / -1; }
+    }
+    @media (max-width: 999px) {
+      .columna--lateral { display: contents; }
+      .portada__texto, .portada__lado { display: grid; gap: 14px; }
+    }
+
+    /* =========================================================
+       SIMULADOR POV 3D
+       ========================================================= */
+    .pov { position: relative; overflow: hidden; border-radius: var(--radio-lg); border: 1px solid var(--borde); background: linear-gradient(180deg, #191338, var(--tarjeta) 55%, var(--noche)); box-shadow: 0 24px 60px rgba(0, 0, 0, .45); }
+    .pov__hud { position: absolute; top: 10px; left: 10px; right: 10px; z-index: 30; display: flex; justify-content: space-between; align-items: flex-start; gap: 6px; pointer-events: none; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 10px; border-radius: 999px;
+      font: 500 10px/1.3 var(--f-mono); color: var(--texto);
+      background: rgba(14, 11, 28, .86); border: 1px solid rgba(255, 255, 255, .12);
+      -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, .35);
+    }
+    .pill strong { color: var(--oro); font-weight: 700; }
+    .pill .ico { font-size: 14px; }
+    .pill--rosa { color: var(--rosa); background: rgba(255, 46, 147, .18); border-color: rgba(255, 46, 147, .45); font-family: var(--f-titulo); font-weight: 800; letter-spacing: .04em; }
+    .pill--oro { color: var(--oro); background: rgba(255, 210, 51, .14); border-color: rgba(255, 210, 51, .35); }
+    .pov__hud-der { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+    .pov__ejemplo { display: block; margin-top: 4px; color: var(--texto-3); font-size: 9px; letter-spacing: .06em; }
+
+    .pov__vista {
+      position: relative; height: 264px; overflow: hidden;
+      perspective: 900px;
+      background: linear-gradient(180deg, #090714 0%, #120e24 52%, #191338 100%);
+      touch-action: pan-y; cursor: grab; user-select: none; -webkit-user-select: none;
+    }
+    .pov__vista.arrastrando { cursor: grabbing; }
+    .pov__mundo {
+      position: absolute; inset: 0;
+      transform-origin: 50% 44%;
+      transition: transform .55s cubic-bezier(.2, .7, .2, 1), opacity .35s ease;
+      will-change: transform;
+    }
+    .pov__vista.arrastrando .pov__mundo, .pov__vista.arrastrando .pov__frente { transition: none; }
+    .truss { position: absolute; top: 0; left: 4%; right: 4%; height: 10px; background: repeating-linear-gradient(90deg, #2a2148 0 6px, #171130 6px 12px); border-bottom: 1px solid #3a2f63; }
+    .pantalla {
+      position: absolute; top: 18px; left: 50%; transform: translateX(-50%);
+      width: 78%; height: 98px; border-radius: 16px; overflow: hidden;
+      border: 1px solid rgba(255, 46, 147, .45);
+      background: linear-gradient(35deg, #2d0935, #4d0b43 50%, #122b2a);
+      box-shadow: 0 0 44px rgba(255, 46, 147, .35);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 3px;
+      padding: 8px 10px;
+    }
+    .pantalla::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at center, rgba(255, 210, 51, .25), transparent 65%); }
+    .pantalla::after { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--rosa), var(--oro), var(--lima)); }
+    .pantalla > * { position: relative; z-index: 1; }
+    .pantalla__fila { display: flex; justify-content: space-between; width: 100%; font: 700 8px/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; }
+    .pantalla__fila span:first-child { color: var(--lima); display: inline-flex; align-items: center; gap: 4px; }
+    .pantalla__fila span:last-child { color: var(--oro); }
+    .pantalla__titulo { font: 800 12px/1.2 var(--f-titulo); letter-spacing: .14em; text-transform: uppercase; color: #fff; text-shadow: 0 2px 6px rgba(0, 0, 0, .7); }
+    .pantalla__sub { font: 500 8px/1.2 var(--f-mono); color: var(--texto-2); }
+    .pantalla__sub b { color: var(--oro); }
+    .silueta-dj { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 38px; height: 40px; border-radius: 40px 40px 0 0; background: rgba(0, 0, 0, .85); filter: blur(.5px); }
+
+    .laser { position: absolute; top: 4px; width: 5px; height: 270px; transform-origin: top center; filter: blur(.7px); pointer-events: none; }
+    .laser--rosa { left: 24%; background: linear-gradient(180deg, rgba(255, 46, 147, .85), rgba(255, 46, 147, .1) 75%, transparent); animation: barrido-izq 4s ease-in-out infinite alternate; }
+    .laser--lima { right: 24%; background: linear-gradient(180deg, rgba(16, 229, 122, .85), rgba(16, 229, 122, .1) 75%, transparent); animation: barrido-der 4.5s ease-in-out infinite alternate; }
+    @keyframes barrido-izq { 0% { transform: rotate(-24deg); opacity: .8; } 100% { transform: rotate(-10deg); opacity: 1; } }
+    @keyframes barrido-der { 0% { transform: rotate(24deg); opacity: .8; } 100% { transform: rotate(11deg); opacity: 1; } }
+    .haz { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 240px; height: 230px; background: conic-gradient(from 0deg at 50% 0%, transparent 42%, rgba(255, 210, 51, .2) 50%, transparent 58%); filter: blur(1px); pointer-events: none; }
+    .haz--rosa { width: 360px; background: conic-gradient(from 0deg at 50% 0%, transparent 44%, rgba(255, 46, 147, .2) 50%, transparent 56%); }
+
+    .escenario3d {
+      position: absolute; left: 50%; top: 128px; transform: translateX(-50%);
+      width: 82%; max-width: 560px;
+    }
+    .escenario3d__piso {
+      height: 46px; border-radius: 50% 50% 8px 8px / 70% 70% 8px 8px;
+      background: linear-gradient(0deg, #251b44, #1a1435 60%, #120e24);
+      border: 2px solid var(--lima); border-bottom: 0;
+      box-shadow: 0 -6px 30px rgba(16, 229, 122, .4);
+      display: flex; align-items: flex-end; justify-content: center; gap: 16px; padding-bottom: 4px;
+    }
+    .artista { display: flex; flex-direction: column; align-items: center; }
+    .artista i { width: 8px; height: 8px; border-radius: 50%; background: var(--oro); box-shadow: 0 0 8px var(--oro); }
+    .artista b { width: 12px; height: 19px; border-radius: 6px 6px 0 0; background: #0b0918; border-top: 1px solid rgba(255, 210, 51, .5); }
+    .artista:nth-child(2) i { background: var(--rosa); box-shadow: 0 0 8px var(--rosa); width: 6px; height: 6px; }
+    .artista:nth-child(2) b { height: 15px; width: 10px; }
+    .artista:nth-child(3) i { background: var(--lima); box-shadow: 0 0 8px var(--lima); width: 6px; height: 6px; }
+    .artista:nth-child(3) b { height: 13px; width: 15px; border-radius: 3px 3px 0 0; }
+    .escenario3d__frente {
+      height: 22px; border-radius: 0 0 10px 10px;
+      background: linear-gradient(90deg, #ffe34a, var(--oro) 20%, var(--naranja) 45%, var(--rosa) 75%, #d63cff);
+      display: grid; place-items: center;
+      font: 800 10px/1 var(--f-titulo); letter-spacing: .45em; color: #1a0f2e; text-indent: .45em;
+      box-shadow: 0 6px 24px rgba(255, 46, 147, .45);
+    }
+    .escenario3d__luces { display: flex; justify-content: space-between; padding: 6px 10px 0; }
+    .escenario3d__luces i { width: 5px; height: 5px; border-radius: 50%; background: #ffb347; box-shadow: 0 0 8px #ffb347; }
+    .escenario3d__luces i:first-child, .escenario3d__luces i:last-child { background: #e08cff; box-shadow: 0 0 8px #e08cff; }
+
+    .pov__piso { position: absolute; left: 0; right: 0; bottom: 0; height: 120px; background: radial-gradient(ellipse at 50% 100%, rgba(255, 46, 147, .28), rgba(16, 229, 122, .1) 38%, rgba(14, 11, 28, 0) 75%); pointer-events: none; }
+    .pov__frente { position: absolute; inset: 0; pointer-events: none; transition: transform .55s cubic-bezier(.2, .7, .2, 1); z-index: 12; }
+    .cabeza { position: absolute; bottom: 0; border-radius: 48% 48% 10px 10px / 58% 58% 10px 10px; background: linear-gradient(180deg, #120e24, #07050f); border-top: 1px solid rgba(255, 255, 255, .06); }
+    .cabeza::before { content: ""; position: absolute; left: 50%; transform: translateX(-50%); bottom: 72%; width: 46%; aspect-ratio: 1 / 1.15; border-radius: 50%; background: #0d0a1b; border-top: 1px solid rgba(255, 46, 147, .18); }
+    .mesa-frente { position: absolute; bottom: 0; height: 20px; border-radius: 50% 50% 0 0 / 100% 100% 0 0; background: linear-gradient(0deg, #05040b, #1d1636); border-top: 2px solid rgba(255, 210, 51, .35); }
+
+    .pov__atras { position: absolute; inset: 0; opacity: 0; transition: opacity .35s ease; pointer-events: none; z-index: 5; display: grid; place-items: center; }
+    .pov__atras.visible { opacity: 1; }
+    .pov__atras svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .pov__atras p { position: relative; margin: 0; padding: 6px 12px; border-radius: 999px; background: rgba(14, 11, 28, .85); border: 1px solid var(--borde); font: 600 11px/1.3 var(--f-titulo); color: var(--texto-2); }
+
+    .pov__borde {
+      position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); z-index: 20;
+      width: min(240px, 62%); height: 22px; border-radius: 20px 20px 0 0;
+      background: linear-gradient(0deg, #000, var(--tarjeta) 60%, var(--elevado));
+      border-top: 2px solid rgba(255, 210, 51, .55);
+      box-shadow: 0 -4px 14px rgba(255, 210, 51, .2);
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      font: 700 8px/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--oro);
+    }
+    .pov__borde::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--lima); box-shadow: 0 0 6px var(--lima); }
+
+    .pov__radar {
+      position: absolute; right: 10px; bottom: 30px; z-index: 22;
+      width: 62px; height: 84px; padding: 3px;
+      border-radius: 10px; background: rgba(14, 11, 28, .82); border: 1px solid var(--borde);
+      -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    }
+    .pov__radar svg { width: 100%; height: 100%; display: block; }
+    .pov__pista {
+      position: absolute; left: 10px; bottom: 30px; z-index: 22;
+      display: inline-flex; align-items: center; gap: 5px;
+      max-width: calc(100% - 96px);
+      padding: 4px 10px; border-radius: 999px;
+      background: rgba(14, 11, 28, .85); border: 1px solid var(--borde);
+      font: 500 10px/1.3 var(--f-texto); color: var(--texto-2);
+    }
+    .pov__pista .ico { color: var(--oro); font-size: 14px; }
+    .pov__cerrar {
+      position: absolute; right: 10px; top: 52px; z-index: 40;
+      display: none; align-items: center; gap: 4px; padding: 7px 12px; border-radius: 999px;
+      background: rgba(14, 11, 28, .9); border: 1px solid var(--borde); color: var(--texto); font: 700 12px/1 var(--f-titulo);
+    }
+
+    .pov__giro { display: flex; align-items: center; gap: 10px; padding: 9px 14px; background: var(--noche-2); border-top: 1px solid rgba(45, 35, 82, .7); }
+    .pov__giro .ico { color: var(--oro); font-size: 17px; }
+    .pov__giro output { min-width: 40px; text-align: right; font: 700 11px/1 var(--f-mono); }
+    input[type="range"] { flex: 1; min-width: 0; height: 28px; background: transparent; -webkit-appearance: none; appearance: none; }
+    input[type="range"]::-webkit-slider-runnable-track { height: 6px; border-radius: 6px; background: var(--elevado); }
+    input[type="range"]::-moz-range-track { height: 6px; border-radius: 6px; background: var(--elevado); }
+    input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; margin-top: -8px; border-radius: 50%; background: #fff; border: 3px solid var(--lima); box-shadow: 0 0 10px rgba(16, 229, 122, .6); }
+    input[type="range"]::-moz-range-thumb { width: 16px; height: 16px; border-radius: 50%; background: #fff; border: 3px solid var(--lima); box-shadow: 0 0 10px rgba(16, 229, 122, .6); }
+
+    .pov__modos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; padding: 10px; background: rgba(23, 18, 43, .92); border-top: 1px solid rgba(45, 35, 82, .8); }
+    .pov__modos button {
+      display: grid; justify-items: center; gap: 3px;
+      min-height: 52px; padding: 7px 4px; border-radius: 14px;
+      background: var(--elevado); border: 1px solid var(--borde); color: var(--texto-2);
+      font: 700 11px/1.15 var(--f-titulo);
+    }
+    .pov__modos button .ico { font-size: 19px; }
+    .pov__modos button:hover { color: var(--texto); }
+    .pov__modos button[aria-pressed="true"] { background: var(--oro); border-color: var(--oro); color: var(--noche); box-shadow: 0 6px 18px rgba(255, 210, 51, .3); }
+
+    .pov__datos { margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; padding: 10px 12px 12px; background: var(--noche-2); border-top: 1px solid rgba(45, 35, 82, .6); text-align: center; }
+    .pov__datos div { display: grid; gap: 2px; }
+    .pov__datos dt { font: 500 10px/1.2 var(--f-mono); color: var(--texto-3); display: inline-flex; align-items: center; justify-content: center; gap: 4px; }
+    .pov__datos dt .ico { font-size: 13px; }
+    .pov__datos dd { margin: 0; font: 700 12px/1.25 var(--f-mono); }
+    .dato-lima { color: var(--lima); }
+    .dato-oro { color: var(--oro); }
+    .dato-rosa { color: var(--rosa); }
+
+    /* Modo inmersivo (pantalla completa simulada; sirve también en iPhone) */
+    .pov.inmersivo { position: fixed; inset: 0; z-index: 150; border-radius: 0; border: 0; display: flex; flex-direction: column; }
+    .pov.inmersivo .pov__vista { flex: 1; height: auto; }
+    .pov.inmersivo .pov__cerrar { display: inline-flex; }
+    .pov.inmersivo .pov__mundo { inset: auto 0; top: calc(50% - 170px); height: 300px; }
+    .pov.inmersivo .pov__cerrar { top: auto; bottom: 64px; left: 50%; right: auto; transform: translateX(-50%); }
+    body.bloqueado { overflow: hidden; }
+
+    /* =========================================================
+       CONFIGURADOR DE SILLAS 3D
+       ========================================================= */
+    .config { padding: 16px; display: grid; gap: 14px; }
+    .config__cabecera { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+    .config__cabecera p { margin: 3px 0 0; font-size: 12px; color: var(--texto-2); }
+    .vacio-config { display: grid; gap: 10px; justify-items: start; padding: 4px 0; color: var(--texto-2); font-size: 14px; }
+    .vacio-config p { margin: 0; }
+    .vacio-config ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: 13px; }
+
+    .disco { position: relative; display: grid; place-items: center; padding: 6px 0 2px; }
+    .disco__caja { position: relative; width: 210px; height: 178px; display: grid; place-items: center; }
+    .disco__base {
+      position: absolute; inset: 6px 0;
+      border-radius: 50%; border: 2px dashed var(--borde);
+      background: radial-gradient(circle at 50% 35%, var(--elevado), var(--noche) 70%, #100c22);
+      transform: rotateX(48deg);
+      box-shadow: 0 18px 34px rgba(0, 0, 0, .6), 0 0 26px rgba(255, 210, 51, .16);
+    }
+    .disco__mesa {
+      position: relative; z-index: 2; width: 74px; height: 74px; border-radius: 50%;
+      background: var(--noche); border: 2px solid rgba(255, 210, 51, .85);
+      box-shadow: 0 0 22px rgba(255, 210, 51, .25);
+      display: grid; place-content: center; text-align: center; gap: 1px;
+    }
+    .disco__mesa span:nth-child(1) { font: 700 9px/1 var(--f-titulo); letter-spacing: .1em; color: var(--texto-3); }
+    .disco__mesa span:nth-child(2) { font: 800 22px/1 var(--f-titulo); }
+    .disco__mesa span:nth-child(3) { font: 700 8px/1 var(--f-mono); color: var(--lima); letter-spacing: .06em; }
+    .asiento {
+      position: absolute; z-index: 3;
+      width: 46px; height: 46px; border-radius: 50%;
+      display: grid; place-items: center;
+      font: 800 13px/1 var(--f-titulo);
+      border: 2px solid var(--oro); background: rgba(255, 210, 51, .12); color: var(--oro);
+      transition: transform .12s ease, background-color .15s ease, box-shadow .15s ease;
+    }
+    .asiento:hover:not(:disabled) { box-shadow: 0 0 0 4px rgba(255, 210, 51, .18); }
+    .asiento:active:not(:disabled) { transform: scale(.92); }
+    .asiento[aria-pressed="true"] { background: var(--lima); border-color: var(--lima); color: var(--noche); box-shadow: 0 0 16px rgba(16, 229, 122, .7); }
+    .asiento:disabled { background: var(--ocupado); border-color: var(--ocupado-borde); color: #6f6a8c; text-decoration: line-through; }
+    .asiento--1 { top: -4px; left: 50%; margin-left: -23px; }
+    .asiento--2 { right: -2px; top: 50%; margin-top: -23px; }
+    .asiento--3 { bottom: -4px; left: 50%; margin-left: -23px; }
+    .asiento--4 { left: -2px; top: 50%; margin-top: -23px; }
+
+    .leyenda-mini { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; padding-top: 12px; border-top: 1px solid rgba(45, 35, 82, .8); font: 600 12px/1.2 var(--f-titulo); }
+    .leyenda-mini ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+    .leyenda-mini li { display: inline-flex; align-items: center; gap: 5px; }
+    .bolita { width: 11px; height: 11px; border-radius: 50%; flex: none; }
+    .bolita--sel { background: var(--lima); box-shadow: 0 0 6px var(--lima); }
+    .bolita--libre { background: rgba(255, 210, 51, .15); border: 2px solid var(--oro); }
+    .bolita--ocu { background: var(--ocupado); border: 2px solid var(--ocupado-borde); }
+    .btn-mesa { padding: 7px 12px; border-radius: 10px; background: rgba(255, 107, 0, .14); border: 1px solid rgba(255, 107, 0, .45); color: #ffa66b; font: 800 12px/1.2 var(--f-titulo); }
+    .btn-mesa:hover:not(:disabled) { background: var(--naranja); color: #fff; }
+    .btn-mesa[aria-pressed="true"] { background: rgba(16, 229, 122, .14); border-color: rgba(16, 229, 122, .45); color: var(--lima); }
+    .btn-mesa:disabled { opacity: .45; }
+
+    .precios { margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .precios div { padding: 10px 12px; border-radius: 14px; background: var(--elevado); border: 1px solid var(--borde); }
+    .precios dt { font: 600 11px/1.2 var(--f-titulo); color: var(--texto-3); }
+    .precios dd { margin: 4px 0 0; font: 800 17px/1.1 var(--f-titulo); }
+    .precios small { font: 500 11px var(--f-texto); color: var(--texto-3); }
+    .pista { margin: 0; font-size: 12px; color: var(--texto-3); }
+    .pista--alerta { color: #ffa66b; }
+
+    .extras { display: grid; gap: 8px; padding-top: 12px; border-top: 1px solid rgba(45, 35, 82, .8); }
+    .extras__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .extra { display: flex; align-items: center; gap: 9px; padding: 9px 10px; border-radius: 12px; background: var(--elevado); border: 1px solid var(--borde); cursor: pointer; transition: border-color .15s ease; }
+    .extra:hover { border-color: rgba(255, 210, 51, .5); }
+    .extra input { width: 20px; height: 20px; accent-color: var(--lima); flex: none; margin: 0; }
+    .extra span { display: grid; gap: 2px; font: 700 12px/1.2 var(--f-titulo); }
+    .extra small { font: 700 10px/1 var(--f-mono); color: var(--oro); }
+    .extra:has(input:disabled) { opacity: .5; cursor: not-allowed; }
+
+    .subtotal { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; padding: 11px 14px; border-radius: 14px; background: var(--noche-2); border: 1px solid var(--borde); font-size: 13px; color: var(--texto-2); }
+    .subtotal strong { font: 800 19px/1 var(--f-titulo); color: var(--texto); }
+    .acciones { display: flex; flex-wrap: wrap; gap: 8px; }
+    .acciones .btn { flex: 1 1 140px; }
+
+    .oro-ficha { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: center; }
+    .oro-ficha__icono { width: 64px; height: 64px; border-radius: 18px; display: grid; place-items: center; background: rgba(255, 210, 51, .12); border: 2px solid var(--oro); color: var(--oro); }
+    .oro-ficha__icono .ico { font-size: 34px; }
+    .oro-ficha__icono.sel { background: var(--lima); border-color: var(--lima); color: var(--noche); box-shadow: 0 0 18px rgba(16, 229, 122, .5); }
+    .oro-ficha__icono.ocu { background: var(--ocupado); border-color: var(--ocupado-borde); color: #6f6a8c; }
+    .oro-ficha h3 { margin: 0; font: 800 20px/1.15 var(--f-titulo); }
+    .oro-ficha p { margin: 4px 0 0; font-size: 13px; color: var(--texto-2); }
+
+    /* =========================================================
+       PLANO (boceto de distribución)
+       ========================================================= */
+    .plano-tarjeta { padding: 16px 12px 14px; display: grid; gap: 12px; }
+    .plano-cabecera { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; padding: 0 4px; }
+    .contadores { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+    .contadores li { padding: 4px 10px; border-radius: 999px; background: var(--elevado); border: 1px solid var(--borde); font: 500 11px/1.3 var(--f-mono); color: var(--texto-2); }
+    .contadores b { color: var(--texto); }
+    .plano-herramientas { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; padding: 0 4px; }
+    .zonas-rapidas { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }
+    .zonas-rapidas::-webkit-scrollbar { display: none; }
+    .zonas-rapidas button { white-space: nowrap; padding: 6px 12px; border-radius: 999px; background: var(--elevado); border: 1px solid var(--borde); color: var(--texto-2); font: 700 12px/1 var(--f-titulo); display: inline-flex; align-items: center; gap: 5px; }
+    .zonas-rapidas button .ico { font-size: 15px; }
+    .zonas-rapidas button:first-child { background: var(--oro); border-color: var(--oro); color: var(--noche); }
+    .zonas-rapidas button:hover { color: var(--texto); }
+    .zonas-rapidas button:first-child:hover { color: var(--noche); filter: brightness(1.05); }
+
+    .plano-scroll { position: relative; overflow: auto; border-radius: 18px; background: #0b0918; border: 1px solid rgba(45, 35, 82, .7); overscroll-behavior: contain; max-height: none; }
+    .plano-scroll.acercado { max-height: 72vh; }
+    .plano { display: block; width: 100%; height: auto; }
+    .plano-scroll.acercado .plano { width: 210%; }
+    @media (min-width: 700px) { .plano-scroll.acercado .plano { width: 160%; } }
+
+    .leyenda { list-style: none; margin: 0; padding: 0 4px; display: flex; flex-wrap: wrap; gap: 8px 16px; font: 600 12px/1.2 var(--f-titulo); color: var(--texto-2); }
+    .leyenda li { display: inline-flex; align-items: center; gap: 6px; }
+    .leyenda svg { flex: none; }
+
+    /* Elementos SVG del plano */
+    .escenario-barra { filter: drop-shadow(0 0 14px rgba(255, 46, 147, .45)); }
+    .escenario-texto { font: 800 34px var(--f-titulo); letter-spacing: 14px; fill: #1a0f2e; text-anchor: middle; dominant-baseline: central; }
+    .luz { fill: #ffb347; }
+    .luz--v { fill: #e08cff; }
+    .marco { fill: rgba(23, 18, 43, .45); stroke: var(--violeta); stroke-width: 3; filter: drop-shadow(0 0 7px rgba(180, 76, 255, .7)); }
+    .pastilla { fill: #120e24; stroke: #d48bff; stroke-width: 2.5; }
+    .pastilla-texto { font: 800 24px var(--f-titulo); fill: #fff; text-anchor: middle; dominant-baseline: central; }
+    .pastilla-texto .acento { fill: var(--oro); }
+    .pastilla-texto .suave { font-weight: 600; }
+    .subpastilla { font: 600 15px var(--f-mono); fill: var(--texto-3); text-anchor: middle; }
+    .panel-lado { fill: rgba(14, 11, 28, .7); stroke: #8f45d6; stroke-width: 2; }
+    .panel-num { font: 800 46px var(--f-titulo); fill: var(--oro); text-anchor: middle; }
+    .panel-txt { font: 700 17px var(--f-titulo); fill: #fff; text-anchor: middle; }
+    .panel-linea { stroke: #8f45d6; stroke-width: 2; }
+    .panel-caja { fill: none; stroke: #d48bff; stroke-width: 2; }
+    .fila-letra { font: 700 15px var(--f-mono); fill: var(--texto-3); text-anchor: middle; dominant-baseline: central; }
+
+    .mesa { cursor: pointer; }
+    .mesa .mesa-halo { fill: none; stroke: rgba(255, 210, 51, .16); stroke-width: 6; }
+    .mesa .mesa-cuerpo { fill: #0d0a1b; stroke: var(--oro); stroke-width: 3.2; transition: fill .15s ease; }
+    .mesa .mesa-num { font: 800 15px var(--f-titulo); fill: #fff; text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+    .mesa .silla-v { fill: #0d0a1b; stroke: #fff; stroke-width: 1.8; }
+    .mesa .silla-v.ocu { fill: #3b3555; stroke: #5d587a; }
+    .mesa .silla-v.sel { fill: var(--lima); stroke: var(--lima); }
+    .mesa .mesa-tache { stroke: #6f6a8c; stroke-width: 3; stroke-linecap: round; display: none; }
+    .mesa:hover .mesa-cuerpo { fill: #241c44; }
+    .mesa.seleccionada .mesa-cuerpo { fill: var(--lima); stroke: var(--lima); }
+    .mesa.seleccionada .mesa-num { fill: var(--noche); }
+    .mesa.seleccionada .mesa-halo { stroke: rgba(16, 229, 122, .35); }
+    .mesa.ocupada { cursor: not-allowed; }
+    .mesa.ocupada .mesa-cuerpo { fill: #1d1833; stroke: #4b4568; }
+    .mesa.ocupada .mesa-num { fill: #6f6a8c; }
+    .mesa.ocupada .mesa-halo { stroke: transparent; }
+    .mesa.ocupada .mesa-tache { display: inline; }
+    .mesa.foco .mesa-halo { stroke: var(--rosa); stroke-width: 5; animation: halo 1.4s ease-in-out infinite; }
+    .mesa:focus { outline: none; }
+    .mesa:focus-visible .mesa-halo { stroke: #fff; stroke-width: 4; animation: none; }
+    @keyframes halo { 50% { stroke-opacity: .35; } }
+
+    .oro { cursor: pointer; }
+    .oro .oro-golpe { fill: transparent; }
+    .oro .oro-cuerpo { fill: var(--oro); stroke: #fff2a8; stroke-width: 1.2; transition: fill .15s ease; }
+    .oro .oro-respaldo { stroke: #6b5200; stroke-width: 2; stroke-linecap: round; }
+    .oro:hover .oro-cuerpo { fill: #ffe57a; }
+    .oro.sel .oro-cuerpo { fill: var(--lima); stroke: #b6ffd8; }
+    .oro.sel .oro-respaldo { stroke: #04532b; }
+    .oro.ocupada { cursor: not-allowed; }
+    .oro.ocupada .oro-cuerpo { fill: #2a2442; stroke: #46405f; }
+    .oro.ocupada .oro-respaldo { stroke: #46405f; }
+    .oro.foco .oro-golpe { fill: none; stroke: var(--rosa); stroke-width: 3; animation: halo 1.4s ease-in-out infinite; }
+    .oro:focus { outline: none; }
+    .oro:focus-visible .oro-golpe { fill: none; stroke: #fff; stroke-width: 3; animation: none; }
+
+    /* =========================================================
+       CARRITO
+       ========================================================= */
+    .carrito { padding: 16px; display: grid; gap: 12px; }
+    .carrito__lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+    .carrito__fila { display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 8px; padding: 8px 8px 8px 12px; border-radius: 14px; background: var(--elevado); border: 1px solid var(--borde); }
+    .carrito__fila.es-foco { border-color: rgba(255, 46, 147, .55); }
+    .carrito__abrir { text-align: left; background: none; border: 0; padding: 2px 0; display: grid; gap: 2px; min-width: 0; }
+    .carrito__abrir strong { font: 800 14px/1.2 var(--f-titulo); }
+    .carrito__abrir span { font-size: 12px; color: var(--texto-2); }
+    .carrito__precio { font: 800 14px/1 var(--f-titulo); }
+    .carrito__quitar { width: 36px; height: 36px; border-radius: 10px; border: 1px solid var(--borde); background: var(--tarjeta); color: var(--texto-2); display: grid; place-items: center; }
+    .carrito__quitar:hover { color: var(--rosa); border-color: rgba(255, 46, 147, .5); }
+    .carrito__vacio { margin: 0; color: var(--texto-2); font-size: 14px; }
+    .total-linea { display: flex; justify-content: space-between; align-items: baseline; padding-top: 10px; border-top: 1px dashed rgba(255, 255, 255, .16); font: 700 13px var(--f-titulo); color: var(--texto-2); }
+    .total-linea strong { font: 800 22px/1 var(--f-titulo); color: var(--texto); }
+
+    /* =========================================================
+       BARRA DE COMPRA (fija abajo)
+       ========================================================= */
+    .compra {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 70;
+      background: rgba(14, 11, 28, .95);
+      -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+      border-top: 1px solid var(--borde);
+      box-shadow: 0 -12px 35px rgba(0, 0, 0, .85);
+      padding: 10px 16px calc(12px + env(safe-area-inset-bottom));
+    }
+    .compra__cuerpo { max-width: 760px; margin: 0 auto; display: grid; gap: 8px; }
+    .compra__fila { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+    .compra__resumen { display: flex; align-items: center; gap: 7px; min-width: 0; font: 600 13px/1.3 var(--f-titulo); color: var(--texto-2); }
+    .compra__resumen span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .temporizador { display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 999px; background: var(--tarjeta); border: 1px solid rgba(255, 46, 147, .35); color: var(--rosa); font: 700 12px/1.2 var(--f-mono); box-shadow: 0 0 8px rgba(255, 46, 147, .2); flex: none; }
+    .temporizador .ico { font-size: 15px; }
+    .temporizador.urgente { background: var(--rosa); color: #fff; animation: latido 1s ease-in-out infinite; }
+    .compra__pagos { display: flex; justify-content: space-between; align-items: center; gap: 8px; font: 500 10px/1.2 var(--f-mono); color: var(--texto-3); }
+    .compra__pagos ul { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: 6px; flex-wrap: nowrap; white-space: nowrap; }
+    .compra__pagos li { padding: 3px 7px; border-radius: 6px; background: var(--tarjeta); border: 1px solid var(--borde); color: var(--texto-2); }
+    .compra__pagos li:first-child { background: none; border: 0; padding: 0; text-transform: uppercase; letter-spacing: .08em; }
+    .compra__seguro { display: inline-flex; align-items: center; gap: 3px; color: var(--lima); font-weight: 700; white-space: nowrap; }
+    .compra__seguro .ico { font-size: 13px; }
+    .compra__total { flex: none; }
+    .compra__total small { display: block; font: 700 9px/1.2 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--texto-3); }
+    .compra__total div { display: flex; align-items: baseline; gap: 4px; }
+    .compra__total strong { font: 800 26px/1.05 var(--f-titulo); }
+    .compra__total span { font: 700 12px/1 var(--f-mono); color: var(--lima); }
+    .compra .btn-primario { flex: 1; min-height: 50px; font-size: 13px; }
+    @media (max-width: 459px) { .compra__seguro { display: none; } }
+    @media (max-width: 379px) { .compra__pagos { display: none; } :root { --alto-compra: 122px; } }
+
+    /* =========================================================
+       PIE
+       ========================================================= */
+    .pie { max-width: 1240px; margin: 0 auto; padding: 8px 16px calc(var(--alto-compra) + 30px + env(safe-area-inset-bottom)); display: grid; gap: 14px; justify-items: center; text-align: center; }
+    .pie__logo { width: 72px; height: 72px; border-radius: 16px; border: 1px solid var(--borde); }
+    .pie__marca { margin: 0; font: 800 16px/1.2 var(--f-titulo); }
+    .pie__ciudad { margin: 2px 0 0; color: var(--texto-3); font-size: 13px; }
+    .pie__aviso { display: grid; gap: 8px; justify-items: center; color: var(--texto-3); font-size: 12px; max-width: 46ch; }
+    .pie__aviso p { margin: 0; }
+
+    /* =========================================================
+       DIÁLOGO Y AVISOS
+       ========================================================= */
+    .dialogo { width: min(480px, calc(100vw - 24px)); max-height: calc(100dvh - 24px); padding: 0; border: 0; background: transparent; color: var(--texto); }
+    .dialogo::backdrop { background: rgba(6, 4, 14, .78); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+    .dialogo .tarjeta { padding: 20px; box-shadow: 0 30px 80px rgba(0, 0, 0, .6); }
+    .dialogo h2 { margin: 4px 0 6px; font: 800 24px/1.15 var(--f-titulo); }
+    .dialogo__resumen { margin: 0 0 14px; color: var(--texto-2); font-size: 14px; }
+    .campo { display: grid; gap: 6px; margin-bottom: 12px; }
+    .campo span { font: 600 12px var(--f-titulo); color: var(--texto-3); }
+    .campo input { min-height: 48px; padding: 10px 14px; border-radius: 12px; background: var(--noche-2); border: 1px solid var(--borde); color: var(--texto); font-size: 16px; }
+    .campo input:focus { outline: none; border-color: var(--lima); }
+    .error { margin: 0 0 12px; padding: 10px 12px; border-radius: 12px; background: rgba(255, 46, 147, .12); border: 1px solid rgba(255, 46, 147, .4); color: #ff9ccb; font-size: 13px; }
+    .folio { margin: 0 0 12px; font: 600 15px var(--f-mono); color: var(--texto-2); }
+    .folio strong { color: var(--lima); font-size: 18px; }
+    .resumen { margin: 0 0 12px; display: grid; gap: 10px; }
+    .resumen div { display: grid; gap: 2px; }
+    .resumen dt { font: 600 11px var(--f-titulo); color: var(--texto-3); text-transform: uppercase; letter-spacing: .08em; }
+    .resumen dd { margin: 0; font-size: 14px; }
+    .resumen ul { margin: 0; padding-left: 18px; }
+    .resumen .total { font: 800 20px var(--f-titulo); }
+
+    .aviso {
+      position: fixed; left: 50%; bottom: calc(var(--alto-compra) + 18px + env(safe-area-inset-bottom)); z-index: 90;
+      transform: translate(-50%, 20px); opacity: 0; pointer-events: none;
+      width: max-content; max-width: calc(100vw - 28px);
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 10px 10px 14px; border-radius: 14px;
+      background: #241c44; border: 1px solid #45387a; color: var(--texto);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, .55);
+      font: 600 13px/1.35 var(--f-titulo);
+      transition: opacity .2s ease, transform .2s ease;
+    }
+    .aviso.visible { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
+    .aviso button { flex: none; padding: 7px 11px; border-radius: 10px; border: 0; background: var(--oro); color: var(--noche); font: 800 12px/1 var(--f-titulo); display: inline-flex; align-items: center; gap: 4px; }
+    .aviso button .ico { font-size: 15px; }
+
+    @media (min-width: 1000px) {
+      .compra__cuerpo { max-width: 1200px; grid-template-columns: 1fr auto; grid-template-areas: "resumen accion" "pagos accion"; column-gap: 24px; }
+      .compra__fila--resumen { grid-area: resumen; justify-content: flex-start; }
+      .compra__pagos { grid-area: pagos; justify-content: flex-start; gap: 16px; }
+      .compra__fila--accion { grid-area: accion; }
+      .compra .btn-primario { flex: none; min-width: 320px; }
+      :root { --alto-compra: 112px; }
+      .pov__vista { height: 300px; }
+      .escenario3d { top: 140px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="saltar" href="#plano-zona">Ir al plano de mesas</a>
+
+  <!-- ===== Barra superior ===== -->
+  <header class="barra">
+    <div class="barra__fila">
+      <a class="barra__marca" href="#inicio" aria-label="Expo Feria, inicio"><img src="assets/expo-feria-icono.png" alt="" width="38" height="38"></a>
+      <div class="barra__evento">
+        <span class="badge badge--rosa"><span class="punto punto--ping"></span>Simulador 3D activo</span>
+        <p class="barra__titulo" id="barraFuncion">Mesas VIP · Expo Feria</p>
+      </div>
+      <div class="barra__foco" aria-live="polite">
+        <span class="chip-foco"><span class="ico" aria-hidden="true">view_in_ar</span><span id="focoTitulo">Mesa VIP #05</span></span>
+        <p id="focoSub">Vista de ejemplo</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== Portada ===== -->
+  <section class="portada" id="inicio">
+    <div class="portada__cuerpo">
+      <div class="portada__texto">
+        <img class="portada__logo" src="assets/expo-feria-logo.png" alt="Expo Feria Monterrey 2026" width="900" height="176">
+        <h1>Elige tu lugar y <span class="degradado">mira el escenario</span> desde ahí</h1>
+        <p class="portada__sub">100 mesas VIP Diamante de 4 sillas y 200 sillas en Zona Oro. Toca tu lugar en el plano y el simulador 3D te muestra la vista real desde tu asiento.</p>
+        <ul class="sellos" aria-label="Ventajas">
+          <li><span class="ico" aria-hidden="true">check_circle</span>Lugares garantizados</li>
+          <li><span class="ico" aria-hidden="true">check_circle</span>Vista 3D antes de pagar</li>
+          <li><span class="ico" aria-hidden="true">check_circle</span>Confirmación con folio</li>
+        </ul>
+      </div>
+      <div class="portada__lado">
+        <div class="selector">
+          <label class="etiqueta" for="fecha">Función / fecha</label>
+          <div class="selector__caja">
+            <span class="ico" aria-hidden="true">calendar_today</span>
+            <select id="fecha" aria-describedby="notaFechas"></select>
+          </div>
+          <small id="notaFechas">Fechas y precios de ejemplo.</small>
+        </div>
+      </div>
+      <ol class="pasos" aria-label="Cómo funciona">
+        <li><b>1</b>Elige la función</li>
+        <li><b>2</b>Toca una mesa o silla</li>
+        <li><b>3</b>Mira tu vista y aparta</li>
+      </ol>
+    </div>
+  </section>
+
+  <noscript><p style="padding:16px;text-align:center">Esta página necesita JavaScript para mostrar el plano y el simulador 3D.</p></noscript>
+
+  <main class="principal">
+
+    <!-- ===== Plano: boceto de distribución ===== -->
+    <section class="tarjeta plano-tarjeta area-plano" id="plano-zona" aria-labelledby="tituloPlano">
+      <div class="plano-cabecera">
+        <h2 class="seccion-titulo" id="tituloPlano"><span class="ico" aria-hidden="true">radar</span>Boceto de distribución</h2>
+        <ul class="contadores" id="contadores" aria-live="polite" aria-label="Lugares disponibles por zona"></ul>
+      </div>
+      <div class="plano-herramientas">
+        <div class="zonas-rapidas" role="group" aria-label="Ir a una zona">
+          <button type="button" data-zona="vip"><span class="ico" aria-hidden="true">diamond</span>VIP Diamante</button>
+          <button type="button" data-zona="oro"><span class="ico" aria-hidden="true">star</span>Zona Oro</button>
+        </div>
+        <button type="button" class="btn-mini" id="btnZoom" aria-pressed="false"><span class="ico" aria-hidden="true">zoom_in</span><span>Acercar</span></button>
+      </div>
+      <div class="plano-scroll" id="planoScroll">
+        <svg id="plano" class="plano" role="group" aria-label="Plano del evento. Escenario arriba; debajo VIP Diamante con 100 mesas de 4 sillas en 10 filas de 10, y al fondo Zona Oro con 200 sillas en 20 filas de 10. Usa las flechas para moverte entre lugares."></svg>
+      </div>
+      <ul class="leyenda" aria-label="Leyenda">
+        <li><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="8" fill="#0d0a1b" stroke="#FFD233" stroke-width="2.5"/></svg>Mesa disponible</li>
+        <li><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><rect x="3" y="6" width="16" height="10" rx="3" fill="#FFD233"/></svg>Silla Oro disponible</li>
+        <li><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="8" fill="#10E57A"/></svg>En tu selección</li>
+        <li><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="8" fill="#1d1833" stroke="#4b4568" stroke-width="2"/><path d="M6 16L16 6" stroke="#6f6a8c" stroke-width="2.5" stroke-linecap="round"/></svg>Ocupada</li>
+        <li><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="8" fill="none" stroke="#FF2E93" stroke-width="3"/></svg>Lugar en la vista 3D</li>
+      </ul>
+    </section>
+
+    <div class="columna columna--lateral">
+
+      <!-- ===== Simulador POV 3D ===== -->
+      <section class="pov area-pov" id="pov" aria-labelledby="tituloPov">
+        <h2 class="sr-only" id="tituloPov">Vista desde tu lugar</h2>
+        <div class="pov__hud">
+          <div>
+            <span class="pill"><span class="punto punto--vivo"></span><span>POV: <strong id="povEtiqueta">MESA VIP #05 • SILLA 01</strong></span></span>
+            <span class="pov__ejemplo mono" id="povEjemplo">VISTA DE EJEMPLO · TOCA UN LUGAR EN EL PLANO</span>
+          </div>
+          <div class="pov__hud-der">
+            <span class="pill pill--oro"><span class="ico" aria-hidden="true">straighten</span><span id="povDistCorta">4.1 m</span></span>
+            <span class="pill pill--rosa"><span class="ico" aria-hidden="true">360</span>POV 3D</span>
+          </div>
+        </div>
+
+        <div class="pov__vista" id="povVista" aria-hidden="true">
+          <div class="pov__mundo" id="povMundo">
+            <div class="truss"></div>
+            <div class="haz haz--rosa"></div>
+            <div class="haz"></div>
+            <div class="pantalla">
+              <div class="pantalla__fila"><span><span class="punto punto--vivo"></span>En vivo 4K</span><span>Sound check OK</span></div>
+              <div class="pantalla__titulo">Expo Feria 2026 • Monterrey</div>
+              <div class="pantalla__sub"><b>MESAS VIP</b> · ZONA ORO · SONIDO ENVOLVENTE</div>
+              <div class="silueta-dj"></div>
+            </div>
+            <div class="laser laser--rosa"></div>
+            <div class="laser laser--lima"></div>
+            <div class="escenario3d">
+              <div class="escenario3d__piso"><span class="artista"><i></i><b></b></span><span class="artista"><i></i><b></b></span><span class="artista"><i></i><b></b></span></div>
+              <div class="escenario3d__frente">ESCENARIO</div>
+              <div class="escenario3d__luces"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            </div>
+          </div>
+          <div class="pov__atras" id="povAtras"><svg viewBox="0 0 400 260" preserveAspectRatio="none" id="povAtrasSvg"></svg><p id="povAtrasTexto">Detrás de ti</p></div>
+          <div class="pov__piso"></div>
+          <div class="pov__frente" id="povFrente"></div>
+          <div class="pov__borde" id="povBorde">Mesa 05 • tu borde VIP</div>
+          <div class="pov__pista"><span class="ico" aria-hidden="true">swipe</span><span>Arrastra o usa el deslizador para girar</span></div>
+          <div class="pov__radar" title="Tu posición en la sala">
+            <svg viewBox="0 0 60 80" id="radar" aria-hidden="true"></svg>
+          </div>
+          <button type="button" class="pov__cerrar" id="povCerrar"><span class="ico" aria-hidden="true">close</span>Salir</button>
+        </div>
+
+        <div class="pov__giro">
+          <span class="ico" aria-hidden="true">rotate_left</span>
+          <input type="range" id="povGiro" min="-90" max="90" step="1" value="0" aria-label="Girar la mirada a la izquierda o a la derecha">
+          <span class="ico" aria-hidden="true">rotate_right</span>
+          <output id="povGiroValor" for="povGiro">0°</output>
+        </div>
+        <div class="pov__modos" role="group" aria-label="Modo de vista">
+          <button type="button" data-modo="sentado" aria-pressed="true"><span class="ico" aria-hidden="true">chair</span>Sentado</button>
+          <button type="button" data-modo="pie" aria-pressed="false"><span class="ico" aria-hidden="true">accessibility_new</span>De pie</button>
+          <button type="button" data-modo="atras" aria-pressed="false"><span class="ico" aria-hidden="true">panorama_photosphere</span>Giro 180°</button>
+          <button type="button" data-modo="inmersivo" aria-pressed="false"><span class="ico" aria-hidden="true">fullscreen</span>Inmersivo</button>
+        </div>
+        <dl class="pov__datos" aria-live="polite">
+          <div><dt><span class="ico" aria-hidden="true">visibility</span>Visión</dt><dd class="dato-lima" id="povVision">98% libre</dd></div>
+          <div><dt>Distancia</dt><dd class="dato-oro" id="povDistancia">4.1 m al escenario</dd></div>
+          <div><dt>Ángulo</dt><dd class="dato-rosa" id="povAngulo">Frontal</dd></div>
+        </dl>
+      </section>
+
+      <!-- ===== Configurador de sillas ===== -->
+      <section class="tarjeta config area-config" id="config" aria-labelledby="tituloConfig" aria-live="polite"></section>
+
+      <!-- ===== Carrito ===== -->
+      <section class="tarjeta carrito area-carrito" id="carrito" aria-labelledby="tituloCarrito"></section>
+    </div>
+  </main>
+
+  <!-- ===== Pie ===== -->
+  <footer class="pie">
+    <img class="pie__logo" src="assets/expo-feria-icono.png" alt="" width="72" height="72" loading="lazy">
+    <div>
+      <p class="pie__marca">Expo Feria · Mesas VIP</p>
+      <p class="pie__ciudad">Monterrey, Nuevo León</p>
+    </div>
+    <a class="btn btn-whatsapp" href="https://wa.me/528120395523?text=Hola%2C%20Expo%20Feria.%20Tengo%20una%20duda%20sobre%20mesas%20VIP." target="_blank" rel="noopener"><span class="ico" aria-hidden="true">chat</span>Dudas por WhatsApp</a>
+    <div class="pie__aviso">
+      <p>Sitio de demostración: fechas, precios y disponibilidad de ejemplo. No se realiza ningún cargo. La vista 3D es una simulación aproximada.</p>
+      <button type="button" class="btn-mini" id="reiniciarDemo"><span class="ico" aria-hidden="true">restart_alt</span>Reiniciar demo</button>
+    </div>
+  </footer>
+
+  <!-- ===== Barra de compra ===== -->
+  <aside class="compra" aria-label="Resumen de compra">
+    <div class="compra__cuerpo">
+      <div class="compra__fila compra__fila--resumen">
+        <p class="compra__resumen" style="margin:0"><span class="punto punto--vivo"></span><span id="compraResumen">Aún no eliges lugares</span></p>
+        <span class="temporizador" id="temporizador" hidden><span class="ico" aria-hidden="true">timer</span><span id="tiempoRestante">10:00</span></span>
+      </div>
+      <div class="compra__pagos">
+        <ul aria-label="Formas de pago"><li>Pago seguro:</li><li>Tarjeta</li><li>Transferencia</li><li>Efectivo</li></ul>
+        <span class="compra__seguro"><span class="ico" aria-hidden="true">lock</span>Conexión cifrada</span>
+      </div>
+      <div class="compra__fila compra__fila--accion">
+        <div class="compra__total">
+          <small>Total a pagar</small>
+          <div><strong id="compraTotal">$0</strong><span>MXN</span></div>
+        </div>
+        <button type="button" class="btn btn-primario" id="btnPagar" disabled>Confirmar con vista 3D<span class="ico" aria-hidden="true">arrow_forward</span></button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ===== Diálogo: datos del cliente y folio ===== -->
+  <dialog class="dialogo" id="dialogo" aria-labelledby="dialogoTitulo">
+    <div class="tarjeta">
+      <form id="formPago" novalidate>
+        <p class="etiqueta">Apartar lugares</p>
+        <h2 id="dialogoTitulo">Tus datos</h2>
+        <p class="dialogo__resumen" id="dialogoResumen"></p>
+        <label class="campo"><span>Nombre completo</span><input name="nombre" autocomplete="name" required></label>
+        <label class="campo"><span>WhatsApp (10 dígitos)</span><input name="whatsapp" inputmode="tel" autocomplete="tel" placeholder="81 1234 5678" required></label>
+        <label class="campo"><span>Correo</span><input name="correo" type="email" autocomplete="email" required></label>
+        <p class="error" id="errorForm" role="alert" hidden></p>
+        <div class="acciones">
+          <button type="submit" class="btn btn-primario">Confirmar y apartar</button>
+          <button type="button" class="btn btn-fantasma" data-accion="cerrar">Cancelar</button>
+        </div>
+      </form>
+      <div id="resumenPago" hidden></div>
+    </div>
+  </dialog>
+
+  <div class="aviso" id="aviso" role="status" aria-live="polite"><span id="avisoTexto"></span><button type="button" id="avisoAccion" hidden></button></div>
+
+  <script>
+  (function () {
+    'use strict';
+
+    /* =========================================================
+       CONFIGURACIÓN
+       ========================================================= */
+    const COLUMNAS = 10;                 // mesas y sillas por fila
+    const FILAS_VIP = 10;                // 10 x 10 = 100 mesas
+    const SILLAS_MESA = 4;               // 100 x 4 = 400 sillas
+    const FILAS_ORO = 20;                // 10 x 20 = 200 sillas
+    const LETRAS = 'ABCDEFGHIJKLMNOPQRST';
+    const PRECIO_SILLA_VIP = 650;
+    const PRECIO_MESA_VIP = 2400;        // las 4 sillas juntas
+    const PRECIO_SILLA_ORO = 380;
+    const EXTRAS = [
+      { id: 'champana', nombre: 'Botella de champaña', precio: 1900 },
+      { id: 'backstage', nombre: 'Pase backstage', precio: 1500 }
+    ];
+    const MINUTOS_LIMITE = 10;
+    const TELEFONO_WHATSAPP = '528120395523';
+    const CLAVE_RESERVAS = 'expoferia.vip.v2.reservas';   // { fechaId: { vip: { mesaId: [sillas] }, oro: [sillaId] } }
+    const CLAVE_FOLIO = 'expoferia.vip.v2.folio';
+    const CLAVE_PEDIDOS = 'expoferia.vip.v2.pedidos';
+    const TODAS = [1, 2, 3, 4];
+
+    // Funciones de ejemplo; "ocupacion" = porcentaje de lugares ya vendidos en la demo
+    const FECHAS = [
+      { id: '2026-06-04', etiqueta: 'Vie 4 de junio · 7:00 pm', corta: 'Vie 4 jun · 19:00', ocupacion: .26 },
+      { id: '2026-06-05', etiqueta: 'Sáb 5 de junio · 7:00 pm', corta: 'Sáb 5 jun · 19:00', ocupacion: .41 },
+      { id: '2026-06-06', etiqueta: 'Dom 6 de junio · 6:00 pm', corta: 'Dom 6 jun · 18:00', ocupacion: .17 }
+    ];
+
+    /* =========================================================
+       LUGARES: 100 mesas VIP y 200 sillas Oro
+       Medidas en metros para el simulador (escenario al frente, y = 0)
+       ========================================================= */
+    const MESAS = [];
+    const MESA = new Map();
+    for (let n = 1; n <= FILAS_VIP * COLUMNAS; n++) {
+      const fila = Math.floor((n - 1) / COLUMNAS), col = (n - 1) % COLUMNAS;
+      const m = { tipo: 'vip', id: 'v' + n, numero: n, fila, col, x: (col - 4.5) * 2.6, y: 3.5 + fila * 2.6 };
+      MESAS.push(m); MESA.set(m.id, m);
+    }
+    const SILLAS_ORO = [];
+    const SILLA_ORO = new Map();
+    for (let f = 0; f < FILAS_ORO; f++) {
+      for (let c = 0; c < COLUMNAS; c++) {
+        const s = { tipo: 'oro', id: LETRAS[f] + '-' + (c + 1), letra: LETRAS[f], asiento: c + 1, fila: f, col: c, x: (c - 4.5) * 2.6, y: 30.5 + f * 0.95 };
+        SILLAS_ORO.push(s); SILLA_ORO.set(s.id, s);
+      }
+    }
+    function lugar(tipo, id) { return tipo === 'vip' ? MESA.get(id) : SILLA_ORO.get(id); }
+
+    /* ---------- Ocupación de ejemplo (determinista por fecha) ---------- */
+    function semilla(texto) { let h = 2166136261; for (let i = 0; i < texto.length; i++) { h ^= texto.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
+    function aleatorio(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+    const BASE = {};
+    for (const f of FECHAS) {
+      const r = aleatorio(semilla(f.id));
+      const vip = {}, oro = new Set();
+      for (const m of MESAS) {
+        const p = r();
+        if (p < f.ocupacion * .72) vip[m.id] = TODAS.slice();
+        else if (p < f.ocupacion) {
+          const k = 1 + Math.floor(r() * 3);
+          vip[m.id] = TODAS.slice().sort(() => r() - .5).slice(0, k).sort((a, b) => a - b);
+        }
+      }
+      for (const s of SILLAS_ORO) if (r() < f.ocupacion * 1.15) oro.add(s.id);
+      BASE[f.id] = { vip, oro };
+    }
+
+    /* =========================================================
+       ESTADO
+       ========================================================= */
+    let fechaId = FECHAS[0].id;
+    let carritoVip = new Map();   // mesaId -> { sillas: [n], extras: [extraId] }
+    let carritoOro = new Set();   // sillaId
+    let foco = { tipo: 'vip', id: 'v5', ejemplo: true };
+    let modo = 'sentado';
+    let giro = 0;
+    let limite = null, intervalo = null;
+    let zoom = false;
+    let roving = { vip: 'v1', oro: 'A-1' };
+
+    const almacen = {
+      leer(clave, porDefecto) { try { const v = localStorage.getItem(clave); return v ? JSON.parse(v) : porDefecto; } catch (e) { return porDefecto; } },
+      escribir(clave, valor) { try { localStorage.setItem(clave, JSON.stringify(valor)); } catch (e) { /* modo privado o sin espacio */ } },
+      borrar(clave) { try { localStorage.removeItem(clave); } catch (e) { /* nada */ } }
+    };
+    let reservas = almacen.leer(CLAVE_RESERVAS, {});
+
+    /* ---------- DOM ---------- */
+    const $ = (s) => document.querySelector(s);
+    const plano = $('#plano'), planoScroll = $('#planoScroll');
+    const selectFecha = $('#fecha');
+    const contadores = $('#contadores');
+    const config = $('#config'), carrito = $('#carrito');
+    const btnPagar = $('#btnPagar'), compraResumen = $('#compraResumen'), compraTotal = $('#compraTotal');
+    const temporizador = $('#temporizador'), tiempoRestante = $('#tiempoRestante');
+    const dialogo = $('#dialogo'), formPago = $('#formPago'), errorForm = $('#errorForm'), dialogoResumen = $('#dialogoResumen'), resumenPago = $('#resumenPago');
+    const aviso = $('#aviso'), avisoTexto = $('#avisoTexto'), avisoAccion = $('#avisoAccion');
+    const pov = $('#pov'), povVista = $('#povVista'), povMundo = $('#povMundo'), povFrente = $('#povFrente'), povAtras = $('#povAtras');
+    const povGiro = $('#povGiro'), povGiroValor = $('#povGiroValor');
+    const mqAmplio = window.matchMedia('(min-width: 1000px)');
+    const mqPlanoAmplio = window.matchMedia('(min-width: 700px)');
+
+    /* =========================================================
+       UTILIDADES
+       ========================================================= */
+    function dinero(n) { return '$' + Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+    function escapar(s) { return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+    function dos(n) { return String(n).padStart(2, '0'); }
+    function fechaActual() { return FECHAS.find((f) => f.id === fechaId); }
+    function guardadas() { return reservas[fechaId] || { vip: {}, oro: [] }; }
+
+    function ocupadasMesa(id) {
+      const b = BASE[fechaId].vip[id] || [];
+      const g = (guardadas().vip || {})[id] || [];
+      return [...new Set([...b, ...g])].sort((a, z) => a - z);
+    }
+    function oroOcupada(id) { return BASE[fechaId].oro.has(id) || (guardadas().oro || []).includes(id); }
+    function seleccionMesa(id) { const e = carritoVip.get(id); return e ? e.sillas.slice() : []; }
+    function estadoMesa(id) {
+      if (ocupadasMesa(id).length >= SILLAS_MESA) return 'ocupada';
+      if (carritoVip.has(id)) return 'seleccionada';
+      return 'disponible';
+    }
+    function costoSillasVip(sillas) { return sillas.length === SILLAS_MESA ? PRECIO_MESA_VIP : sillas.length * PRECIO_SILLA_VIP; }
+    function costoExtras(extras) { return extras.reduce((s, id) => s + EXTRAS.find((x) => x.id === id).precio, 0); }
+    function costoMesa(id) { const e = carritoVip.get(id); return e ? costoSillasVip(e.sillas) + costoExtras(e.extras) : 0; }
+    function total() { let t = 0; for (const id of carritoVip.keys()) t += costoMesa(id); return t + carritoOro.size * PRECIO_SILLA_ORO; }
+    function plazas() { let n = carritoOro.size; for (const e of carritoVip.values()) n += e.sillas.length; return n; }
+    function hayCarrito() { return carritoVip.size > 0 || carritoOro.size > 0; }
+    function nombreOro(s) { return 'Fila ' + s.letra + ' · Asiento ' + s.asiento; }
+    function describirSillas(sillas) {
+      if (sillas.length === SILLAS_MESA) return 'Mesa completa (4 sillas)';
+      return (sillas.length === 1 ? 'Silla ' : 'Sillas ') + sillas.map((n) => 'S' + n).join(', ');
+    }
+
+    let temporizadorAviso = null, accionAviso = null;
+    function avisar(mensaje, accion) {
+      avisoTexto.textContent = mensaje;
+      accionAviso = accion || null;
+      if (accion) { avisoAccion.innerHTML = '<span class="ico" aria-hidden="true">view_in_ar</span>' + escapar(accion.texto); avisoAccion.hidden = false; }
+      else avisoAccion.hidden = true;
+      aviso.classList.add('visible');
+      clearTimeout(temporizadorAviso);
+      temporizadorAviso = setTimeout(() => aviso.classList.remove('visible'), accion ? 5200 : 3800);
+    }
+    avisoAccion.addEventListener('click', () => { aviso.classList.remove('visible'); if (accionAviso) accionAviso.fn(); });
+
+    /* =========================================================
+       PLANO SVG (igual al boceto: escenario, VIP 10 x 10, Oro 10 x 20)
+       ========================================================= */
+    const SVG = 'http://www.w3.org/2000/svg';
+    const NODO_MESA = new Map(), NODO_ORO = new Map();
+    let ZONAS_Y = { vip: 0, oro: 0, alto: 0 };
+
+    function el(nombre, atributos, texto) {
+      const n = document.createElementNS(SVG, nombre);
+      if (atributos) for (const k in atributos) n.setAttribute(k, atributos[k]);
+      if (texto != null) n.textContent = texto;
+      return n;
+    }
+
+    function construirPlano() {
+      const amplio = mqPlanoAmplio.matches;
+      plano.textContent = '';
+      NODO_MESA.clear(); NODO_ORO.clear();
+
+      const W = 1000;
+      const gx0 = amplio ? 62 : 54, gx1 = amplio ? 770 : 984;
+      const cw = (gx1 - gx0) / COLUMNAS;
+      const filaVip = amplio ? 66 : cw * .94;
+      const filaOro = amplio ? 34 : cw * .5;
+      const rMesa = cw * .26, dSilla = cw * .37, rSilla = cw * .075;
+      const anchoOro = cw * .5, altoOro = filaOro * .56;
+
+      const defs = el('defs');
+      defs.innerHTML =
+        '<linearGradient id="gEsc" x1="0" x2="1"><stop offset="0" stop-color="#FFE34A"/><stop offset=".3" stop-color="#FF9A1F"/><stop offset=".62" stop-color="#FF2E93"/><stop offset="1" stop-color="#D63CFF"/></linearGradient>';
+      plano.append(defs);
+
+      // Escenario
+      const esc = el('g', { 'aria-hidden': 'true' });
+      esc.append(
+        el('rect', { class: 'escenario-barra', x: 110, y: 22, width: 780, height: 68, rx: 34, fill: 'url(#gEsc)' }),
+        el('text', { class: 'escenario-texto', x: 500, y: 56 }, 'ESCENARIO')
+      );
+      for (let k = 0; k < 13; k++) {
+        esc.append(el('circle', { class: 'luz' + (k === 0 || k === 12 ? ' luz--v' : ''), cx: 150 + k * 58.3, cy: 112, r: 5 }));
+      }
+      plano.append(esc);
+
+      // ---- VIP DIAMANTE ----
+      const vipTop = 150;
+      const gridVipY0 = vipTop + (amplio ? 50 : 70);
+      const vipBottom = gridVipY0 + FILAS_VIP * filaVip + 8;
+      const marcoVip = el('g', { 'aria-hidden': 'true' });
+      marcoVip.append(el('rect', { class: 'marco', x: 22, y: vipTop, width: W - 44, height: vipBottom - vipTop, rx: 30 }));
+      const pw = amplio ? 620 : 700;
+      marcoVip.append(el('rect', { class: 'pastilla', x: 500 - pw / 2, y: vipTop - 26, width: pw, height: 52, rx: 26 }));
+      const tVip = el('text', { class: 'pastilla-texto', x: 500, y: vipTop });
+      tVip.innerHTML = '◆ VIP DIAMANTE — <tspan class="acento">100</tspan><tspan class="suave"> mesas (400 sillas)</tspan>';
+      marcoVip.append(tVip);
+      if (!amplio) marcoVip.append(el('text', { class: 'subpastilla', x: 500, y: vipTop + 50 }, '4 sillas por mesa · 10 × 10 mesas'));
+      plano.append(marcoVip);
+      ZONAS_Y.vip = vipTop - 30;
+
+      const gVip = el('g', { class: 'zona-vip' });
+      for (const m of MESAS) {
+        const x = gx0 + cw * (m.col + .5), y = gridVipY0 + filaVip * (m.fila + .5);
+        const g = el('g', { class: 'mesa', 'data-id': m.id, 'data-r': m.fila, 'data-c': m.col, role: 'button', tabindex: '-1', transform: 'translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ')' });
+        g.append(el('circle', { class: 'mesa-halo', r: (dSilla + rSilla + 4).toFixed(1) }));
+        const sillas = {};
+        const pos = { 1: [0, -dSilla], 2: [dSilla, 0], 3: [0, dSilla], 4: [-dSilla, 0] };
+        for (const n of TODAS) {
+          const c = el('circle', { class: 'silla-v', cx: pos[n][0].toFixed(1), cy: pos[n][1].toFixed(1), r: rSilla.toFixed(1) });
+          sillas[n] = c; g.append(c);
+        }
+        g.append(el('circle', { class: 'mesa-cuerpo', r: rMesa.toFixed(1) }));
+        const num = el('text', { class: 'mesa-num', y: 1 }, String(m.numero));
+        if (!amplio) num.style.fontSize = (m.numero >= 100 ? 17 : 20) + 'px';
+        else if (m.numero >= 100) num.style.fontSize = '13px';
+        g.append(num);
+        const t = rMesa * .62;
+        g.append(el('line', { class: 'mesa-tache', x1: -t, y1: t, x2: t, y2: -t }));
+        gVip.append(g);
+        NODO_MESA.set(m.id, { g, sillas });
+      }
+      plano.append(gVip);
+
+      // ---- ZONA ORO ----
+      const oroTop = vipBottom + 70;
+      const gridOroY0 = oroTop + (amplio ? 50 : 70);
+      const oroBottom = gridOroY0 + FILAS_ORO * filaOro + 12;
+      const marcoOro = el('g', { 'aria-hidden': 'true' });
+      marcoOro.append(el('rect', { class: 'marco', x: 22, y: oroTop, width: W - 44, height: oroBottom - oroTop, rx: 30 }));
+      const pw2 = amplio ? 460 : 520;
+      marcoOro.append(el('rect', { class: 'pastilla', x: 500 - pw2 / 2, y: oroTop - 26, width: pw2, height: 52, rx: 26 }));
+      const tOro = el('text', { class: 'pastilla-texto', x: 500, y: oroTop });
+      tOro.innerHTML = '★ ZONA ORO — <tspan class="acento">200</tspan><tspan class="suave"> sillas</tspan>';
+      marcoOro.append(tOro);
+      if (!amplio) marcoOro.append(el('text', { class: 'subpastilla', x: 500, y: oroTop + 50 }, '20 filas (A–T) · 10 sillas por fila'));
+      for (let f = 0; f < FILAS_ORO; f++) {
+        marcoOro.append(el('text', { class: 'fila-letra', x: amplio ? 42 : 38, y: (gridOroY0 + filaOro * (f + .5)).toFixed(1) }, LETRAS[f]));
+      }
+      plano.append(marcoOro);
+      ZONAS_Y.oro = oroTop - 30;
+
+      const gOro = el('g', { class: 'zona-oro' });
+      for (const s of SILLAS_ORO) {
+        const x = gx0 + cw * (s.col + .5), y = gridOroY0 + filaOro * (s.fila + .5);
+        const g = el('g', { class: 'oro', 'data-id': s.id, 'data-r': s.fila, 'data-c': s.col, role: 'button', tabindex: '-1', transform: 'translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ')' });
+        g.append(el('rect', { class: 'oro-golpe', x: (-cw * .44).toFixed(1), y: (-filaOro * .46).toFixed(1), width: (cw * .88).toFixed(1), height: (filaOro * .92).toFixed(1), rx: 8 }));
+        g.append(el('rect', { class: 'oro-cuerpo', x: (-anchoOro / 2).toFixed(1), y: (-altoOro / 2).toFixed(1), width: anchoOro.toFixed(1), height: altoOro.toFixed(1), rx: (altoOro * .32).toFixed(1) }));
+        const yr = (-altoOro / 2 + altoOro * .34).toFixed(1);
+        g.append(el('line', { class: 'oro-respaldo', x1: (-anchoOro / 2 + 5).toFixed(1), y1: yr, x2: (anchoOro / 2 - 5).toFixed(1), y2: yr }));
+        gOro.append(g);
+        NODO_ORO.set(s.id, { g });
+      }
+      plano.append(gOro);
+
+      // Paneles laterales como en el boceto (solo pantallas amplias)
+      if (amplio) {
+        plano.append(panelLado(792, gridVipY0, vipBottom - 12, 'mesa'));
+        plano.append(panelLado(792, gridOroY0, oroBottom - 14, 'oro'));
+      }
+
+      ZONAS_Y.alto = oroBottom + 26;
+      plano.setAttribute('viewBox', '0 0 ' + W + ' ' + Math.ceil(ZONAS_Y.alto));
+    }
+
+    function panelLado(x, y0, y1, tipo) {
+      const w = 160, g = el('g', { 'aria-hidden': 'true' });
+      const cx = x + w / 2;
+      g.append(el('rect', { class: 'panel-lado', x, y: y0, width: w, height: y1 - y0, rx: 22 }));
+      if (tipo === 'mesa') {
+        const h = y1 - y0, p = (k) => y0 + h * k;
+        g.append(el('circle', { cx, cy: p(.1), r: 22, fill: '#000', stroke: '#FFD233', 'stroke-width': 6 }));
+        for (const [dx, dy] of [[0, -30], [30, 0], [0, 30], [-30, 0]]) g.append(el('circle', { cx: cx + dx, cy: p(.1) + dy, r: 6, fill: '#000', stroke: '#FFD233', 'stroke-width': 3 }));
+        g.append(el('text', { class: 'panel-num', x: cx, y: p(.27) }, '100'), el('text', { class: 'panel-txt', x: cx, y: p(.315) }, 'mesas'));
+        g.append(el('line', { class: 'panel-linea', x1: x + 26, x2: x + w - 26, y1: p(.36), y2: p(.36) }));
+        g.append(el('text', { class: 'panel-num', x: cx, y: p(.46) }, '4'), el('text', { class: 'panel-txt', x: cx, y: p(.505) }, 'sillas'), el('text', { class: 'panel-txt', x: cx, y: p(.54) }, 'por mesa'));
+        g.append(el('line', { class: 'panel-linea', x1: x + 26, x2: x + w - 26, y1: p(.585), y2: p(.585) }));
+        g.append(el('text', { class: 'panel-num', x: cx, y: p(.685) }, '400'), el('text', { class: 'panel-txt', x: cx, y: p(.73) }, 'sillas'), el('text', { class: 'panel-txt', x: cx, y: p(.765) }, 'totales'));
+        g.append(el('rect', { class: 'panel-caja', x: x + 18, y: p(.82), width: w - 36, height: h * .13, rx: 14 }));
+        g.append(el('text', { class: 'panel-num', x: cx, y: p(.89), style: 'font-size:30px' }, '10 × 10'), el('text', { class: 'panel-txt', x: cx, y: p(.93), style: 'font-weight:500' }, '(mesas)'));
+      } else {
+        const h = y1 - y0, p = (k) => y0 + h * k;
+        g.append(el('rect', { x: cx - 30, y: p(.1) - 18, width: 60, height: 40, rx: 12, fill: 'none', stroke: '#FFD233', 'stroke-width': 6 }));
+        g.append(el('text', { class: 'panel-num', x: cx, y: p(.38), style: 'font-size:56px' }, '200'), el('text', { class: 'panel-txt', x: cx, y: p(.43), style: 'font-size:24px' }, 'sillas'));
+        g.append(el('line', { class: 'panel-linea', x1: x + 26, x2: x + w - 26, y1: p(.5), y2: p(.5) }));
+        g.append(el('rect', { class: 'panel-caja', x: x + 18, y: p(.6), width: w - 36, height: h * .16, rx: 14 }));
+        g.append(el('text', { class: 'panel-num', x: cx, y: p(.68), style: 'font-size:32px' }, '10 × 20'), el('text', { class: 'panel-txt', x: cx, y: p(.73), style: 'font-weight:500' }, '(sillas)'));
+      }
+      return g;
+    }
+
+    /* ---------- Pintado del plano ---------- */
+    function etiquetaMesa(m, estado, occ, sel) {
+      let t = 'disponible';
+      if (estado === 'ocupada') t = 'ocupada';
+      else if (estado === 'seleccionada') t = 'en tu selección, ' + (sel.length === SILLAS_MESA ? 'mesa completa' : sel.length + (sel.length === 1 ? ' silla' : ' sillas'));
+      else if (occ.length) { const l = SILLAS_MESA - occ.length; t = 'disponible, ' + (l === 1 ? 'queda 1 silla' : 'quedan ' + l + ' sillas'); }
+      return 'Mesa VIP ' + m.numero + ', fila ' + (m.fila + 1) + ', ' + t;
+    }
+    function pintarPlano() {
+      for (const m of MESAS) {
+        const nodo = NODO_MESA.get(m.id); if (!nodo) continue;
+        const occ = ocupadasMesa(m.id), sel = seleccionMesa(m.id), estado = estadoMesa(m.id);
+        const g = nodo.g;
+        g.classList.toggle('ocupada', estado === 'ocupada');
+        g.classList.toggle('seleccionada', estado === 'seleccionada');
+        g.classList.toggle('foco', foco.tipo === 'vip' && foco.id === m.id);
+        g.setAttribute('aria-pressed', String(estado === 'seleccionada'));
+        g.setAttribute('aria-label', etiquetaMesa(m, estado, occ, sel));
+        if (estado === 'ocupada') g.setAttribute('aria-disabled', 'true'); else g.removeAttribute('aria-disabled');
+        g.setAttribute('tabindex', roving.vip === m.id ? '0' : '-1');
+        for (const n of TODAS) {
+          nodo.sillas[n].classList.toggle('ocu', occ.includes(n));
+          nodo.sillas[n].classList.toggle('sel', sel.includes(n));
+        }
+      }
+      for (const s of SILLAS_ORO) {
+        const nodo = NODO_ORO.get(s.id); if (!nodo) continue;
+        const oc = oroOcupada(s.id), sel = carritoOro.has(s.id);
+        const g = nodo.g;
+        g.classList.toggle('ocupada', oc);
+        g.classList.toggle('sel', sel);
+        g.classList.toggle('foco', foco.tipo === 'oro' && foco.id === s.id);
+        g.setAttribute('aria-pressed', String(sel));
+        g.setAttribute('aria-label', 'Zona Oro, fila ' + s.letra + ', asiento ' + s.asiento + ', ' + (oc ? 'ocupada' : sel ? 'en tu selección' : 'disponible'));
+        if (oc) g.setAttribute('aria-disabled', 'true'); else g.removeAttribute('aria-disabled');
+        g.setAttribute('tabindex', roving.oro === s.id ? '0' : '-1');
+      }
+    }
+
+    function pintarContadores() {
+      const mesasLibres = MESAS.filter((m) => ocupadasMesa(m.id).length < SILLAS_MESA).length;
+      const oroLibres = SILLAS_ORO.filter((s) => !oroOcupada(s.id)).length;
+      contadores.innerHTML =
+        '<li>VIP: <b>' + mesasLibres + '</b> de 100 mesas con lugar</li>' +
+        '<li>Oro: <b>' + oroLibres + '</b> de 200 sillas libres</li>';
+    }
+
+    /* =========================================================
+       SIMULADOR POV 3D
+       ========================================================= */
+    const RADAR_X = (col) => 9 + col * 4.7;
+    function construirRadar() {
+      $('#radar').innerHTML =
+        '<rect x="8" y="2" width="44" height="5" rx="2.5" fill="url(#gRad)"/>' +
+        '<defs><linearGradient id="gRad" x1="0" x2="1"><stop offset="0" stop-color="#FFD233"/><stop offset=".6" stop-color="#FF2E93"/><stop offset="1" stop-color="#D63CFF"/></linearGradient></defs>' +
+        '<rect x="4" y="11" width="52" height="35" rx="4" fill="none" stroke="#B44CFF" stroke-width="1" opacity=".8"/>' +
+        '<rect x="4" y="49" width="52" height="29" rx="4" fill="none" stroke="#B44CFF" stroke-width="1" opacity=".8"/>' +
+        '<g fill="#FFD233" opacity=".28">' + MESAS.map((m) => '<circle cx="' + RADAR_X(m.col).toFixed(1) + '" cy="' + (14 + m.fila * 3.3).toFixed(1) + '" r=".9"/>').join('') + '</g>' +
+        '<g fill="#FFD233" opacity=".22">' + Array.from({ length: FILAS_ORO }, (_, f) => '<rect x="8" y="' + (51 + f * 1.3).toFixed(1) + '" width="44" height=".6"/>').join('') + '</g>' +
+        '<path id="radarCono" d="M0 0 L-5 -13 L5 -13 Z" fill="rgba(255,210,51,.45)"/>' +
+        '<circle id="radarPunto" r="2.4" fill="#FF2E93" stroke="#fff" stroke-width=".8"/>';
+    }
+
+    function posRadar(l) {
+      return l.tipo === 'vip' ? { x: RADAR_X(l.col), y: 14 + l.fila * 3.3 } : { x: RADAR_X(l.col), y: 51 + l.fila * 1.3 };
+    }
+
+    // Siluetas del público delante de ti (cuántas filas tienes enfrente)
+    function siluetas(l, filasDelante) {
+      const r = aleatorio(semilla(l.id + fechaId));
+      const dePie = modo === 'pie';
+      const capas = [];
+      if (filasDelante <= 0) return '';
+      // capa lejana (muchas cabezas pequeñas)
+      if (filasDelante >= 3) capas.push({ n: 16, w: 13, h: 19, abajo: dePie ? -6 : 24, op: .9 });
+      // capa media
+      if (filasDelante >= 2) capas.push({ n: 9, w: 22, h: 32, abajo: dePie ? -14 : 12, op: .95 });
+      // fila de enfrente
+      capas.push({ n: l.tipo === 'vip' ? 3 : 5, w: 36, h: 52, abajo: dePie ? -30 : -4, op: 1, mesa: l.tipo === 'vip' });
+      let html = '';
+      for (const c of capas) {
+        if (c.mesa) html += '<div class="mesa-frente" style="left:30%;width:40%;bottom:' + (c.abajo - 6) + 'px"></div>';
+        for (let i = 0; i < c.n; i++) {
+          const base = (i + .5) / c.n * 100;
+          let x = base + (r() - .5) * (60 / c.n);
+          if (c.mesa && x > 34 && x < 66) x = x < 50 ? 30 - r() * 8 : 70 + r() * 8;
+          const s = .85 + r() * .3;
+          html += '<div class="cabeza" style="left:calc(' + x.toFixed(1) + '% - ' + (c.w * s / 2).toFixed(0) + 'px);width:' + (c.w * s).toFixed(0) + 'px;height:' + (c.h * s).toFixed(0) + 'px;bottom:' + c.abajo + 'px;opacity:' + c.op + '"></div>';
+        }
+      }
+      return html;
+    }
+
+    function vistaAtras(l) {
+      const svg = $('#povAtrasSvg');
+      let filasVip = 0, filasOro = 0;
+      if (l.tipo === 'vip') { filasVip = FILAS_VIP - 1 - l.fila; filasOro = FILAS_ORO; }
+      else filasOro = FILAS_ORO - 1 - l.fila;
+      let html = '<defs><linearGradient id="gPiso" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b1438"/><stop offset="1" stop-color="#0b0918"/></linearGradient></defs><rect width="400" height="260" fill="url(#gPiso)"/>';
+      const total = Math.min(filasVip + filasOro, 22);
+      for (let k = total - 1; k >= 0; k--) {
+        const t = k / Math.max(total, 1);
+        const y = 228 - Math.pow(1 - t, 1) * 0 - t * 150;
+        const esVip = k < filasVip;
+        const n = esVip ? 10 : 10, sep = 380 * (1 - t * .62) / n, x0 = 200 - sep * n / 2 + sep / 2;
+        const tam = 7 * (1 - t * .75) + 1;
+        for (let i = 0; i < n; i++) {
+          const cx = (x0 + i * sep).toFixed(1);
+          html += esVip
+            ? '<circle cx="' + cx + '" cy="' + y.toFixed(1) + '" r="' + tam.toFixed(1) + '" fill="none" stroke="#FFD233" stroke-opacity="' + (1 - t * .7).toFixed(2) + '" stroke-width="1.4"/>'
+            : '<rect x="' + (cx - tam) + '" y="' + (y - tam * .45).toFixed(1) + '" width="' + (tam * 2).toFixed(1) + '" height="' + (tam * .9).toFixed(1) + '" rx="1.5" fill="#FFD233" fill-opacity="' + (.85 - t * .6).toFixed(2) + '"/>';
+        }
+      }
+      html += '<rect x="0" y="40" width="400" height="10" fill="#2d2352"/><rect x="170" y="22" width="60" height="18" fill="#10E57A" opacity=".55"/>';
+      svg.innerHTML = html;
+      $('#povAtrasTexto').textContent = (filasVip + filasOro) === 0
+        ? 'Detrás de ti: pasillo y accesos'
+        : 'Detrás de ti: ' + (filasVip ? filasVip + (filasVip === 1 ? ' fila de mesas VIP' : ' filas de mesas VIP') + ' y ' : '') + filasOro + (filasOro === 1 ? ' fila' : ' filas') + ' de Zona Oro';
+    }
+
+    function actualizarPOV() {
+      const l = lugar(foco.tipo, foco.id);
+      const dist = Math.hypot(l.x, l.y);
+      const ang = Math.atan2(l.x, l.y) * 180 / Math.PI;     // negativo = estás a la izquierda
+      const filasDelante = l.tipo === 'vip' ? l.fila : FILAS_VIP + l.fila;
+      const dePie = modo === 'pie', atras = modo === 'atras';
+
+      // Etiquetas
+      if (l.tipo === 'vip') {
+        const sel = seleccionMesa(l.id);
+        $('#povEtiqueta').textContent = 'MESA VIP #' + dos(l.numero) + ' • SILLA ' + dos(sel[0] || 1);
+        $('#povBorde').textContent = 'Mesa ' + dos(l.numero) + ' • tu borde VIP';
+      } else {
+        $('#povEtiqueta').textContent = 'ZONA ORO • FILA ' + l.letra + ' • ASIENTO ' + dos(l.asiento);
+        $('#povBorde').textContent = 'Fila ' + l.letra + ' • asiento ' + dos(l.asiento);
+      }
+      $('#povEjemplo').hidden = !foco.ejemplo;
+      $('#povDistCorta').textContent = dist.toFixed(1) + ' m';
+
+      // Cámara: lejos = escenario más pequeño; de lado = escenario girado
+      const ancho = povVista.clientWidth || 360;
+      const inmersivo = pov.classList.contains('inmersivo');
+      const extra = inmersivo ? Math.max(1, Math.min(2, povVista.clientHeight / 300, ancho / 380)) : 1;
+      const escala = 1.18 * Math.pow(6.5 / (l.y + 3), .72) * extra;
+      const rotY = Math.max(-38, Math.min(38, -ang * .75));
+      const tx = -giro * ancho / 95 + (-ang * ancho / 260);
+      const ty = (dePie ? 26 : 0) + (1 - Math.min(escala, 1)) * 18;
+      povMundo.style.transform = 'translate(' + tx.toFixed(1) + 'px,' + ty.toFixed(1) + 'px) rotateY(' + rotY.toFixed(1) + 'deg) scale(' + escala.toFixed(3) + ')';
+      povMundo.style.opacity = atras ? '0' : '1';
+      povFrente.innerHTML = atras ? '' : siluetas(l, filasDelante);
+      povFrente.style.transform = 'translateX(' + (-giro * ancho / 70).toFixed(1) + 'px)';
+      povAtras.classList.toggle('visible', atras);
+      if (atras) vistaAtras(l);
+
+      // Datos (estimados)
+      let vision = 100 - (l.tipo === 'vip' ? l.fila * (dePie ? .9 : 2.2) : (FILAS_VIP * (dePie ? .6 : 1.4) + l.fila * (dePie ? .5 : 1.2)));
+      if (Math.abs(ang) > 22) vision -= (Math.abs(ang) - 22) * .35;
+      vision = Math.max(60, Math.min(100, Math.round(vision)));
+      $('#povVision').textContent = atras ? 'Mirando atrás' : vision + '% libre';
+      $('#povDistancia').textContent = dist.toFixed(1) + ' m al escenario';
+      const a = Math.round(Math.abs(ang));
+      $('#povAngulo').textContent = a < 4 ? 'Frontal directo' : a + '° ' + (ang < 0 ? 'izquierda' : 'derecha');
+
+      // Radar
+      const p = posRadar(l);
+      const dirCentro = Math.atan2(-(p.y - 4.5), -(p.x - 30)) * 180 / Math.PI + 90;
+      $('#radarPunto').setAttribute('cx', p.x.toFixed(1));
+      $('#radarPunto').setAttribute('cy', p.y.toFixed(1));
+      $('#radarCono').setAttribute('transform', 'translate(' + p.x.toFixed(1) + ' ' + p.y.toFixed(1) + ') rotate(' + (dirCentro + giro + (atras ? 180 : 0)).toFixed(1) + ')');
+
+      // Barra superior
+      if (l.tipo === 'vip') {
+        $('#focoTitulo').textContent = 'Mesa VIP #' + dos(l.numero);
+        $('#focoSub').textContent = foco.ejemplo ? 'Vista de ejemplo' : 'Fila ' + (l.fila + 1) + (l.fila === 0 ? ' · Frente escenario' : ' · VIP Diamante');
+      } else {
+        $('#focoTitulo').textContent = 'Oro ' + l.letra + '-' + l.asiento;
+        $('#focoSub').textContent = 'Zona Oro · ' + dist.toFixed(0) + ' m';
+      }
+    }
+
+    function fijarModo(nuevo) {
+      if (nuevo === 'inmersivo') { alternarInmersivo(true); return; }
+      modo = nuevo;
+      document.querySelectorAll('.pov__modos button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.modo === modo || (b.dataset.modo === 'inmersivo' && pov.classList.contains('inmersivo')))));
+      actualizarPOV();
+    }
+    function alternarInmersivo(activar) {
+      pov.classList.toggle('inmersivo', activar);
+      document.body.classList.toggle('bloqueado', activar);
+      document.querySelector('.pov__modos [data-modo="inmersivo"]').setAttribute('aria-pressed', String(activar));
+      if (activar) $('#povCerrar').focus();
+      requestAnimationFrame(actualizarPOV);
+    }
+    function fijarGiro(v) {
+      giro = Math.max(-90, Math.min(90, Math.round(v)));
+      povGiro.value = giro;
+      povGiroValor.textContent = giro + '°';
+      actualizarPOV();
+    }
+
+    /* =========================================================
+       CONFIGURADOR Y CARRITO
+       ========================================================= */
+    function plantillaConfig() {
+      if (foco.ejemplo) {
+        return '<div class="config__cabecera"><div><h2 class="seccion-titulo" id="tituloConfig"><span class="ico" aria-hidden="true">event_seat</span>Configuración de sillas 3D</h2>' +
+          '<p>Aún no eliges un lugar.</p></div></div>' +
+          '<div class="vacio-config"><ul>' +
+          '<li><b>Mesa VIP Diamante:</b> toca una mesa y elige cuáles de sus 4 sillas quieres (' + dinero(PRECIO_SILLA_VIP) + ' c/u o ' + dinero(PRECIO_MESA_VIP) + ' la mesa completa).</li>' +
+          '<li><b>Zona Oro:</b> toca las sillas que quieras (' + dinero(PRECIO_SILLA_ORO) + ' c/u).</li>' +
+          '</ul><button type="button" class="btn btn-secundario" data-accion="ir-plano"><span class="ico" aria-hidden="true">radar</span>Ir al plano</button></div>';
+      }
+      const l = lugar(foco.tipo, foco.id);
+      if (l.tipo === 'oro') {
+        const oc = oroOcupada(l.id), sel = carritoOro.has(l.id);
+        return '<div class="config__cabecera"><div><h2 class="seccion-titulo" id="tituloConfig"><span class="ico" aria-hidden="true">star</span>Zona Oro</h2><p>Silla individual · 200 en total</p></div>' +
+          '<span class="badge badge--lima">' + dinero(PRECIO_SILLA_ORO) + ' / silla</span></div>' +
+          '<div class="oro-ficha"><div class="oro-ficha__icono' + (sel ? ' sel' : oc ? ' ocu' : '') + '"><span class="ico" aria-hidden="true">event_seat</span></div>' +
+          '<div><h3>' + nombreOro(l) + '</h3><p>' + (oc ? 'Ocupada en esta función.' : sel ? 'En tu selección.' : 'Disponible.') + ' A ' + Math.hypot(l.x, l.y).toFixed(1) + ' m del escenario.</p></div></div>' +
+          '<p class="pista">Puedes tocar varias sillas seguidas en el plano; cada una se agrega a tu selección.</p>' +
+          '<div class="acciones">' +
+            (oc ? '' : '<button type="button" class="btn ' + (sel ? 'btn-fantasma' : 'btn-primario') + '" data-accion="oro" data-id="' + l.id + '">' + (sel ? 'Quitar esta silla' : 'Agregar silla · ' + dinero(PRECIO_SILLA_ORO)) + '</button>') +
+            '<button type="button" class="btn btn-secundario" data-accion="ir-plano"><span class="ico" aria-hidden="true">radar</span>Volver al plano</button>' +
+          '</div>';
+      }
+      const occ = ocupadasMesa(l.id), sel = seleccionMesa(l.id), e = carritoVip.get(l.id);
+      const libres = SILLAS_MESA - occ.length;
+      const completa = sel.length === SILLAS_MESA, puedeCompleta = occ.length === 0;
+      const asientos = TODAS.map((n) => {
+        const oc = occ.includes(n), s = sel.includes(n);
+        return '<button type="button" class="asiento asiento--' + n + '" data-accion="silla" data-silla="' + n + '" aria-pressed="' + s + '"' + (oc ? ' disabled' : '') +
+          ' aria-label="Silla ' + n + ', ' + (oc ? 'ocupada' : s ? 'elegida' : 'libre, ' + dinero(PRECIO_SILLA_VIP)) + '">S' + n + '</button>';
+      }).join('');
+      const extras = EXTRAS.map((x) => '<label class="extra"><input type="checkbox" data-accion="extra" data-extra="' + x.id + '"' + (e && e.extras.includes(x.id) ? ' checked' : '') + (e ? '' : ' disabled') + '><span>' + x.nombre + '<small>+' + dinero(x.precio) + '</small></span></label>').join('');
+      return '<div class="config__cabecera"><div><h2 class="seccion-titulo" id="tituloConfig"><span class="ico" aria-hidden="true">event_seat</span>Configuración de sillas 3D</h2>' +
+        '<p>Mesa redonda Diamante #' + dos(l.numero) + ' · fila ' + (l.fila + 1) + ' (4 plazas)</p></div>' +
+        '<span class="badge badge--lima">' + dinero(PRECIO_SILLA_VIP) + ' / silla</span></div>' +
+        (occ.length ? '<p class="pista pista--alerta">' + (libres === 0 ? 'Esta mesa ya está ocupada.' : 'Quedan ' + libres + (libres === 1 ? ' silla libre' : ' sillas libres') + ' en esta mesa.') + '</p>' : '') +
+        '<div class="disco"><div class="disco__caja" role="group" aria-label="Sillas de la mesa ' + l.numero + '">' +
+          '<div class="disco__base"></div>' +
+          '<div class="disco__mesa"><span>MESA</span><span>' + dos(l.numero) + '</span><span>DIAMANTE</span></div>' + asientos +
+        '</div></div>' +
+        '<div class="leyenda-mini"><ul><li><span class="bolita bolita--sel"></span>Elegida</li><li><span class="bolita bolita--libre"></span>Libre</li><li><span class="bolita bolita--ocu"></span>Ocupada</li></ul>' +
+          '<button type="button" class="btn-mesa" data-accion="completa" aria-pressed="' + completa + '"' + (!puedeCompleta ? ' disabled' : '') + '>' + (completa ? 'Mesa completa ✓' : 'Toda la mesa · ' + dinero(PRECIO_MESA_VIP)) + '</button></div>' +
+        '<dl class="precios"><div><dt>Silla suelta</dt><dd>' + dinero(PRECIO_SILLA_VIP) + '</dd></div><div><dt>Mesa completa</dt><dd>' + dinero(PRECIO_MESA_VIP) + ' <small>4 sillas</small></dd></div></dl>' +
+        '<div class="extras"><span class="etiqueta">Complementos VIP de la mesa</span><div class="extras__grid">' + extras + '</div>' +
+          (e ? '' : '<p class="pista">Elige al menos una silla para agregar complementos.</p>') + '</div>' +
+        '<div class="subtotal"><span>' + (sel.length === 0 ? 'Elige al menos una silla' : describirSillas(sel) + (e && e.extras.length ? ' + complementos' : '')) + '</span><strong>' + dinero(costoMesa(l.id)) + '</strong></div>' +
+        '<div class="acciones">' +
+          '<button type="button" class="btn btn-secundario" data-accion="ir-plano"><span class="ico" aria-hidden="true">radar</span>Elegir otro lugar</button>' +
+          (e ? '<button type="button" class="btn btn-fantasma" data-accion="quitar-mesa" data-id="' + l.id + '">Quitar mesa</button>' : '') +
+        '</div>';
+    }
+
+    function plantillaCarrito() {
+      let html = '<h2 class="seccion-titulo" id="tituloCarrito"><span class="ico" aria-hidden="true">confirmation_number</span>Tu selección</h2>';
+      if (!hayCarrito()) return html + '<p class="carrito__vacio">Aún no eliges lugares. Toca una mesa VIP o una silla de Zona Oro en el plano.</p>';
+      const filas = [];
+      const mesas = [...carritoVip.keys()].sort((a, b) => MESA.get(a).numero - MESA.get(b).numero);
+      for (const id of mesas) {
+        const m = MESA.get(id), e = carritoVip.get(id);
+        const ex = e.extras.map((x) => EXTRAS.find((y) => y.id === x).nombre.toLowerCase()).join(', ');
+        filas.push('<li class="carrito__fila' + (foco.tipo === 'vip' && foco.id === id && !foco.ejemplo ? ' es-foco' : '') + '">' +
+          '<button type="button" class="carrito__abrir" data-accion="abrir" data-tipo="vip" data-id="' + id + '"><strong>Mesa VIP #' + dos(m.numero) + '</strong><span>' + describirSillas(e.sillas) + (ex ? ' · ' + escapar(ex) : '') + '</span></button>' +
+          '<strong class="carrito__precio">' + dinero(costoMesa(id)) + '</strong>' +
+          '<button type="button" class="carrito__quitar" data-accion="quitar-mesa" data-id="' + id + '" aria-label="Quitar mesa ' + m.numero + '"><span class="ico" aria-hidden="true">close</span></button></li>');
+      }
+      const oro = [...carritoOro].sort((a, b) => { const x = SILLA_ORO.get(a), y = SILLA_ORO.get(b); return x.fila - y.fila || x.col - y.col; });
+      for (const id of oro) {
+        const s = SILLA_ORO.get(id);
+        filas.push('<li class="carrito__fila' + (foco.tipo === 'oro' && foco.id === id ? ' es-foco' : '') + '">' +
+          '<button type="button" class="carrito__abrir" data-accion="abrir" data-tipo="oro" data-id="' + id + '"><strong>Zona Oro · ' + s.letra + '-' + s.asiento + '</strong><span>' + nombreOro(s) + '</span></button>' +
+          '<strong class="carrito__precio">' + dinero(PRECIO_SILLA_ORO) + '</strong>' +
+          '<button type="button" class="carrito__quitar" data-accion="oro" data-id="' + id + '" aria-label="Quitar silla ' + s.letra + '-' + s.asiento + '"><span class="ico" aria-hidden="true">close</span></button></li>');
+      }
+      return html + '<ul class="carrito__lista">' + filas.join('') + '</ul>' +
+        '<div class="total-linea"><span>Total · ' + plazas() + (plazas() === 1 ? ' plaza' : ' plazas') + '</span><strong>' + dinero(total()) + '</strong></div>';
+    }
+
+    function textoResumen() {
+      if (!hayCarrito()) return 'Aún no eliges lugares';
+      const partes = [];
+      if (carritoVip.size === 1) {
+        const [id, e] = [...carritoVip][0];
+        partes.push('Mesa #' + dos(MESA.get(id).numero) + ' • ' + (e.sillas.length === SILLAS_MESA ? 'mesa completa' : 'S' + e.sillas.join(', S')));
+      } else if (carritoVip.size > 1) partes.push(carritoVip.size + ' mesas VIP');
+      if (carritoOro.size === 1) { const s = SILLA_ORO.get([...carritoOro][0]); partes.push('Oro ' + s.letra + '-' + s.asiento); }
+      else if (carritoOro.size > 1) partes.push(carritoOro.size + ' sillas Oro');
+      return partes.join(' · ') + ' (' + plazas() + (plazas() === 1 ? ' plaza)' : ' plazas)');
+    }
+
+    function pintarCompra() {
+      compraResumen.textContent = textoResumen();
+      compraTotal.textContent = dinero(total());
+      btnPagar.disabled = !hayCarrito();
+    }
+
+    function pintarTodo() {
+      pintarPlano();
+      pintarContadores();
+      config.innerHTML = plantillaConfig();
+      carrito.innerHTML = plantillaCarrito();
+      pintarCompra();
+      pintarTemporizador();
+      actualizarPOV();
+    }
+
+    /* =========================================================
+       TEMPORIZADOR DE 10 MINUTOS
+       ========================================================= */
+    function iniciarTemporizador() {
+      if (limite != null) return;
+      limite = Date.now() + MINUTOS_LIMITE * 60 * 1000;
+      intervalo = setInterval(tic, 500);
+    }
+    function detenerTemporizador() { clearInterval(intervalo); intervalo = null; limite = null; pintarTemporizador(); }
+    function revisarTemporizador() { if (!hayCarrito()) detenerTemporizador(); else iniciarTemporizador(); }
+    function tic() { if (limite - Date.now() <= 0) { expirar(); return; } pintarTemporizador(); }
+    function pintarTemporizador() {
+      if (limite == null) { temporizador.hidden = true; return; }
+      const s = Math.max(0, Math.ceil((limite - Date.now()) / 1000));
+      tiempoRestante.textContent = dos(Math.floor(s / 60)) + ':' + dos(s % 60);
+      temporizador.hidden = false;
+      temporizador.classList.toggle('urgente', s <= 60);
+    }
+    function expirar() {
+      carritoVip.clear(); carritoOro.clear();
+      detenerTemporizador();
+      if (dialogo.open) cerrarDialogo();
+      pintarTodo();
+      avisar('Se acabó el tiempo: tus lugares se liberaron. Puedes volver a elegir.');
+    }
+
+    /* =========================================================
+       ACCIONES
+       ========================================================= */
+    function verVista() {
+      if (mqAmplio.matches) { $('.columna--lateral').scrollTo({ top: 0, behavior: 'smooth' }); return; }
+      pov.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    function verConfig() {
+      if (mqAmplio.matches) { config.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); return; }
+      pov.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function tocarMesa(id, desdeTeclado) {
+      const m = MESA.get(id);
+      roving.vip = id;
+      const occ = ocupadasMesa(id);
+      if (occ.length >= SILLAS_MESA) {
+        foco = { tipo: 'vip', id, ejemplo: false };
+        pintarTodo();
+        avisar('La mesa ' + m.numero + ' ya está ocupada. Puedes ver su vista, pero no apartarla.');
+        return;
+      }
+      const nueva = !carritoVip.has(id);
+      if (nueva) {
+        const libres = TODAS.filter((n) => !occ.includes(n));
+        carritoVip.set(id, { sillas: libres, extras: [] });
+        iniciarTemporizador();
+      }
+      foco = { tipo: 'vip', id, ejemplo: false };
+      pintarTodo();
+      if (desdeTeclado) enfocarNodo('vip', id);
+      const e = carritoVip.get(id);
+      avisar(nueva ? 'Mesa ' + m.numero + ' agregada · ' + describirSillas(e.sillas).toLowerCase() : 'Mesa ' + m.numero + ' en la vista 3D', { texto: 'Ver vista y sillas', fn: verConfig });
+    }
+
+    function tocarOro(id, desdeTeclado) {
+      const s = SILLA_ORO.get(id);
+      roving.oro = id;
+      foco = { tipo: 'oro', id, ejemplo: false };
+      if (oroOcupada(id)) {
+        pintarTodo();
+        avisar('La silla ' + s.letra + '-' + s.asiento + ' ya está ocupada.');
+        return;
+      }
+      const agregar = !carritoOro.has(id);
+      if (agregar) carritoOro.add(id); else carritoOro.delete(id);
+      revisarTemporizador();
+      pintarTodo();
+      if (desdeTeclado) enfocarNodo('oro', id);
+      avisar((agregar ? 'Agregaste ' : 'Quitaste ') + 'Zona Oro ' + s.letra + '-' + s.asiento, { texto: 'Ver vista', fn: verVista });
+    }
+
+    function enfocarNodo(zona, id) {
+      const nodo = (zona === 'vip' ? NODO_MESA : NODO_ORO).get(id);
+      if (nodo) nodo.g.focus({ preventScroll: false });
+    }
+
+    function fijarSillas(id, sillas) {
+      sillas = [...new Set(sillas)].sort((a, b) => a - b);
+      if (!sillas.length) carritoVip.delete(id);
+      else {
+        const e = carritoVip.get(id);
+        if (e) e.sillas = sillas; else carritoVip.set(id, { sillas, extras: [] });
+      }
+      revisarTemporizador();
+      pintarTodo();
+    }
+
+    function quitarMesa(id) { carritoVip.delete(id); revisarTemporizador(); pintarTodo(); }
+    function quitarOro(id) { carritoOro.delete(id); revisarTemporizador(); pintarTodo(); }
+
+    /* =========================================================
+       PAGO (DEMO): datos, folio y bloqueo en localStorage
+       ========================================================= */
+    function abrirDialogo() {
+      if (!hayCarrito()) return;
+      formPago.hidden = false; resumenPago.hidden = true; resumenPago.innerHTML = ''; errorForm.hidden = true;
+      dialogoResumen.textContent = fechaActual().etiqueta + ' · ' + plazas() + (plazas() === 1 ? ' plaza' : ' plazas') + ' · Total ' + dinero(total()) + ' MXN';
+      if (typeof dialogo.showModal === 'function') dialogo.showModal(); else dialogo.setAttribute('open', '');
+      formPago.querySelector('input[name="nombre"]').focus();
+    }
+    function cerrarDialogo() { if (typeof dialogo.close === 'function' && dialogo.open) dialogo.close(); else dialogo.removeAttribute('open'); }
+    function nuevoFolio() {
+      const n = (parseInt(almacen.leer(CLAVE_FOLIO, 0), 10) || 0) + 1;
+      almacen.escribir(CLAVE_FOLIO, n);
+      return 'EF-' + fechaId.slice(0, 4) + '-' + String(n).padStart(4, '0');
+    }
+
+    function confirmarPedido(datos) {
+      const fecha = fechaActual(), folio = nuevoFolio(), importe = total();
+      const porFecha = reservas[fechaId] || (reservas[fechaId] = { vip: {}, oro: [] });
+      porFecha.vip = porFecha.vip || {}; porFecha.oro = porFecha.oro || [];
+      const lineas = [];
+      const mesas = [...carritoVip.keys()].sort((a, b) => MESA.get(a).numero - MESA.get(b).numero);
+      for (const id of mesas) {
+        const e = carritoVip.get(id);
+        porFecha.vip[id] = [...new Set((porFecha.vip[id] || []).concat(e.sillas))].sort((a, b) => a - b);
+        const ex = e.extras.map((x) => EXTRAS.find((y) => y.id === x).nombre.toLowerCase());
+        lineas.push('Mesa VIP #' + dos(MESA.get(id).numero) + ' · ' + describirSillas(e.sillas) + (ex.length ? ' + ' + ex.join(', ') : '') + ' · ' + dinero(costoMesa(id)));
+      }
+      const oro = [...carritoOro].sort((a, b) => { const x = SILLA_ORO.get(a), y = SILLA_ORO.get(b); return x.fila - y.fila || x.col - y.col; });
+      for (const id of oro) {
+        if (!porFecha.oro.includes(id)) porFecha.oro.push(id);
+        lineas.push('Zona Oro · ' + nombreOro(SILLA_ORO.get(id)) + ' · ' + dinero(PRECIO_SILLA_ORO));
+      }
+      almacen.escribir(CLAVE_RESERVAS, reservas);
+      const pedidos = almacen.leer(CLAVE_PEDIDOS, []);
+      pedidos.push({ folio, fechaId, fecha: fecha.etiqueta, nombre: datos.nombre, whatsapp: datos.whatsapp, correo: datos.correo, lugares: lineas, total: importe, creado: new Date().toISOString() });
+      almacen.escribir(CLAVE_PEDIDOS, pedidos);
+
+      const mensajeWA = 'Hola, Expo Feria. Aparté lugares con el folio ' + folio + ' para ' + fecha.etiqueta + ' (' + lineas.length + (lineas.length === 1 ? ' concepto' : ' conceptos') + ', total ' + dinero(importe) + ' MXN). Quedo pendiente de la confirmación.';
+      carritoVip.clear(); carritoOro.clear();
+      detenerTemporizador();
+      pintarTodo();
+
+      formPago.hidden = true; formPago.reset();
+      resumenPago.hidden = false;
+      resumenPago.innerHTML =
+        '<p class="etiqueta">Listo · Pago simulado</p>' +
+        '<h2>¡Tus lugares quedaron apartados!</h2>' +
+        '<p class="folio">Folio <strong>' + folio + '</strong></p>' +
+        '<dl class="resumen">' +
+          '<div><dt>Función</dt><dd>' + escapar(fecha.etiqueta) + '</dd></div>' +
+          '<div><dt>A nombre de</dt><dd>' + escapar(datos.nombre) + '</dd></div>' +
+          '<div><dt>Lugares</dt><dd><ul>' + lineas.map((x) => '<li>' + escapar(x) + '</li>').join('') + '</ul></dd></div>' +
+          '<div><dt>Total</dt><dd class="total">' + dinero(importe) + ' MXN</dd></div>' +
+        '</dl>' +
+        '<p class="pista">Tus lugares ya aparecen ocupados en el plano. Modo demostración: no se hizo ningún cargo.</p>' +
+        '<div class="acciones" style="margin-top:14px">' +
+          '<button type="button" class="btn btn-primario" data-accion="cerrar">Volver al plano</button>' +
+          '<a class="btn btn-whatsapp" target="_blank" rel="noopener" href="https://wa.me/' + TELEFONO_WHATSAPP + '?text=' + encodeURIComponent(mensajeWA) + '">Enviar folio por WhatsApp</a>' +
+        '</div>';
+      resumenPago.querySelector('button').focus();
+    }
+
+    /* =========================================================
+       EVENTOS
+       ========================================================= */
+    plano.addEventListener('click', (e) => {
+      const mesa = e.target.closest('.mesa');
+      if (mesa) { tocarMesa(mesa.dataset.id, false); return; }
+      const oro = e.target.closest('.oro');
+      if (oro) tocarOro(oro.dataset.id, false);
+    });
+
+    // Teclado: flechas para moverse por la cuadrícula, Enter/Espacio para elegir
+    function nodoEn(zona, r, c) {
+      if (zona === 'vip') { const m = MESAS[r * COLUMNAS + c]; return m ? m.id : null; }
+      const s = SILLAS_ORO[r * COLUMNAS + c]; return s ? s.id : null;
+    }
+    plano.addEventListener('keydown', (e) => {
+      const nodo = e.target.closest('.mesa, .oro');
+      if (!nodo) return;
+      const zona = nodo.classList.contains('mesa') ? 'vip' : 'oro';
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        if (zona === 'vip') tocarMesa(nodo.dataset.id, true); else tocarOro(nodo.dataset.id, true);
+        return;
+      }
+      const d = { ArrowUp: [-1, 0], ArrowDown: [1, 0], ArrowLeft: [0, -1], ArrowRight: [0, 1] }[e.key];
+      if (!d) return;
+      e.preventDefault();
+      let r = Number(nodo.dataset.r) + d[0], c = Math.max(0, Math.min(COLUMNAS - 1, Number(nodo.dataset.c) + d[1]));
+      let z = zona;
+      if (z === 'vip' && r >= FILAS_VIP) { z = 'oro'; r = 0; }
+      else if (z === 'oro' && r < 0) { z = 'vip'; r = FILAS_VIP - 1; }
+      if (r < 0 || (z === 'oro' && r >= FILAS_ORO)) return;
+      const id = nodoEn(z, r, c);
+      if (!id) return;
+      roving[z] = id;
+      pintarPlano();
+      enfocarNodo(z, id);
+    });
+
+    // Configurador y carrito (delegación por data-accion)
+    function manejarAccion(e) {
+      const b = e.target.closest('[data-accion]');
+      if (!b || b.disabled) return;
+      const accion = b.dataset.accion, id = b.dataset.id;
+      const l = foco.ejemplo ? null : lugar(foco.tipo, foco.id);
+      switch (accion) {
+        case 'silla': {
+          if (!l || l.tipo !== 'vip') return;
+          const n = Number(b.dataset.silla), sel = seleccionMesa(l.id);
+          fijarSillas(l.id, sel.includes(n) ? sel.filter((x) => x !== n) : sel.concat(n));
+          const nuevo = config.querySelector('[data-silla="' + n + '"]'); if (nuevo) nuevo.focus();
+          break;
+        }
+        case 'completa': {
+          if (!l || l.tipo !== 'vip' || ocupadasMesa(l.id).length) return;
+          fijarSillas(l.id, seleccionMesa(l.id).length === SILLAS_MESA ? [1] : TODAS);
+          const nuevo = config.querySelector('[data-accion="completa"]'); if (nuevo) nuevo.focus();
+          break;
+        }
+        case 'quitar-mesa': quitarMesa(id); break;
+        case 'oro': {
+          if (carritoOro.has(id)) quitarOro(id);
+          else if (!oroOcupada(id)) { carritoOro.add(id); revisarTemporizador(); pintarTodo(); }
+          break;
+        }
+        case 'abrir': {
+          foco = { tipo: b.dataset.tipo, id, ejemplo: false };
+          if (b.dataset.tipo === 'vip') roving.vip = id; else roving.oro = id;
+          pintarTodo();
+          verVista();
+          break;
+        }
+        case 'ir-plano': {
+          const zona = foco.ejemplo ? 'vip' : foco.tipo;
+          irAZona(zona);
+          if (!foco.ejemplo) setTimeout(() => enfocarNodo(foco.tipo, foco.id), 450);
+          break;
+        }
+      }
+    }
+    config.addEventListener('click', manejarAccion);
+    carrito.addEventListener('click', manejarAccion);
+    config.addEventListener('change', (e) => {
+      const c = e.target.closest('[data-accion="extra"]');
+      if (!c || foco.ejemplo || foco.tipo !== 'vip') return;
+      const entrada = carritoVip.get(foco.id); if (!entrada) return;
+      const x = c.dataset.extra;
+      entrada.extras = c.checked ? [...new Set(entrada.extras.concat(x))] : entrada.extras.filter((y) => y !== x);
+      pintarTodo();
+      const nuevo = config.querySelector('[data-extra="' + x + '"]'); if (nuevo) nuevo.focus();
+    });
+
+    function irAZona(zona) {
+      const sec = $('#plano-zona');
+      sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const svgAlto = plano.getBoundingClientRect().height;
+      const proporcion = (ZONAS_Y[zona] || 0) / (ZONAS_Y.alto || 1);
+      if (zoom) planoScroll.scrollTo({ top: Math.max(0, svgAlto * proporcion - 10), behavior: 'smooth' });
+      else if (zona === 'oro') {
+        setTimeout(() => {
+          const y = plano.getBoundingClientRect().top + window.scrollY + svgAlto * proporcion - 70;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }, 30);
+      }
+    }
+    document.querySelector('.zonas-rapidas').addEventListener('click', (e) => {
+      const b = e.target.closest('[data-zona]'); if (b) irAZona(b.dataset.zona);
+    });
+
+    $('#btnZoom').addEventListener('click', (e) => {
+      zoom = !zoom;
+      planoScroll.classList.toggle('acercado', zoom);
+      const b = e.currentTarget;
+      b.setAttribute('aria-pressed', String(zoom));
+      b.innerHTML = '<span class="ico" aria-hidden="true">' + (zoom ? 'zoom_out' : 'zoom_in') + '</span><span>' + (zoom ? 'Ver completo' : 'Acercar') + '</span>';
+      if (zoom && !foco.ejemplo) {
+        const nodo = (foco.tipo === 'vip' ? NODO_MESA : NODO_ORO).get(foco.id);
+        if (nodo) {
+          const r = nodo.g.getBoundingClientRect(), c = planoScroll.getBoundingClientRect();
+          planoScroll.scrollTo({ left: planoScroll.scrollLeft + r.left - c.left - c.width / 2, top: planoScroll.scrollTop + r.top - c.top - c.height / 2 });
+        }
+      }
+    });
+
+    // Simulador: modos, giro, arrastre
+    document.querySelector('.pov__modos').addEventListener('click', (e) => {
+      const b = e.target.closest('[data-modo]'); if (!b) return;
+      if (b.dataset.modo === 'inmersivo') alternarInmersivo(!pov.classList.contains('inmersivo'));
+      else fijarModo(b.dataset.modo);
+    });
+    povGiro.addEventListener('input', () => fijarGiro(Number(povGiro.value)));
+    $('#povCerrar').addEventListener('click', () => alternarInmersivo(false));
+    let arrastre = null;
+    povVista.addEventListener('pointerdown', (e) => {
+      if (e.target.closest('button')) return;
+      arrastre = { x: e.clientX, giro, id: e.pointerId };
+      povVista.classList.add('arrastrando');
+    });
+    window.addEventListener('pointermove', (e) => {
+      if (!arrastre || e.pointerId !== arrastre.id) return;
+      const dx = e.clientX - arrastre.x;
+      if (Math.abs(dx) > 3) fijarGiro(arrastre.giro - dx * 180 / (povVista.clientWidth || 360));
+    });
+    function soltar() { arrastre = null; povVista.classList.remove('arrastrando'); }
+    window.addEventListener('pointerup', soltar);
+    window.addEventListener('pointercancel', soltar);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && pov.classList.contains('inmersivo')) alternarInmersivo(false);
+    });
+    window.addEventListener('resize', () => actualizarPOV());
+
+    btnPagar.addEventListener('click', abrirDialogo);
+
+    selectFecha.addEventListener('change', () => {
+      if (hayCarrito() && !window.confirm('Al cambiar de función se vacía tu selección actual. ¿Quieres continuar?')) { selectFecha.value = fechaId; return; }
+      fechaId = selectFecha.value;
+      carritoVip.clear(); carritoOro.clear();
+      detenerTemporizador();
+      $('#barraFuncion').textContent = 'Mesas VIP · ' + fechaActual().corta;
+      pintarTodo();
+    });
+
+    formPago.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const d = new FormData(formPago);
+      const nombre = String(d.get('nombre') || '').trim();
+      const whatsapp = String(d.get('whatsapp') || '').replace(/\D/g, '');
+      const correo = String(d.get('correo') || '').trim();
+      const errores = [];
+      if (nombre.length < 3) errores.push('Escribe tu nombre completo.');
+      if (whatsapp.length !== 10) errores.push('El WhatsApp debe tener 10 dígitos.');
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)) errores.push('Revisa tu correo.');
+      if (errores.length) { errorForm.textContent = errores.join(' '); errorForm.hidden = false; return; }
+      if (!hayCarrito()) { cerrarDialogo(); return; }
+      confirmarPedido({ nombre, whatsapp, correo });
+    });
+    dialogo.addEventListener('click', (e) => { if (e.target.closest('[data-accion="cerrar"]')) cerrarDialogo(); });
+    dialogo.addEventListener('close', () => { errorForm.hidden = true; });
+
+    $('#reiniciarDemo').addEventListener('click', () => {
+      almacen.borrar(CLAVE_RESERVAS); almacen.borrar(CLAVE_FOLIO); almacen.borrar(CLAVE_PEDIDOS);
+      reservas = {};
+      carritoVip.clear(); carritoOro.clear();
+      foco = { tipo: 'vip', id: 'v5', ejemplo: true };
+      detenerTemporizador();
+      pintarTodo();
+      avisar('Listo: se borraron las reservaciones guardadas en este navegador.');
+    });
+
+    // El plano cambia de forma (con o sin paneles laterales) según el ancho
+    const reconstruir = () => { construirPlano(); pintarPlano(); };
+    if (mqPlanoAmplio.addEventListener) mqPlanoAmplio.addEventListener('change', reconstruir); else mqPlanoAmplio.addListener(reconstruir);
+
+    /* =========================================================
+       ARRANQUE
+       ========================================================= */
+    selectFecha.innerHTML = FECHAS.map((f) => '<option value="' + f.id + '">' + escapar(f.etiqueta) + '</option>').join('');
+    selectFecha.value = fechaId;
+    $('#barraFuncion').textContent = 'Mesas VIP · ' + fechaActual().corta;
+    construirRadar();
+    construirPlano();
+    pintarTodo();
+  })();
+  </script>
+</body>
+</html>
